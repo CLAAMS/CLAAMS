@@ -22,66 +22,27 @@
                     <form role="form">
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <asp:Label ID="lblSOSID" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="txtSOSID" runat="server" CssClass="form-control" />
+                                <asp:Label ID="lblRecipient" Text="Recipient:" runat="server" CssClass="label" />
+                                <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown"/>
+                                <br />
+                                <asp:Label ID="lblAssigner" Text="From:" runat="server" CssClass="label" />
+                                <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" />
+                                <br />
+                                <asp:Label ID="lblDate" Text="Issue Date:" runat="server" CssClass="label" />
+                                <asp:Calendar ID="calIssueDate" runat="server" SelectedDate="10/28/2014"/>
+                                <br />
+                                <asp:Label ID="lblTerm" Text="Term:" runat="server" CssClass="label" />
+                                <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown">
+                                    <asp:ListItem Value="1" Text="Permanent" />
+                                    <asp:ListItem Value="0" Text="Non-Permanent" />
+                                </asp:DropDownList>
+                                <br />
+                                <div id="term" runat="server" visible="true">
+                                    <asp:Label ID="lblDueDate" Text="Due Date:" runat="server" CssClass="label" />
+                                    <asp:Calendar ID="calDueDate" runat="server" />
                                 </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label3" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label4" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label9" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <asp:Label ID="Label1" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label5" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label6" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label10" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <asp:Label ID="Label2" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label7" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label8" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="Label11" Text="Sign Sheet ID:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="TextBox11" runat="server" CssClass="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <asp:Label ID="lblNotes" Text="Notes:" runat="server" CssClass="label" />
-                                    <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control" />
-                                </div>
+                                <asp:Label ID="lblAssets" Text="Assets:" runat="server" CssClass="label" />
+                                <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:150px;"></asp:ListBox>
                             </div>
                         </div>
                         <div class="row">
