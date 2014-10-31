@@ -1,0 +1,74 @@
+﻿body {
+}
+
+#header {
+    font-family: 'Bebas Neue';
+    text-align: left;
+    padding: 10px;
+}
+
+#navigation {
+    font-family: 'Bebas Neue';
+    background-color: #9e1b34;
+    color: #ffffff;
+}
+
+.navbar-header {
+    font-family: 'Bebas Neue';
+    background-color: #9e1b34;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #9e1b34;
+    border-radius: 0px;
+    border: 0px;
+}
+
+.navbar-default .navbar-nav>li>a{
+    font-family: 'Bebas Neue';
+    color: #ffffff;
+}
+
+#content {
+    font-family:'Open Sans Condensed';
+    font-size:14px;
+}
+
+#footer {
+    font-family: 'Bebas Neue';
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#footer_address {
+    background-color: #222222;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+#footer_wrapper {
+    background-color: #303030;
+    padding-top: 10px;
+}
+
+#footer_utility_bar {
+    background-color: #070707;
+    font-family: 'Open Sans Condensed';
+    font-weight:bold;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+#footer_copyright {
+    background-color: #070707;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
