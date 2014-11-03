@@ -40,8 +40,8 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="sos.aspx">Sign Sheets</a></li>
-              <li><a href="assets.aspx">Assets</a></li>
-              <li><a href="clients.aspx">Clients</a></li>
+              <li><a href="asset.aspx">Assets</a></li>
+              <li><a href="recipient.aspx">Recipeints</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="login.aspx">Login</a></li>

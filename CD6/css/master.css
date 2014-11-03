@@ -72,3 +72,17 @@
   margin-right: auto;
   text-align: center;
 }
+
+.label {
+    color: #000000;
+    font-size:14px;
+}
+
+.button_row {
+    margin-top: 20px;
+}
+
+.dropdown {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
