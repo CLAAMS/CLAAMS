@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="asset.aspx" />
+    <Content Include="css\asset.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -64,6 +66,8 @@
     <Content Include="css\fonts.css" />
     <Content Include="css\login.css" />
     <Content Include="css\master.css" />
+    <Content Include="css\recipient.css" />
+    <Content Include="css\secondary-nav.css" />
     <Content Include="css\sos.css" />
     <Content Include="css\sticky-footer.css" />
     <Content Include="css\style.css" />
@@ -72,10 +76,18 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="recipient.aspx" />
     <Content Include="sos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asset.aspx.cs">
+      <DependentUpon>asset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="asset.aspx.designer.cs">
+      <DependentUpon>asset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -91,6 +103,13 @@
       <DependentUpon>master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="recipient.aspx.cs">
+      <DependentUpon>recipient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="recipient.aspx.designer.cs">
+      <DependentUpon>recipient.aspx</DependentUpon>
+    </Compile>
     <Compile Include="sos.aspx.cs">
       <DependentUpon>sos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

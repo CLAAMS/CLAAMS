@@ -79,10 +79,14 @@
 }
 
 .button_row {
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .dropdown {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.calendar {
+    margin-bottom: 20px;
 }

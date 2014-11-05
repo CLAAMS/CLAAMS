@@ -13,49 +13,31 @@ namespace CD6 {
     public partial class sos {
         
         /// <summary>
-        /// search control.
+        /// sos_form control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl search;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sos_form;
         
         /// <summary>
-        /// results control.
+        /// searchHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl results;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchHeader;
         
         /// <summary>
-        /// gvSearchResults control.
+        /// createHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSearchResults;
-        
-        /// <summary>
-        /// btnNewSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewSearch;
-        
-        /// <summary>
-        /// modify control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modify;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl createHeader;
         
         /// <summary>
         /// lblRecipient control.
@@ -139,13 +121,31 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.Button btnAddAsset;
         
         /// <summary>
-        /// term control.
+        /// lblDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl term;
+        protected global::System.Web.UI.WebControls.Label lblDate;
+        
+        /// <summary>
+        /// calIssueDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calIssueDate;
+        
+        /// <summary>
+        /// dueCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dueCal;
         
         /// <summary>
         /// lblDueDate control.
@@ -166,22 +166,13 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.Calendar calDueDate;
         
         /// <summary>
-        /// lblDate control.
+        /// button_submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDate;
-        
-        /// <summary>
-        /// calIssueDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calIssueDate;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl button_submit;
         
         /// <summary>
         /// btnSubmit control.
@@ -193,13 +184,13 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// searching control.
+        /// button_search control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searching;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl button_search;
         
         /// <summary>
         /// btnSearch control.
@@ -209,5 +200,68 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// search_results control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl search_results;
+        
+        /// <summary>
+        /// trackingHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl trackingHeader;
+        
+        /// <summary>
+        /// searchResultsHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchResultsHeader;
+        
+        /// <summary>
+        /// gvSearchResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSearchResults;
+        
+        /// <summary>
+        /// searchButtons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchButtons;
+        
+        /// <summary>
+        /// btnExport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExport;
+        
+        /// <summary>
+        /// btnNewSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewSearch;
     }
 }

@@ -17,8 +17,8 @@
             </div>
             <div id="subnavbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Create</a></li>
+                    <li><asp:LinkButton OnClick="btnNewSearch_Click" Text="Search" runat="server" /></li>
+                    <li><asp:LinkButton OnClick="btnCreate_Click" Text="Create" runat="server" /></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -27,12 +27,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
-                <div class="row" id="asset_form">
-                    <div class="row"><div class="col-md-12"><p><h1>Create New Asset</h1></p></div></div>
-                    <div class="row">
-                        <div class="col-md-12" style="text-align:center;">
-                        </div>
-                    </div>
+                <div class="row" id="asset_form" runat="server" visible="true">
+                    <div class="row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><p><h1>Search Assets</h1></p></div></div>
+                    <div class="row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Create Asset</h1></p></div></div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-xs-9">
@@ -68,12 +65,13 @@
                         <asp:Label ID="lblNotes" Text="Notes:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtNotes" TextMode="MultiLine" Columns="50" Rows="5" runat="server" CssClass="form-control" />
                     </div>
+                    <div class="row"><div id="submit_button" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click"/></div></div>
+                    <div class="row"><div id="search_button" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click"/></div></div>
                 </div>
-                <div class="row button_row"><div class="col-md-12" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" /></div></div>
-                <div class="row button_row"><div class="col-md-12" style="text-align:center;" runat="server" visible="false"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" /></div></div>
                 <div class="row" id="search_results" runat="server" visible="true">
+                    <div class="row"><div class="col-xs-12"><p><h1>Asset Search Results</h1></p></div></div>
                     <div class="col-md-12">
-                        <asp:GridView ID="gvSearchResults" runat="server" OnRowCommand="gvSearchResult_click" AutoGenerateColumns="false">
+                        <asp:GridView ID="gvSearchResults" runat="server" OnRowCommand="gvSearchResult_click" AutoGenerateColumns="false" CssClass="table">
                             <Columns>
                                 <asp:BoundField DataField="assetID" HeaderText="ID" />
                                 <asp:BoundField DataField="CLATag" HeaderText="CLA Tag" />
@@ -82,10 +80,11 @@
                                 <asp:BoundField DataField="SerialNumber" HeaderText="Serial" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
                                 <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" /> 
-                                <asp:ButtonField ButtonType="Button" Text="Modify" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-danger" />
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
                             </Columns>
                         </asp:GridView>
                     </div>
+                    <div class="row"><div class="col-md-12 button_row" style="text-align:center;" ><asp:Button ID="btnNewSearch" Text="New Search" runat="server" CssClass="btn btn-default" OnClick="btnNewSearch_Click"/></div></div>
                 </div>
             </form>
         </div> 
