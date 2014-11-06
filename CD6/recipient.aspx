@@ -37,7 +37,14 @@
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblLocation" Text="Location:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtLocation" runat="server" CssClass="form-control" />
-                        <asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation:" runat="server" CssClass="label" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation:" runat="server" CssClass="label" />
+                            </div>
+                            <div class="col-md-6" style="text-align:right;">
+                                <a onclick="addDepartment()">Add Department</a>
+                            </div>
+                        </div>
                         <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;">
                             <asp:ListItem Value="English" Text="English" />
                             <asp:ListItem Value="Psychology" Text="Psychology" />

@@ -31,6 +31,7 @@
                 <div class="row" id="sos_form" runat="server" visible="false">
                     <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><h1>Search Sign Sheets</h1></div></div>
                     <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><h1>Create Sign Sheet</h1></div></div>
+                    <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Sign Sheet</h1></div></div>
                     <div class="col-md-6">
                         <asp:Label ID="lblRecipient" Text="Recipient:" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown">
@@ -49,17 +50,35 @@
                             <asp:ListItem Value="1" Text="Permanent" />
                             <asp:ListItem Value="0" Text="Non-Permanent" />
                         </asp:DropDownList><br />
+                        <div class="row" id="uploadSheet">
+                            <div class="col-md-12">
+                                <asp:Label ID="lblSOSUpload" Text="Upload Sign Sheet:" runat="server" CssClass="label"/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-primary btn-file">Browse<asp:FileUpload runat="server" ID="upSOS" /></span>
+                                            </span>
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><a onclick="viewSheet()">View Current Sign Sheet</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblAssets" Text="Assets:" runat="server" CssClass="label" />
                         <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />
-                        <div class="row"><div class="col-xs-12" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" text="Add Asset" CssClass="btn btn-default" /></div></div>
+                        <div class="row"><div class="col-xs-12" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" text="Add Asset" CssClass="btn btn-default" OnClientClick="assetSearch()"/></div></div>
                         <div class="row">
-                            <div class="col-xs-6 calendar">
+                            <div class="col-xs-3 calendar">
+                                <br />
                                 <asp:Label ID="lblDate" Text="Issue Date:" runat="server" CssClass="label" />
                                 <asp:Calendar ID="calIssueDate" runat="server" SelectedDate="10/28/2014"/>
                             </div>
-                            <div class="col-xs-6 calendar" id="dueCal" runat="server" visible="true">
+                            <div class="col-xs-3 col-xs-offset-3 calendar" id="dueCal" runat="server" visible="true">
+                                <br />
                                 <asp:Label ID="lblDueDate" Text="Due Date:" runat="server" CssClass="label" />
                                 <asp:Calendar ID="calDueDate" runat="server"/>
                             </div>

@@ -35,7 +35,7 @@
     font-size:14px;
 }
 
-#footer {
+.footer {
     font-family: 'Bebas Neue';
     background-color: #000000;
     color: #ffffff;
@@ -80,6 +80,7 @@
 
 .button_row {
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .dropdown {
@@ -89,4 +90,29 @@
 
 .calendar {
     margin-bottom: 20px;
+}
+
+.header_row {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

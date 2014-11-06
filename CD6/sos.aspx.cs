@@ -43,6 +43,13 @@ namespace CD6{
             fake_sos.Rows.Add("sos10004", "asset10004", "tue10000", "tuk10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000004.jpg", "10/31/2014", "10/28/2014");
             fake_sos.Rows.Add("sos10005", "asset10005", "tuf10000", "tul10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000005.jpg", "10/31/2014", "10/28/2014");
 
+            fake_sos.Rows.Add("sos10000", "asset10000", "tua10000", "tug10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000000.jpg", "10/31/2014", "10/28/2014");
+            fake_sos.Rows.Add("sos10001", "asset10001", "tub10000", "tuh10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000001.jpg", "10/31/2014", "10/28/2014");
+            fake_sos.Rows.Add("sos10002", "asset10002", "tuc10000", "tui10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000002.jpg", "10/31/2014", "10/28/2014");
+            fake_sos.Rows.Add("sos10003", "asset10003", "tud10000", "tuj10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000003.jpg", "10/31/2014", "10/28/2014");
+            fake_sos.Rows.Add("sos10004", "asset10004", "tue10000", "tuk10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000004.jpg", "10/31/2014", "10/28/2014");
+            fake_sos.Rows.Add("sos10005", "asset10005", "tuf10000", "tul10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000005.jpg", "10/31/2014", "10/28/2014");
+
             gvSearchResults.DataSource = fake_sos;
             gvSearchResults.DataBind();
         }
