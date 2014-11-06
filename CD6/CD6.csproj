@@ -57,13 +57,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="addDepartment.aspx">
+      <BrowseToURL>~/addDepartment.aspx</BrowseToURL>
+    </Content>
     <Content Include="asset.aspx" />
+    <Content Include="assetSearch.aspx" />
     <Content Include="css\asset.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\fonts.css" />
+    <Content Include="css\footer.css" />
     <Content Include="css\login.css" />
     <Content Include="css\master.css" />
     <Content Include="css\recipient.css" />
@@ -73,14 +78,23 @@
     <Content Include="css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\web_logo_tu_outlined-stacked.png" />
+    <Content Include="js\add_asset_popup.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="manageTemplates.aspx" />
     <Content Include="recipient.aspx" />
     <Content Include="sos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addDepartment.aspx.cs">
+      <DependentUpon>addDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addDepartment.aspx.designer.cs">
+      <DependentUpon>addDepartment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="asset.aspx.cs">
       <DependentUpon>asset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,12 +102,26 @@
     <Compile Include="asset.aspx.designer.cs">
       <DependentUpon>asset.aspx</DependentUpon>
     </Compile>
+    <Compile Include="assetSearch.aspx.cs">
+      <DependentUpon>assetSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assetSearch.aspx.designer.cs">
+      <DependentUpon>assetSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manageTemplates.aspx.cs">
+      <DependentUpon>manageTemplates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageTemplates.aspx.designer.cs">
+      <DependentUpon>manageTemplates.aspx</DependentUpon>
     </Compile>
     <Compile Include="master.Master.cs">
       <DependentUpon>master.Master</DependentUpon>
@@ -127,6 +155,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="img\Denise_Krenski_Laptop.PDF" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
