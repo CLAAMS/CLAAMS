@@ -42,11 +42,11 @@
                                     <asp:ListItem Value="Template4" Text="24in Dell Monitor" />
                                 </asp:DropDownList>
                             </div>
-                            <div class="col-xs-3" style="padding-top:21px;">
+                            <div class="col-xs-3">
                                 <a onclick="manageTemplates()">Manage Templates</a> 
                             </div>
                         </div>
-                        <div style="height:63px;" runat="server" id="filler">&nbsp</div>
+                        <div style="height:34px;" runat="server" id="filler">&nbsp</div>
                         <asp:Label ID="lblCLAID" Text="CLA ID:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblMake" Text="Make:" runat="server" CssClass="label" />

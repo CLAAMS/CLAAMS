@@ -32,3 +32,8 @@ function uploadSoS() {
     window.open("uploadSoS.aspx", "List", "toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=no, width=600,height=500");
     return false;
 }
+
+function emailSheet() {
+    window.confirm("Do you want to send Sign Sheet to recipient?");
+    return false;
+}

@@ -15,6 +15,8 @@ namespace CD6{
             searchHeader.Visible=false;
             button_search.Visible=false;
             createHeader.Visible=true;
+            recipientSearch.Visible=false;
+            recipientCreate.Visible=true;
             button_submit.Visible=true;
             sos_form.Visible=true;
             search_results.Visible=false;
@@ -58,8 +60,10 @@ namespace CD6{
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
             searchHeader.Visible=true;
+            recipientSearch.Visible=true;
             button_search.Visible=true;
             createHeader.Visible=false;
+            recipientCreate.Visible=false;
             button_submit.Visible=false;
             sos_form.Visible=true;
             search_results.Visible=false;
@@ -72,8 +76,10 @@ namespace CD6{
 
         protected void btnSearch_Click(object sender, EventArgs e){
             searchHeader.Visible=false;
+            recipientSearch.Visible=false;
             button_search.Visible=false;
             createHeader.Visible=false;
+            recipientCreate.Visible=false;
             button_submit.Visible=false;
             sos_form.Visible=false;
             search_results.Visible=true;

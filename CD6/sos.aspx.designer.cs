@@ -58,6 +58,15 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.Label lblRecipient;
         
         /// <summary>
+        /// recipientCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl recipientCreate;
+        
+        /// <summary>
         /// ddlRecipient control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,24 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRecipient;
+        
+        /// <summary>
+        /// recipientSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl recipientSearch;
+        
+        /// <summary>
+        /// txtRecipient control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRecipient;
         
         /// <summary>
         /// lblAssigner control.

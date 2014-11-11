@@ -32,8 +32,22 @@
                     <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><h1>Create Recipient</h1></div></div>
                     <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Recipient</h1></div></div>
                     <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <asp:Label ID="lblTitle" Text="Title:" runat="server" CssClass="label" />
+                                <asp:DropDownList ID="ddlTitle" runat="server" CssClass="dropdown">
+                                    <asp:ListItem Text="Mr." />
+                                    <asp:ListItem Text="Mrs." />
+                                    <asp:ListItem Text="Dr." />
+                                    <asp:ListItem Text="Prof." />
+                                    <asp:ListItem Text="" Selected="True" />
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-10">
                         <asp:Label ID="lblFirstName" Text="First Name: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtFirstname" runat="server" CssClass="form-control" />
+                            </div>
+                        </div>
                         <asp:Label ID="lblEmail" Text="Email: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblLocation" Text="Location: *" runat="server" CssClass="label" />

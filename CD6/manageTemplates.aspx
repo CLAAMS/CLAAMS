@@ -16,6 +16,8 @@
         <div class="row" id="content">
             <div class="col-md-12">
                 <div class="row header_row"><div class="col-md-12" id="manageTemplatesHeader" runat="server" visible="true"><h1>Manage Templates</h1></div></div>
+                <div class="row"><div class="col-md-12"><asp:Label ID="lblTemplate" Text="Template Name:" runat="server" CssClass="label" /></div></div>
+                <div class="row"><div class="col-md-12"><asp:TextBox ID="txtTemplate" runat="server" CssClass="form-control" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:Label ID="lblMake" Text="Make:" runat="server" CssClass="label" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:TextBox ID="txtMake" runat="server" CssClass="form-control" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:Label ID="lblModel" Text="Model:" runat="server" CssClass="label" /></div></div>
@@ -26,6 +28,7 @@
                 <div class="row" id="searchResults" runat="server" visible="true"><div class="col-md-12"><br /><h3>Current Templates:</h3>
                     <asp:GridView ID="gvTemplates" runat="server" AutoGenerateColumns="false" CssClass="table">
                         <Columns>
+                            <asp:BoundField DataField="TemplateName" HeaderText="Name" />
                             <asp:BoundField DataField="Make" HeaderText="Make" />
                             <asp:BoundField DataField="Model" HeaderText="Model" />
                             <asp:BoundField DataField="Description" HeaderText="Description" />

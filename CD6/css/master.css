@@ -84,8 +84,8 @@
 }
 
 .dropdown {
-    margin-bottom: 20px;
-    margin-top: 20px;
+    height: 34px;
+    border-radius: 5px;
 }
 
 .calendar {

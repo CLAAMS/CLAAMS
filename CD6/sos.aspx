@@ -34,11 +34,16 @@
                     <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Sign Sheet</h1></div></div>
                     <div class="col-md-6">
                         <asp:Label ID="lblRecipient" Text="Recipient: *" runat="server" CssClass="label" />
-                        <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown">
-                            <asp:ListItem Text="Bob Barker" />
-                            <asp:ListItem Text="Henry Hollins" />
-                            <asp:ListItem Text="Mark Mansfield" />
-                        </asp:DropDownList><br />
+                        <div id="recipientCreate" runat="server">
+                            <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown">
+                                <asp:ListItem Text="Bob Barker" />
+                                <asp:ListItem Text="Henry Hollins" />
+                                <asp:ListItem Text="Mark Mansfield" />
+                            </asp:DropDownList><br />
+                        </div>
+                        <div id="recipientSearch" runat="server">
+                            <asp:TextBox  ID="txtRecipient" runat="server" CssClass="form-control" />
+                        </div>
                         <asp:Label ID="lblAssigner" Text="From: *" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown">
                             <asp:ListItem Text="Joe Schmoe" />
@@ -65,8 +70,9 @@
                                 </div>
                                 <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnUpload" Text="Upload" runat="server" OnClientClick="uploadSoS()" /></div></div>
                                 <div class="row">
-                                    <div class="col-md-6" style="text-align:center;"><a onclick="viewSheet()">View Signature</a></div>
-                                    <div class="col-md-6" style="text-align:center;"><a onclick="downloadSheet()">Download Sign Sheet</a></div>
+                                    <div class="col-md-4" style="text-align:center;"><a onclick="viewSheet()">View Signature</a></div>
+                                    <div class="col-md-4" style="text-align:center;"><a onclick="downloadSheet()">Download Sign Sheet</a></div>
+                                    <div class="col-md-4" style="text-align:center;"><a onclick="emailSheet()">Email Sign Sheet</a></div>
                                 </div>
                                 <div class="row"><div class="col-md-12">
                                     <asp:Label Text="History:" runat="server" CssClass="label" />
