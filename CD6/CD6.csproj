@@ -76,6 +76,7 @@
     <Content Include="css\sos.css" />
     <Content Include="css\sticky-footer.css" />
     <Content Include="css\style.css" />
+    <Content Include="email.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\web_logo_tu_outlined-stacked.png" />
     <Content Include="js\add_asset_popup.js" />
@@ -85,6 +86,9 @@
     <Content Include="manageTemplates.aspx" />
     <Content Include="recipient.aspx" />
     <Content Include="sos.aspx" />
+    <Content Include="sosTemplate.aspx" />
+    <Content Include="uploadSoS.aspx" />
+    <Content Include="users.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +112,13 @@
     </Compile>
     <Compile Include="assetSearch.aspx.designer.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="email.aspx.cs">
+      <DependentUpon>email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="email.aspx.designer.cs">
+      <DependentUpon>email.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -144,6 +155,27 @@
     </Compile>
     <Compile Include="sos.aspx.designer.cs">
       <DependentUpon>sos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sosTemplate.aspx.cs">
+      <DependentUpon>sosTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sosTemplate.aspx.designer.cs">
+      <DependentUpon>sosTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="uploadSoS.aspx.cs">
+      <DependentUpon>uploadSoS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="uploadSoS.aspx.designer.cs">
+      <DependentUpon>uploadSoS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="users.aspx.cs">
+      <DependentUpon>users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="users.aspx.designer.cs">
+      <DependentUpon>users.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

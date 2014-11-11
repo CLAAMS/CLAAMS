@@ -16,7 +16,14 @@ namespace CD6{
             search_button.Visible=false;
             searchHeader.Visible=false;
             createHeader.Visible=true;
-
+            history.Visible=false;
+            modifyHeader.Visible=false;
+            templateRow.Visible=true;
+            lblSerialLeft.Visible=true;
+            txtSerialLeft.Visible=true;
+            filler.Visible=false;
+            lblSerialRight.Visible=false;
+            txtSerialRight.Visible=false;
 
             DataTable fake_asset = new DataTable();
 
@@ -38,7 +45,17 @@ namespace CD6{
             gvSearchResults.DataBind();
         }
 
-        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e){}
+        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e){
+            search_results.Visible=false;
+            submit_button.Visible=true;
+            asset_form.Visible=true;
+            search_button.Visible=false;
+            searchHeader.Visible=false;
+            createHeader.Visible=false;
+            history.Visible=true;
+            modifyHeader.Visible=true;
+            templateRow.Visible=false;
+        }
 
         protected void btnSubmit_Click(object sender, EventArgs e){}
 
@@ -47,6 +64,9 @@ namespace CD6{
             submit_button.Visible=false;
             search_button.Visible=false;
             asset_form.Visible=false;
+            history.Visible=false;
+            modifyHeader.Visible=false;
+            templateRow.Visible=false;
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
@@ -56,6 +76,16 @@ namespace CD6{
             search_button.Visible=true;
             searchHeader.Visible=true;
             createHeader.Visible=false;
+            history.Visible=false;
+            modifyHeader.Visible=false;
+            txtNotes.Rows=1;
+            txtDescription.Rows=1;
+            templateRow.Visible=false;
+            lblSerialLeft.Visible=false;
+            txtSerialLeft.Visible=false;
+            filler.Visible=true;
+            lblSerialRight.Visible=true;
+            txtSerialRight.Visible=true;
         }
 
         protected void btnCreate_Click(object sender, EventArgs e){
@@ -65,6 +95,14 @@ namespace CD6{
             search_button.Visible=false;
             searchHeader.Visible=false;
             createHeader.Visible=true;
+            history.Visible=false;
+            modifyHeader.Visible=false;
+            templateRow.Visible=true;
+            lblSerialLeft.Visible=true;
+            txtSerialLeft.Visible=true;
+            filler.Visible=false;
+            lblSerialRight.Visible=false;
+            txtSerialRight.Visible=false;
         }
     }
 }

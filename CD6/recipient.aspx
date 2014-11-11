@@ -30,16 +30,17 @@
                 <div class="row" id="recipient_form" runat="server" visible="true">
                     <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><h1>Search Recipients</h1></div></div>
                     <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><h1>Create Recipient</h1></div></div>
+                    <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Recipient</h1></div></div>
                     <div class="col-md-6">
-                        <asp:Label ID="lblFirstName" Text="First Name:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblFirstName" Text="First Name: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtFirstname" runat="server" CssClass="form-control" />
-                        <asp:Label ID="lblEmail" Text="Email:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblEmail" Text="Email: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
-                        <asp:Label ID="lblLocation" Text="Location:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblLocation" Text="Location: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtLocation" runat="server" CssClass="form-control" />
                         <div class="row">
                             <div class="col-md-6">
-                                <asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation:" runat="server" CssClass="label" />
+                                <asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation: *" runat="server" CssClass="label" />
                             </div>
                             <div class="col-md-6" style="text-align:right;">
                                 <a onclick="addDepartment()">Add Department</a>
@@ -52,13 +53,13 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-6">
-                        <asp:Label ID="lblLastName" Text="Last Name:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblLastName" Text="Last Name: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblDivision" Text="Division:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtDivision" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblPhone" Text="Phone:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" />
-                        <asp:Label ID="lblSecondaryDept" Text="Secondary Department Affiliation:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblSecondaryDept" Text="Secondary Department Affiliation: *" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlSecondaryDept" runat="server" CssClass="dropdown" style="width:100%;">
                             <asp:ListItem Value="English" Text="English" />
                             <asp:ListItem Value="Psychology" Text="Psychology" />
@@ -80,8 +81,8 @@
                                 <asp:BoundField DataField="PrimaryDeptAffiliation" HeaderText="Primary Department" />
                                 <asp:BoundField DataField="SecondaryDeptAffiliation" HeaderText="Secondary Department" />
                                 <asp:BoundField DataField="Division" HeaderText="Division" />
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" /> 
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-danger" />
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
+                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" />
                             </Columns>
                         </asp:GridView>
                     </div>

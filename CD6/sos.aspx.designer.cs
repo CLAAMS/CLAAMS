@@ -103,6 +103,15 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.DropDownList ddlTerm;
         
         /// <summary>
+        /// uploadSheet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl uploadSheet;
+        
+        /// <summary>
         /// lblSOSUpload control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,24 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.FileUpload upSOS;
         
         /// <summary>
+        /// btnUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpload;
+        
+        /// <summary>
+        /// ddlSOSHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSOSHistory;
+        
+        /// <summary>
         /// lblAssets control.
         /// </summary>
         /// <remarks>
@@ -137,6 +164,15 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lstbxAssets;
+        
+        /// <summary>
+        /// btnRemoveAsset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemoveAsset;
         
         /// <summary>
         /// btnAddAsset control.

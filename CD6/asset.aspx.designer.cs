@@ -40,6 +40,24 @@ namespace CD6 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createHeader;
         
         /// <summary>
+        /// modifyHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modifyHeader;
+        
+        /// <summary>
+        /// templateRow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl templateRow;
+        
+        /// <summary>
         /// lblTemplate control.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAssetTemplate;
+        
+        /// <summary>
+        /// filler control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl filler;
         
         /// <summary>
         /// lblCLAID control.
@@ -112,22 +139,49 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.TextBox txtModel;
         
         /// <summary>
-        /// lblSerial control.
+        /// lblSerialLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSerial;
+        protected global::System.Web.UI.WebControls.Label lblSerialLeft;
         
         /// <summary>
-        /// txtSerial control.
+        /// txtSerialLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSerial;
+        protected global::System.Web.UI.WebControls.TextBox txtSerialLeft;
+        
+        /// <summary>
+        /// history control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl history;
+        
+        /// <summary>
+        /// lblHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHistory;
+        
+        /// <summary>
+        /// ddlAssetHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAssetHistory;
         
         /// <summary>
         /// lblStatus control.
@@ -146,6 +200,24 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        
+        /// <summary>
+        /// lblSerialRight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSerialRight;
+        
+        /// <summary>
+        /// txtSerialRight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSerialRight;
         
         /// <summary>
         /// lblDescription control.

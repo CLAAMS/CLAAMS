@@ -30,8 +30,9 @@
                 <div class="row" id="asset_form" runat="server" visible="true">
                     <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><p><h1>Search Assets</h1></p></div></div>
                     <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Create Asset</h1></p></div></div>
+                    <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify Asset</h1></p></div></div>
                     <div class="col-md-6">
-                        <div class="row">
+                        <div class="row" id="templateRow" runat="server">
                             <div class="col-xs-9">
                                 <asp:Label ID="lblTemplate" Text="Template:" runat="server" CssClass="label" />
                                 <asp:DropDownList ID="ddlAssetTemplate" runat="server" CssClass="dropdown">
@@ -45,14 +46,23 @@
                                 <a onclick="manageTemplates()">Manage Templates</a> 
                             </div>
                         </div>
+                        <div style="height:63px;" runat="server" id="filler">&nbsp</div>
                         <asp:Label ID="lblCLAID" Text="CLA ID:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblMake" Text="Make:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtMake" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblModel" Text="Model:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtModel" runat="server" CssClass="form-control" />
-                        <asp:Label ID="lblSerial" Text="Serial Number:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtSerial" runat="server" CssClass="form-control" />
+                        <asp:Label ID="lblSerialLeft" Text="Serial Number:" runat="server" CssClass="label" />
+                        <asp:TextBox ID="txtSerialLeft" runat="server" CssClass="form-control" />
+                        <div class="row" id="history" runat="server" visible="true"><div class="col-md-12">
+                            <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
+                            <asp:DropDownList runat="server" ID="ddlAssetHistory" CssClass="dropdown">
+                                <asp:ListItem Text="10/28/2014 09:08 AM" />
+                                <asp:ListItem Text="10/30/2014 01:32 PM" />
+                                <asp:ListItem Text="10/30/2014 02:12 PM" />
+                            </asp:DropDownList>
+                        </div></div> 
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
@@ -60,6 +70,8 @@
                             <asp:ListItem Value="Active" Text="Active" />
                             <asp:ListItem Value="Inactive" Text="Inactive" />
                         </asp:DropDownList><br />
+                        <asp:Label ID="lblSerialRight" Text="Serial Number:" runat="server" CssClass="label" />
+                        <asp:TextBox ID="txtSerialRight" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblDescription" Text="Description:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtDescription" TextMode="MultiLine" Columns="50" Rows="3" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblNotes" Text="Notes:" runat="server" CssClass="label" />
@@ -79,8 +91,8 @@
                                 <asp:BoundField DataField="Model" HeaderText="Model" />
                                 <asp:BoundField DataField="SerialNumber" HeaderText="Serial" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" /> 
                                 <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
+                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" />
                             </Columns>
                         </asp:GridView>
                     </div>
