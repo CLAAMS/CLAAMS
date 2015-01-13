@@ -1,4 +1,2 @@
-cd6-bell
+CLAAMS UI
 ========
-
-Tom Bell CD6 UI Prototype
