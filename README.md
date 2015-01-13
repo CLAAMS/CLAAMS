@@ -1,2 +1,2 @@
-CLAAMS UI
+CLAAMS
 ========
