@@ -11,6 +11,7 @@ namespace CD6
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtPassword.Text = "hui";
 
         }
     }
