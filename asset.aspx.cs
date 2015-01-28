@@ -10,6 +10,8 @@ namespace CD6{
     public partial class asset : System.Web.UI.Page{
         protected void Page_Load(object sender, EventArgs e){
 
+            txtMake.Text = "Test";
+
             search_results.Visible=false;
             submit_button.Visible=true;
             asset_form.Visible=true;
