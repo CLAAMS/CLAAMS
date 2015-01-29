@@ -10,7 +10,7 @@ namespace Utilities{
     public class DBConnect{
 //        String SqlConnectString = "Driver={SQL Server Native Client 10.0};Server=.\SQLExpress;AttachDbFilename=C:\Users\tbell\Dropbox\git\cis4296\JobFair\JobFair\App_Data\Database.mdf;Database=dbname;Trusted_Connection=Yes;";
 //        String SqlConnectString = "server=127.0.0.1,5555;Database=fa14_3342_tuf01657;User id=tuf01657;Password=Zu5weega";
-        String SqlConnectString = "server=cis-mssql1.temple.edu;Database=fa14_3342_tuf01657;User id=tuf01657;Password=Zu5weega";
+        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=tud14560;Password=Dakman93";
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
         SqlDataReader objDataReader;
