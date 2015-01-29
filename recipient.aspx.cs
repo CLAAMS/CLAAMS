@@ -32,7 +32,7 @@ namespace CD6{
             fake_recipients.Rows.Add("Jim","Jones","tuf01930@temple.edu","7776665544","Physics","Math","CLA");
             fake_recipients.Rows.Add("Jill","Jackson","tuf01930@temple.edu","9992227744","Math","Physics","Writing Center");
             fake_recipients.Rows.Add("Barb","Ballard","tuf01930@temple.edu","7774446622","Biology","Psychology","CLA");
-
+            txtDivision.Text = "Hello";
             gvSearchResults.DataSource=fake_recipients;
             gvSearchResults.DataBind();
         }
