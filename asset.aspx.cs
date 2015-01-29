@@ -7,10 +7,10 @@ using System.Web.UI.WebControls;
 using System.Data;
 
 namespace CD6{
-    public partial class asset : System.Web.UI.Page{
-        protected void Page_Load(object sender, EventArgs e){
-
-            txtMake.Text = "Test";
+    public partial class asset : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
             search_results.Visible=false;
             submit_button.Visible=true;
