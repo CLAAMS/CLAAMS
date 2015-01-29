@@ -106,6 +106,7 @@
     <Compile Include="asset.aspx.designer.cs">
       <DependentUpon>asset.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset.cs" />
     <Compile Include="assetSearch.aspx.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -113,6 +114,8 @@
     <Compile Include="assetSearch.aspx.designer.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
+    <Compile Include="DBAccess.cs" />
     <Compile Include="email.aspx.cs">
       <DependentUpon>email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -120,6 +123,7 @@
     <Compile Include="email.aspx.designer.cs">
       <DependentUpon>email.aspx</DependentUpon>
     </Compile>
+    <Compile Include="InputValidation.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
