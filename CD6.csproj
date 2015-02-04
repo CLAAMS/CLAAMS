@@ -107,6 +107,7 @@
       <DependentUpon>asset.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset.cs" />
+    <Compile Include="AssetFunctions.cs" />
     <Compile Include="assetSearch.aspx.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -114,7 +115,6 @@
     <Compile Include="assetSearch.aspx.designer.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
     <Compile Include="DBAccess.cs" />
     <Compile Include="email.aspx.cs">
       <DependentUpon>email.aspx</DependentUpon>
@@ -199,7 +199,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{fa64e583-e407-4d17-af41-2aca02fde1a6}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

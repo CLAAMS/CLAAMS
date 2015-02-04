@@ -8,3 +8,10 @@ C:\Users\tud45086\CLAAMS\bin\CD6.pdb
 C:\Users\tud45086\CLAAMS\obj\Debug\CD6.csprojResolveAssemblyReference.cache
 C:\Users\tud45086\CLAAMS\obj\Debug\CD6.dll
 C:\Users\tud45086\CLAAMS\obj\Debug\CD6.pdb
+C:\Users\tud14560\CLAAMS\obj\Debug\CD6.csprojResolveAssemblyReference.cache
+C:\Users\tud14560\CLAAMS\obj\Debug\CD6.dll
+C:\Users\tud14560\CLAAMS\obj\Debug\CD6.pdb
+C:\Users\tud14560\CLAAMS\bin\CD6.dll
+C:\Users\tud14560\CLAAMS\bin\CD6.pdb
+C:\Users\tud14560\CLAAMS\bin\Utilities.dll
+C:\Users\tud14560\CLAAMS\bin\Utilities.pdb

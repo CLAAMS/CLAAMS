@@ -9,6 +9,8 @@ using System.Data;
 namespace CD6{
     public partial class asset : System.Web.UI.Page
     {
+        Asset objAsset = new Asset();
+        AssetFunctions objAssetFunctions = new AssetFunctions();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -59,7 +61,21 @@ namespace CD6{
             templateRow.Visible=false;
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e){}
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            objAsset.CLATag = txtCLAID.Text;
+            objAsset.Make = txtMake.Text;
+            objAsset.Model = txtModel.Text;
+            objAsset.Description = txtDescription.Text;
+            objAsset.SerialNumber = txtSerialLeft.Text;
+            objAsset.Status = ddlStatus.SelectedValue;
+            objAsset.Notes = txtNotes.Text;
+            objAsset.recordCreated = DateTime.Now;
+            objAsset.recordModified = DateTime.Now;
+
+            objAssetFunctions.CreateNewAsset(objAsset);
+
+        }
 
         protected void btnSearch_Click(object sender, EventArgs e){
             search_results.Visible=true;
