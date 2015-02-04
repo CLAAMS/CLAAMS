@@ -89,7 +89,9 @@
     <Content Include="sosTemplate.aspx" />
     <Content Include="uploadSoS.aspx" />
     <Content Include="users.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addDepartment.aspx.cs">
@@ -106,6 +108,7 @@
     <Compile Include="asset.aspx.designer.cs">
       <DependentUpon>asset.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AssetRecipient.cs" />
     <Compile Include="assetSearch.aspx.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,6 +180,7 @@
     <Compile Include="users.aspx.designer.cs">
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DbConnect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="master.Master">
@@ -209,9 +213,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>52992</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53140/</IISUrl>
+          <IISUrl>http://localhost:5000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
