@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Asset.cs" />
     <Compile Include="AssetFunctions.cs" />
+    <Compile Include="AssetRecipient.cs" />
     <Compile Include="assetSearch.aspx.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -200,8 +201,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.csproj">
-      <Project>{fa64e583-e407-4d17-af41-2aca02fde1a6}</Project>
+    <ProjectReference Include="Tools\Tools.csproj">
+      <Project>{661aea78-b1a0-4a02-998c-563d493456b4}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="Utilities\Utilities.csproj">
+      <Project>{6ed444cf-ac93-4f84-941e-a7fade860c14}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
@@ -218,7 +223,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:53140/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

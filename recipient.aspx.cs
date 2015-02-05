@@ -8,8 +8,10 @@ using System.Data;
 
 namespace CD6{
     public partial class recipient : System.Web.UI.Page{
+       AssetRecipient myAR = new AssetRecipient();
+       DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e){
-
+        
             searchHeader.Visible=false;
             button_search.Visible=false;
             createHeader.Visible=true;
@@ -58,13 +60,52 @@ namespace CD6{
         }
 
         protected void btnSearch_Click(object sender, EventArgs e){
-            searchHeader.Visible=false;
-            button_search.Visible=false;
-            createHeader.Visible=false;
-            button_submit.Visible=false;
-            recipient_form.Visible=false;
-            search_results.Visible=true;
-            modifyHeader.Visible=false;
+            if (this.IsPostBack)
+            {
+                searchHeader.Visible = false;
+                button_search.Visible = false;
+                createHeader.Visible = false;
+                button_submit.Visible = false;
+                recipient_form.Visible = false;
+                search_results.Visible = true;
+                modifyHeader.Visible = false;
+                myAR.assetRecipientId = 1;
+                myAR.title = ddlTitle.Text;
+                myAR.firstName = txtFirstname.Text;
+                myAR.lastName = txtLastName.Text;
+                myAR.emailAddress = txtEmail.Text;
+                myAR.location = txtLocation.Text;
+                myAR.division = txtDivision.Text;
+                myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
+                myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+                myAR.phoneNumber = txtPhone.Text;
+                myAR.RecordCreated = DateTime.Now.ToString();
+                myAR.RecordModified = DateTime.Now.ToString();
+                 
+                gvSearchResults.DataSource= myAR.SearchAssetRecipient(myAR.title,myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+                gvSearchResults.DataBind();
+            }
+            
+        }
+
+        
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            
+            myAR.assetRecipientId = 1;
+            myAR.title = ddlTitle.Text;
+            myAR.firstName = txtFirstname.Text;
+            myAR.lastName = txtLastName.Text;
+            myAR.emailAddress = txtEmail.Text;
+            myAR.location = txtLocation.Text;
+            myAR.division = txtDivision.Text;
+            myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
+            myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+            myAR.phoneNumber = txtPhone.Text;
+            myAR.RecordCreated = DateTime.Now.ToString();
+            myAR.RecordModified = DateTime.Now.ToString();
+            myAR.CreateAssetRecipient( myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
         }
     }
 }
