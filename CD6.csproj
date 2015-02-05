@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Asset.cs" />
     <Compile Include="AssetFunctions.cs" />
+    <Compile Include="AssetRecipient.cs" />
     <Compile Include="assetSearch.aspx.cs">
       <DependentUpon>assetSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
