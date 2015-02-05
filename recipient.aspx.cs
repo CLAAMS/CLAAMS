@@ -9,7 +9,7 @@ using System.Data;
 namespace CD6{
     public partial class recipient : System.Web.UI.Page{
        AssetRecipient myAR = new AssetRecipient();
-       
+       DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e){
         
             searchHeader.Visible=false;
@@ -60,7 +60,8 @@ namespace CD6{
         }
 
         protected void btnSearch_Click(object sender, EventArgs e){
-            DataSet myDS = new DataSet();
+            if (this.IsPostBack)
+            {
                 searchHeader.Visible = false;
                 button_search.Visible = false;
                 createHeader.Visible = false;
@@ -80,9 +81,10 @@ namespace CD6{
                 myAR.phoneNumber = txtPhone.Text;
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
-                myDS = myAR.SearchAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
-                gvSearchResults.DataSource = myDS;
+                 
+                gvSearchResults.DataSource= myAR.SearchAssetRecipient(myAR.title,myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
                 gvSearchResults.DataBind();
+            }
             
         }
 

@@ -22,16 +22,16 @@ namespace CD6
         public string RecordModified { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
-        SqlCommand myCommand = new SqlCommand();
+        
         public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
         {
 
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
-
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "CreateAssetRecipient";
+            SqlCommand myCommand1 = new SqlCommand();
+            myCommand1.Connection = myConnection;
+            myCommand1.CommandType = CommandType.StoredProcedure;
+            myCommand1.CommandText = "CreateAssetRecipient";
 
             //SqlParameter inputParameter1 = new SqlParameter("@arID", PassetRecipientID);
             SqlParameter inputParameter2 = new SqlParameter("@Title", Ptitle);
@@ -85,22 +85,22 @@ namespace CD6
 
 
             //myCommand.Parameters.Add(Convert.ToInt16(inputParameter1));
-            myCommand.Parameters.Add(inputParameter2);
-            myCommand.Parameters.Add(inputParameter3);
-            myCommand.Parameters.Add(inputParameter4);
-            myCommand.Parameters.Add(inputParameter5);
-            myCommand.Parameters.Add(inputParameter6);
-            myCommand.Parameters.Add(inputParameter7);
-            myCommand.Parameters.Add(inputParameter8);
-            myCommand.Parameters.Add(inputParameter9);
-            myCommand.Parameters.Add(inputParameter10);
-            myCommand.Parameters.Add(inputParameter11);
-            myCommand.Parameters.Add(inputParameter12);
+            myCommand1.Parameters.Add(inputParameter2);
+            myCommand1.Parameters.Add(inputParameter3);
+            myCommand1.Parameters.Add(inputParameter4);
+            myCommand1.Parameters.Add(inputParameter5);
+            myCommand1.Parameters.Add(inputParameter6);
+            myCommand1.Parameters.Add(inputParameter7);
+            myCommand1.Parameters.Add(inputParameter8);
+            myCommand1.Parameters.Add(inputParameter9);
+            myCommand1.Parameters.Add(inputParameter10);
+            myCommand1.Parameters.Add(inputParameter11);
+            myCommand1.Parameters.Add(inputParameter12);
 
             try
             {
 
-                myCommand.ExecuteNonQuery();
+                myCommand1.ExecuteNonQuery();
                 return 1;
                 
             }
@@ -111,15 +111,16 @@ namespace CD6
 
         }
 
-        public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
+        public DataSet SearchAssetRecipient(string pTitle,string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
         {
             DataSet myDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand2 = new SqlCommand();
             myConnection.Open();
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "SearchForAssetRecipient";
+            myCommand2.Connection = myConnection;
+            myCommand2.CommandType = CommandType.StoredProcedure;
+            myCommand2.CommandText = "SearchForAssetRecipient";
             SqlParameter inputParameter2 = new SqlParameter("@Title", pTitle);
             SqlParameter inputParameter3 = new SqlParameter("@FirstName", pFirstName);
             SqlParameter inputParameter4 = new SqlParameter("@LastName", pLastName);
@@ -164,23 +165,22 @@ namespace CD6
             inputParameter12.Direction = ParameterDirection.Input;
             inputParameter12.SqlDbType = SqlDbType.VarChar;
             inputParameter12.Size = 50;
-            myCommand.Parameters.Add(inputParameter2);
-            myCommand.Parameters.Add(inputParameter3);
-            myCommand.Parameters.Add(inputParameter4);
-            myCommand.Parameters.Add(inputParameter5);
-            myCommand.Parameters.Add(inputParameter6);
-            myCommand.Parameters.Add(inputParameter7);
-            myCommand.Parameters.Add(inputParameter8);
-            myCommand.Parameters.Add(inputParameter9);
-            myCommand.Parameters.Add(inputParameter10);
-            myCommand.Parameters.Add(inputParameter11);
-            myCommand.Parameters.Add(inputParameter12);
+            myCommand2.Parameters.Add(inputParameter2);
+            myCommand2.Parameters.Add(inputParameter3);
+            myCommand2.Parameters.Add(inputParameter4);
+            myCommand2.Parameters.Add(inputParameter5);
+            myCommand2.Parameters.Add(inputParameter6);
+            myCommand2.Parameters.Add(inputParameter7);
+            myCommand2.Parameters.Add(inputParameter8);
+            myCommand2.Parameters.Add(inputParameter9);
+            myCommand2.Parameters.Add(inputParameter10);
+            myCommand2.Parameters.Add(inputParameter11);
+            myCommand2.Parameters.Add(inputParameter12);
             try
             {
 
-                myDbConnect.GetDataSetUsingCmdObj(myCommand);
-                myConnection.Close();
-                return myDS;
+                myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
+               return myDS;
               
             }
             catch (Exception ex)

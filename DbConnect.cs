@@ -198,7 +198,7 @@ namespace Utilities
         {
             // Close any open connections to the database before the objects of this class
             // are garbage collected.
-            myConnectionSql.Close();
+            
         }
 
     }   // end class
