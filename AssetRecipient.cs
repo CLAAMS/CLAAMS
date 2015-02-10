@@ -22,7 +22,7 @@ namespace CD6
         public string RecordModified { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
-        
+
         public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
         {
 
@@ -102,7 +102,7 @@ namespace CD6
 
                 myCommand1.ExecuteNonQuery();
                 return 1;
-                
+
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace CD6
 
         }
 
-        public DataSet SearchAssetRecipient(string pTitle,string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
+        public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
         {
             DataSet myDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
@@ -180,8 +180,8 @@ namespace CD6
             {
 
                 myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
-               return myDS;
-              
+                return myDS;
+
             }
             catch (Exception ex)
             {
@@ -190,8 +190,34 @@ namespace CD6
 
 
         }
+        public int DeleteRow(int assetRecipientId)
+        {
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand3 = new SqlCommand();
+            myConnection.Open();
+            myCommand3.Connection = myConnection;
+            myCommand3.CommandType = CommandType.StoredProcedure;
+            myCommand3.CommandText = "DeleteAssetRecipient";
+            SqlParameter inputParameter1 = new SqlParameter("@arID", assetRecipientId);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.Int;
+            inputParameter1.Size = 50;
+            myCommand3.Parameters.Add(inputParameter1);
+            try
+            {
+                myDbConnect.DoUpdateUsingCmdObj(myCommand3);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+        }
 
 
 
     }
 }
+
