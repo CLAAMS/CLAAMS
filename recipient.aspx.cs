@@ -15,43 +15,43 @@ namespace CD6
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            searchHeader.Visible = false;
-            button_search.Visible = false;
-            createHeader.Visible = true;
-            button_submit.Visible = true;
-            recipient_form.Visible = true;
-            search_results.Visible = false;
-            modifyHeader.Visible = false;
+            //searchHeader.Visible = false;
+            //button_search.Visible = false;
+            //createHeader.Visible = true;
+            //button_submit.Visible = true;
+            //recipient_form.Visible = true;
+            //search_results.Visible = false;
+            //modifyHeader.Visible = false;
 
-            DataTable fake_recipients = new DataTable();
+            //DataTable fake_recipients = new DataTable();
 
-            fake_recipients.Columns.Add("FirstName", typeof(string));
-            fake_recipients.Columns.Add("LastName", typeof(string));
-            fake_recipients.Columns.Add("EmailAddress", typeof(string));
-            fake_recipients.Columns.Add("PhoneNumber", typeof(string));
-            fake_recipients.Columns.Add("PrimaryDeptAffiliation", typeof(string));
-            fake_recipients.Columns.Add("SecondaryDeptAffiliation", typeof(string));
-            fake_recipients.Columns.Add("Division", typeof(string));
+            //fake_recipients.Columns.Add("FirstName", typeof(string));
+            //fake_recipients.Columns.Add("LastName", typeof(string));
+            //fake_recipients.Columns.Add("EmailAddress", typeof(string));
+            //fake_recipients.Columns.Add("PhoneNumber", typeof(string));
+            //fake_recipients.Columns.Add("PrimaryDeptAffiliation", typeof(string));
+            //fake_recipients.Columns.Add("SecondaryDeptAffiliation", typeof(string));
+            //fake_recipients.Columns.Add("Division", typeof(string));
 
-            fake_recipients.Rows.Add("Bob", "Burner", "tuf01930@temple.edu", "9997774433", "Pyschology", "Biology", "CLA");
-            fake_recipients.Rows.Add("Jim", "Jones", "tuf01930@temple.edu", "7776665544", "Physics", "Math", "CLA");
-            fake_recipients.Rows.Add("Jill", "Jackson", "tuf01930@temple.edu", "9992227744", "Math", "Physics", "Writing Center");
-            fake_recipients.Rows.Add("Barb", "Ballard", "tuf01930@temple.edu", "7774446622", "Biology", "Psychology", "CLA");
-            txtDivision.Text = "Hello";
-            gvSearchResults.DataSource = fake_recipients;
-            gvSearchResults.DataBind();
+            //fake_recipients.Rows.Add("Bob", "Burner", "tuf01930@temple.edu", "9997774433", "Pyschology", "Biology", "CLA");
+            //fake_recipients.Rows.Add("Jim", "Jones", "tuf01930@temple.edu", "7776665544", "Physics", "Math", "CLA");
+            //fake_recipients.Rows.Add("Jill", "Jackson", "tuf01930@temple.edu", "9992227744", "Math", "Physics", "Writing Center");
+            //fake_recipients.Rows.Add("Barb", "Ballard", "tuf01930@temple.edu", "7774446622", "Biology", "Psychology", "CLA");
+            //txtDivision.Text = "Hello";
+            //gvSearchResults.DataSource = fake_recipients;
+            //gvSearchResults.DataBind();
         }
 
-        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-        {
-            searchHeader.Visible = false;
-            button_search.Visible = false;
-            createHeader.Visible = false;
-            button_submit.Visible = true;
-            recipient_form.Visible = true;
-            search_results.Visible = false;
-            modifyHeader.Visible = true;
-        }
+        //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+        //{
+        //    searchHeader.Visible = false;
+        //    button_search.Visible = false;
+        //    createHeader.Visible = false;
+        //    button_submit.Visible = true;
+        //    recipient_form.Visible = true;
+        //    search_results.Visible = false;
+        //    modifyHeader.Visible = true;
+        //}
 
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {
@@ -74,7 +74,9 @@ namespace CD6
             recipient_form.Visible = false;
             search_results.Visible = true;
             modifyHeader.Visible = false;
-            myAR.assetRecipientId = 1;
+
+            
+            
             myAR.title = ddlTitle.Text;
             myAR.firstName = txtFirstname.Text;
             myAR.lastName = txtLastName.Text;
@@ -113,11 +115,21 @@ namespace CD6
             myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
         }
 
-        protected void gv_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.RowIndex);
-            myAR.assetRecipientId = index;
-            myAR.DeleteRow(myAR.assetRecipientId);
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvSearchResults.Rows[index];
+            int arID =(int) gvSearchResults.DataKeys[index].Value;
+
+            if (e.CommandName == "DeleteRow")
+            {
+                myAR.DeleteRow(arID);
+                btnSearch_Click(this, e);
+            }
+          
+
+
+           
         }
 
     }
