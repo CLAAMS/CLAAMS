@@ -190,6 +190,31 @@ namespace CD6
 
 
         }
+        public int DeleteRow(int assetRecipientId)
+        {
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand3 = new SqlCommand();
+            myConnection.Open();
+            myCommand3.Connection = myConnection;
+            myCommand3.CommandType = CommandType.StoredProcedure;
+            myCommand3.CommandText = "DeleteAssetRecipient";
+            SqlParameter inputParameter1 = new SqlParameter("@arID", assetRecipientId);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.Int;
+            inputParameter1.Size = 50;
+            myCommand3.Parameters.Add(inputParameter1);
+            try
+            {
+                myDbConnect.DoUpdateUsingCmdObj(myCommand3);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+        }
 
 
 
