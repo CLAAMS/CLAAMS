@@ -15,13 +15,13 @@ namespace CD6
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //searchHeader.Visible = false;
-            //button_search.Visible = false;
-            //createHeader.Visible = true;
-            //button_submit.Visible = true;
-            //recipient_form.Visible = true;
-            //search_results.Visible = false;
-            //modifyHeader.Visible = false;
+            searchHeader.Visible = false;
+            button_search.Visible = false;
+            createHeader.Visible = true;
+            button_submit.Visible = true;
+            recipient_form.Visible = true;
+            search_results.Visible = false;
+            modifyHeader.Visible = false;
 
             //DataTable fake_recipients = new DataTable();
 
@@ -42,16 +42,16 @@ namespace CD6
             //gvSearchResults.DataBind();
         }
 
-        //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-        //{
-        //    searchHeader.Visible = false;
-        //    button_search.Visible = false;
-        //    createHeader.Visible = false;
-        //    button_submit.Visible = true;
-        //    recipient_form.Visible = true;
-        //    search_results.Visible = false;
-        //    modifyHeader.Visible = true;
-        //}
+        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+        {
+            searchHeader.Visible = false;
+            button_search.Visible = false;
+            createHeader.Visible = false;
+            button_submit.Visible = true;
+            recipient_form.Visible = true;
+            search_results.Visible = false;
+            modifyHeader.Visible = true;
+        }
 
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {
