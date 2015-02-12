@@ -171,7 +171,7 @@ namespace Utilities{
         ~DBConnect(){
             // Close any open connections to the database before the objects of this class
             // are garbage collected.
-            myConnectionSql.Close();
+           // myConnectionSql.Close();
         }
 
     }   // end class
