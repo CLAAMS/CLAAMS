@@ -220,13 +220,31 @@ namespace CD6 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl button_submit;
         
         /// <summary>
-        /// btnSubmit control.
+        /// btnSubmitCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button btnSubmitCreate;
+        
+        /// <summary>
+        /// btnModfiySubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModfiySubmit;
+        
+        /// <summary>
+        /// lblARID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblARID;
         
         /// <summary>
         /// button_search control.

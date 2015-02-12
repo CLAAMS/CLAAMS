@@ -42,16 +42,16 @@ namespace CD6
             //gvSearchResults.DataBind();
         }
 
-        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-        {
-            searchHeader.Visible = false;
-            button_search.Visible = false;
-            createHeader.Visible = false;
-            button_submit.Visible = true;
-            recipient_form.Visible = true;
-            search_results.Visible = false;
-            modifyHeader.Visible = true;
-        }
+        //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+        //{
+        //    searchHeader.Visible = false;
+        //    button_search.Visible = false;
+        //    createHeader.Visible = false;
+        //    button_submit.Visible = true;
+        //    recipient_form.Visible = true;
+        //    search_results.Visible = false;
+        //    modifyHeader.Visible = true;
+        //}
 
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {
@@ -66,6 +66,7 @@ namespace CD6
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+         
 
             searchHeader.Visible = false;
             button_search.Visible = false;
@@ -101,22 +102,30 @@ namespace CD6
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            myAR.title = ddlTitle.Text;
-            myAR.firstName = txtFirstname.Text;
-            myAR.lastName = txtLastName.Text;
-            myAR.emailAddress = txtEmail.Text;
-            myAR.location = txtLocation.Text;
-            myAR.division = txtDivision.Text;
-            myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
-            myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
-            myAR.phoneNumber = txtPhone.Text;
-            myAR.RecordCreated = DateTime.Now.ToString();
-            myAR.RecordModified = DateTime.Now.ToString();
-            myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+         
+                myAR.UpdateRow(myAR.assetRecipientId, myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+            
+                
+
+                    myAR.title = ddlTitle.Text;
+                    myAR.firstName = txtFirstname.Text;
+                    myAR.lastName = txtLastName.Text;
+                    myAR.emailAddress = txtEmail.Text;
+                    myAR.location = txtLocation.Text;
+                    myAR.division = txtDivision.Text;
+                    myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
+                    myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+                    myAR.phoneNumber = txtPhone.Text;
+                    myAR.RecordCreated = DateTime.Now.ToString();
+                    myAR.RecordModified = DateTime.Now.ToString();
+                    myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+                
+            
         }
 
-        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+        protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
         {
+            
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
             int arID =(int) gvSearchResults.DataKeys[index].Value;
@@ -125,11 +134,67 @@ namespace CD6
             {
                 myAR.DeleteRow(arID);
                 btnSearch_Click(this, e);
+                
             }
-          
+            else if (e.CommandName == "modifyRecord")
+            {
 
+                createHeader.Visible = false;
+                modifyHeader.Visible = true;
+                //Set the Object values to the gridview
+                myAR.assetRecipientId = arID;
+                myAR.firstName = gvSearchResults.Rows[index].Cells[1].Text;
+                myAR.lastName =  gvSearchResults.Rows[index].Cells[2].Text;
+                myAR.emailAddress = gvSearchResults.Rows[index].Cells[3].Text;
+                myAR.division = gvSearchResults.Rows[index].Cells[7].Text;
+                myAR.primaryDeptAffiliation = gvSearchResults.Rows[index].Cells[5].Text;
+                myAR.secondaryDeptAffiliation = gvSearchResults.Rows[index].Cells[6].Text;
+                myAR.phoneNumber = gvSearchResults.Rows[index].Cells[4].Text;
+                myAR.RecordCreated = DateTime.Now.ToString();
+                myAR.RecordModified = DateTime.Now.ToString();
+
+                //AutoGenerate The textboxes
+                txtFirstname.Text = myAR.firstName;
+                txtLastName.Text = myAR.lastName;
+                txtEmail.Text = myAR.emailAddress;
+                txtDivision.Text = myAR.division;
+                ddlPrimaryDept.Text = myAR.primaryDeptAffiliation;
+                ddlSecondaryDept.Text = myAR.secondaryDeptAffiliation;
+                txtPhone.Text=myAR.phoneNumber;
+                lblARID.Text = myAR.assetRecipientId.ToString();
+                btnSubmitCreate.Visible = false;
+                
+                
+               
+                
+
+
+            }
+         
+          
+    
 
            
+        }
+
+        protected void btnModfiySubmit_Click(object sender, EventArgs  e)
+        {
+            //Set the TextBox Values for Database Transaction
+
+            myAR.assetRecipientId = Convert.ToInt32(lblARID.Text);
+            myAR.title = ddlTitle.Text;
+            myAR.firstName = txtFirstname.Text;
+            myAR.lastName = txtLastName.Text;
+            myAR.emailAddress = txtEmail.Text;
+            myAR.division = txtDivision.Text;
+            myAR.location = txtLocation.Text;
+            myAR.phoneNumber = txtPhone.Text;
+            myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
+            myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+            myAR.RecordCreated = DateTime.Now.ToString();
+            myAR.RecordModified = DateTime.Now.ToString();
+            btnSubmitCreate.Visible = false;
+            myAR.UpdateRow(myAR.assetRecipientId, myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
         }
 
     }
