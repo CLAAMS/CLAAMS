@@ -13,8 +13,8 @@ namespace CD6
     public class Asset
     {
   
-            //public int assetID { get; set; }
-           // public int assetHisotryId { get; set; }
+            public int assetID { get; set; }
+            //public int assetHisotryId { get; set; }
             public string CLATag { get; set; }
             public string Make { get; set; }
             public string Model { get; set; }
