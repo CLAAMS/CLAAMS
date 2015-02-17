@@ -146,8 +146,8 @@ namespace CD6
             objDB.DoUpdateUsingCmdObj(objCommand);
 
             SqlCommand objCommand1 = new SqlCommand();
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "DeleteAssetAndSetStatus";
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "DeleteAssetAndSetStatus";
 
             SqlParameter inputParameter1 = new SqlParameter("@assetID", objAsset.assetID);
             inputParameter1.Direction = ParameterDirection.Input;
