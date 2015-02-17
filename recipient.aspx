@@ -80,7 +80,10 @@
                             <asp:ListItem Value="Literature" Text="Literature" />
                         </asp:DropDownList>
                     </div>
-                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px" /></div></div>
+                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px" />
+                        <asp:Button ID="btnModfiySubmit" runat="server"  OnClick="btnModfiySubmit_Click" Text="Submit" />
+                        <asp:Label ID="lblARID" runat="server" Visible="False"></asp:Label>
+                        </div></div>
                     <div class="row"><div class="col-md-12 button_row" id="button_search" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click" /></div></div>
                 </div>
                 <div class="row" id="search_results" runat="server" visible="true">
