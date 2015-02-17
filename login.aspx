@@ -17,7 +17,7 @@
                             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control"/>
                         </div>
                         <div class="center-block">
-                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-default"/>
+                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-default" OnClick="btnLogin_Click"/>
                             <p><a href="https://accounts.temple.edu/selfcare/identification.jsp">Forgot Password</a></p>
                         </div>
                     </form>
