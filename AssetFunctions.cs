@@ -153,7 +153,7 @@ namespace CD6
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.VarChar;
             inputParameter1.Size = 100;
-            objCommand.Parameters.Add(inputParameter1);
+            objCommand1.Parameters.Add(inputParameter1);
 
             objDB.DoUpdateUsingCmdObj(objCommand1);
 
