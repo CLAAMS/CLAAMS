@@ -83,16 +83,21 @@
                 <div class="row" id="search_results" runat="server" visible="true">
                     <div class="row header_row"><div class="col-xs-12"><p><h1>Asset Search Results</h1></p></div></div>
                     <div class="col-md-12">
-                        <asp:GridView ID="gvSearchResults" runat="server" OnRowCommand="gvSearchResult_click" AutoGenerateColumns="false" CssClass="table">
-                            <Columns>
-                                <asp:BoundField DataField="assetID" HeaderText="ID" />
+                        <asp:GridView ID="gvSearchResults" runat="server" OnRowCommand="gvSearchResult_click" DataKeyNames="assetID"  AutoGenerateColumns="False" CssClass="table">
+                            
+                               <Columns>
+                                <asp:BoundField DataField="assetID" runat="server" Visible="false"></asp:BoundField>  
                                 <asp:BoundField DataField="CLATag" HeaderText="CLA Tag" />
                                 <asp:BoundField DataField="Make" HeaderText="Make" />
                                 <asp:BoundField DataField="Model" HeaderText="Model" />
                                 <asp:BoundField DataField="SerialNumber" HeaderText="Serial" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" />
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" >
+<ControlStyle CssClass="btn btn-default"></ControlStyle>
+                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" >
+<ControlStyle CssClass="btn btn-danger"></ControlStyle>
+                                </asp:ButtonField>
                             </Columns>
                         </asp:GridView>
                     </div>
