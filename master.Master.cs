@@ -4,16 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace CD6{
     public partial class master : System.Web.UI.MasterPage{
         protected void Page_Load(object sender, EventArgs e){
-            if (Session["user"] == "Authenticated"){
-            } else if (Session["user"] != "noAuth"){
+            string current_page = Request.Url.ToString();
+            Regex regex = new Regex("login.aspx");
+            Match match = regex.Match(current_page);
+
+            if (Session["user"] == "Authenticated") {
+
+            } else if (match.Success){
+
+            } else if (Session["user"] != "noAuth") {
                 Session["user"] = "noAuth";
                 Response.AddHeader("REFRESH", "50;URL=login.aspx");
                 Response.Redirect("login.aspx");
-            } else if (Session["user"] == "noAuth"){      
             }
         }
     }
