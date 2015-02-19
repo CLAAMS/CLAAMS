@@ -155,10 +155,82 @@ namespace CD6
             inputParameter1.Size = 100;
             objCommand1.Parameters.Add(inputParameter1);
 
-            objDB.DoUpdateUsingCmdObj(objCommand1);
+            objDB.DoUpdateUsingCmdObj(objCommand1);   
+        }
 
+        public void ModifyAsset(Asset objAsset)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateAssetHistory";
 
-            
+            SqlParameter inputParameter = new SqlParameter("@assetID", objAsset.assetID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "ModifyAsset";
+
+            SqlParameter inputParameter1 = new SqlParameter("@assetID", objAsset.assetID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@CLATag", objAsset.CLATag);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@Make", objAsset.Make);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@Model", objAsset.Model);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@Description", objAsset.Description);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@SerialNumber", objAsset.SerialNumber);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@Status", objAsset.Status);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@Notes", objAsset.Notes);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@recordModified", objAsset.recordModified);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            objDB.DoUpdateUsingCmdObj(objCommand1);   
         }
        
     }

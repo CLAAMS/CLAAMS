@@ -77,6 +77,7 @@
                         <asp:Label ID="lblNotes" Text="Notes:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtNotes" TextMode="MultiLine" Columns="50" Rows="5" runat="server" CssClass="form-control" />
                     </div>
+                    <div class="row"><div id="Div1" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" /></div></div>
                     <div class="row"><div id="submit_button" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click"/></div></div>
                     <div class="row"><div id="search_button" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click"/></div></div>
                 </div>

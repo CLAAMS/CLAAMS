@@ -163,12 +163,6 @@ namespace CD6
                 txtPhone.Text=myAR.phoneNumber;
                 lblARID.Text = myAR.assetRecipientId.ToString();
                 btnSubmitCreate.Visible = false;
-                
-                
-               
-                
-
-
             }
          
           

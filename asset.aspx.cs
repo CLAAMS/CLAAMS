@@ -13,6 +13,7 @@ namespace CD6{
         AssetFunctions objAssetFunctions = new AssetFunctions();
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnSubmitModifyAsset.Visible = false;
 
             search_results.Visible=false;
             submit_button.Visible=true;
@@ -70,18 +71,48 @@ namespace CD6{
                 objAsset.assetID = assetID;
 
                 objAssetFunctions.DeleteAsset(objAsset);
-                //btnSearch_Click(EventArgs e);
-
-    
+                btnSearch_Click(this, e);
+                    
             }
             else if (e.CommandName == "modifyRecord")
             {
+                createHeader.Visible = false;
+                modifyHeader.Visible = true;
+
+                btnSubmit.Visible = false;
+                btnSubmitModifyAsset.Visible = true;
+
+                int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
                 
+
+                ////Set the Object values to the gridview
+                objAsset.assetID = assetID;
+                objAsset.CLATag = gvSearchResults.Rows[index].Cells[1].Text;
+                objAsset.Make = gvSearchResults.Rows[index].Cells[2].Text;
+                objAsset.Model = gvSearchResults.Rows[index].Cells[3].Text;
+                objAsset.SerialNumber = gvSearchResults.Rows[index].Cells[4].Text;
+                objAsset.Status = gvSearchResults.Rows[index].Cells[5].Text;
+                objAsset.Description = gvSearchResults.Rows[index].Cells[6].Text;
+                objAsset.Notes = gvSearchResults.Rows[index].Cells[7].Text;
+                objAsset.recordCreated = DateTime.Now;
+                objAsset.recordModified = DateTime.Now;
+
+                txtCLAID.Text = objAsset.CLATag;
+                txtMake.Text = objAsset.Make;
+                txtModel.Text = objAsset.Model;
+                txtSerialLeft.Text = objAsset.SerialNumber;
+                ddlStatus.Text = objAsset.Status;
+                txtDescription.Text = objAsset.Description;
+                txtNotes.Text = objAsset.Notes;
+                lblAssetID.Text = objAsset.assetID.ToString();
+
             }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            btnSubmit.Visible = true;
+            btnSubmitModifyAsset.Visible = false;
             objAsset.CLATag = txtCLAID.Text;
             objAsset.Make = txtMake.Text;
             objAsset.Model = txtModel.Text;
@@ -94,9 +125,12 @@ namespace CD6{
 
             objAssetFunctions.CreateNewAsset(objAsset);
 
+            
         }
 
         protected void btnSearch_Click(object sender, EventArgs e){
+            btnSubmit.Visible = false;
+            btnSubmitModifyAsset.Visible = false;
             search_results.Visible=true;
             submit_button.Visible=false;
             search_button.Visible=false;
@@ -120,6 +154,8 @@ namespace CD6{
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
+            btnSubmit.Visible = false;
+            btnSubmitModifyAsset.Visible = false;
             search_results.Visible=false;
             submit_button.Visible=false;
             asset_form.Visible=true;
@@ -139,6 +175,8 @@ namespace CD6{
         }
 
         protected void btnCreate_Click(object sender, EventArgs e){
+            btnSubmitModifyAsset.Visible = false;
+            btnSubmit.Visible = true;
             search_results.Visible=false;
             submit_button.Visible=true;
             asset_form.Visible=true;
@@ -154,5 +192,28 @@ namespace CD6{
             lblSerialRight.Visible=false;
             txtSerialRight.Visible=false;
         }
+
+        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e)
+        {
+            btnSubmit.Visible = false;
+
+            objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
+            objAsset.CLATag = txtCLAID.Text;
+            objAsset.Make = txtMake.Text;
+            objAsset.Model = txtModel.Text;
+            objAsset.SerialNumber = txtSerialLeft.Text;
+            objAsset.Status = ddlStatus.SelectedValue;
+            objAsset.Description = txtDescription.Text;
+            objAsset.Notes = txtNotes.Text;
+            objAsset.recordCreated = DateTime.Now;
+            objAsset.recordModified = DateTime.Now;
+
+            objAssetFunctions.ModifyAsset(objAsset);
+            btnSearch_Click(this, e);
+        }
+
+       
+
+        
     }
 }
