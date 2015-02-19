@@ -8,17 +8,23 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <form role="form">
+                        <div class="center-block">
+                            <asp:Label ID="lblError" runat="server" CssClass="label" />
+                        </div>
                         <div class="form-group">
                             <asp:Label ID="lblLoginName" Text="Username:" runat="server" CssClass="label"/>
                             <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"/>
                         </div>
                         <div class="form-group">
                             <asp:Label ID="lblPassword" Text="Password:" runat="server" CssClass="label"/>
-                            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control"/>
+                            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" CssClass="form-control"/>
                         </div>
                         <div class="center-block">
                             <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-default" OnClick="btnLogin_Click"/>
                             <p><a href="https://accounts.temple.edu/selfcare/identification.jsp">Forgot Password</a></p>
+                        </div>
+                        <div class="center-block">
+                            <asp:Label ID="lblLDAPOutput" runat="server" CssClass="label" />
                         </div>
                     </form>
                 </div>
