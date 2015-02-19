@@ -34,7 +34,7 @@ namespace CD6{
             return strID;
         }
 
-        private static string getDNFromLDAP(string strUID){
+        public static string getDNFromLDAP(string strUID){
             DirectoryEntry entry = new DirectoryEntry("LDAP://rock.temple.edu/ou=temple,dc=tu,dc=temple,dc=edu");
             entry.AuthenticationType = AuthenticationTypes.None;
             DirectorySearcher mySearcher = new DirectorySearcher(entry);

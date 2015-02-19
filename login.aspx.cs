@@ -13,7 +13,7 @@ namespace CD6{
 
         protected void btnLogin_Click(object sender, EventArgs e){
             if (LDAP.AuthenticateUser(txtUsername.Text, txtPassword.Text) == txtUsername.Text){
-                Session["user"] = "Authenticated";
+                Session["user"] = txtUsername.Text;
                 Response.Redirect("asset.aspx");
             }
         }

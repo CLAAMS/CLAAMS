@@ -13,11 +13,11 @@ namespace CD6{
             Regex regex = new Regex("login.aspx");
             Match match = regex.Match(current_page);
 
-            if (Session["user"] == "Authenticated") {
+            if (Session["user"] != "noAuth" && Session["user"] != null) {
 
             } else if (match.Success){
 
-            } else if (Session["user"] != "noAuth") {
+            } else {
                 Session["user"] = "noAuth";
                 Response.AddHeader("REFRESH", "50;URL=login.aspx");
                 Response.Redirect("login.aspx");
