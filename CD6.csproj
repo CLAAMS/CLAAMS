@@ -156,6 +156,7 @@
     <Compile Include="recipient.aspx.designer.cs">
       <DependentUpon>recipient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SignOutSheet.cs" />
     <Compile Include="sos.aspx.cs">
       <DependentUpon>sos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

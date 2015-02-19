@@ -36,9 +36,7 @@
                         <asp:Label ID="lblRecipient" Text="Recipient: *" runat="server" CssClass="label" />
                         <div id="recipientCreate" runat="server">
                             <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown">
-                                <asp:ListItem Text="Bob Barker" />
-                                <asp:ListItem Text="Henry Hollins" />
-                                <asp:ListItem Text="Mark Mansfield" />
+                                
                             </asp:DropDownList><br />
                         </div>
                         <div id="recipientSearch" runat="server">
@@ -105,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" /></div></div>
+                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" /></div></div>
                     <div class="row"><div class="col-md-12 button_row" id="button_search" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click" /></div></div>
                 </div>
                 <div class="row" id="search_results" runat="server" visible="true">
