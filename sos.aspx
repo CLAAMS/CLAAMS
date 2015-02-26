@@ -88,7 +88,7 @@
                         <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />
                         <div class="row">
                             <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" /></div>
-                            <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" text="Add Asset" CssClass="btn btn-default" OnClientClick="assetSearch()"/></div>
+                            <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" OnClientClick="assetSearch()" text="Add Asset" CssClass="btn btn-default" /></div>
                         </div>
                         <div class="row">
                             <div class="col-xs-3 calendar">

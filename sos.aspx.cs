@@ -10,10 +10,10 @@ namespace CD6{
     public partial class sos : System.Web.UI.Page{
             SignOutSheet mySOS = new SignOutSheet();
             DataSet ds = new DataSet();
-
+            ArrayList arrayListOfAssets = new ArrayList();
             protected void Page_Load(object sender, EventArgs e)
             {
-
+              
                 ddlTerm_SelectedIndexChanged(this, e);
 
                 searchHeader.Visible = false;
@@ -30,33 +30,33 @@ namespace CD6{
                 modifyHeader.Visible = false;
                 uploadSheet.Visible = false;
 
-                //DataTable fake_sos = new DataTable();
-                //fake_sos.Columns.Add("sosID", typeof(string));
-                //fake_sos.Columns.Add("assetID", typeof(string));
-                //fake_sos.Columns.Add("claID", typeof(string));
-                //fake_sos.Columns.Add("arID", typeof(string));
-                //fake_sos.Columns.Add("AssignmentPeriod", typeof(string));
-                //fake_sos.Columns.Add("DateCreated", typeof(string));
-                //fake_sos.Columns.Add("DateModified", typeof(string));
-                //fake_sos.Columns.Add("DateDue", typeof(string));
-                //fake_sos.Columns.Add("Status", typeof(string));
-                //fake_sos.Columns.Add("ImageFileName", typeof(string));
-                //fake_sos.Columns.Add("recordModified", typeof(string));
-                //fake_sos.Columns.Add("recordCreated", typeof(string));
+                DataTable fake_sos = new DataTable();
+                fake_sos.Columns.Add("sosID", typeof(string));
+                fake_sos.Columns.Add("assetID", typeof(string));
+                fake_sos.Columns.Add("claID", typeof(string));
+                fake_sos.Columns.Add("arID", typeof(string));
+                fake_sos.Columns.Add("AssignmentPeriod", typeof(string));
+                fake_sos.Columns.Add("DateCreated", typeof(string));
+                fake_sos.Columns.Add("DateModified", typeof(string));
+                fake_sos.Columns.Add("DateDue", typeof(string));
+                fake_sos.Columns.Add("Status", typeof(string));
+                fake_sos.Columns.Add("ImageFileName", typeof(string));
+                fake_sos.Columns.Add("recordModified", typeof(string));
+                fake_sos.Columns.Add("recordCreated", typeof(string));
 
-                //fake_sos.Rows.Add("sos10000", "asset10000", "tua10000", "tug10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000000.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10001", "asset10001", "tub10000", "tuh10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000001.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10002", "asset10002", "tuc10000", "tui10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000002.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10003", "asset10003", "tud10000", "tuj10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000003.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10004", "asset10004", "tue10000", "tuk10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000004.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10005", "asset10005", "tuf10000", "tul10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000005.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10000", "asset10000", "tua10000", "tug10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000000.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10001", "asset10001", "tub10000", "tuh10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000001.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10002", "asset10002", "tuc10000", "tui10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000002.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10003", "asset10003", "tud10000", "tuj10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000003.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10004", "asset10004", "tue10000", "tuk10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000004.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10005", "asset10005", "tuf10000", "tul10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000005.jpg", "10/31/2014", "10/28/2014");
 
-                //fake_sos.Rows.Add("sos10000", "asset10000", "tua10000", "tug10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000000.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10001", "asset10001", "tub10000", "tuh10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000001.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10002", "asset10002", "tuc10000", "tui10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000002.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10003", "asset10003", "tud10000", "tuj10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000003.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10004", "asset10004", "tue10000", "tuk10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000004.jpg", "10/31/2014", "10/28/2014");
-                //fake_sos.Rows.Add("sos10005", "asset10005", "tuf10000", "tul10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000005.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10000", "asset10000", "tua10000", "tug10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000000.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10001", "asset10001", "tub10000", "tuh10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000001.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10002", "asset10002", "tuc10000", "tui10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000002.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10003", "asset10003", "tud10000", "tuj10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000003.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10004", "asset10004", "tue10000", "tuk10000", "Permanent", "10/28/2014", "10/31/2014", null, "Active", "img1000004.jpg", "10/31/2014", "10/28/2014");
+                fake_sos.Rows.Add("sos10005", "asset10005", "tuf10000", "tul10000", "Temporary", "10/28/2014", "10/31/2014", "01/02/2015", "Active", "img1000005.jpg", "10/31/2014", "10/28/2014");
 
                 //Establishing DropDown Choices for Recipients
                 DataSet myDS = mySOS.returnSignSheetRecipients();
@@ -90,31 +90,24 @@ namespace CD6{
                     newRow2["Name"] = row[1].ToString();
                     claIDAndName.Rows.Add(newRow2);
                 }
-                ddlAssigner.Items.Clear();
-                ddlAssigner.DataSource = claIDAndName;
-                ddlAssigner.DataTextField = "Name";
-                ddlAssigner.DataValueField = "claID";
-                ddlAssigner.DataBind();
-
-                //Establishing DropDown Choices for Assets
-                DataSet myDS3 = mySOS.returnAssets();
-                DataTable claTagAndType = new DataTable();
-                claTagAndType.Columns.Add("AssetID", typeof(int));
-                claTagAndType.Columns.Add("Type", typeof(string));
-                foreach (DataRow row in myDS3.Tables[0].Rows)
-                {
-                    DataRow newRow3 = claTagAndType.NewRow();
-                    newRow3["AssetID"] = row[0].ToString();
-                    newRow3["Type"] = row[1].ToString();
-                    claTagAndType.Rows.Add(newRow3);
-                }
-                lstbxAssets.Items.Clear();
-                lstbxAssets.DataSource = claTagAndType;
-                lstbxAssets.DataTextField = "Type";
-                lstbxAssets.DataValueField = "AssetID";
-                lstbxAssets.DataBind();
-                
-                
+                    ddlAssigner.Items.Clear();
+                    ddlAssigner.DataSource = claIDAndName;
+                    ddlAssigner.DataTextField = "Name";
+                    ddlAssigner.DataValueField = "claID";
+                    ddlAssigner.DataBind();
+                  
+                    if (Session["Asset"] != null)
+                    {
+                        arrayListOfAssets = (ArrayList)Session["Asset"];
+                        //If there are prior assets
+                       
+                        lstbxAssets.DataSource = arrayListOfAssets;
+                        lstbxAssets.DataTextField = "Name";
+                        lstbxAssets.DataValueField = "assetID";
+                        lstbxAssets.DataBind();
+                        
+                    }
+                        
             }
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
@@ -187,14 +180,14 @@ namespace CD6{
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-                mySOS.assetID = 2;
+              
                 mySOS.cladID = ddlAssigner.SelectedValue;
                 mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
             
                 mySOS.dateCreated = calIssueDate.SelectedDate;
                 mySOS.dateModified = DateTime.Now;
                 mySOS.dateDue = calDueDate.SelectedDate;
-                mySOS.assingmentPeriod = DateTime.Compare(mySOS.dateCreated, mySOS.dateDue).ToString();
+                mySOS.assingmentPeriod = ddlTerm.Text;
                
                 if (Convert.ToInt32(mySOS.assingmentPeriod)<0)
                 {
@@ -204,8 +197,9 @@ namespace CD6{
                 mySOS.status = "Not Overdue";
                 mySOS.imageFileName = "TestImageFileName";
                 mySOS.recordCreated = DateTime.Now;
-                mySOS.recordCreated = DateTime.Now;
-                mySOS.CreateSignOutSheet(mySOS.assetID, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
+                mySOS.recordModified = DateTime.Now;
+                int sosID=mySOS.CreateSignOutSheet(mySOS.assetID, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
+                mySOS.ModifyAsset(mySOS.assetID, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordModified, mySOS.recordCreated, sosID);
         }
     }
 }
