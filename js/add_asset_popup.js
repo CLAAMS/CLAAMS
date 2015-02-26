@@ -37,3 +37,10 @@ function emailSheet() {
     window.confirm("Do you want to send Sign Sheet to recipient?");
     return false;
 }
+
+function assetSearchClose() {
+    window.close()
+     location.reload(true);
+    
+}
+

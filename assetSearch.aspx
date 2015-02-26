@@ -10,6 +10,8 @@
     <link href="css/fonts.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/master.css" rel="stylesheet" />
+    
+    <script src="js/add_asset_popup.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -28,7 +30,7 @@
                 <div class="row"><div class="col-md-12"><asp:TextBox ID="txtSerial" runat="server" CssClass="form-control" /></div></div>
                 <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click"/></div></div>
                 <div class="row" id="searchResults" runat="server" visible="true"><div class="col-md-12"><br /><h3>Search Results:</h3>
-                    <asp:GridView ID="gvSearchResults" runat="server" AutoGenerateColumns="false" CssClass="table">
+                    <asp:GridView ID="gvSearchResults" runat="server" AutoGenerateColumns="False" CssClass="table" EnableViewState="False">
                         <Columns>
                             <asp:BoundField DataField="assetID" HeaderText="ID" />
                             <asp:BoundField DataField="CLATag" HeaderText="CLA Tag" />
@@ -36,14 +38,14 @@
                             <asp:BoundField DataField="Model" HeaderText="Model" />
                             <asp:BoundField DataField="SerialNumber" HeaderText="Serial" />
                             <asp:BoundField DataField="Status" HeaderText="Status" />
-                            <asp:TemplateField HeaderText="Add Assset" >
+                            <asp:TemplateField HeaderText="Add Asset" >
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkAddAsset" runat="server"/>
+                                    <asp:CheckBox ID="chkAddAsset" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
                      </asp:GridView>
-                    <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAddAsset" Text="Add Asset" runat="server" OnClientClick="window.close(); return false;" /></div></div>
+                    <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAddAsset" Text="Add Asset" runat="server"  OnClick="btnAddAsset_Click"  OnClientClick="assetSearchClose()" on/></div></div>
                 </div></div>
             </div>
         </div>
