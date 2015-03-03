@@ -16,6 +16,7 @@ namespace Utilities{
 
         public DBConnect(){
             myConnectionSql = new SqlConnection(SqlConnectString);
+            myConnectionSql.Open();
           
         }
 

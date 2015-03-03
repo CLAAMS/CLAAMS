@@ -164,6 +164,7 @@
     <Compile Include="sos.aspx.designer.cs">
       <DependentUpon>sos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SoSFunctions.cs" />
     <Compile Include="sosTemplate.aspx.cs">
       <DependentUpon>sosTemplate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
