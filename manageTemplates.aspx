@@ -24,16 +24,16 @@
                 <div class="row"><div class="col-md-12"><asp:TextBox ID="txtModel" runat="server" CssClass="form-control" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:Label ID="lblDescription" Text="Description:" runat="server" CssClass="label" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:TextBox ID="txtDescription" TextMode="MultiLine" Columns="50" Rows="5" runat="server" CssClass="form-control" /></div></div>
-                <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAddTemplate" Text="Add Template" runat="server" /></div></div>
+                <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAddTemplate" Text="Add Template" runat="server" OnClick="btnAddTemplate_Click"/></div></div>
                 <div class="row" id="searchResults" runat="server" visible="true"><div class="col-md-12"><br /><h3>Current Templates:</h3>
-                    <asp:GridView ID="gvTemplates" runat="server" AutoGenerateColumns="false" CssClass="table">
+                    <asp:GridView ID="gvTemplates" runat="server" AutoGenerateColumns="false" CssClass="table" OnRowCommand="gvTemplates_RowCommand" DataKeyNames="assetTemplateID">
                         <Columns>
-                            <asp:BoundField DataField="TemplateName" HeaderText="Name" />
+                            <asp:BoundField DataField="Name" HeaderText="Name" />
                             <asp:BoundField DataField="Make" HeaderText="Make" />
                             <asp:BoundField DataField="Model" HeaderText="Model" />
                             <asp:BoundField DataField="Description" HeaderText="Description" />
-                            <asp:ButtonField Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn-danger btn" />
-                            <asp:ButtonField Text="View/Modify" ButtonType="Button" ControlStyle-CssClass="btn-default btn" />
+                            <asp:ButtonField Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn-danger btn" CommandName="delTemplate" />
+                            <asp:ButtonField Text="View/Modify" ButtonType="Button" ControlStyle-CssClass="btn-default btn" CommandName="editTemplate" />
                         </Columns>
                      </asp:GridView>
                     <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnClose" Text="Close" runat="server" OnClientClick="window.close(); return false;" /></div></div>
