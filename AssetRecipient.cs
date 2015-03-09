@@ -218,7 +218,7 @@ namespace CD6
 
         public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, string pPDA, string pSDA, string pPhone, string pRecordCreated, string pRecordModified)
         {
-            int trueornah;
+            int result;
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand5 = new SqlCommand();
@@ -289,7 +289,7 @@ namespace CD6
             try
             {
 
-                trueornah = myDbConnect.DoUpdateUsingCmdObj(myCommand5);
+                result = myDbConnect.DoUpdateUsingCmdObj(myCommand5);
                 return 1;
 
             }

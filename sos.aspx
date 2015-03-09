@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="sos.aspx.cs" Inherits="CD6.sos" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/sos.css" rel="stylesheet" />
     <link href="css/secondary-nav.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
+<asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <nav class="navbar navbar-default navbar-secondary" role="navigation">
         <div class="container-fluid">
@@ -110,7 +109,7 @@
                     <div class="row header_row"><div class="col-md-12" id="trackingHeader" runat="server" visible="true"><h1>Sign Sheet Tracking</h1></div></div>
                     <div class="row header_row"><div class="col-md-12" id="searchResultsHeader" runat="server" visible="true"><h1>Sign Sheet Search Results</h1></div></div>
                     <div class="col-md-12">
-                        <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowCommand="gvSearchResults_RowCommand">
+                        <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_Click" >
                             <Columns>
                                 <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
                                 <asp:BoundField DataField="claID" HeaderText="Assigner" />
@@ -118,8 +117,12 @@
                                 <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
                                 <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" />
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="delee" ControlStyle-CssClass="btn-danger btn" />
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" >
+<ControlStyle CssClass="btn-default btn"></ControlStyle>
+                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" >
+<ControlStyle CssClass="btn-danger btn"></ControlStyle>
+                                </asp:ButtonField>
                             </Columns>
                         </asp:GridView>
                     </div>

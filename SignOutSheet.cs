@@ -218,5 +218,33 @@ namespace CD6
                 return -1;
             }
         }
+
+        public int DeleteSOS(int sosID)
+        {
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            myConnection.Open();
+            SqlCommand myCommand6 = new SqlCommand();
+            myCommand6.Connection = myConnection;
+            myCommand6.CommandType = CommandType.StoredProcedure;
+            myCommand6.CommandText = "DeleteSOS";
+            SqlParameter inputParameter1 = new SqlParameter("@sosID", sosID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.Int;
+            inputParameter1.Size = 50;
+            myCommand6.Parameters.Add(inputParameter1);
+
+            try
+            {
+
+                int result = myCommand6.ExecuteNonQuery();
+                return 1;
+
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
     }
 }
