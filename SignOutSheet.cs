@@ -21,7 +21,6 @@ namespace CD6
         public String imageFileName { get; set; }
         public DateTime recordModified { get; set; }
         public DateTime recordCreated { get; set; }
-        public String assetDescription { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
         public DataSet returnSignSheetRecipients()
@@ -116,7 +115,7 @@ namespace CD6
             SqlParameter inputParameter1 = new SqlParameter("@assetID", assetId);
             SqlParameter inputParameter2 = new SqlParameter("@claID", claId);
             SqlParameter inputParameter3 = new SqlParameter("@arID", arId);
-            SqlParameter inputParameter4 = new SqlParameter("@assingmentPeriod", assingmentPeriod);
+            SqlParameter inputParameter4 = new SqlParameter("@assignmentPeriod", assignmentPeriod);
             SqlParameter inputParameter5 = new SqlParameter("@dateCreated", creationDate);
             SqlParameter inputParameter6 = new SqlParameter("@dateModified", modifyDate);
             SqlParameter inputParameter7 = new SqlParameter("@dateDue", dueDate);

@@ -16,7 +16,7 @@ namespace Utilities{
 
         public DBConnect(){
             myConnectionSql = new SqlConnection(SqlConnectString);
-            myConnectionSql.Open();
+          
         }
 
         public DataSet GetDataSet(String SqlSelect){

@@ -39,10 +39,14 @@
                                 
                             </asp:DropDownList><br />
                         </div>
-                        
+                        <div id="recipientSearch" runat="server">
+                            <asp:TextBox  ID="txtRecipient" runat="server" CssClass="form-control" />
+                        </div>
                         <asp:Label ID="lblAssigner" Text="From: *" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown">
-                            
+                            <asp:ListItem Text="Joe Schmoe" />
+                            <asp:ListItem Text="Hank Smith" />
+                            <asp:ListItem Text="Jim Jones" />
                         </asp:DropDownList><br />
                         <asp:Label ID="lblTerm" Text="Term: *" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged" AutoPostBack="true">
@@ -81,19 +85,16 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblAssets" Text="Assets: *" runat="server" CssClass="label" />
-                        <div id="AssetListBox" runat="server" Visible="false">
-                            <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />              
-                            <div class="row">
-                                <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" /></div>
-                                <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" text="Add Asset" CssClass="btn btn-default" OnClientClick="assetSearch()"/></div>
-                            </div> 
+                        <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />
+                        <div class="row">
+                            <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" /></div>
+                            <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" OnClientClick="assetSearch()" text="Add Asset" CssClass="btn btn-default" /></div>
                         </div>
-                        <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
                         <div class="row">
                             <div class="col-xs-3 calendar">
                                 <br />
                                 <asp:Label ID="lblDate" Text="Issue Date: *" runat="server" CssClass="label" />
-                                <asp:Calendar ID="calIssueDate" runat="server" />
+                                <asp:Calendar ID="calIssueDate" runat="server" SelectedDate="10/28/2014"/>
                             </div>
                             <div class="col-xs-3 col-xs-offset-3 calendar" id="dueCal" runat="server" visible="true">
                                 <br />
@@ -112,6 +113,7 @@
                         <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowCommand="gvSearchResults_RowCommand">
                             <Columns>
                                 <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
+                                <asp:BoundField DataField="assetID" HeaderText="Assets" />
                                 <asp:BoundField DataField="claID" HeaderText="Assigner" />
                                 <asp:BoundField DataField="arID" HeaderText="Recipient" />
                                 <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
