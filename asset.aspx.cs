@@ -11,8 +11,7 @@ namespace CD6{
     {
         Asset objAsset = new Asset();
         AssetFunctions objAssetFunctions = new AssetFunctions();
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e) {
             btnSubmitModifyAsset.Visible = false;
 
             search_results.Visible=false;
@@ -29,25 +28,30 @@ namespace CD6{
             filler.Visible=false;
             lblSerialRight.Visible=false;
             txtSerialRight.Visible=false;
+            if(!Page.IsPostBack){
+                populateTemplateDropdown();
+            }
+        }
 
-            //DataTable fake_asset = new DataTable();
+        private void populateTemplateDropdown() {
+            DataSet dsAssets = new DataSet();
 
-            //fake_asset.Columns.Add("assetID", typeof(string));
-            //fake_asset.Columns.Add("CLATag", typeof(string));
-            //fake_asset.Columns.Add("Make", typeof(string));
-            //fake_asset.Columns.Add("Model", typeof(string));
-            //fake_asset.Columns.Add("Description", typeof(string));
-            //fake_asset.Columns.Add("SerialNumber", typeof(string));
-            //fake_asset.Columns.Add("Status", typeof(string));
-            //fake_asset.Columns.Add("Notes", typeof(string));
+            string selectTemplates = "select assetTemplateID, Name from Asset_Template;";
+            dsAssets = Tools.DBAccess.DBCall(selectTemplates);
+            ddlAssetTemplate.DataSource = dsAssets;
+            ddlAssetTemplate.DataTextField = dsAssets.Tables[0].Columns[1].ColumnName;
+            ddlAssetTemplate.DataValueField = dsAssets.Tables[0].Columns[0].ColumnName;
+            ddlAssetTemplate.DataBind();
+        }
 
-            //fake_asset.Rows.Add("asset10000","CLA1002","Dell","Laptop 2002","Dell laptop computer, 8GB RAM, 2.4GHz Quad Core, 256GB HDD","003994762","Active","Breaks a lot");
-            //fake_asset.Rows.Add("asset10002","CLA1005","Apple","Macbook Pro","Apple laptop computer, 16GB RAM, 2.7GHz 8Core, 512GB HDD","7872gb39rf","Inactive","");
-            //fake_asset.Rows.Add("asset10004","CLA1008","Samsung","24 LCD","Samsung 24in widescreen LCD display","899a0udkj3","Active","");
-            //fake_asset.Rows.Add("asset10006","CLA1011","Dell","Desktop 3000","Dell Desktop Computer, 200 MHz, 128MB RAM, 500MB HDD","88721bker8","Retired","");
-
-            //gvSearchResults.DataSource=fake_asset;
-            //gvSearchResults.DataBind();
+        private String[] getTemplate(int templateID) {
+            string[] template = new string[3];
+            string sql = string.Format("select Make, Model, Description from Asset_Template where assetTemplateID = {0};", templateID);
+            DataSet data = Tools.DBAccess.DBCall(sql);
+            template[0] = (string)data.Tables[0].Rows[0][0].ToString();
+            template[1] = (string)data.Tables[0].Rows[0][1].ToString();
+            template[2] = (string)data.Tables[0].Rows[0][2].ToString();
+            return template;
         }
 
         protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e){
@@ -212,8 +216,12 @@ namespace CD6{
             btnSearch_Click(this, e);
         }
 
-       
-
-        
+        protected void ddlAssetTemplate_SelectedIndexChanged(object sender, EventArgs e) {
+            int assetTemplateID = Convert.ToInt32(ddlAssetTemplate.SelectedValue);
+            string[] template = getTemplate(assetTemplateID);
+            txtMake.Text = template[0];
+            txtModel.Text = template[1];
+            txtDescription.Text = template[2];
+        }        
     }
 }
