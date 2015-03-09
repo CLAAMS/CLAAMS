@@ -10,7 +10,8 @@ namespace CD6{
     public partial class sos : System.Web.UI.Page{
             SignOutSheet mySOS = new SignOutSheet();
             DataSet ds = new DataSet();
-            ArrayList arrayListOfAssets = new ArrayList();
+            Asset myAsset = new Asset();
+            int assetId;
             protected void Page_Load(object sender, EventArgs e)
             {
                 ddlTerm_SelectedIndexChanged(this, e);
@@ -79,9 +80,12 @@ namespace CD6{
                   
                     if (Session["Asset"] != null)
                     {
+
                         arrayListOfAssets = (ArrayList)Session["Asset"];
-                        //If there are prior assets
-                       
+                        foreach (Asset myAsset in arrayListOfAssets)
+                        {
+                             assetId = myAsset.assetID;
+                        }
                         lstbxAssets.DataSource = arrayListOfAssets;
                         lstbxAssets.DataTextField = "Name";
                         lstbxAssets.DataValueField = "assetID";
@@ -108,8 +112,9 @@ namespace CD6{
                     //lstbxAssets.DataBind();
 
                 }  
-
             }
+                        
+            
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
             searchHeader.Visible=true;
@@ -213,7 +218,15 @@ namespace CD6{
             
                 mySOS.dateCreated = calIssueDate.SelectedDate;
                 mySOS.dateModified = DateTime.Now;
+                try{
                 mySOS.dateDue = calDueDate.SelectedDate;
+                }
+                catch{
+                    mySOS.dateDue=DateTime.Now;
+                }
+               
+                mySOS.dateDue=DateTime.Now;
+                
                 mySOS.assingmentPeriod = ddlTerm.Text;
                
                 if (Convert.ToInt32(mySOS.assingmentPeriod)<0)
@@ -226,7 +239,20 @@ namespace CD6{
                 mySOS.recordCreated = DateTime.Now;
                 mySOS.recordModified = DateTime.Now;
                 int sosID=mySOS.CreateSignOutSheet(mySOS.assetID, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
-                mySOS.ModifyAsset(mySOS.assetID, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordModified, mySOS.recordCreated, sosID);
+                mySOS.ModifyAsset(sosID,assetId);
+                
+        }
+
+        protected void btnAddAsset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("assetSearch.aspx");
+        }
+
+        protected void btnRemoveAsset_Click(object sender, EventArgs e)
+        {
+            Session.Remove("Asset");
+            lstbxAssets.DataSource = (ArrayList)Session["Asset"];
+            lstbxAssets.DataBind();
         }
     }
 }

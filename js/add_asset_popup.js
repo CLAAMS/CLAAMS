@@ -38,9 +38,14 @@ function emailSheet() {
     return false;
 }
 
-function assetSearchClose() {
-    window.close()
-     location.reload(true);
+function assetSearchClose()
+{
     
+    window.close()
+        
 }
+function closingCode() {
+    window.location.replace("sos.aspx");
+}
+
 
