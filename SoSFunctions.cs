@@ -54,15 +54,15 @@ namespace CD6
         }
         public void DeleteSOS(SignOutSheet mySOS)
         {
-            SqlCommand myCommand1=new SqlCommand();
-            myCommand1.CommandType=CommandType.StoredProcedure;
-            myCommand1.CommandText="DeleteSOS";
+            SqlCommand myCommand1 = new SqlCommand();
+            myCommand1.CommandType = CommandType.StoredProcedure;
+            myCommand1.CommandText = "DeleteSOS";
 
-            SqlParameter inputParameter1=new SqlParameter("sosID",mySOS.sosID);
-
-
+            SqlParameter inputParameter1 = new SqlParameter("sosID", mySOS.sosID);
 
 
+
+        }
 
    }
 }

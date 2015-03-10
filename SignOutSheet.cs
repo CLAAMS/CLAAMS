@@ -116,7 +116,7 @@ namespace CD6
             SqlParameter inputParameter1 = new SqlParameter("@assetID", assetId);
             SqlParameter inputParameter2 = new SqlParameter("@claID", claId);
             SqlParameter inputParameter3 = new SqlParameter("@arID", arId);
-            SqlParameter inputParameter4 = new SqlParameter("@assingmentPeriod", assingmentPeriod);
+            SqlParameter inputParameter4 = new SqlParameter("@assignmentPeriod", assingmentPeriod);
             SqlParameter inputParameter5 = new SqlParameter("@dateCreated", creationDate);
             SqlParameter inputParameter6 = new SqlParameter("@dateModified", modifyDate);
             SqlParameter inputParameter7 = new SqlParameter("@dateDue", dueDate);
