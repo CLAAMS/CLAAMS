@@ -45,7 +45,8 @@
                             </asp:TemplateField>
                         </Columns>
                      </asp:GridView>
-                    <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAddAsset" Text="Add Asset" runat="server"  OnClick="btnAddAsset_Click"  OnClientClick="assetSearchClose()" on/></div></div>
+                    <div class="button_row row"><div class="col-md-12" style="text-align:center;">
+                        <asp:Button ID="btnAddAsset" Text="Add Asset" runat="server"  OnClick="btnAddAsset_Click"  /></div></div>
                 </div></div>
             </div>
         </div>

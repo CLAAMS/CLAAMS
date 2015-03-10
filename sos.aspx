@@ -81,13 +81,13 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblAssets" Text="Assets: *" runat="server" CssClass="label" />
-                        <div id="AssetListBox" runat="server" Visible="false">
-                            <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />              
-                            <div class="row">
-                                <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" /></div>
-                                <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server" text="Add Asset" CssClass="btn btn-default" OnClientClick="assetSearch()"/></div>
-                            </div> 
+                        <div id="AssetListBox" runat="server" Visible="false">                
+                        <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />
+                        <div class="row">
+                            <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" OnClick="btnRemoveAsset_Click" /></div>
+                            <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server"  text="Add Asset" CssClass="btn btn-default" OnClick="btnAddAsset_Click" /></div>
                         </div>
+                       </div> 
                         <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
                         <div class="row">
                             <div class="col-xs-3 calendar">
@@ -109,7 +109,7 @@
                     <div class="row header_row"><div class="col-md-12" id="trackingHeader" runat="server" visible="true"><h1>Sign Sheet Tracking</h1></div></div>
                     <div class="row header_row"><div class="col-md-12" id="searchResultsHeader" runat="server" visible="true"><h1>Sign Sheet Search Results</h1></div></div>
                     <div class="col-md-12">
-                        <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowCommand="gvSearchResults_RowCommand">
+                        <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_Click" >
                             <Columns>
                                 <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
                                 <asp:BoundField DataField="claID" HeaderText="Assigner" />
@@ -117,8 +117,12 @@
                                 <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
                                 <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" />
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="delee" ControlStyle-CssClass="btn-danger btn" />
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" >
+<ControlStyle CssClass="btn-default btn"></ControlStyle>
+                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" >
+<ControlStyle CssClass="btn-danger btn"></ControlStyle>
+                                </asp:ButtonField>
                             </Columns>
                         </asp:GridView>
                     </div>

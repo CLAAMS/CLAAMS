@@ -61,40 +61,42 @@ namespace CD6
 
         protected void btnAddAsset_Click(object sender, EventArgs e)
         {
-            
-                myDS5 = (DataSet)Session["Dataset"];
-                gvSearchResults.DataSource = myDS5;
-                gvSearchResults.DataBind();
-                ArrayList arrayListOfAssets = new ArrayList();
-              
-                CheckBox C = new CheckBox();
 
-                for (int x = 0; x < myDS5.Tables[0].Rows.Count; x++)
+            myDS5 = (DataSet)Session["Dataset"];
+            gvSearchResults.DataSource = myDS5;
+            gvSearchResults.DataBind();
+            ArrayList arrayListOfAssets = new ArrayList();
+
+            CheckBox C = new CheckBox();
+
+            for (int x = 0; x < myDS5.Tables[0].Rows.Count; x++)
+            {
+
+                C = (CheckBox)gvSearchResults.Rows[x].Cells[6].FindControl("chkAddAsset");
+                C.Checked = true;
+                if (C.Checked)
                 {
-
-                    C= (CheckBox)gvSearchResults.Rows[x].Cells[6].FindControl("chkAddAsset");
-                    C.Checked = true;
-                    if (C.Checked)
-                    {
-                        Asset myAsset = new Asset();
-                        myAsset.assetID = Convert.ToInt32(gvSearchResults.Rows[x].Cells[0].Text);
-                        myAsset.CLATag = gvSearchResults.Rows[x].Cells[1].Text;
-                        myAsset.Make = gvSearchResults.Rows[x].Cells[2].Text;
-                        myAsset.Model = gvSearchResults.Rows[x].Cells[3].Text;
-                        myAsset.SerialNumber = gvSearchResults.Rows[x].Cells[4].Text;
-                        myAsset.Status = gvSearchResults.Rows[x].Cells[5].Text;
-                        myAsset.Name = gvSearchResults.Rows[x].Cells[2].Text + " " + gvSearchResults.Rows[x].Cells[3].Text;
-                        arrayListOfAssets.Add(myAsset);
-                    }
-
-                }                    
-                        Session.Add("Asset", arrayListOfAssets);
-                       
-                       
+                    Asset myAsset = new Asset();
+                    myAsset.assetID = Convert.ToInt32(gvSearchResults.Rows[x].Cells[0].Text);
+                    myAsset.CLATag = gvSearchResults.Rows[x].Cells[1].Text;
+                    myAsset.Make = gvSearchResults.Rows[x].Cells[2].Text;
+                    myAsset.Model = gvSearchResults.Rows[x].Cells[3].Text;
+                    myAsset.SerialNumber = gvSearchResults.Rows[x].Cells[4].Text;
+                    myAsset.Status = gvSearchResults.Rows[x].Cells[5].Text;
+                    myAsset.Name = gvSearchResults.Rows[x].Cells[2].Text + " " + gvSearchResults.Rows[x].Cells[3].Text;
+                    arrayListOfAssets.Add(myAsset);
                 }
+
             }
+            Session.Add("Asset", arrayListOfAssets);
+            Response.Redirect("SOS.aspx");
+
+        }
+
+      
 
     }
+}
 
         
    
