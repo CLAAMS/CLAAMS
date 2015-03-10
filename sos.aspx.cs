@@ -13,6 +13,7 @@ namespace CD6
         SignOutSheet mySOS = new SignOutSheet();
         DataSet ds = new DataSet();
         Asset myAsset = new Asset();
+        ArrayList arrayListOfAssets=new ArrayList();
         int assetId;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,12 +69,16 @@ namespace CD6
             namesAndIds.Columns.Add("ARID", typeof(int));
             foreach (DataRow row in myDS.Tables[0].Rows)
             {
-                ddlTerm_SelectedIndexChanged(this, e);
+                DataRow newRow = namesAndIds.NewRow();
+                newRow["Name"] = row[1].ToString();
+                newRow["ARID"] = Convert.ToInt32(row[0]);
+                namesAndIds.Rows.Add(newRow);
+
 
                 searchHeader.Visible = false;
                 button_search.Visible = false;
                 createHeader.Visible = true;
-               // recipientSearch.Visible = false;
+                // recipientSearch.Visible = false;
                 recipientCreate.Visible = true;
                 button_submit.Visible = true;
                 sos_form.Visible = true;
@@ -86,45 +91,36 @@ namespace CD6
 
                 AssetListBox.Visible = true;
                 txtSearchAsset.Visible = false;
-                if (!IsPostBack)
-                {
-                    //Establishing DropDown Choices for Recipients
-                    DataSet myDS = mySOS.returnSignSheetRecipients();
-                    DataTable namesAndIds = new DataTable();
-                    namesAndIds.Columns.Add("Name", typeof(string));
-                    namesAndIds.Columns.Add("ARID", typeof(int));
-                    foreach (DataRow row in myDS.Tables[0].Rows)
-                    {
-                        DataRow newRow = namesAndIds.NewRow();
-                        newRow["Name"] = row[1].ToString();
-                        newRow["ARID"] = Convert.ToInt32(row[0]);
-                        namesAndIds.Rows.Add(newRow);
+
+
+
+
             }
             ddlRecipient.Items.Clear();
             ddlRecipient.DataSource = namesAndIds;
             ddlRecipient.DataTextField = "Name";
             ddlRecipient.DataValueField = "ARID";
-            ddlRecipient.DataBind();   
-                  
-                    if (Session["Asset"] != null)
-                    {
+            ddlRecipient.DataBind();
 
-                        arrayListOfAssets = (ArrayList)Session["Asset"];
-                        foreach (Asset myAsset in arrayListOfAssets)
-                        {
-                             assetId = myAsset.assetID;
-                        }
-                        lstbxAssets.DataSource = arrayListOfAssets;
-                        lstbxAssets.DataTextField = "Name";
-                        lstbxAssets.DataValueField = "assetID";
-                        lstbxAssets.DataBind();
-                        
-                    }
+            if (Session["Asset"] != null)
+            {
 
-                    
+                arrayListOfAssets = (ArrayList)Session["Asset"];
+                foreach (Asset myAsset in arrayListOfAssets)
+                {
+                    assetId = myAsset.assetID;
+                }
+                lstbxAssets.DataSource = arrayListOfAssets;
+                lstbxAssets.DataTextField = "Name";
+                lstbxAssets.DataValueField = "assetID";
+                lstbxAssets.DataBind();
 
-                }  
             }
+
+
+
+
+
             //Establishing DropDownChoices for Asignees
             DataSet myDS2 = mySOS.returnAssigner();
             DataTable claIDAndName = new DataTable();
@@ -144,19 +140,20 @@ namespace CD6
             ddlAssigner.DataBind();
 
             if (Session["Asset"] != null)
-                    {
+            {
 
-                        arrayListOfAssets = (ArrayList)Session["Asset"];
-                        foreach (Asset myAsset in arrayListOfAssets)
-                        {
-                             assetId = myAsset.assetID;
-                        }
-                        lstbxAssets.DataSource = arrayListOfAssets;
-                        lstbxAssets.DataTextField = "Name";
-                        lstbxAssets.DataValueField = "assetID";
-                        lstbxAssets.DataBind();
-                        
-                    }
+                arrayListOfAssets = (ArrayList)Session["Asset"];
+                foreach (Asset myAsset in arrayListOfAssets)
+                {
+                    assetId = myAsset.assetID;
+                }
+                lstbxAssets.DataSource = arrayListOfAssets;
+                lstbxAssets.DataTextField = "Name";
+                lstbxAssets.DataValueField = "assetID";
+                lstbxAssets.DataBind();
+
+            }
+        }
 
          protected void btnSearch_Click(object sender, EventArgs e){
             searchHeader.Visible=false;
@@ -217,7 +214,7 @@ namespace CD6
             searchResultsHeader.Visible = false;
             modifyHeader.Visible = false;
             uploadSheet.Visible = false;
-        }
+        
         }
 
         protected void btnTrack_Click(object sender, EventArgs e)
@@ -267,32 +264,31 @@ namespace CD6
 
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
-
-            mySOS.dateCreated = calIssueDate.SelectedDate;
-            mySOS.dateModified = DateTime.Now;
-            try
+            int isPermanent = Convert.ToInt32(ddlTerm.SelectedValue);
+            if (isPermanent == 1)
             {
+                mySOS.assingmentPeriod = "Permanent";
+                mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00PM");
+                mySOS.status = "Not overdue";
+            }
+            else
+            {
+                mySOS.assingmentPeriod = "Non-Permanent";
                 mySOS.dateDue = calDueDate.SelectedDate;
             }
-            catch
-            {
-                mySOS.dateDue = DateTime.Now;
-            }
-
-            mySOS.dateDue = DateTime.Now;
-
-            mySOS.assingmentPeriod = ddlTerm.Text;
-
-            if (Convert.ToInt32(mySOS.assingmentPeriod) < 0)
+            mySOS.dateCreated = calIssueDate.SelectedDate;
+            mySOS.dateModified = DateTime.Now;
+            
+            if (mySOS.dateCreated>mySOS.dateDue)
             {
                 mySOS.status = "Overdue";
             }
             else
-                mySOS.status = "Not Overdue";
+            mySOS.status = "Not Overdue";
             mySOS.imageFileName = "TestImageFileName";
             mySOS.recordCreated = DateTime.Now;
             mySOS.recordModified = DateTime.Now;
-            int sosID = mySOS.CreateSignOutSheet(mySOS.assetID, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
+            int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
             mySOS.ModifyAsset(sosID, assetId);
 
         }
@@ -323,3 +319,4 @@ namespace CD6
         }
     }
 }
+
