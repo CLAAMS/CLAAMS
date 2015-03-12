@@ -77,6 +77,7 @@ namespace CD6
                     foreach (Asset myAsset in arrayListOfAssets)
                     {
                         assetId = myAsset.assetID;
+                        Session.Add("assetId",assetId);
                     }
                     lstbxAssets.DataSource = arrayListOfAssets;
                     lstbxAssets.DataTextField = "Name";
@@ -102,18 +103,7 @@ namespace CD6
                 ddlAssigner.DataValueField = "claID";
                 ddlAssigner.DataBind();
 
-                if (Session["Asset"] != null)
-                {
-                    arrayListOfAssets = (ArrayList)Session["Asset"];
-                    foreach (Asset myAsset in arrayListOfAssets)
-                    {
-                        assetId = myAsset.assetID;
-                    }
-                    lstbxAssets.DataSource = arrayListOfAssets;
-                    lstbxAssets.DataTextField = "Name";
-                    lstbxAssets.DataValueField = "assetID";
-                    lstbxAssets.DataBind();
-                }
+              
             }
         }
 
@@ -252,6 +242,7 @@ namespace CD6
             mySOS.imageFileName = "TestImageFileName";
             mySOS.recordCreated = DateTime.Now;
             mySOS.recordModified = DateTime.Now;
+            assetId = Convert.ToInt32(Session["assetId"].ToString());
             int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
             mySOS.ModifyAsset(sosID, assetId);
 
