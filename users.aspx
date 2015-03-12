@@ -30,12 +30,14 @@
                 <div class="col-md-12">
                     <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" CssClass="table" OnRowCommand="gvUsers_RowCommand">
                         <Columns>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" />
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" />
-                            <asp:BoundField DataField="CLAID" HeaderText="AccessNet ID" />
-                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:BoundField DataField="First Name" HeaderText="First Name" />
+                            <asp:BoundField DataField="Last Name" HeaderText="Last Name" />
+                            <asp:BoundField DataField="Office" HeaderText="Office" />
+                            <asp:BoundField DataField="accessNetID" HeaderText="AccessNet ID" />
+                            <asp:BoundField DataField="email" HeaderText="Email" />
+                            <asp:BoundField DataField="Status" HeaderText="Status" />
                             <asp:ButtonField Text="View/Edit" ButtonType="Button" ControlStyle-CssClass="btn btn-default" CommandName="modify" />
-                            <asp:ButtonField Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" CommandName="delet"/>
+                            <asp:ButtonField Text="Change Status" ButtonType="Button" ControlStyle-CssClass="btn btn-danger" CommandName="switchStatus"/>
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -59,7 +61,7 @@
                     </asp:DropDownList><br />
                     <asp:Label ID="lblEmail" Text="Email:" runat="server" CssClass="label" />
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
-                    <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnSubmit" Text="Submit" runat="server" /></div></div>
+                    <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click"/></div></div>
                 </div>
             </div>
         </div>

@@ -37,7 +37,7 @@ namespace CD6{
 
         protected bool ValidUser(string accessNetID) {
             bool output;
-            string sql = string.Format("select claID from CLA_IT_Member where claID='{0}'",accessNetID);
+            string sql = string.Format("select claID from CLA_IT_Member where claID='{0}' and UserStatus='Active'",accessNetID);
             DataSet result = Tools.DBAccess.DBCall(sql);
             if (result.Tables[0].Rows.Count == 1){
                 output=true;
