@@ -78,6 +78,8 @@
     <Content Include="css\sticky-footer.css" />
     <Content Include="css\style.css" />
     <Content Include="email.aspx" />
+    <Content Include="fonts\BebasNeue-webfont.svg" />
+    <Content Include="fonts\DroidSans-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\web_logo_tu_outlined-stacked.png" />
     <Content Include="js\add_asset_popup.js" />
@@ -197,6 +199,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="img\Denise_Krenski_Laptop.PDF" />
+    <Content Include="fonts\BebasNeue-webfont.eot" />
+    <Content Include="fonts\BebasNeue-webfont.ttf" />
+    <Content Include="fonts\BebasNeue-webfont.woff" />
+    <Content Include="fonts\BebasNeue.otf" />
+    <Content Include="fonts\DroidSans-Bold.ttf" />
+    <Content Include="fonts\DroidSans-webfont.eot" />
+    <Content Include="fonts\DroidSans-webfont.ttf" />
+    <Content Include="fonts\DroidSans-webfont.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -229,7 +239,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:27973/</IISUrl>
+          <IISUrl>http://localhost:27433/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

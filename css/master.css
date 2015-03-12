@@ -2,19 +2,19 @@
 }
 
 #header {
-    font-family: 'Bebas Neue';
+    font-family: 'BebasNeue';
     text-align: left;
     padding: 10px;
 }
 
 #navigation {
-    font-family: 'Bebas Neue';
+    font-family: 'BebasNeue';
     background-color: #9e1b34;
     color: #ffffff;
 }
 
 .navbar-header {
-    font-family: 'Bebas Neue';
+    font-family: 'BebasNeue';
     background-color: #9e1b34;
     color: #ffffff;
 }
@@ -26,7 +26,7 @@
 }
 
 .navbar-default .navbar-nav>li>a{
-    font-family: 'Bebas Neue';
+    font-family: 'BebasNeue';
     color: #ffffff;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .footer {
-    font-family: 'Bebas Neue';
+    font-family: 'BebasNeue';
     background-color: #000000;
     color: #ffffff;
 }
