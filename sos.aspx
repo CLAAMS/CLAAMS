@@ -81,12 +81,12 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblAssets" Text="Assets: *" runat="server" CssClass="label" />
-                        <div id="AssetListBox" runat="server" Visible="false">                
-                        <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />
-                        <div class="row">
-                            <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" OnClick="btnRemoveAsset_Click" /></div>
-                            <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server"  text="Add Asset" CssClass="btn btn-default" OnClick="btnAddAsset_Click" /></div>
-                        </div>
+                        <div id="AssetListBox" runat="server" Visible="false">
+                            <asp:ListBox ID="lstbxAssets" runat="server" CssClass="list-group" style="width:100%;" />
+                            <div class="row">
+                                <div class="col-xs-6" style="text-align:left;"><asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" OnClick="btnRemoveAsset_Click" /></div>
+                                <div class="col-xs-6" style="text-align:right;"><asp:Button ID="btnAddAsset" runat="server"  text="Add Asset" CssClass="btn btn-default" OnClick="btnAddAsset_Click" /></div>
+                            </div>
                        </div> 
                         <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
                         <div class="row">
