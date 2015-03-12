@@ -117,12 +117,8 @@
                                 <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
                                 <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" >
-<ControlStyle CssClass="btn-default btn"></ControlStyle>
-                                </asp:ButtonField>
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" >
-<ControlStyle CssClass="btn-danger btn"></ControlStyle>
-                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" />                       
+                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" />
                             </Columns>
                         </asp:GridView>
                     </div>
