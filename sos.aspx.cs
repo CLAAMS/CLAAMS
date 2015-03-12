@@ -272,6 +272,11 @@ namespace CD6
                 btnSearch_Click(this, e);
             }
         }
+
+        protected void gvSearchResults_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
     }
 }
 
