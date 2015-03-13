@@ -271,6 +271,11 @@ namespace CD6
                 mySOS.DeleteSOS(sosID);
                 btnSearch_Click(this, e);
             }
+            else if (e.CommandName == "modify")
+            {
+                createHeader.Visible = false;
+                modifyHeader.Visible = true;
+            }
         }
 
         protected void gvSearchResults_RowDeleting(object sender, GridViewDeleteEventArgs e)
