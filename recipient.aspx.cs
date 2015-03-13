@@ -11,6 +11,7 @@ namespace CD6
     public partial class recipient : System.Web.UI.Page
     {
         AssetRecipient myAR = new AssetRecipient();
+        AssetRecipient theAssetRecipient = new AssetRecipient();
         DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,18 +41,44 @@ namespace CD6
             //txtDivision.Text = "Hello";
             //gvSearchResults.DataSource = fake_recipients;
             //gvSearchResults.DataBind();
-        }
 
-        //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-        //{
-        //    searchHeader.Visible = false;
-        //    button_search.Visible = false;
-        //    createHeader.Visible = false;
-        //    button_submit.Visible = true;
-        //    recipient_form.Visible = true;
-        //    search_results.Visible = false;
-        //    modifyHeader.Visible = true;
-        //}
+
+            //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+            //{
+            //    searchHeader.Visible = false;
+            //    button_search.Visible = false;
+            //    createHeader.Visible = false;
+            //    button_submit.Visible = true;
+            //    recipient_form.Visible = true;
+            //    search_results.Visible = false;
+            //    modifyHeader.Visible = true;
+            //}
+           
+                if (Session["AssetRecipient"] != null)
+                {
+                    bool check;
+                    theAssetRecipient = (AssetRecipient)Session["AssetRecipient"];
+                    createHeader.Visible = false;
+                    check = (Boolean)Session["IsOnModifyPage"];
+                    if (check == false)
+                    {
+                        bool onModifyPage = true;
+                        ddlTitle.Text = theAssetRecipient.title;
+                        txtFirstname.Text = theAssetRecipient.firstName;
+                        txtLastName.Text = theAssetRecipient.lastName;
+                        txtEmail.Text = theAssetRecipient.emailAddress;
+                        txtDivision.Text = theAssetRecipient.division;
+                        ddlPrimaryDept.Text = theAssetRecipient.primaryDeptAffiliation;
+                        ddlSecondaryDept.Text = theAssetRecipient.secondaryDeptAffiliation;
+                        txtPhone.Text = theAssetRecipient.phoneNumber;
+                        //text.Text = theAssetRecipient.assetRecipientId.ToString();
+                        btnSubmitCreate.Visible = true;
+                        Session["IsOnModifyPage"] = onModifyPage;
+                    }
+
+                }
+            
+        }
 
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {
@@ -102,9 +129,14 @@ namespace CD6
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-         
-                myAR.UpdateRow(myAR.assetRecipientId, myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
-            
+            if (Session["AssetRecipient"] != null)
+            {
+                
+                
+                btnSubmitCreate.Visible = false;
+                myAR.UpdateRow(theAssetRecipient.assetRecipientId, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordCreated, theAssetRecipient.RecordModified);
+            }
+            else
                 
 
                     myAR.title = ddlTitle.Text;
@@ -138,7 +170,7 @@ namespace CD6
             }
             else if (e.CommandName == "modifyRecord")
             {
-
+                bool onModify=false;
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
                 //Set the Object values to the gridview
@@ -152,8 +184,12 @@ namespace CD6
                 myAR.phoneNumber = gvSearchResults.Rows[index].Cells[4].Text;
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
-
+                gvSearchResults.Visible=false;
+                Session.Add("AssetRecipient", myAR);
+                Session.Add("IsOnModifyPage", onModify);
+                Response.Redirect(Request.RawUrl);
                 //AutoGenerate The textboxes
+
                 txtFirstname.Text = myAR.firstName;
                 txtLastName.Text = myAR.lastName;
                 txtEmail.Text = myAR.emailAddress;
@@ -163,33 +199,18 @@ namespace CD6
                 txtPhone.Text=myAR.phoneNumber;
                 lblARID.Text = myAR.assetRecipientId.ToString();
                 btnSubmitCreate.Visible = false;
+               
+    
+
             }
          
-          
-    
 
            
         }
 
-        protected void btnModfiySubmit_Click(object sender, EventArgs  e)
-        {
-            //Set the TextBox Values for Database Transaction
+      
 
-            myAR.assetRecipientId = Convert.ToInt32(lblARID.Text);
-            myAR.title = ddlTitle.Text;
-            myAR.firstName = txtFirstname.Text;
-            myAR.lastName = txtLastName.Text;
-            myAR.emailAddress = txtEmail.Text;
-            myAR.division = txtDivision.Text;
-            myAR.location = txtLocation.Text;
-            myAR.phoneNumber = txtPhone.Text;
-            myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
-            myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
-            myAR.RecordCreated = DateTime.Now.ToString();
-            myAR.RecordModified = DateTime.Now.ToString();
-            btnSubmitCreate.Visible = false;
-            myAR.UpdateRow(myAR.assetRecipientId, myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
-        }
+ 
 
     }
 
