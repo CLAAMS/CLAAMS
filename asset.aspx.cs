@@ -13,7 +13,7 @@ namespace CD6{
         AssetFunctions objAssetFunctions = new AssetFunctions();
         protected void Page_Load(object sender, EventArgs e) {
             btnSubmitModifyAsset.Visible = false;
-
+           
             search_results.Visible=false;
             submit_button.Visible=true;
             asset_form.Visible=true;
@@ -62,18 +62,19 @@ namespace CD6{
             return template;
         }
 
-        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e){
-            search_results.Visible=false;
-            submit_button.Visible=true;
-            asset_form.Visible=true;
-            search_button.Visible=false;
-            searchHeader.Visible=false;
-            createHeader.Visible=false;
-            history.Visible=true;
-            modifyHeader.Visible=true;
-            templateRow.Visible=false;
+        protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+        {
+            search_results.Visible = false;
+            submit_button.Visible = true;
+            asset_form.Visible = true;
+            search_button.Visible = false;
+            searchHeader.Visible = false;
+            createHeader.Visible = false;
+            history.Visible = true;
+            modifyHeader.Visible = true;
+            templateRow.Visible = false;
 
-           
+
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
 
@@ -84,7 +85,7 @@ namespace CD6{
 
                 objAssetFunctions.DeleteAsset(objAsset);
                 btnSearch_Click(this, e);
-                    
+
             }
             else if (e.CommandName == "modifyRecord")
             {
@@ -95,7 +96,7 @@ namespace CD6{
                 btnSubmitModifyAsset.Visible = true;
 
                 int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
-                
+
 
                 ////Set the Object values to the gridview
                 objAsset.assetID = assetID;
@@ -110,6 +111,14 @@ namespace CD6{
                 objAsset.recordModified = DateTime.Now;
 
                 txtCLAID.Text = objAsset.CLATag;
+                try
+                {
+                    int.Parse(objAsset.CLATag);
+                }
+                catch (Exception ex)
+                {
+
+                }
                 txtMake.Text = objAsset.Make;
                 txtModel.Text = objAsset.Model;
                 txtSerialLeft.Text = objAsset.SerialNumber;
@@ -120,6 +129,7 @@ namespace CD6{
 
             }
         }
+        
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -134,11 +144,65 @@ namespace CD6{
             objAsset.Notes = txtNotes.Text;
             objAsset.recordCreated = DateTime.Now;
             objAsset.recordModified = DateTime.Now;
+            try
+            {
+                int.Parse(objAsset.CLATag);
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("asset.aspx");
+                lblInputValidation.Text = "You have put in an invalid claTag for the asset. Please try again";
+            }
+            if (objAsset.Make == " ")
+            {
+                Response.Redirect("asset.aspx");
+                lblInputValidation.Text = "You have put in an invalid Make for the asset.Please try again";
+            }
+             if (objAsset.Model == " ")
+            {
+                Response.Redirect("asset.aspx");
+                lblInputValidation.Text = "You have put in an invalid Model for the asset.Please try again";
+            }
 
-            objAssetFunctions.CreateNewAsset(objAsset);
 
+             if (objAsset.SerialNumber == " ")
+             {
+                 Response.Redirect("asset.aspx");
+                 lblInputValidation.Text = "You have put in an invalid serial number for the asset.Please try again";
+             }
+
+
+             else
+             {
+                 try
+                 {
+                     int.Parse(objAsset.SerialNumber);
+                    
+                 }
+             
+                 catch (Exception ex)
+                 {
+                     Response.Redirect("asset.aspx");
+                     lblInputValidation.Text = "You have put in a non-integer serialnumber for the asset.Please try again";
+                 }
+             }
+
+             if (objAsset.Description == " ")
+             {
+                 Response.Redirect("asset.aspx");
+                 lblInputValidation.Text = "You have put in an invalid description. Please try again";
+             }
+
+             if (objAsset.Notes == " ")
+             {
+                 Response.Redirect("asset.aspx");
+                 lblInputValidation.Text = "You have put in invalid Notes. Please try again";
+             }
             
-        }
+                objAssetFunctions.CreateNewAsset(objAsset);
+            }
+            
+        
 
         protected void btnSearch_Click(object sender, EventArgs e){
             btnSubmit.Visible = false;
@@ -162,6 +226,7 @@ namespace CD6{
 
             gvSearchResults.DataSource = objAssetFunctions.SearchForAssets(objAsset);
             gvSearchResults.DataBind();
+
           
         }
 
@@ -230,6 +295,10 @@ namespace CD6{
             txtMake.Text = template[0];
             txtModel.Text = template[1];
             txtDescription.Text = template[2];
-        }        
-    }
+        }  
+
 }
+
+}      
+
+
