@@ -40,6 +40,14 @@ namespace CD6
             //txtDivision.Text = "Hello";
             //gvSearchResults.DataSource = fake_recipients;
             //gvSearchResults.DataBind();
+           
+            if (ddlSecondaryDept.Items[0].Text =="English" && ddlPrimaryDept.Items[0].Text=="English")
+            {
+                ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlPrimaryDept.SelectedIndex = 0;
+                ddlSecondaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlSecondaryDept.SelectedIndex = 0;
+            }
         }
 
         //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
@@ -52,7 +60,7 @@ namespace CD6
         //    search_results.Visible = false;
         //    modifyHeader.Visible = true;
         //}
-
+        
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {
             searchHeader.Visible = true;

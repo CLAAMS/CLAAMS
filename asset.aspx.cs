@@ -31,6 +31,14 @@ namespace CD6{
             if(!Page.IsPostBack){
                 populateTemplateDropdown();
             }
+            if (ddlAssetTemplate.Items[0].Text == "Dell Laptop" && ddlStatus.Items[0].Text == "Active")
+            {
+                ddlAssetTemplate.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlAssetTemplate.SelectedIndex = 0;
+
+                ddlStatus.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlStatus.SelectedIndex = 0;
+            }
         }
 
         private void populateTemplateDropdown() {
