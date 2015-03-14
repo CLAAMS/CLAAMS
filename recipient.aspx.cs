@@ -41,19 +41,6 @@ namespace CD6
             //txtDivision.Text = "Hello";
             //gvSearchResults.DataSource = fake_recipients;
             //gvSearchResults.DataBind();
-
-
-            //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-            //{
-            //    searchHeader.Visible = false;
-            //    button_search.Visible = false;
-            //    createHeader.Visible = false;
-            //    button_submit.Visible = true;
-            //    recipient_form.Visible = true;
-            //    search_results.Visible = false;
-            //    modifyHeader.Visible = true;
-            //}
-           
                 if (Session["AssetRecipient"] != null)
                 {
                     bool check;
@@ -76,9 +63,26 @@ namespace CD6
                         Session["IsOnModifyPage"] = onModifyPage;
                     }
 
-                }
-            
+                }    
+            if (ddlSecondaryDept.Items[0].Text =="English" && ddlPrimaryDept.Items[0].Text=="English")
+            {
+                ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlPrimaryDept.SelectedIndex = 0;
+                ddlSecondaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                ddlSecondaryDept.SelectedIndex = 0;
+            }
         }
+
+        //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
+        //{
+        //    searchHeader.Visible = false;
+        //    button_search.Visible = false;
+        //    createHeader.Visible = false;
+        //    button_submit.Visible = true;
+        //    recipient_form.Visible = true;
+        //    search_results.Visible = false;
+        //    modifyHeader.Visible = true;
+        //}
 
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {

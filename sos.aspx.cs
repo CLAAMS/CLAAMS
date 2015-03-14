@@ -13,6 +13,7 @@ namespace CD6
         SignOutSheet mySOS = new SignOutSheet();
         DataSet ds = new DataSet();
         Asset myAsset = new Asset();
+
         ArrayList arrayListOfAssets=new ArrayList();
         int assetId;
         protected void Page_Load(object sender, EventArgs e)
@@ -35,14 +36,21 @@ namespace CD6
 
             AssetListBox.Visible = true;
             txtSearchAsset.Visible = false;
-
+           
             if (!IsPostBack)
             {
                 //Establishing DropDown Choices for Recipients
+                
                 DataSet myDS = mySOS.returnSignSheetRecipients();
+               
                 DataTable namesAndIds = new DataTable();
                 namesAndIds.Columns.Add("Name", typeof(string));
                 namesAndIds.Columns.Add("ARID", typeof(int));
+
+                DataRow blankRow = namesAndIds.NewRow();
+                blankRow["Name"] = " ";
+                blankRow["ArID"] = 0;
+                namesAndIds.Rows.Add(blankRow);
                 foreach (DataRow row in myDS.Tables[0].Rows)
                 {
                     DataRow newRow = namesAndIds.NewRow();
@@ -70,6 +78,7 @@ namespace CD6
                 ddlRecipient.DataTextField = "Name";
                 ddlRecipient.DataValueField = "ARID";
                 ddlRecipient.DataBind();
+               
 
                 if (Session["Asset"] != null)
                 {
@@ -90,6 +99,10 @@ namespace CD6
                 DataTable claIDAndName = new DataTable();
                 claIDAndName.Columns.Add("claID", typeof(string));
                 claIDAndName.Columns.Add("Name", typeof(string));
+                DataRow blankRow2 = claIDAndName.NewRow();
+                blankRow2["claID"] = " ";
+                blankRow2["Name"] = " ";
+                claIDAndName.Rows.Add(blankRow2);
                 foreach (DataRow row in myDS2.Tables[0].Rows)
                 {
                     DataRow newRow2 = claIDAndName.NewRow();
@@ -102,6 +115,12 @@ namespace CD6
                 ddlAssigner.DataTextField = "Name";
                 ddlAssigner.DataValueField = "claID";
                 ddlAssigner.DataBind();
+                if (ddlTerm.Items[0].Text=="Permanent")
+                {
+                    ddlTerm.Items.Insert(0, new ListItem(String.Empty, 0.ToString()));
+                    ddlTerm.SelectedIndex = 0;
+                }
+                
 
               
             }
@@ -146,6 +165,7 @@ namespace CD6
  
 
 
+
             
         }
 
@@ -188,7 +208,7 @@ namespace CD6
 
         protected void ddlTerm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (int.Parse(ddlTerm.SelectedValue) == 0)
+            if (int.Parse(ddlTerm.SelectedValue) == 2)
             {
                 dueCal.Visible = true;
             }
@@ -282,6 +302,8 @@ namespace CD6
         {
 
         }
+
+      
     }
 }
 
