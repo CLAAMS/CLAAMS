@@ -200,6 +200,16 @@ namespace CD6{
              }
             
                 objAssetFunctions.CreateNewAsset(objAsset);
+
+                txtCLAID.Text = "";
+                txtMake.Text = "";
+                txtModel.Text = "";
+                txtDescription.Text = "";
+                txtSerialLeft.Text = "";
+                ddlStatus.Text = "";
+                txtNotes.Text = "";
+            
+                
             }
             
         
@@ -249,6 +259,15 @@ namespace CD6{
             filler.Visible=true;
             lblSerialRight.Visible=true;
             txtSerialRight.Visible=true;
+
+
+            txtCLAID.Text = "";
+            txtMake.Text = "";
+            txtModel.Text = "";
+            txtDescription.Text = "";
+            txtSerialLeft.Text = "";
+            ddlStatus.Text = "";
+            txtNotes.Text = "";
         }
 
         protected void btnCreate_Click(object sender, EventArgs e){

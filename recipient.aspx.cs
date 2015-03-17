@@ -93,6 +93,16 @@ namespace CD6
             recipient_form.Visible = true;
             search_results.Visible = false;
             modifyHeader.Visible = false;
+
+            ddlTitle.Text = "";
+            txtFirstname.Text = "";
+            txtLastName.Text = "";
+            txtEmail.Text = "";
+            txtLocation.Text = "";
+            txtDivision.Text = "";
+            ddlPrimaryDept.Text = "";
+            ddlSecondaryDept.Text = "";
+            txtPhone.Text = "";
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -135,29 +145,43 @@ namespace CD6
 
             if (Session["AssetRecipient"] != null)
             {
-                
-                
+
+
                 btnSubmitCreate.Visible = false;
                 myAR.UpdateRow(theAssetRecipient.assetRecipientId, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordCreated, theAssetRecipient.RecordModified);
             }
             else
-                
+            {
 
-                    myAR.title = ddlTitle.Text;
-                    myAR.firstName = txtFirstname.Text;
-                    myAR.lastName = txtLastName.Text;
-                    myAR.emailAddress = txtEmail.Text;
-                    myAR.location = txtLocation.Text;
-                    myAR.division = txtDivision.Text;
-                    myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
-                    myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
-                    myAR.phoneNumber = txtPhone.Text;
-                    myAR.RecordCreated = DateTime.Now.ToString();
-                    myAR.RecordModified = DateTime.Now.ToString();
-                    myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
-                
-            
+                myAR.title = ddlTitle.Text;
+                myAR.firstName = txtFirstname.Text;
+                myAR.lastName = txtLastName.Text;
+                myAR.emailAddress = txtEmail.Text;
+                myAR.location = txtLocation.Text;
+                myAR.division = txtDivision.Text;
+                myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
+                myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+                myAR.phoneNumber = txtPhone.Text;
+                myAR.RecordCreated = DateTime.Now.ToString();
+                myAR.RecordModified = DateTime.Now.ToString();
+                myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+            }
+
+            ddlTitle.Text = "";
+            txtFirstname.Text = "";
+            txtLastName.Text = "";
+            txtEmail.Text = "";
+            txtLocation.Text = "";
+            txtDivision.Text = "";
+            ddlPrimaryDept.Text = "";
+            ddlSecondaryDept.Text = "";
+            txtPhone.Text = "";
+
+           
+
         }
+
+        
 
         protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
         {
