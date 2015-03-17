@@ -19,36 +19,36 @@ namespace CD6
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "SearchForSOS";
 
-            SqlParameter inputParameter = new SqlParameter("@arID", objSoS.arID);
-            inputParameter.Direction = ParameterDirection.Input;
-            inputParameter.SqlDbType = SqlDbType.VarChar;
-            inputParameter.Size = 100;
-            objCommand.Parameters.Add(inputParameter);
+            SqlParameter inputParameter1 = new SqlParameter("@arID", objSoS.arID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 50;
+            objCommand.Parameters.Add(inputParameter1);
 
-            inputParameter = new SqlParameter("@claID", objSoS.cladID);
-            inputParameter.Direction = ParameterDirection.Input;
-            inputParameter.SqlDbType = SqlDbType.VarChar;
-            inputParameter.Size = 100;
-            objCommand.Parameters.Add(inputParameter);
+            SqlParameter inputParameter2 = new SqlParameter("@claID", objSoS.cladID);
+            inputParameter2.Direction = ParameterDirection.Input;
+            inputParameter2.SqlDbType = SqlDbType.VarChar;
+            inputParameter2.Size = 50;
+            objCommand.Parameters.Add(inputParameter2);
 
-            inputParameter = new SqlParameter("@assingmentPeriod", objSoS.assingmentPeriod);
-            inputParameter.Direction = ParameterDirection.Input;
-            inputParameter.SqlDbType = SqlDbType.VarChar;
-            inputParameter.Size = 100;
-            objCommand.Parameters.Add(inputParameter);
+            SqlParameter inputParameter3 = new SqlParameter("@assingmentPeriod", objSoS.assingmentPeriod);
+            inputParameter3.Direction = ParameterDirection.Input;
+            inputParameter3.SqlDbType = SqlDbType.VarChar;
+            inputParameter3.Size = 50;
+            objCommand.Parameters.Add(inputParameter3);
 
-            inputParameter = new SqlParameter("@dateCreated", objSoS.dateCreated);
-            inputParameter.Direction = ParameterDirection.Input;
-            inputParameter.SqlDbType = SqlDbType.DateTime;
-            inputParameter.Size = 100;
-            objCommand.Parameters.Add(inputParameter);
+            SqlParameter inputParameter4 = new SqlParameter("@dateCreated", objSoS.dateCreated);
+            inputParameter4.Direction = ParameterDirection.Input;
+            inputParameter4.SqlDbType = SqlDbType.DateTime;
+            inputParameter4.Size = 50;
+            objCommand.Parameters.Add(inputParameter4);
 
-            inputParameter = new SqlParameter("@assetDescription", objSoS.assetDescription);
-            inputParameter.Direction = ParameterDirection.Input;
-            inputParameter.SqlDbType = SqlDbType.VarChar;
-            inputParameter.Size = 100;
-            objCommand.Parameters.Add(inputParameter);
-
+            SqlParameter inputParameter5 = new SqlParameter("@assetDescription", objSoS.assetDescription);
+            inputParameter5.Direction = ParameterDirection.Input;
+            inputParameter5.SqlDbType = SqlDbType.VarChar;
+            inputParameter5.Size = 50;
+            objCommand.Parameters.Add(inputParameter5);
+            
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
             return myDS;
         }

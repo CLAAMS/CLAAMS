@@ -144,8 +144,8 @@ namespace CD6
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
             mySOS.cladID = ddlAssigner.SelectedValue;
             //mySOS.assingmentPeriod = DateTime.Compare(mySOS.dateCreated, mySOS.dateDue).ToString(); 
-            mySOS.assingmentPeriod = ddlTerm.SelectedValue;
-            if(mySOS.assingmentPeriod == "0")
+            mySOS.assingmentPeriod = ddlTerm.SelectedItem.Text;
+            if(mySOS.assingmentPeriod == "Permanent")
             {
                 mySOS.dateDue = calDueDate.SelectedDate;
             }
@@ -157,7 +157,6 @@ namespace CD6
                 mySOS.dateCreated = Convert.ToDateTime("1/1/1900 12:00:00 AM");
             }
             mySOS.assetDescription = txtSearchAsset.Text;
-
             SoSFunctions sosFunctions = new SoSFunctions();
             
             gvSearchResults.DataSource = sosFunctions.SearchSoS(mySOS);
