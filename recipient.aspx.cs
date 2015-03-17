@@ -15,7 +15,13 @@ namespace CD6
         DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                btnCreate_Click(this, e);
+            }
+        }
 
+        protected void btnCreate_Click(object sender, EventArgs e) {
             searchHeader.Visible = false;
             button_search.Visible = false;
             createHeader.Visible = true;
@@ -24,47 +30,30 @@ namespace CD6
             search_results.Visible = false;
             modifyHeader.Visible = false;
 
-            //DataTable fake_recipients = new DataTable();
-
-            //fake_recipients.Columns.Add("FirstName", typeof(string));
-            //fake_recipients.Columns.Add("LastName", typeof(string));
-            //fake_recipients.Columns.Add("EmailAddress", typeof(string));
-            //fake_recipients.Columns.Add("PhoneNumber", typeof(string));
-            //fake_recipients.Columns.Add("PrimaryDeptAffiliation", typeof(string));
-            //fake_recipients.Columns.Add("SecondaryDeptAffiliation", typeof(string));
-            //fake_recipients.Columns.Add("Division", typeof(string));
-
-            //fake_recipients.Rows.Add("Bob", "Burner", "tuf01930@temple.edu", "9997774433", "Pyschology", "Biology", "CLA");
-            //fake_recipients.Rows.Add("Jim", "Jones", "tuf01930@temple.edu", "7776665544", "Physics", "Math", "CLA");
-            //fake_recipients.Rows.Add("Jill", "Jackson", "tuf01930@temple.edu", "9992227744", "Math", "Physics", "Writing Center");
-            //fake_recipients.Rows.Add("Barb", "Ballard", "tuf01930@temple.edu", "7774446622", "Biology", "Psychology", "CLA");
-            //txtDivision.Text = "Hello";
-            //gvSearchResults.DataSource = fake_recipients;
-            //gvSearchResults.DataBind();
-                if (Session["AssetRecipient"] != null)
+            if (Session["AssetRecipient"] != null)
+            {
+                bool check;
+                theAssetRecipient = (AssetRecipient)Session["AssetRecipient"];
+                createHeader.Visible = false;
+                modifyHeader.Visible = true;
+                check = (Boolean)Session["IsOnModifyPage"];
+                if (check == false)
                 {
-                    bool check;
-                    theAssetRecipient = (AssetRecipient)Session["AssetRecipient"];
-                    createHeader.Visible = false;
-                    check = (Boolean)Session["IsOnModifyPage"];
-                    if (check == false)
-                    {
-                        bool onModifyPage = true;
-                        ddlTitle.Text = theAssetRecipient.title;
-                        txtFirstname.Text = theAssetRecipient.firstName;
-                        txtLastName.Text = theAssetRecipient.lastName;
-                        txtEmail.Text = theAssetRecipient.emailAddress;
-                        txtDivision.Text = theAssetRecipient.division;
-                        ddlPrimaryDept.Text = theAssetRecipient.primaryDeptAffiliation;
-                        ddlSecondaryDept.Text = theAssetRecipient.secondaryDeptAffiliation;
-                        txtPhone.Text = theAssetRecipient.phoneNumber;
-                        //text.Text = theAssetRecipient.assetRecipientId.ToString();
-                        btnSubmitCreate.Visible = true;
-                        Session["IsOnModifyPage"] = onModifyPage;
-                    }
-
-                }    
-            if (ddlSecondaryDept.Items[0].Text =="English" && ddlPrimaryDept.Items[0].Text=="English")
+                    bool onModifyPage = true;
+                    ddlTitle.Text = theAssetRecipient.title;
+                    txtFirstname.Text = theAssetRecipient.firstName;
+                    txtLastName.Text = theAssetRecipient.lastName;
+                    txtEmail.Text = theAssetRecipient.emailAddress;
+                    txtDivision.Text = theAssetRecipient.division;
+                    ddlPrimaryDept.Text = theAssetRecipient.primaryDeptAffiliation;
+                    ddlSecondaryDept.Text = theAssetRecipient.secondaryDeptAffiliation;
+                    txtPhone.Text = theAssetRecipient.phoneNumber;
+                    //text.Text = theAssetRecipient.assetRecipientId.ToString();
+                    btnSubmitCreate.Visible = true;
+                    Session["IsOnModifyPage"] = onModifyPage;
+                }
+            }
+            if (ddlSecondaryDept.Items[0].Text == "English" && ddlPrimaryDept.Items[0].Text == "English")
             {
                 ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                 ddlPrimaryDept.SelectedIndex = 0;
@@ -72,17 +61,6 @@ namespace CD6
                 ddlSecondaryDept.SelectedIndex = 0;
             }
         }
-
-        //protected void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-        //{
-        //    searchHeader.Visible = false;
-        //    button_search.Visible = false;
-        //    createHeader.Visible = false;
-        //    button_submit.Visible = true;
-        //    recipient_form.Visible = true;
-        //    search_results.Visible = false;
-        //    modifyHeader.Visible = true;
-        //}
 
         protected void btnNewSearch_Click(object sender, EventArgs e)
         {
@@ -107,8 +85,6 @@ namespace CD6
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-         
-
             searchHeader.Visible = false;
             button_search.Visible = false;
             createHeader.Visible = false;
@@ -116,8 +92,6 @@ namespace CD6
             recipient_form.Visible = false;
             search_results.Visible = true;
             modifyHeader.Visible = false;
-
-            
             
             myAR.title = ddlTitle.Text;
             myAR.firstName = txtFirstname.Text;
@@ -133,26 +107,19 @@ namespace CD6
 
             gvSearchResults.DataSource = myAR.SearchAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
             gvSearchResults.DataBind();
-
-
-
         }
-
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            string submit_type;
 
             if (Session["AssetRecipient"] != null)
             {
-
-
-                btnSubmitCreate.Visible = false;
                 myAR.UpdateRow(theAssetRecipient.assetRecipientId, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordCreated, theAssetRecipient.RecordModified);
+                submit_type = "update";
             }
             else
             {
-
                 myAR.title = ddlTitle.Text;
                 myAR.firstName = txtFirstname.Text;
                 myAR.lastName = txtLastName.Text;
@@ -165,6 +132,21 @@ namespace CD6
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
                 myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+                submit_type = "create";
+            }
+
+            string dialog_header, dialog_body;
+            if (submit_type == "create")
+            {
+                dialog_header = "Recipient Created";
+                dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
+                modal(dialog_header, dialog_body);
+            }
+            else if (submit_type == "update")
+            {
+                dialog_header = "Recipient Updated";
+                dialog_body = string.Format("{0} {1} has been updated successfully.", txtFirstname.Text, txtLastName.Text);
+                modal(dialog_header, dialog_body);
             }
 
             ddlTitle.Text = "";
@@ -177,15 +159,12 @@ namespace CD6
             ddlSecondaryDept.Text = "";
             txtPhone.Text = "";
 
-           
-
+            Session["AssetRecipient"] = null;
+            btnCreate_Click(this, e);
         }
-
-        
 
         protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
         {
-            
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
             int arID =(int) gvSearchResults.DataKeys[index].Value;
@@ -194,13 +173,14 @@ namespace CD6
             {
                 myAR.DeleteRow(arID);
                 btnSearch_Click(this, e);
-                
             }
             else if (e.CommandName == "modifyRecord")
             {
                 bool onModify=false;
                 createHeader.Visible = false;
+                btnSubmitCreate.Visible = true;
                 modifyHeader.Visible = true;
+
                 //Set the Object values to the gridview
                 myAR.assetRecipientId = arID;
                 myAR.firstName = gvSearchResults.Rows[index].Cells[1].Text;
@@ -216,30 +196,13 @@ namespace CD6
                 Session.Add("AssetRecipient", myAR);
                 Session.Add("IsOnModifyPage", onModify);
                 Response.Redirect(Request.RawUrl);
-                //AutoGenerate The textboxes
-
-                txtFirstname.Text = myAR.firstName;
-                txtLastName.Text = myAR.lastName;
-                txtEmail.Text = myAR.emailAddress;
-                txtDivision.Text = myAR.division;
-                ddlPrimaryDept.Text = myAR.primaryDeptAffiliation;
-                ddlSecondaryDept.Text = myAR.secondaryDeptAffiliation;
-                txtPhone.Text=myAR.phoneNumber;
-                lblARID.Text = myAR.assetRecipientId.ToString();
-                btnSubmitCreate.Visible = false;
-               
-    
-
             }
-         
-
-           
         }
 
-      
-
- 
-
+        protected void modal(string title, string body) {
+            this.Master.modal_header = title;
+            this.Master.modal_body = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
     }
-
 }
