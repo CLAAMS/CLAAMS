@@ -189,6 +189,13 @@ namespace CD6
 
             AssetListBox.Visible = false;
             txtSearchAsset.Visible = true;
+
+            //ddlRecipient.SelectedIndex = 0;
+            //ddlAssigner.SelectedIndex = 0;
+            //ddlTerm.SelectedIndex = 0;
+            //txtSearchAsset.Text = "";
+            //calDueDate.SelectedDates.Clear();
+            //calIssueDate.SelectedDates.Clear();
         }
 
         protected void btnTrack_Click(object sender, EventArgs e)
@@ -265,6 +272,13 @@ namespace CD6
             assetId = Convert.ToInt32(Session["assetId"].ToString());
             int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
             mySOS.ModifyAsset(sosID, assetId);
+
+            //ddlRecipient.SelectedIndex = 0;
+            //ddlAssigner.SelectedIndex = 0;
+            //ddlTerm.SelectedIndex = 0;
+            //lstbxAssets.Items.Clear();
+            //calDueDate.SelectedDates.Clear();
+            //calIssueDate.SelectedDates.Clear();
 
         }
 

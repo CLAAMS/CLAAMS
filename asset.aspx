@@ -63,7 +63,7 @@
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
                             <asp:ListItem Value="Active" Text="Active" />
-                            <asp:ListItem Value="Inactive" Text="Inactive" />
+                            <asp:ListItem>Out of Service</asp:ListItem>
                         </asp:DropDownList><br />
                         <asp:Label ID="lblSerialRight" Text="Serial Number:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtSerialRight" runat="server" CssClass="form-control" />
