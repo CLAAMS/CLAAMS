@@ -77,10 +77,10 @@ namespace CD6
             inputParameter10.SqlDbType = SqlDbType.VarChar;
             inputParameter10.Size = 50;
             inputParameter11.Direction = ParameterDirection.Input;
-            inputParameter11.SqlDbType = SqlDbType.DateTime;
+            inputParameter11.SqlDbType = SqlDbType.VarChar;
             inputParameter11.Size = 50;
             inputParameter12.Direction = ParameterDirection.Input;
-            inputParameter12.SqlDbType = SqlDbType.DateTime;
+            inputParameter12.SqlDbType = SqlDbType.VarChar;
             inputParameter12.Size = 50;
 
 
@@ -113,14 +113,17 @@ namespace CD6
 
         public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
         {
-            DataSet myDS = new DataSet();
+           
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
-            SqlCommand myCommand2 = new SqlCommand();
             myConnection.Open();
+            SqlCommand myCommand2 = new SqlCommand();
+            
             myCommand2.Connection = myConnection;
             myCommand2.CommandType = CommandType.StoredProcedure;
             myCommand2.CommandText = "SearchForAssetRecipient";
+            
+
             SqlParameter inputParameter2 = new SqlParameter("@Title", pTitle);
             SqlParameter inputParameter3 = new SqlParameter("@FirstName", pFirstName);
             SqlParameter inputParameter4 = new SqlParameter("@LastName", pLastName);
@@ -132,6 +135,7 @@ namespace CD6
             SqlParameter inputParameter10 = new SqlParameter("@PhoneNumber", pphonenumber);
             SqlParameter inputParameter11 = new SqlParameter("@recordCreated", precordcreated);
             SqlParameter inputParameter12 = new SqlParameter("@recordModified", precordmodified);
+
             inputParameter2.Direction = ParameterDirection.Input;
             inputParameter2.SqlDbType = SqlDbType.VarChar;
             inputParameter2.Size = 50;
@@ -165,6 +169,7 @@ namespace CD6
             inputParameter12.Direction = ParameterDirection.Input;
             inputParameter12.SqlDbType = SqlDbType.VarChar;
             inputParameter12.Size = 50;
+
             myCommand2.Parameters.Add(inputParameter2);
             myCommand2.Parameters.Add(inputParameter3);
             myCommand2.Parameters.Add(inputParameter4);
@@ -176,20 +181,14 @@ namespace CD6
             myCommand2.Parameters.Add(inputParameter10);
             myCommand2.Parameters.Add(inputParameter11);
             myCommand2.Parameters.Add(inputParameter12);
-            try
-            {
+            myCommand2.ExecuteNonQuery();
 
-                myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
-                return myDS;
-
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
+            DataSet myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
+            return myDS;
+                   
 
         }
+
         public int DeleteRow(int assetRecipientId)
         {
             DBConnect myDbConnect = new DBConnect();
@@ -299,9 +298,7 @@ namespace CD6
             }
         }
 
-
-
-
-    }
 }
+}
+
 
