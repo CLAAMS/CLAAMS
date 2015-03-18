@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="recipient.aspx.cs" Inherits="CD6.recipient" %>
+<%@ MasterType VirtualPath="~/master.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/recipient.css" rel="stylesheet" />
     <link href="css/secondary-nav.css" rel="stylesheet" />
@@ -17,13 +18,12 @@
             </div>
             <div id="subnavbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><asp:LinkButton Text="Create" runat="server" OnClick="Page_Load"/></li>
+                    <li><asp:LinkButton Text="Create" runat="server" OnClick="btnCreate_Click"/></li>
                     <li><asp:LinkButton Text="Search" runat="server" OnClick="btnNewSearch_Click"/></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
@@ -80,18 +80,14 @@
                             <asp:ListItem Value="Literature" Text="Literature" />
                         </asp:DropDownList>
                     </div>
-                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px" />
-                        <asp:Label ID="lblARID" runat="server" Visible="False"></asp:Label>
-                        </div></div>
+                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px"/><asp:Label ID="lblARID" runat="server" Visible="False"></asp:Label></div></div>
                     <div class="row"><div class="col-md-12 button_row" id="button_search" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click" /></div></div>
                 </div>
                 <div class="row" id="search_results" runat="server" visible="true">
                     <div class="row header_row"><div class="col-md-12"><h1>Recipient Search Results</h1></div></div>
                     <div class="col-md-12">
-                        <asp:GridView ID="gvSearchResults"  runat="server" DataKeyNames="ArID" OnRowCommand="gvSearchResult_click"  AutoGenerateColumns="False" CssClass="table"   >
+                        <asp:GridView ID="gvSearchResults" runat="server" DataKeyNames="ArID" OnRowCommand="gvSearchResult_click"  AutoGenerateColumns="False" CssClass="table"   >
                             <Columns>
-                                
-                                    
                                 <asp:BoundField DataField="ArID" runat="server" Visible="false"></asp:BoundField>
                                 <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                                 <asp:BoundField DataField="LastName" HeaderText="Last Name" />
@@ -100,9 +96,7 @@
                                 <asp:BoundField DataField="PrimaryDeptAffiliation" HeaderText="Primary Department" />
                                 <asp:BoundField DataField="SecondaryDeptAffiliation" HeaderText="Secondary Department" />
                                 <asp:BoundField DataField="Division" HeaderText="Division" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" >
-<ControlStyle CssClass="btn btn-default"></ControlStyle>
-                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default"/>
                                 <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="DeleteRow" />
                             </Columns>
                         </asp:GridView>

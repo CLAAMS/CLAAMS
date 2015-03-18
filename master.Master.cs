@@ -24,5 +24,17 @@ namespace CD6{
                 Response.Redirect("login.aspx");
             }
         }
+
+        public string modal_header {
+            set {
+                lblModal_header.Text = value;
+            }
+        }
+
+        public string modal_body {
+            set {
+                lblModal_body.Text = value;
+            }
+        }
     }
 }
