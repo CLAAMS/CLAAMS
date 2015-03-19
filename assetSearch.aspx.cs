@@ -41,9 +41,13 @@ namespace CD6
         {
             searchResults.Visible = true;
 
+            int assetID;
+
             Asset myAsset = new Asset();
             SignOutSheet mySOS = new SignOutSheet();
-            myAsset.assetID = Convert.ToInt32(txtAssetID.Text);
+            if (int.TryParse(txtAssetID.Text, out assetID){
+                myAsset.assetID = assetID;
+            }
             myAsset.Make = txtAssetName.Text;
             myAsset.Model = txtAssetType.Text;
             myAsset.CLATag = txtCLATag.Text;
@@ -56,7 +60,6 @@ namespace CD6
             gvSearchResults.DataSource = myDS5;
             gvSearchResults.DataBind();
             Session.Add("Dataset", myDS5);
-
         }
 
         protected void btnAddAsset_Click(object sender, EventArgs e)
