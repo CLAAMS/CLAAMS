@@ -234,19 +234,20 @@ namespace CD6{
             
                 
             }
-            
-        
 
-        protected void btnSearch_Click(object sender, EventArgs e){
+
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
             btnSubmit.Visible = false;
             btnSubmitModifyAsset.Visible = false;
-            search_results.Visible=true;
-            submit_button.Visible=false;
-            search_button.Visible=false;
-            asset_form.Visible=false;
-            history.Visible=false;
-            modifyHeader.Visible=false;
-            templateRow.Visible=false;
+            search_results.Visible = true;
+            submit_button.Visible = false;
+            search_button.Visible = false;
+            asset_form.Visible = false;
+            history.Visible = false;
+            modifyHeader.Visible = false;
+            templateRow.Visible = false;
 
             objAsset.assetID = 0;
             objAsset.CLATag = txtCLAID.Text;
@@ -257,10 +258,9 @@ namespace CD6{
             objAsset.Status = ddlStatus.SelectedValue;
             objAsset.Notes = txtNotes.Text;
 
-            gvSearchResults.DataSource = objAssetFunctions.SearchForAssets(objAsset);
-            gvSearchResults.DataBind();
-
-          
+            DataSet assetDataSource = objAssetFunctions.SearchForAssets(objAsset);
+            gvSearchResults.DataSource = assetDataSource;
+            
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
