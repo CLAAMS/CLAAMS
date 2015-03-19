@@ -45,7 +45,7 @@ namespace CD6
 
             Asset myAsset = new Asset();
             SignOutSheet mySOS = new SignOutSheet();
-            if (int.TryParse(txtAssetID.Text, out assetID){
+            if (int.TryParse(txtAssetID.Text, out assetID)){
                 myAsset.assetID = assetID;
             }
             myAsset.Make = txtAssetName.Text;
