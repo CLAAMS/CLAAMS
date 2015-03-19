@@ -242,7 +242,7 @@ namespace CD6{
             objAsset.Make = txtMake.Text;
             objAsset.Model = txtModel.Text;
             objAsset.Description = txtDescription.Text;
-            objAsset.SerialNumber = txtSerialLeft.Text;
+            objAsset.SerialNumber = txtSerialRight.Text;
             objAsset.Status = ddlStatus.SelectedValue;
             objAsset.Notes = txtNotes.Text;
 
