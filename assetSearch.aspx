@@ -18,6 +18,7 @@
         <div class="row" id="content">
             <div class="col-md-12">
                 <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><p><h1>Search Assets</h1></p></div></div>
+                <div class="row"><div class="col-md-12"><asp:Label ID="lblERROR" runat="server" CssClass="label" Visible="false"/></div></div>
                 <div class="row"><div class="col-md-12"><asp:Label ID="lblAssetID" Text="Asset ID:" runat="server" CssClass="label" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetID" runat="server" CssClass="form-control" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:Label ID="lblAssetName" Text="Asset Name:" runat="server" CssClass="label" /></div></div>

@@ -31,7 +31,17 @@ namespace CD6
             inputParameter.Size = 100;
             objCommand.Parameters.Add(inputParameter);
 
-            inputParameter = new SqlParameter("@assingmentPeriod", objSoS.assingmentPeriod);
+            string assingmentPeriod;
+
+            if (objSoS.assingmentPeriod == 0)
+            {
+                assingmentPeriod = "";
+            }
+            else
+            {
+                assingmentPeriod = objSoS.assingmentPeriod.ToString();
+            }
+            inputParameter = new SqlParameter("@assingmentPeriod", assingmentPeriod);
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.VarChar;
             inputParameter.Size = 100;
