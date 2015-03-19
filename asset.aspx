@@ -90,8 +90,12 @@
                                 <asp:BoundField DataField="Model" HeaderText="Model" />
                                 <asp:BoundField DataField="SerialNumber" HeaderText="Serial" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" />
+                                <asp:ButtonField  ButtonType="Button"  Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" >
+
+                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="Archive"  CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" >
+
+                                </asp:ButtonField>
                             </Columns>
                         </asp:GridView>
                     </div>

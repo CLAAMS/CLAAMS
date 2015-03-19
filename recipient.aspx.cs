@@ -40,6 +40,7 @@ namespace CD6
                 if (check == false)
                 {
                     bool onModifyPage = true;
+                    txtLocation.Text = theAssetRecipient.location;
                     ddlTitle.Text = theAssetRecipient.title;
                     txtFirstname.Text = theAssetRecipient.firstName;
                     txtLastName.Text = theAssetRecipient.lastName;
@@ -198,12 +199,15 @@ namespace CD6
 
                 //Set the Object values to the gridview
                 myAR.assetRecipientId = arID;
+
+                DataSet locationDataSet = myAR.GetLocationForSelectedRecord(myAR.assetRecipientId);
+                myAR.location = locationDataSet.Tables[0].Rows[0][5].ToString();
                 myAR.firstName = gvSearchResults.Rows[index].Cells[1].Text;
                 myAR.lastName =  gvSearchResults.Rows[index].Cells[2].Text;
                 myAR.emailAddress = gvSearchResults.Rows[index].Cells[3].Text;
-                myAR.division = gvSearchResults.Rows[index].Cells[7].Text;
-                myAR.primaryDeptAffiliation = gvSearchResults.Rows[index].Cells[5].Text;
-                myAR.secondaryDeptAffiliation = gvSearchResults.Rows[index].Cells[6].Text;
+                myAR.division = locationDataSet.Tables[0].Rows[0][6].ToString();
+                myAR.primaryDeptAffiliation = locationDataSet.Tables[0].Rows[0][7].ToString();
+                myAR.secondaryDeptAffiliation = locationDataSet.Tables[0].Rows[0][8].ToString();
                 myAR.phoneNumber = gvSearchResults.Rows[index].Cells[4].Text;
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();

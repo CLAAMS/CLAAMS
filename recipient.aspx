@@ -88,6 +88,7 @@
                     <div class="col-md-12">
                         <asp:GridView ID="gvSearchResults" runat="server" DataKeyNames="ArID" OnRowCommand="gvSearchResult_click"  AutoGenerateColumns="False" CssClass="table"   >
                             <Columns>
+                                <asp:BoundField HeaderText="Location" Visible="False" />
                                 <asp:BoundField DataField="ArID" runat="server" Visible="false"></asp:BoundField>
                                 <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                                 <asp:BoundField DataField="LastName" HeaderText="Last Name" />
@@ -96,7 +97,9 @@
                                 <asp:BoundField DataField="PrimaryDeptAffiliation" HeaderText="Primary Department" />
                                 <asp:BoundField DataField="SecondaryDeptAffiliation" HeaderText="Secondary Department" />
                                 <asp:BoundField DataField="Division" HeaderText="Division" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default"/>
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default">
+<ControlStyle CssClass="btn btn-default"></ControlStyle>
+                                </asp:ButtonField>
                                 <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="DeleteRow" />
                             </Columns>
                         </asp:GridView>

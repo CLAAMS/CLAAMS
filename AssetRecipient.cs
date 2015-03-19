@@ -299,6 +299,26 @@ namespace CD6
             }
         }
 
+        public DataSet GetLocationForSelectedRecord(int ARID)
+        {
+            DBConnect theDB=new DBConnect();
+            SqlConnection myConnection=new SqlConnection(SqlConnectString);
+            SqlCommand myCommand6=new SqlCommand();
+            myConnection.Open();
+            myCommand6.Connection = myConnection;
+            myCommand6.CommandType = CommandType.StoredProcedure;
+            myCommand6.CommandText = "GetLocationForSelectedRecord";
+
+            SqlParameter inputParameter1=new SqlParameter("arID",ARID);
+            inputParameter1.Direction=ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.Int;
+            inputParameter1.Size=50;
+
+            myCommand6.Parameters.Add(inputParameter1);
+            DataSet myDS=theDB.GetDataSetUsingCmdObj(myCommand6);
+            return myDS;
+        }
+
 
 
 
