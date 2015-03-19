@@ -28,8 +28,7 @@ namespace CD6
             {
                 myAsset.assetID = assetID;
             }
-            else
-            {
+            else {
                 myAsset.assetID = -1;
             }
 
@@ -40,16 +39,17 @@ namespace CD6
 
             if (myAsset.assetID == -1 || myAsset.Make == "" || myAsset.Model == "" || myAsset.CLATag == "" || myAsset.SerialNumber == "")
             {
-                lblError.Text = "You have not entered all the fields, please try again";
-		lblError.Visible = True;
-            } else {
-	    	myDS5 = mySOS.SearchForAssets(myAsset.assetID, myAsset.Make, myAsset.Model, myAsset.CLATag, myAsset.SerialNumber);
-        	gvSearchResults.DataSource = myDS5;
-        	gvSearchResults.DataBind();
-        	Session.Add("Dataset", myDS5);
-	        searchResults.Visible = true;
-	    }
-        }
+                lblERROR.Visible = true;
+                lblERROR.Text = "You have not entered all the fields, please try again";
+            }
+            else
+            {
+                myDS5 = mySOS.SearchForAssets(myAsset.assetID, myAsset.Make, myAsset.Model, myAsset.CLATag, myAsset.SerialNumber);
+                gvSearchResults.DataSource = myDS5;
+                gvSearchResults.DataBind();
+                Session.Add("Dataset", myDS5);
+                searchResults.Visible = true;
+            }
 
         protected void btnAddAsset_Click(object sender, EventArgs e)
         {
