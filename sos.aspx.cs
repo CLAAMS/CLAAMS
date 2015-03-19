@@ -126,7 +126,9 @@ namespace CD6
             }
         }
 
-         protected void btnSearch_Click(object sender, EventArgs e){
+         protected void btnSearch_Click(object sender, EventArgs e)
+         {
+
             searchHeader.Visible=false;
            // recipientSearch.Visible=false;
             button_search.Visible=false;
@@ -190,12 +192,12 @@ namespace CD6
             AssetListBox.Visible = false;
             txtSearchAsset.Visible = true;
 
-            //ddlRecipient.SelectedIndex = 0;
-            //ddlAssigner.SelectedIndex = 0;
-            //ddlTerm.SelectedIndex = 0;
-            //txtSearchAsset.Text = "";
-            //calDueDate.SelectedDates.Clear();
-            //calIssueDate.SelectedDates.Clear();
+            ddlRecipient.SelectedIndex = 0;
+            ddlAssigner.SelectedIndex = 0;
+            ddlTerm.SelectedIndex = 0;
+            txtSearchAsset.Text = "";
+            calDueDate.SelectedDates.Clear();
+            calIssueDate.SelectedDates.Clear();
         }
 
         protected void btnTrack_Click(object sender, EventArgs e)
@@ -242,6 +244,7 @@ namespace CD6
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            string submit_type;
 
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
@@ -272,6 +275,16 @@ namespace CD6
             assetId = Convert.ToInt32(Session["assetId"].ToString());
             int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
             mySOS.ModifyAsset(sosID, assetId);
+
+            submit_type = "create";
+
+            string dialog_header, dialog_body;
+            if (submit_type == "create")
+            {
+                dialog_header = "SOS created";
+                dialog_body = string.Format("SOS for Recipient {0} has been created successfully.", mySOS.arID);
+                modal(dialog_header, dialog_body);
+            }
 
             //ddlRecipient.SelectedIndex = 0;
             //ddlAssigner.SelectedIndex = 0;
@@ -315,6 +328,13 @@ namespace CD6
         protected void gvSearchResults_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
+        }
+
+        protected void modal(string title, string body)
+        {
+            this.Master.modal_header = title;
+            this.Master.modal_body = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
       

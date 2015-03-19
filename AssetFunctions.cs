@@ -155,7 +155,7 @@ namespace CD6
             inputParameter1.Size = 100;
             objCommand1.Parameters.Add(inputParameter1);
 
-            objDB.DoUpdateUsingCmdObj(objCommand1);   
+            objDB.DoUpdateUsingCmdObj(objCommand1);
         }
 
         public void ModifyAsset(Asset objAsset)
@@ -230,8 +230,14 @@ namespace CD6
             inputParameter1.Size = 100;
             objCommand1.Parameters.Add(inputParameter1);
 
-            objDB.DoUpdateUsingCmdObj(objCommand1);   
+            inputParameter1 = new SqlParameter("@sosID", objAsset.sosID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            objDB.DoUpdateUsingCmdObj(objCommand1);
         }
-       
+
     }
 }
