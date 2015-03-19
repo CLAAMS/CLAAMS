@@ -359,9 +359,7 @@ namespace CD6{
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
-
-}
-
+    }
 }      
 
 

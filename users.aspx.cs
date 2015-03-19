@@ -193,9 +193,25 @@ namespace CD6{
             if (commandObject.CommandText != "Error"){
                 DBObj.DoUpdateUsingCmdObj(commandObject);
                 DBObj.CloseConnection();
+                if (commandObject.CommandText == "createUser") {
+                    modal("Success", "User Created");
+                } else {
+                    modal("Success", "User Updated");
+                }
+            }
+            else
+            {
+                modal("Error: Unable to perform action", string.Format("{0} \\n has failed", commandObject.CommandText));
             }
 
             Page_Load(this, e);
+        }
+
+        protected void modal(string title, string body)
+        {
+            this.Master.modal_header = title;
+            this.Master.modal_body = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
     }
 }
