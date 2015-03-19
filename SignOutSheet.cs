@@ -13,7 +13,7 @@ namespace CD6
         public int assetID { get; set; }
         public String cladID { get; set; }
         public int arID { get; set; }
-        public String assingmentPeriod { get; set; }
+        public int assingmentPeriod { get; set; }
         public DateTime dateCreated { get; set; }
         public DateTime dateModified { get; set; }
         public DateTime dateDue { get; set; }
@@ -101,7 +101,7 @@ namespace CD6
             return myDs;
         }
 
-        public int CreateSignOutSheet(int assetId, String claId, int arId, string assignmentPeriod, DateTime creationDate, DateTime modifyDate, DateTime dueDate, string status, string imageFileName, DateTime recordModified, DateTime recordCreated)
+        public int CreateSignOutSheet(int assetId, String claId, int arId, int assignmentPeriod, DateTime creationDate, DateTime modifyDate, DateTime dueDate, string status, string imageFileName, DateTime recordModified, DateTime recordCreated)
         {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
@@ -136,7 +136,7 @@ namespace CD6
             inputParameter3.SqlDbType = SqlDbType.Int;
             inputParameter3.Size = 50;
             inputParameter4.Direction = ParameterDirection.Input;
-            inputParameter4.SqlDbType = SqlDbType.VarChar;
+            inputParameter4.SqlDbType = SqlDbType.Int;
             inputParameter4.Size = 50;
             inputParameter5.Direction = ParameterDirection.Input;
             inputParameter5.SqlDbType = SqlDbType.DateTime;

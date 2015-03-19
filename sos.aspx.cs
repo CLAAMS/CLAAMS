@@ -48,7 +48,7 @@ namespace CD6
                 namesAndIds.Columns.Add("ARID", typeof(int));
 
                 DataRow blankRow = namesAndIds.NewRow();
-                blankRow["Name"] = " ";
+                blankRow["Name"] = "";
                 blankRow["ArID"] = 0;
                 namesAndIds.Rows.Add(blankRow);
                 foreach (DataRow row in myDS.Tables[0].Rows)
@@ -100,8 +100,8 @@ namespace CD6
                 claIDAndName.Columns.Add("claID", typeof(string));
                 claIDAndName.Columns.Add("Name", typeof(string));
                 DataRow blankRow2 = claIDAndName.NewRow();
-                blankRow2["claID"] = " ";
-                blankRow2["Name"] = " ";
+                blankRow2["claID"] = "";
+                blankRow2["Name"] = "";
                 claIDAndName.Rows.Add(blankRow2);
                 foreach (DataRow row in myDS2.Tables[0].Rows)
                 {
@@ -146,8 +146,8 @@ namespace CD6
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
             mySOS.cladID = ddlAssigner.SelectedValue;
             //mySOS.assingmentPeriod = DateTime.Compare(mySOS.dateCreated, mySOS.dateDue).ToString(); 
-            mySOS.assingmentPeriod = ddlTerm.SelectedValue;
-            if(mySOS.assingmentPeriod == "0")
+            mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
+            if(mySOS.assingmentPeriod == 2)
             {
                 mySOS.dateDue = calDueDate.SelectedDate;
             }
@@ -192,12 +192,12 @@ namespace CD6
             AssetListBox.Visible = false;
             txtSearchAsset.Visible = true;
 
-            ddlRecipient.SelectedIndex = 0;
-            ddlAssigner.SelectedIndex = 0;
-            ddlTerm.SelectedIndex = 0;
-            txtSearchAsset.Text = "";
-            calDueDate.SelectedDates.Clear();
-            calIssueDate.SelectedDates.Clear();
+            //ddlRecipient.SelectedIndex = 0;
+            //ddlAssigner.SelectedIndex = 0;
+            //ddlTerm.SelectedIndex = 0;
+            //txtSearchAsset.Text = "";
+            //calDueDate.SelectedDates.Clear();
+            //calIssueDate.SelectedDates.Clear();
         }
 
         protected void btnTrack_Click(object sender, EventArgs e)
@@ -248,16 +248,18 @@ namespace CD6
 
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
-            int isPermanent = Convert.ToInt32(ddlTerm.SelectedValue);
-            if (isPermanent == 1)
+            //int isPermanent = Convert.ToInt32(ddlTerm.SelectedValue);
+
+            mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
+            if (mySOS.assingmentPeriod == 1)
             {
-                mySOS.assingmentPeriod = "Permanent";
-                mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00PM");
+                mySOS.assingmentPeriod = 1;
+                mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00:00 PM");
                 mySOS.status = "Not overdue";
             }
             else
             {
-                mySOS.assingmentPeriod = "Non-Permanent";
+                mySOS.assingmentPeriod = 0;
                 mySOS.dateDue = calDueDate.SelectedDate;
             }
             mySOS.dateCreated = calIssueDate.SelectedDate;
