@@ -50,6 +50,7 @@ namespace CD6
                 Session.Add("Dataset", myDS5);
                 searchResults.Visible = true;
             }
+	}
 
         protected void btnAddAsset_Click(object sender, EventArgs e)
         {
