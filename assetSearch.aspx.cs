@@ -43,12 +43,20 @@ namespace CD6
 
             Asset myAsset = new Asset();
             SignOutSheet mySOS = new SignOutSheet();
-            myAsset.assetID = Convert.ToInt32(txtAssetID.Text);
+            int assetID;
+            if (int.TryParse(txtAssetID.Text, out assetID))
+            {
+                myAsset.assetID = assetID;
+            }
+            else
+            {
+                myAsset.assetID = -1;
+            }
             myAsset.Make = txtAssetName.Text;
             myAsset.Model = txtAssetType.Text;
             myAsset.CLATag = txtCLATag.Text;
             myAsset.SerialNumber = txtSerial.Text;
-            if (myAsset.assetID == null || myAsset.Make == " " || myAsset.Model == " " || myAsset.CLATag == " " || myAsset.SerialNumber == " ")
+            if (myAsset.assetID == -1 || myAsset.Make == "" || myAsset.Model == "" || myAsset.CLATag == "" || myAsset.SerialNumber == "")
             {
                 lblAssetID.Text = "You have not entered all the fields, please try again";
             }
