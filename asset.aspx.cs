@@ -74,17 +74,28 @@ namespace CD6{
             modifyHeader.Visible = true;
             templateRow.Visible = false;
 
-
+            
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
 
             if (e.CommandName == "deleteRecord")
             {
+                string submit_type;
                 int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
                 objAsset.assetID = assetID;
-
                 objAssetFunctions.DeleteAsset(objAsset);
                 btnSearch_Click(this, e);
+                submit_type = "archive";
+
+                string dialog_header, dialog_body;
+                if (submit_type == "archive")
+                {
+                    objAsset.Make = gvSearchResults.Rows[index].Cells[2].Text;
+                    objAsset.Model = gvSearchResults.Rows[index].Cells[3].Text;
+                    dialog_header = "Asset Archived";
+                    dialog_body = string.Format("{0} {1} has been archived successfully and status is Out Of Service.", objAsset.Make, objAsset.Model);
+                    modal(dialog_header, dialog_body);
+                }
 
             }
             else if (e.CommandName == "modifyRecord")

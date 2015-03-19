@@ -148,6 +148,8 @@ namespace CD6
                 dialog_body = string.Format("{0} {1} has been updated successfully.", txtFirstname.Text, txtLastName.Text);
                 modal(dialog_header, dialog_body);
             }
+            
+
 
             ddlTitle.Text = "";
             txtFirstname.Text = "";
@@ -165,14 +167,27 @@ namespace CD6
 
         protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
         {
+            string submit_type;
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
             int arID =(int) gvSearchResults.DataKeys[index].Value;
+            
 
             if (e.CommandName == "DeleteRow")
             {
-                myAR.DeleteRow(arID);
-                btnSearch_Click(this, e);
+                //myAR.DeleteRow(arID);
+                //btnSearch_Click(this, e);
+                //submit_type = "delete"; 
+                //string dialog_header, dialog_body;
+                //if (submit_type == "delete")
+                //{
+                      //myAR.firstName = txtFirstname.Text;
+                      //myAR.lastName = txtLastName.Text;
+                //    dialog_header = "Recipient Deleted";
+                //    dialog_body = string.Format("{0} {1} has been deleted successfully.", myAR.firstName, myAR.lastName);
+                //    modal(dialog_header, dialog_body);
+                //}
+              
             }
             else if (e.CommandName == "modifyRecord")
             {
