@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="sos.aspx.cs" Inherits="CD6.sos" %>
+<%@ MasterType VirtualPath="~/master.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/sos.css" rel="stylesheet" />
     <link href="css/secondary-nav.css" rel="stylesheet" />

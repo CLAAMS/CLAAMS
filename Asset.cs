@@ -25,6 +25,7 @@ namespace CD6
             public string Notes { get; set; }
             public DateTime recordModified { get; set; }
             public DateTime recordCreated { get; set; }
+            public int sosID { get; set; }
 
             
         

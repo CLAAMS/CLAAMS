@@ -133,6 +133,8 @@ namespace CD6{
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            string submit_type;
+
             btnSubmit.Visible = true;
             btnSubmitModifyAsset.Visible = false;
             objAsset.CLATag = txtCLAID.Text;
@@ -144,60 +146,60 @@ namespace CD6{
             objAsset.Notes = txtNotes.Text;
             objAsset.recordCreated = DateTime.Now;
             objAsset.recordModified = DateTime.Now;
-            try
-            {
-                int.Parse(objAsset.CLATag);
-            }
-            catch (Exception ex)
-            {
-                Response.Redirect("asset.aspx");
-                lblInputValidation.Text = "You have put in an invalid claTag for the asset. Please try again";
-            }
-            if (objAsset.Make == " ")
-            {
-                Response.Redirect("asset.aspx");
-                lblInputValidation.Text = "You have put in an invalid Make for the asset.Please try again";
-            }
-             if (objAsset.Model == " ")
-            {
-                Response.Redirect("asset.aspx");
-                lblInputValidation.Text = "You have put in an invalid Model for the asset.Please try again";
-            }
+            //try
+            //{
+            //    int.Parse(objAsset.CLATag);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Redirect("asset.aspx");
+            //    lblInputValidation.Text = "You have put in an invalid claTag for the asset. Please try again";
+            //}
+            //if (objAsset.Make == " ")
+            //{
+            //    Response.Redirect("asset.aspx");
+            //    lblInputValidation.Text = "You have put in an invalid Make for the asset.Please try again";
+            //}
+            // if (objAsset.Model == " ")
+            //{
+            //    Response.Redirect("asset.aspx");
+            //    lblInputValidation.Text = "You have put in an invalid Model for the asset.Please try again";
+            //}
 
 
-             if (objAsset.SerialNumber == " ")
-             {
-                 Response.Redirect("asset.aspx");
-                 lblInputValidation.Text = "You have put in an invalid serial number for the asset.Please try again";
-             }
+            // if (objAsset.SerialNumber == " ")
+            // {
+            //     Response.Redirect("asset.aspx");
+            //     lblInputValidation.Text = "You have put in an invalid serial number for the asset.Please try again";
+            // }
 
 
-             else
-             {
-                 try
-                 {
-                     int.Parse(objAsset.SerialNumber);
+            // else
+            // {
+            //     try
+            //     {
+            //         int.Parse(objAsset.SerialNumber);
                     
-                 }
+            //     }
              
-                 catch (Exception ex)
-                 {
-                     Response.Redirect("asset.aspx");
-                     lblInputValidation.Text = "You have put in a non-integer serialnumber for the asset.Please try again";
-                 }
-             }
+            //     catch (Exception ex)
+            //     {
+            //         Response.Redirect("asset.aspx");
+            //         lblInputValidation.Text = "You have put in a non-integer serialnumber for the asset.Please try again";
+            //     }
+            // }
 
-             if (objAsset.Description == " ")
-             {
-                 Response.Redirect("asset.aspx");
-                 lblInputValidation.Text = "You have put in an invalid description. Please try again";
-             }
+            // if (objAsset.Description == " ")
+            // {
+            //     Response.Redirect("asset.aspx");
+            //     lblInputValidation.Text = "You have put in an invalid description. Please try again";
+            // }
 
-             if (objAsset.Notes == " ")
-             {
-                 Response.Redirect("asset.aspx");
-                 lblInputValidation.Text = "You have put in invalid Notes. Please try again";
-             }
+            // if (objAsset.Notes == " ")
+            // {
+            //     Response.Redirect("asset.aspx");
+            //     lblInputValidation.Text = "You have put in invalid Notes. Please try again";
+            // }
             
                 objAssetFunctions.CreateNewAsset(objAsset);
 
@@ -208,6 +210,16 @@ namespace CD6{
                 txtSerialLeft.Text = "";
                 ddlStatus.Text = "";
                 txtNotes.Text = "";
+
+                submit_type = "create";
+
+                string dialog_header, dialog_body;
+                if (submit_type == "create")
+                {
+                    dialog_header = "Asset Created";
+                    dialog_body = string.Format("{0} {1} has been created successfully.", objAsset.Make, objAsset.Model );
+                    modal(dialog_header, dialog_body);
+                }
             
                 
             }
@@ -291,6 +303,8 @@ namespace CD6{
 
         protected void btnSubmitModifyAsset_Click(object sender, EventArgs e)
         {
+            string submit_type;
+
             btnSubmit.Visible = false;
 
             objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
@@ -304,7 +318,30 @@ namespace CD6{
             objAsset.recordCreated = DateTime.Now;
             objAsset.recordModified = DateTime.Now;
 
-            objAssetFunctions.ModifyAsset(objAsset);
+
+
+            DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
+            int sosID = 0;
+            if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID))
+            {
+	            objAsset.sosID = sosID;
+	            objAssetFunctions.ModifyAsset(objAsset);
+            } 
+            else 
+            {
+	            objAsset.sosID = sosID;
+	            objAssetFunctions.ModifyAsset(objAsset);
+            }
+
+            submit_type = "modify";
+
+            string dialog_header, dialog_body;
+            if (submit_type == "modify")
+            {
+                dialog_header = "Asset Modified";
+                dialog_body = string.Format("{0} {1} has been modified successfully.", objAsset.Make, objAsset.Model);
+                modal(dialog_header, dialog_body);
+            }
             btnSearch_Click(this, e);
         }
 
@@ -314,7 +351,14 @@ namespace CD6{
             txtMake.Text = template[0];
             txtModel.Text = template[1];
             txtDescription.Text = template[2];
-        }  
+        }
+
+        protected void modal(string title, string body)
+        {
+            this.Master.modal_header = title;
+            this.Master.modal_body = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
 
 }
 
