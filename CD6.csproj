@@ -85,6 +85,7 @@
     <Content Include="js\add_asset_popup.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\info_popup.js" />
     <Content Include="login.aspx" />
     <Content Include="manageTemplates.aspx" />
     <Content Include="recipient.aspx" />
@@ -207,6 +208,7 @@
     <Content Include="fonts\DroidSans-webfont.eot" />
     <Content Include="fonts\DroidSans-webfont.ttf" />
     <Content Include="fonts\DroidSans-webfont.woff" />
+    <None Include="Properties\PublishProfiles\Profile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

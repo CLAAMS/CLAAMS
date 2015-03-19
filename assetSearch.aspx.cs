@@ -37,19 +37,19 @@ namespace CD6
             myAsset.CLATag = txtCLATag.Text;
             myAsset.SerialNumber = txtSerial.Text;
 
-            if (myAsset.assetID == -1 || myAsset.Make == "" || myAsset.Model == "" || myAsset.CLATag == "" || myAsset.SerialNumber == "")
-            {
-                lblERROR.Visible = true;
-                lblERROR.Text = "You have not entered all the fields, please try again";
-            }
-            else
-            {
+            //if (myAsset.assetID == -1 || myAsset.Make == "" || myAsset.Model == "" || myAsset.CLATag == "" || myAsset.SerialNumber == "")
+            //{
+            //    lblERROR.Visible = true;
+            //    lblERROR.Text = "You have not entered all the fields, please try again";
+            //}
+            //else
+            //{
                 myDS5 = mySOS.SearchForAssets(myAsset.assetID, myAsset.Make, myAsset.Model, myAsset.CLATag, myAsset.SerialNumber);
                 gvSearchResults.DataSource = myDS5;
                 gvSearchResults.DataBind();
                 Session.Add("Dataset", myDS5);
                 searchResults.Visible = true;
-            }
+            //}
 	}
 
         protected void btnAddAsset_Click(object sender, EventArgs e)
