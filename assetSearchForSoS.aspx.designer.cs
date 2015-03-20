@@ -10,16 +10,16 @@
 namespace CD6 {
     
     
-    public partial class assetSearch {
+    public partial class WebForm1 {
         
         /// <summary>
-        /// form1 control.
+        /// searchFields control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchFields;
         
         /// <summary>
         /// searchHeader control.
@@ -164,5 +164,26 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddAsset;
+        
+        /// <summary>
+        /// btnNewSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewSearch;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new CD6.master Master {
+            get {
+                return ((CD6.master)(base.Master));
+            }
+        }
     }
 }

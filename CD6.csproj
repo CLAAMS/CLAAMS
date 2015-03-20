@@ -62,7 +62,6 @@
       <BrowseToURL>~/addDepartment.aspx</BrowseToURL>
     </Content>
     <Content Include="asset.aspx" />
-    <Content Include="assetSearch.aspx" />
     <Content Include="css\asset.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
@@ -94,6 +93,7 @@
     <Content Include="uploadSoS.aspx" />
     <Content Include="users.aspx" />
     <Content Include="Web.config" />
+    <Content Include="assetSearchForSoS.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addDepartment.aspx.cs">
@@ -113,13 +113,6 @@
     <Compile Include="Asset.cs" />
     <Compile Include="AssetFunctions.cs" />
     <Compile Include="AssetRecipient.cs" />
-    <Compile Include="assetSearch.aspx.cs">
-      <DependentUpon>assetSearch.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="assetSearch.aspx.designer.cs">
-      <DependentUpon>assetSearch.aspx</DependentUpon>
-    </Compile>
     <Compile Include="DBAccess.cs" />
     <Compile Include="email.aspx.cs">
       <DependentUpon>email.aspx</DependentUpon>
@@ -189,6 +182,13 @@
     <Compile Include="users.aspx.designer.cs">
       <DependentUpon>users.aspx</DependentUpon>
     </Compile>
+    <Compile Include="assetSearchForSoS.aspx.cs">
+      <DependentUpon>assetSearchForSoS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assetSearchForSoS.aspx.designer.cs">
+      <DependentUpon>assetSearchForSoS.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="master.Master">
@@ -241,7 +241,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:48576/</IISUrl>
+          <IISUrl>http://localhost:12945/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
