@@ -216,7 +216,7 @@ namespace CD6
 
         }
 
-        public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, string pPDA, string pSDA, string pPhone, string pRecordCreated, string pRecordModified)
+        public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, string pPDA, string pSDA, string pPhone, string pRecordModified)
         {
             int result;
             DBConnect myDbConnect = new DBConnect();
@@ -236,7 +236,7 @@ namespace CD6
             SqlParameter inputParameter8 = new SqlParameter("@PrimaryDeptAffiliation", pPDA);
             SqlParameter inputParameter9 = new SqlParameter("@SecondaryDeptAffiliation", pSDA);
             SqlParameter inputParameter10 = new SqlParameter("@PhoneNumber", pPhone);
-            SqlParameter inputParameter11 = new SqlParameter("@recordCreated", pRecordCreated);
+            
             SqlParameter inputParameter12 = new SqlParameter("@recordModified", pRecordModified);
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.Int;
@@ -268,9 +268,7 @@ namespace CD6
             inputParameter10.Direction = ParameterDirection.Input;
             inputParameter10.SqlDbType = SqlDbType.VarChar;
             inputParameter10.Size = 50;
-            inputParameter11.Direction = ParameterDirection.Input;
-            inputParameter11.SqlDbType = SqlDbType.VarChar;
-            inputParameter11.Size = 50;
+          
             inputParameter12.Direction = ParameterDirection.Input;
             inputParameter12.SqlDbType = SqlDbType.VarChar;
             inputParameter12.Size = 50;
@@ -284,7 +282,7 @@ namespace CD6
             myCommand5.Parameters.Add(inputParameter8);
             myCommand5.Parameters.Add(inputParameter9);
             myCommand5.Parameters.Add(inputParameter10);
-            myCommand5.Parameters.Add(inputParameter11);
+          
             myCommand5.Parameters.Add(inputParameter12);
             try
             {

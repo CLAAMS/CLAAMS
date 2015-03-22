@@ -13,6 +13,7 @@ namespace CD6
         AssetRecipient myAR = new AssetRecipient();
         AssetRecipient theAssetRecipient = new AssetRecipient();
         DataSet myDS = new DataSet();
+        int arID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,6 +41,7 @@ namespace CD6
                 if (check == false)
                 {
                     bool onModifyPage = true;
+                    lblARID.Text = theAssetRecipient.assetRecipientId.ToString();
                     txtLocation.Text = theAssetRecipient.location;
                     ddlTitle.Text = theAssetRecipient.title;
                     txtFirstname.Text = theAssetRecipient.firstName;
@@ -116,7 +118,8 @@ namespace CD6
 
             if (Session["AssetRecipient"] != null)
             {
-                myAR.UpdateRow(theAssetRecipient.assetRecipientId, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordCreated, theAssetRecipient.RecordModified);
+                theAssetRecipient.RecordModified = DateTime.Now.ToString();
+                myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordModified);
                 submit_type = "update";
             }
             else
@@ -198,17 +201,18 @@ namespace CD6
                 modifyHeader.Visible = true;
 
                 //Set the Object values to the gridview
+                
                 myAR.assetRecipientId = arID;
-
                 DataSet locationDataSet = myAR.GetLocationForSelectedRecord(myAR.assetRecipientId);
+                myAR.assetRecipientId = Convert.ToInt32(locationDataSet.Tables[0].Rows[0][0]);
                 myAR.location = locationDataSet.Tables[0].Rows[0][5].ToString();
-                myAR.firstName = gvSearchResults.Rows[index].Cells[1].Text;
-                myAR.lastName =  gvSearchResults.Rows[index].Cells[2].Text;
-                myAR.emailAddress = gvSearchResults.Rows[index].Cells[3].Text;
+                myAR.firstName = gvSearchResults.Rows[index].Cells[2].Text;
+                myAR.lastName =  gvSearchResults.Rows[index].Cells[3].Text;
+                myAR.emailAddress = gvSearchResults.Rows[index].Cells[4].Text;
                 myAR.division = locationDataSet.Tables[0].Rows[0][6].ToString();
                 myAR.primaryDeptAffiliation = locationDataSet.Tables[0].Rows[0][7].ToString();
                 myAR.secondaryDeptAffiliation = locationDataSet.Tables[0].Rows[0][8].ToString();
-                myAR.phoneNumber = gvSearchResults.Rows[index].Cells[4].Text;
+                myAR.phoneNumber = gvSearchResults.Rows[index].Cells[5].Text;
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
                 gvSearchResults.Visible=false;
