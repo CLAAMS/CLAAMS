@@ -223,6 +223,19 @@ namespace CD6 {
 
         protected void btnSubmit_Click(object sender, EventArgs e) {
             string submit_type = "";
+            if (Session["SOS"] != null)
+            {
+                bool check;
+                mySOS = (SignOutSheet)Session["SOS"];
+                createHeader.Visible = false;
+                modifyHeader.Visible = true;
+                check = (Boolean)Session["IsOnModifyPage"];
+                if (check == false)
+                {
+                    ddlRecipient.Text = mySOS.arID.ToString();
+                    ddlAssigner.Text = mySOS.cladID.ToString();
+                }
+            }
 
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
@@ -299,8 +312,16 @@ namespace CD6 {
                     modal(dialog_header, dialog_body);
                 }
             } else if (e.CommandName == "modify") {
+                bool onModify = false;
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
+                mySOS.sosID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[1].Text);
+                mySOS.cladID = gvSearchResults.Rows[index].Cells[2].Text;
+                mySOS.arID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[3].Text);
+                Session.Add("SOS" ,mySOS);
+                Session.Add("IsOnModifyPage",onModify);
+
+                
             }
         }
 
