@@ -12,7 +12,7 @@
                             <asp:Label ID="lblError" runat="server" CssClass="label" />
                         </div>
                         <div class="form-group">
-                            <asp:Label ID="lblLoginName" Text="Username:" runat="server" CssClass="label"/>
+                            <asp:Label ID="lblLoginName" Text="AccessNetID:" runat="server" CssClass="label"/>
                             <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"/>
                         </div>
                         <div class="form-group">

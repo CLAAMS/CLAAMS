@@ -106,7 +106,10 @@ namespace CD6{
                 btnSubmit.Visible = false;
                 btnSubmitModifyAsset.Visible = true;
 
+                Asset sessionAsset = (Asset)Session["Asset"];
+                
                 int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
+                DataSet theDataset = objAsset.GetAssetForSelectedRecord(assetID);
 
 
                 ////Set the Object values to the gridview
@@ -116,8 +119,8 @@ namespace CD6{
                 objAsset.Model = gvSearchResults.Rows[index].Cells[3].Text;
                 objAsset.SerialNumber = gvSearchResults.Rows[index].Cells[4].Text;
                 objAsset.Status = gvSearchResults.Rows[index].Cells[5].Text;
-                objAsset.Description = gvSearchResults.Rows[index].Cells[6].Text;
-                objAsset.Notes = gvSearchResults.Rows[index].Cells[7].Text;
+                objAsset.Description = theDataset.Tables[0].Rows[0][4].ToString();
+                objAsset.Notes = theDataset.Tables[0].Rows[0][7].ToString();
                 objAsset.recordCreated = DateTime.Now;
                 objAsset.recordModified = DateTime.Now;
 
@@ -130,6 +133,7 @@ namespace CD6{
                 {
 
                 }
+                
                 txtMake.Text = objAsset.Make;
                 txtModel.Text = objAsset.Model;
                 txtSerialLeft.Text = objAsset.SerialNumber;
@@ -257,9 +261,10 @@ namespace CD6{
             objAsset.SerialNumber = txtSerialRight.Text;
             objAsset.Status = ddlStatus.SelectedValue;
             objAsset.Notes = txtNotes.Text;
-
+          
             DataSet assetDataSource = objAssetFunctions.SearchForAssets(objAsset);
             gvSearchResults.DataSource = assetDataSource;
+            gvSearchResults.DataBind();
             
         }
 
