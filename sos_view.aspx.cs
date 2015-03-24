@@ -45,8 +45,12 @@ namespace CD6 {
             
         }
 
-        protected void getAssets(int sosID) { 
-        
+        protected void getAssets(int sosID) {
+            ArrayList assets = SignOutSheet.getAssetsForSOS(sosID);
+            lbAssets.DataSource = assets;
+            lbAssets.DataTextField = "Name";
+            lbAssets.DataValueField = "assetID";
+            lbAssets.DataBind();
         }
     }
 }
