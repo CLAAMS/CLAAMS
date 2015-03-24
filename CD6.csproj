@@ -90,6 +90,10 @@
     <Content Include="recipient.aspx" />
     <Content Include="sos.aspx" />
     <Content Include="sosTemplate.aspx" />
+    <Content Include="sos_create.aspx" />
+    <Content Include="sos_search.aspx" />
+    <Content Include="sos_upload.aspx" />
+    <Content Include="sos_view.aspx" />
     <Content Include="uploadSoS.aspx" />
     <Content Include="users.aspx" />
     <Content Include="Web.config" />
@@ -167,6 +171,34 @@
     </Compile>
     <Compile Include="sosTemplate.aspx.designer.cs">
       <DependentUpon>sosTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sos_create.aspx.cs">
+      <DependentUpon>sos_create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sos_create.aspx.designer.cs">
+      <DependentUpon>sos_create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sos_search.aspx.cs">
+      <DependentUpon>sos_search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sos_search.aspx.designer.cs">
+      <DependentUpon>sos_search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sos_upload.aspx.cs">
+      <DependentUpon>sos_upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sos_upload.aspx.designer.cs">
+      <DependentUpon>sos_upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sos_view.aspx.cs">
+      <DependentUpon>sos_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sos_view.aspx.designer.cs">
+      <DependentUpon>sos_view.aspx</DependentUpon>
     </Compile>
     <Compile Include="uploadSoS.aspx.cs">
       <DependentUpon>uploadSoS.aspx</DependentUpon>
