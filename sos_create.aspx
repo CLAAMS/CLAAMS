@@ -40,7 +40,7 @@
                             <asp:Label ID="lblAssigner" Text="From: *" runat="server" CssClass="label" />
                             <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" /><br />
                             <asp:Label ID="lblTerm" Text="Term: *" runat="server" CssClass="label" />
-                            <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown">
+                            <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged" AutoPostBack="true">
                                 <asp:ListItem Value="1" Text="Permanent" />
                                 <asp:ListItem Value="2" Text="Non-Permanent" />
                             </asp:DropDownList><br />
@@ -74,7 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5 button_row" style="text-align:center;">
-                            <asp:button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" />
+                            <asp:button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" />
                         </div>
                     </div>
                 </div>

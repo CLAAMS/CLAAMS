@@ -14,6 +14,7 @@ namespace CD6 {
 
         ArrayList arrayListOfAssets=new ArrayList();
         int assetId;
+
         protected void Page_Load(object sender, EventArgs e) {
             ddlTerm_SelectedIndexChanged(this, e);
 
@@ -120,7 +121,7 @@ namespace CD6 {
             }
         }
 
-         protected void btnSearch_Click(object sender, EventArgs e) {
+        protected void btnSearch_Click(object sender, EventArgs e) {
             searchHeader.Visible=false;
            // recipientSearch.Visible=false;
             button_search.Visible=false;
@@ -156,8 +157,6 @@ namespace CD6 {
             gvSearchResults.DataSource = sosFunctions.SearchSoS(mySOS);
             gvSearchResults.DataBind();
         }
-
-
 
         protected void btnNewSearch_Click(object sender, EventArgs e) {
             searchHeader.Visible = true;
@@ -320,8 +319,6 @@ namespace CD6 {
                 mySOS.arID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[3].Text);
                 Session.Add("SOS" ,mySOS);
                 Session.Add("IsOnModifyPage",onModify);
-
-                
             }
         }
 
