@@ -22,6 +22,7 @@ namespace CD6
         public DateTime recordModified { get; set; }
         public DateTime recordCreated { get; set; }
         public String assetDescription { get; set; }
+        public String editorID { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
         public DataSet returnSignSheetRecipients()
@@ -261,7 +262,6 @@ namespace CD6
             myCommand.CommandType = CommandType.StoredProcedure;
             myCommand.CommandText = "getSosById";
 
-            //Input parameters for stored procedure
             SqlParameter sosIDParam = new SqlParameter("@sosID", sosID);
 
             sosIDParam.Direction = ParameterDirection.Input;
@@ -283,7 +283,7 @@ namespace CD6
             mySOS.imageFileName = myDS.Tables[0].Rows[0][8].ToString();
             mySOS.recordCreated = Convert.ToDateTime(myDS.Tables[0].Rows[0][9]);
             mySOS.recordModified = Convert.ToDateTime(myDS.Tables[0].Rows[0][10]);
-            //mySOS.editorID = myDS.Tables[0].Rows[0][11].ToString();
+            mySOS.editorID = myDS.Tables[0].Rows[0][11].ToString();
 
             return mySOS;
         }
