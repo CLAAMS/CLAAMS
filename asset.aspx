@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div style="height:34px;" runat="server" id="filler">&nbsp</div>
-                        <asp:Label ID="lblCLAID" Text="CLA ID:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblCLAID" Text="CLA Tag:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblMake" Text="Make:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtMake" runat="server" CssClass="form-control" />
