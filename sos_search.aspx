@@ -24,7 +24,6 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
@@ -38,8 +37,10 @@
                     <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown" /><br/>
                     <asp:Label ID="lblAssigner" text="From:" runat="server" CssClass="label" />
                     <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" /><br />
+                    <asp:Label ID="lblAsset" Text="Asset:" runat="server" CssClass="label" />
+                    <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
                     <asp:Label ID="lblTerm" text="Term:" runat="server" CssClass="label" />
-                    <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown">
+                    <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged">
                         <asp:ListItem Value="1" Text="Permanent" />
                         <asp:ListItem Value="2" Text="Non-Permanent" />
                     </asp:DropDownList><br />
@@ -60,6 +61,31 @@
                     <div class="row">
                         <div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server">
                             <asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" />
+                        </div>
+                    </div>
+                    <div class="row" id="searchResults" visible="false" runat="server">
+                        <div class="col-md-12">
+                            <div class="row header_row">
+                                <div class="col-md-12" id="searchResultsHeader" runat="server">
+                                    <h1>Sign Sheet Search Results</h1>
+                                </div>
+                            </div>
+                            <div class="row" id="gridview">
+                                <div class="col-md-12">
+                                    <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_RowCommand">
+                                        <Columns>
+                                            <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
+                                            <asp:BoundField DataField="claID" HeaderText="Assigner" />
+                                            <asp:BoundField DataField="arID" HeaderText="Recipient" />
+                                            <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
+                                            <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
+                                            <asp:BoundField DataField="Status" HeaderText="Status" />
+                                            <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" />
+                                            <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" />
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
