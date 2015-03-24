@@ -319,8 +319,6 @@ namespace CD6 {
                 mySOS.arID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[3].Text);
                 Session.Add("SOS" ,mySOS);
                 Session.Add("IsOnModifyPage",onModify);
-
-                
             }
         }
 

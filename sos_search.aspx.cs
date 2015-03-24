@@ -41,7 +41,29 @@ namespace CD6 {
         }
 
         protected void gvSearchResults_RowCommand(object sender, GridViewCommandEventArgs e) {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvSearchResults.Rows[index];
+            int sosID = (int)gvSearchResults.DataKeys[index].Value;
+            string submit_type;
 
+            if (e.CommandName == "Delete") {
+                mySOS.DeleteSOS(sosID);
+                submit_type = "archive";
+
+                string dialog_header, dialog_body;
+                if (submit_type == "archive") {
+                    mySOS.sosID = sosID;
+                    dialog_header = "SOS Archived";
+                    dialog_body = string.Format("{0} has been archived successfully and removed from active Sign Out Sheets.", mySOS.sosID);
+                    modal(dialog_header, dialog_body);
+                }
+            } else if (e.CommandName == "modify") {
+                bool onModify = false;
+                mySOS.sosID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[0].Text);
+                Session.Add("SOSID", mySOS.sosID);
+                Session.Add("IsOnModifyPage", onModify);
+                Response.Redirect("./sos_view.aspx");
+            }
         }
 
         protected void ddlTerm_SelectedIndexChanged(object sender, EventArgs e) {

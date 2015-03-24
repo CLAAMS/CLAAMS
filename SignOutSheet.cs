@@ -246,5 +246,46 @@ namespace CD6
             }
         }
 
+        public static SignOutSheet getSOSbyID(int sosID) {
+            SignOutSheet mySOS = new SignOutSheet();
+
+            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+
+            DataSet myDS = new DataSet();
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand = new SqlCommand();
+            myConnection.Open();
+
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "getSosById";
+
+            //Input parameters for stored procedure
+            SqlParameter sosIDParam = new SqlParameter("@sosID", sosID);
+
+            sosIDParam.Direction = ParameterDirection.Input;
+            sosIDParam.SqlDbType = SqlDbType.Int;
+            sosIDParam.Size = 50;
+
+            myCommand.Parameters.Add(sosIDParam);
+
+            myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand);
+
+            mySOS.sosID = Convert.ToInt32(myDS.Tables[0].Rows[0][0].ToString());
+            mySOS.cladID = myDS.Tables[0].Rows[0][1].ToString();
+            mySOS.arID = Convert.ToInt32(myDS.Tables[0].Rows[0][2].ToString());
+            mySOS.assingmentPeriod = Convert.ToInt32(myDS.Tables[0].Rows[0][3].ToString());
+            mySOS.dateCreated = Convert.ToDateTime(myDS.Tables[0].Rows[0][4]);
+            mySOS.dateModified = Convert.ToDateTime(myDS.Tables[0].Rows[0][5]);
+            mySOS.dateDue = Convert.ToDateTime(myDS.Tables[0].Rows[0][6]);
+            mySOS.status = myDS.Tables[0].Rows[0][7].ToString();
+            mySOS.imageFileName = myDS.Tables[0].Rows[0][8].ToString();
+            mySOS.recordCreated = Convert.ToDateTime(myDS.Tables[0].Rows[0][9]);
+            mySOS.recordModified = Convert.ToDateTime(myDS.Tables[0].Rows[0][10]);
+            //mySOS.editorID = myDS.Tables[0].Rows[0][11].ToString();
+
+            return mySOS;
+        }
     }
 }
