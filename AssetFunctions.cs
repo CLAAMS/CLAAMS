@@ -16,7 +16,7 @@ namespace CD6
         DBConnect objDB = new DBConnect();
         //String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
-        public void CreateNewAsset(Asset objAsset)
+        public void CreateNewAsset(Asset objAsset,string editorID)
         {
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -74,6 +74,12 @@ namespace CD6
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.DateTime;
             inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@editorID", editorID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.NChar;
+            inputParameter.Size = 50;
             objCommand.Parameters.Add(inputParameter);
 
             objDB.DoUpdateUsingCmdObj(objCommand);
@@ -158,7 +164,7 @@ namespace CD6
             objDB.DoUpdateUsingCmdObj(objCommand1);
         }
 
-        public void ModifyAsset(Asset objAsset)
+        public void ModifyAsset(Asset objAsset, string editorID)
         {
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -234,6 +240,12 @@ namespace CD6
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.VarChar;
             inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@editorID", editorID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.NChar;
+            inputParameter1.Size = 50;
             objCommand1.Parameters.Add(inputParameter1);
 
             objDB.DoUpdateUsingCmdObj(objCommand1);

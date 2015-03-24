@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div style="height:34px;" runat="server" id="filler">&nbsp</div>
-                        <asp:Label ID="lblCLAID" Text="CLATag:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblCLAID" Text="CLA ID:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblMake" Text="Make:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtMake" runat="server" CssClass="form-control" />
@@ -92,10 +92,19 @@
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
                                 <asp:ButtonField  ButtonType="Button"  Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" >
 
+<ControlStyle CssClass="btn btn-default"></ControlStyle>
+
                                 </asp:ButtonField>
                                 <asp:ButtonField ButtonType="Button" Text="Archive"  CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" >
 
+<ControlStyle CssClass="btn btn-danger"></ControlStyle>
+
                                 </asp:ButtonField>
+                                <asp:TemplateField HeaderText="Check-In">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnCheckIN" runat="server" OnClick="btnCheckIN_Click" Text="CheckIn" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                     </div>

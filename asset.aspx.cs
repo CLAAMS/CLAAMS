@@ -149,7 +149,7 @@ namespace CD6{
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string submit_type;
-
+            string editor=Session["user"].ToString();
             btnSubmit.Visible = true;
             btnSubmitModifyAsset.Visible = false;
             objAsset.CLATag = txtCLAID.Text;
@@ -216,7 +216,7 @@ namespace CD6{
             //     lblInputValidation.Text = "You have put in invalid Notes. Please try again";
             // }
             
-                objAssetFunctions.CreateNewAsset(objAsset);
+                objAssetFunctions.CreateNewAsset(objAsset,editor);
 
                 txtCLAID.Text = "";
                 txtMake.Text = "";
@@ -320,7 +320,7 @@ namespace CD6{
         protected void btnSubmitModifyAsset_Click(object sender, EventArgs e)
         {
             string submit_type;
-
+            string editor = Session["user"].ToString();
             btnSubmit.Visible = false;
 
             objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
@@ -341,12 +341,12 @@ namespace CD6{
             if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID))
             {
 	            objAsset.sosID = sosID;
-	            objAssetFunctions.ModifyAsset(objAsset);
+	            objAssetFunctions.ModifyAsset(objAsset,editor);
             } 
             else 
             {
 	            objAsset.sosID = sosID;
-	            objAssetFunctions.ModifyAsset(objAsset);
+	            objAssetFunctions.ModifyAsset(objAsset,editor);
             }
 
             submit_type = "modify";
@@ -374,6 +374,11 @@ namespace CD6{
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+
+        protected void btnCheckIN_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }      
