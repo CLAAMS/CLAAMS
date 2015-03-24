@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Utilities;
+using System.Collections;
+
 namespace CD6
 {
     public class SignOutSheet
@@ -188,6 +190,7 @@ namespace CD6
             }
 
         }
+
         public int ModifyAsset(int sosID,int assetId){
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
@@ -286,6 +289,52 @@ namespace CD6
             mySOS.editorID = myDS.Tables[0].Rows[0][11].ToString();
 
             return mySOS;
+        }
+
+        public static ArrayList getAssetsForSOS(int sosID) {
+            ArrayList assets = new ArrayList();
+
+            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+
+            DataSet myDS = new DataSet();
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand = new SqlCommand();
+            myConnection.Open();
+
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "getAssetsForSos";
+
+            SqlParameter sosIDParam = new SqlParameter("@sosID", sosID);
+
+            sosIDParam.Direction = ParameterDirection.Input;
+            sosIDParam.SqlDbType = SqlDbType.Int;
+            sosIDParam.Size = 50;
+
+            myCommand.Parameters.Add(sosIDParam);
+
+            myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand);
+
+            foreach (DataRow row in myDS.Tables[0].Rows) {
+                Asset asset = new Asset();
+                asset.assetID = Convert.ToInt32(row.ItemArray[0].ToString());
+                asset.CLATag = row.ItemArray[1].ToString();
+                asset.Make = row.ItemArray[2].ToString();
+                asset.Model = row.ItemArray[3].ToString();
+                asset.Description = row.ItemArray[4].ToString();
+                asset.SerialNumber = row.ItemArray[5].ToString();
+                asset.Status = row.ItemArray[6].ToString();
+                asset.Notes = row.ItemArray[7].ToString();
+                asset.recordCreated = (DateTime)row.ItemArray[8];
+                asset.recordModified = (DateTime)row.ItemArray[9];
+                asset.sosID = Convert.ToInt32(row.ItemArray[10].ToString());
+                //asset.editor = row.ItemArray[11].ToString();
+                asset.Name = row.ItemArray[12].ToString();
+                assets.Add(asset);
+            }
+
+            return assets;
         }
     }
 }
