@@ -23,7 +23,7 @@ namespace CD6{
             try{
                 Session["UserInfo"] = LDAP.getUserInfo(txtUsername.Text);
                 lblLDAPOutput.Text = DictToString((Dictionary<string, string>)Session["UserInfo"]);
-                Response.Redirect("sos.aspx");
+                Response.Redirect("sos_create.aspx");
             }catch{
                 lblLDAPOutput.Text = "Invalid AccessnetID";
             }
