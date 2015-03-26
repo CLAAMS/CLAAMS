@@ -15,6 +15,7 @@ namespace CD6{
             if (LDAP.AuthenticateUser(txtUsername.Text, txtPassword.Text) == txtUsername.Text && txtUsername.Text != null && txtUsername.Text != "" && ValidUser(txtUsername.Text)){
                 Session["user"] = txtUsername.Text;
                 lblError.Text = "Login Successful";
+                
             }else{
                 lblError.Text = "Invalid username or password, please try again.";
             }
@@ -22,6 +23,7 @@ namespace CD6{
             try{
                 Session["UserInfo"] = LDAP.getUserInfo(txtUsername.Text);
                 lblLDAPOutput.Text = DictToString((Dictionary<string, string>)Session["UserInfo"]);
+                Response.Redirect("sos_create.aspx");
             }catch{
                 lblLDAPOutput.Text = "Invalid AccessnetID";
             }

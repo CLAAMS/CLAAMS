@@ -36,5 +36,11 @@ namespace CD6{
                 lblModal_body.Text = value;
             }
         }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("login.aspx");
+        }
     }
 }

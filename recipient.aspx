@@ -100,7 +100,6 @@
                                 <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default">
 <ControlStyle CssClass="btn btn-default"></ControlStyle>
                                 </asp:ButtonField>
-                                <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="DeleteRow" />
                             </Columns>
                         </asp:GridView>
                     </div>

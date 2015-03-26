@@ -104,7 +104,7 @@ namespace CD6
             return myDs;
         }
 
-        public int CreateSignOutSheet(int assetId, String claId, int arId, int assignmentPeriod, DateTime creationDate, DateTime modifyDate, DateTime dueDate, string status, string imageFileName, DateTime recordModified, DateTime recordCreated)
+        public int CreateSignOutSheet(int assetId, String claId, int arId, int assignmentPeriod, DateTime creationDate, DateTime modifyDate, DateTime dueDate, string status, string imageFileName, DateTime recordModified, DateTime recordCreated,string editorID)
         {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
@@ -127,7 +127,7 @@ namespace CD6
             SqlParameter inputParameter9 = new SqlParameter("@imageFileName", imageFileName);
             SqlParameter inputParameter10 = new SqlParameter("@recordModified", recordModified);
             SqlParameter inputParameter11 = new SqlParameter("@recordCreated", recordCreated);
-          
+            SqlParameter inputParameter12 = new SqlParameter("@editorID", editorID);
 
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.Int;
@@ -162,6 +162,9 @@ namespace CD6
             inputParameter11.Direction = ParameterDirection.Input;
             inputParameter11.SqlDbType = SqlDbType.DateTime;
             inputParameter11.Size = 50;
+            inputParameter12.Direction = ParameterDirection.Input;
+            inputParameter12.SqlDbType = SqlDbType.NChar;
+            inputParameter12.Size = 50;
          
 
             myCommand4.Parameters.Add(inputParameter1);
@@ -175,6 +178,7 @@ namespace CD6
             myCommand4.Parameters.Add(inputParameter9);
             myCommand4.Parameters.Add(inputParameter10);
             myCommand4.Parameters.Add(inputParameter11);
+            myCommand4.Parameters.Add(inputParameter12);
 
          
             try
@@ -191,23 +195,29 @@ namespace CD6
 
         }
 
-        public int ModifyAsset(int sosID,int assetId){
+        public int ModifyAsset(int sosID,int assetId,string editorID){
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand5 = new SqlCommand();
             myCommand5.Connection = myConnection;
             myCommand5.CommandType = CommandType.StoredProcedure;
             myCommand5.CommandText = "UpdateAssetSOSID";
+            
             SqlParameter inputParameter1 = new SqlParameter("@sosID", sosID);
             SqlParameter inputParameter2=new SqlParameter("@assetID",assetId);
+            SqlParameter inputParameter3 = new SqlParameter("@editorID", editorID);
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.Int;
             inputParameter1.Size = 50;
             inputParameter2.Direction = ParameterDirection.Input;
             inputParameter2.SqlDbType = SqlDbType.Int;
             inputParameter2.Size = 50;
+            inputParameter3.Direction = ParameterDirection.Input;
+            inputParameter3.SqlDbType = SqlDbType.NChar;
+            inputParameter3.Size = 50;
             myCommand5.Parameters.Add(inputParameter1);
             myCommand5.Parameters.Add(inputParameter2);
+            myCommand5.Parameters.Add(inputParameter3);
           
 
             try
@@ -223,7 +233,7 @@ namespace CD6
             }
         }
 
-        public int DeleteSOS(int sosID)
+        public int DeleteSOS(int sosID,string editorID)
         {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
@@ -232,9 +242,13 @@ namespace CD6
             myCommand6.CommandType = CommandType.StoredProcedure;
             myCommand6.CommandText = "DeleteSOS";
             SqlParameter inputParameter1 = new SqlParameter("@sosID", sosID);
+            SqlParameter inputParameter2 = new SqlParameter("@editorID", editorID);
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.Int;
             inputParameter1.Size = 50;
+            inputParameter2.Direction = ParameterDirection.Input;
+            inputParameter2.SqlDbType = SqlDbType.NChar;
+            inputParameter2.Size = 50;
             myCommand6.Parameters.Add(inputParameter1);
 
             try

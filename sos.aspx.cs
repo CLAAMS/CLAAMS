@@ -11,13 +11,14 @@ namespace CD6 {
         SignOutSheet mySOS = new SignOutSheet();
         DataSet ds = new DataSet();
         Asset myAsset = new Asset();
-
+        string editor;
+        
         ArrayList arrayListOfAssets=new ArrayList();
         int assetId;
 
         protected void Page_Load(object sender, EventArgs e) {
             ddlTerm_SelectedIndexChanged(this, e);
-
+            editor = Session["user"].ToString();
             searchHeader.Visible = false;
             button_search.Visible = false;
             createHeader.Visible = true;
@@ -34,7 +35,7 @@ namespace CD6 {
 
             AssetListBox.Visible = true;
             txtSearchAsset.Visible = false;
-           
+      
             if (!IsPostBack) {
                 //Establishing DropDown Choices for Recipients
                 
@@ -221,6 +222,7 @@ namespace CD6 {
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e) {
+            editor = Session["user"].ToString();
             string submit_type = "";
             if (Session["SOS"] != null)
             {
@@ -261,8 +263,8 @@ namespace CD6 {
                 mySOS.recordCreated = DateTime.Now;
                 mySOS.recordModified = DateTime.Now;
                 assetId = Convert.ToInt32(Session["assetId"].ToString());
-                int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
-                mySOS.ModifyAsset(sosID, assetId);
+                int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified,editor);
+                mySOS.ModifyAsset(sosID, assetId, editor);
 
                 submit_type = "create";
             }
@@ -299,7 +301,7 @@ namespace CD6 {
             string submit_type;
 
             if (e.CommandName == "Delete") {
-                mySOS.DeleteSOS(sosID);
+                mySOS.DeleteSOS(sosID,editor);
                 btnSearch_Click(this, e);
                 submit_type = "archive";
 
@@ -314,9 +316,9 @@ namespace CD6 {
                 bool onModify = false;
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
-                mySOS.sosID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[1].Text);
+                mySOS.sosID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[0].Text);
                 mySOS.cladID = gvSearchResults.Rows[index].Cells[2].Text;
-                mySOS.arID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[3].Text);
+                mySOS.arID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[2].Text);
                 Session.Add("SOS" ,mySOS);
                 Session.Add("IsOnModifyPage",onModify);
             }

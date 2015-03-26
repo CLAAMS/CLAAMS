@@ -25,10 +25,8 @@
         
         <div id="header">
             <div class="row">
-                <div class="col-md-4"><img src="img/web_logo_tu_outlined-stacked.png" alt="Temple Logo" /></div>
-            </div>
-            <div class="row">
-                <div class="col-md-6"><h1>CLA Asset Management System</h1></div>
+                <div class="col-xs-4"><img src="img/web_logo_tu_outlined-stacked.png" alt="Temple Logo" /></div>
+                <div class="col-xs-4 col-xs-offset-4" style="text-align:right"><h1>CLA Asset Management System</h1></div>
             </div>
         </div>
 
@@ -54,6 +52,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!--<li><a href="#">Settings</a></li>-->
                         <li><a href="login.aspx"><asp:Label ID="lblLoginButton" runat="server" Text="Login" /></a></li>
+                        <li><asp:linkButton ID="logout" runat="server" Text="Log Out " OnClick="logout_Click"></asp:linkButton></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
