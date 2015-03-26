@@ -47,7 +47,7 @@ namespace CD6 {
             string submit_type;
 
             if (e.CommandName == "Delete") {
-                mySOS.DeleteSOS(sosID);
+                mySOS.DeleteSOS(sosID, (string)Session["user"]);
                 submit_type = "archive";
 
                 string dialog_header, dialog_body;

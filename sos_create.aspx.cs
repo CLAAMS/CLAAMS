@@ -13,9 +13,11 @@ namespace CD6 {
         Asset myAsset = new Asset();
         ArrayList arrayListOfAssets = new ArrayList();
         int assetId;
+        string editor;
 
         protected void Page_Load(object sender, EventArgs e){
             fillDropdowns();
+            editor = Session["user"].ToString();
 
             if (Session["Asset"] != null) {
                 arrayListOfAssets = (ArrayList)Session["Asset"];
@@ -79,8 +81,8 @@ namespace CD6 {
                 mySOS.recordCreated = DateTime.Now;
                 mySOS.recordModified = DateTime.Now;
                 assetId = Convert.ToInt32(Session["assetId"].ToString());
-                int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified);
-                mySOS.ModifyAsset(sosID, assetId);
+                int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified, editor);
+                mySOS.ModifyAsset(sosID, assetId, editor);
 
                 submit_type = "create";
             }
