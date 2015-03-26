@@ -17,9 +17,8 @@
             </div>
             <div id="subnavbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><asp:LinkButton runat="server" Text="Search"/></li>
-                    <li><asp:LinkButton runat="server" Text="Create"/></li>
-                    <li><asp:LinkButton runat="server" Text="Track"/></li>
+                    <li><a href="sos_create.aspx">Create Sign Sheet</a></li>
+                    <li><a href="sos_search.aspx">Search Sign Sheets</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -42,7 +41,7 @@
                             <asp:Label ID="lblTerm" Text="Term:" runat="server" CssClass="label" />
                             <asp:TextBox ID="txtTerm" runat="server" CssClass="form-control" ReadOnly="true" />
                             <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
-                            <asp:DropDownList ID="ddlHistory" runat="server" CssClass="dropdown" AutoPostBack="true"/><br />
+                            <asp:DropDownList ID="ddlHistory" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlHistory_SelectedIndexChanged" AppendDataBoundItems="true" />
                         </div>
                         <div class="col-md-6">
                             <div class="row">

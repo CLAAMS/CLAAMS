@@ -17,9 +17,8 @@
             </div>
             <div id="subnavbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><asp:LinkButton runat="server" Text="Search"/></li>
-                    <li><asp:LinkButton runat="server" Text="Create"/></li>
-                    <li><asp:LinkButton runat="server" Text="Track"/></li>
+                    <li><a href="sos_create.aspx">Create Sign Sheet</a></li>
+                    <li><a href="sos_search.aspx">Search Sign Sheets</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

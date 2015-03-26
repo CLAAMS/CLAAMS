@@ -6,10 +6,8 @@ using Microsoft.SqlServer.Server;
 using Utilities;
 using System.Collections;
 
-namespace CD6
-{
-    public class SignOutSheet
-    {
+namespace CD6 {
+    public class SignOutSheet {
         public int sosID { get; set; }
         public int sosHistoryID { get; set; }
         public int assetID { get; set; }
@@ -27,8 +25,7 @@ namespace CD6
         public String editorID { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
-        public DataSet returnSignSheetRecipients()
-        {
+        public DataSet returnSignSheetRecipients() {
             DataSet myDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
@@ -43,8 +40,7 @@ namespace CD6
             return myDS;
         }
 
-        public DataSet returnAssigner()
-        {
+        public DataSet returnAssigner() {
             DataSet myDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
@@ -57,11 +53,9 @@ namespace CD6
 
             myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
             return myDS;
-
         }
 
-        public DataSet SearchForAssets(int assetID, string assetName, string assetType, string claTag, string serial)
-        {
+        public DataSet SearchForAssets(int assetID, string assetName, string assetType, string claTag, string serial) {
             DBConnect myDb=new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
@@ -104,8 +98,7 @@ namespace CD6
             return myDs;
         }
 
-        public int CreateSignOutSheet(int assetId, String claId, int arId, int assignmentPeriod, DateTime creationDate, DateTime modifyDate, DateTime dueDate, string status, string imageFileName, DateTime recordModified, DateTime recordCreated,string editorID)
-        {
+        public int CreateSignOutSheet(int assetId, String claId, int arId, int assignmentPeriod, DateTime creationDate, DateTime modifyDate, DateTime dueDate, string status, string imageFileName, DateTime recordModified, DateTime recordCreated,string editorID) {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand4 = new SqlCommand();
@@ -114,7 +107,6 @@ namespace CD6
             myCommand4.CommandType = CommandType.StoredProcedure;
             myCommand4.CommandText = "CreateSignOutSheet";
            
-
             //Input parameters for stored procedure
             SqlParameter inputParameter1 = new SqlParameter("@assetID", assetId);
             SqlParameter inputParameter2 = new SqlParameter("@claID", claId);
@@ -166,7 +158,6 @@ namespace CD6
             inputParameter12.SqlDbType = SqlDbType.NChar;
             inputParameter12.Size = 50;
          
-
             myCommand4.Parameters.Add(inputParameter1);
             myCommand4.Parameters.Add(inputParameter2);
             myCommand4.Parameters.Add(inputParameter3);
@@ -180,19 +171,12 @@ namespace CD6
             myCommand4.Parameters.Add(inputParameter11);
             myCommand4.Parameters.Add(inputParameter12);
 
-         
-            try
-            {
-
+            try {
                 int result = Convert.ToInt32(myCommand4.ExecuteScalar());
                 return result;
-
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return -1;
             }
-
         }
 
         public int ModifyAsset(int sosID,int assetId,string editorID){
@@ -219,22 +203,15 @@ namespace CD6
             myCommand5.Parameters.Add(inputParameter2);
             myCommand5.Parameters.Add(inputParameter3);
           
-
-            try
-            {
-
+            try {
                 int result = myCommand5.ExecuteNonQuery();
                 return 1;
-
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return -1;
             }
         }
 
-        public int DeleteSOS(int sosID,string editorID)
-        {
+        public int DeleteSOS(int sosID,string editorID) {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand6 = new SqlCommand();
@@ -251,15 +228,10 @@ namespace CD6
             inputParameter2.Size = 50;
             myCommand6.Parameters.Add(inputParameter1);
 
-            try
-            {
-
+            try {
                 int result = myCommand6.ExecuteNonQuery();
                 return 1;
-
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return -1;
             }
         }
