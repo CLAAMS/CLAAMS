@@ -9,12 +9,17 @@ using System.Collections;
 
 namespace CD6 {
     public partial class sos_view : System.Web.UI.Page {
-        Asset myAsset = new Asset();
         SignOutSheet mySOS = new SignOutSheet();
+        int sosID;
 
         protected void Page_Load(object sender, EventArgs e) {
-            int sosID = -1;
+            if(!IsPostBack){
+                sosID = -1;
+                loadOriginal();
+            }
+        }
 
+        protected void loadOriginal() {
             try {
                 sosID = (int)Session["SOSID"];
                 Session.Remove("SOSID");
@@ -27,14 +32,14 @@ namespace CD6 {
             txtAssigner.Text = mySOS.cladID.ToString();
             txtTerm.Text = mySOS.assingmentPeriod.ToString();
             calIssueDate.SelectedDate = mySOS.dateCreated;
-            if (mySOS.assingmentPeriod == 2) {
+
+            if (mySOS.assingmentPeriod == 2)  {
                 calDue.Visible = true;
                 calDueDate.SelectedDate = mySOS.dateDue;
             }
 
             getAssets(sosID);
-
-            fillHistory(sosID);
+            fillHistory(sosID);        
         }
 
         protected void btnClose_Click(object sender, EventArgs e) {
@@ -42,7 +47,13 @@ namespace CD6 {
         }
 
         protected void fillHistory(int sosID) {
-            
+            ArrayList histories = SosHistory.getHistoryForSOS(sosID);
+            ddlHistory.Items.Clear();
+            ddlHistory.Items.Add(new ListItem(""));
+            ddlHistory.DataSource = histories;
+            ddlHistory.DataTextField = "DateCreated";
+            ddlHistory.DataValueField = "sosHistoryID";
+            ddlHistory.DataBind();
         }
 
         protected void getAssets(int sosID) {
@@ -51,6 +62,30 @@ namespace CD6 {
             lbAssets.DataTextField = "Name";
             lbAssets.DataValueField = "assetID";
             lbAssets.DataBind();
+        }
+
+        protected void ddlHistory_SelectedIndexChanged(object sender, EventArgs e) {
+            int sosHistoryID = -1;
+
+            try {
+                sosHistoryID = Convert.ToInt32(ddlHistory.SelectedValue.ToString());
+            } catch {
+                loadOriginal();
+                return;
+            }
+
+            SosHistory history = SosHistory.getHistoryByID(sosHistoryID);
+
+            sosID = history.sosID;
+            Session["sosID"] = sosID;
+            txtAssigner.Text = history.arID.ToString();
+            txtRecipient.Text = history.cladID.ToString();
+            txtTerm.Text = history.assingmentPeriod.ToString();
+            calIssueDate.SelectedDate = history.dateModified;
+            if (history.assingmentPeriod == 2){
+                calDue.Visible = true;
+                calDueDate.SelectedDate = history.dateDue;
+            }
         }
     }
 }
