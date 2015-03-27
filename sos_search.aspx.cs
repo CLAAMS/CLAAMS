@@ -20,14 +20,22 @@ namespace CD6 {
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
 
-            if (mySOS.assingmentPeriod == 2) {
-                mySOS.dateDue = calDueDate.SelectedDate;
+            if (mySOS.assingmentPeriod == 0) {
+                if (calDueDate.SelectedDate == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
+                    mySOS.dateDue = Convert.ToDateTime("1/1/1900 12:00:00 AM");
+                } else {
+                    mySOS.dateDue = calDueDate.SelectedDate;
+                }
             }
 
             mySOS.dateCreated = calIssueDate.SelectedDate;
 
-            if (calIssueDate.SelectedDate == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
+            if (mySOS.dateCreated == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
                 mySOS.dateCreated = Convert.ToDateTime("1/1/1900 12:00:00 AM");
+            }
+
+            if (mySOS.dateDue == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
+                mySOS.dateDue = Convert.ToDateTime("1/1/1900 12:00:00 AM");
             }
 
             mySOS.assetDescription = txtSearchAsset.Text;
@@ -67,7 +75,7 @@ namespace CD6 {
         }
 
         protected void ddlTerm_SelectedIndexChanged(object sender, EventArgs e) {
-            if (int.Parse(ddlTerm.SelectedValue) == 2) {
+            if (int.Parse(ddlTerm.SelectedValue) == 0) {
                 dueCal.Visible = true;
             } else {
                 dueCal.Visible = false;

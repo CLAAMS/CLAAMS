@@ -4,10 +4,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Utilities;
-namespace CD6
-{
-    public class AssetRecipient
-    {
+namespace CD6{
+    public class AssetRecipient {
         public int assetRecipientId { get; set; }
         public string title { get; set; }
         public string firstName { get; set; }
@@ -22,10 +20,7 @@ namespace CD6
         public string RecordModified { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
-
-        public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
-        {
-
+        public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand1 = new SqlCommand();
@@ -83,7 +78,6 @@ namespace CD6
             inputParameter12.SqlDbType = SqlDbType.DateTime;
             inputParameter12.Size = 50;
 
-
             //myCommand.Parameters.Add(Convert.ToInt16(inputParameter1));
             myCommand1.Parameters.Add(inputParameter2);
             myCommand1.Parameters.Add(inputParameter3);
@@ -97,22 +91,15 @@ namespace CD6
             myCommand1.Parameters.Add(inputParameter11);
             myCommand1.Parameters.Add(inputParameter12);
 
-            try
-            {
-
+            try {
                 myCommand1.ExecuteNonQuery();
                 return 1;
-
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return -1;
             }
-
         }
 
-        public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified)
-        {
+        public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
             DataSet myDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
@@ -176,22 +163,16 @@ namespace CD6
             myCommand2.Parameters.Add(inputParameter10);
             myCommand2.Parameters.Add(inputParameter11);
             myCommand2.Parameters.Add(inputParameter12);
-            try
-            {
 
+            try {
                 myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
                 return myDS;
-
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return null;
             }
-
-
         }
-        public int DeleteRow(int assetRecipientId)
-        {
+
+        public int DeleteRow(int assetRecipientId) {
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand3 = new SqlCommand();
@@ -204,20 +185,15 @@ namespace CD6
             inputParameter1.SqlDbType = SqlDbType.Int;
             inputParameter1.Size = 50;
             myCommand3.Parameters.Add(inputParameter1);
-            try
-            {
+            try {
                 myDbConnect.DoUpdateUsingCmdObj(myCommand3);
                 return 1;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return -1;
             }
-
         }
 
-        public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, string pPDA, string pSDA, string pPhone, string pRecordModified)
-        {
+        public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, string pPDA, string pSDA, string pPhone, string pRecordModified) {
             int result;
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
@@ -282,23 +258,17 @@ namespace CD6
             myCommand5.Parameters.Add(inputParameter8);
             myCommand5.Parameters.Add(inputParameter9);
             myCommand5.Parameters.Add(inputParameter10);
-          
             myCommand5.Parameters.Add(inputParameter12);
-            try
-            {
 
+            try {
                 result = myDbConnect.DoUpdateUsingCmdObj(myCommand5);
                 return 1;
-
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return -1;
             }
         }
 
-        public DataSet GetLocationForSelectedRecord(int ARID)
-        {
+        public DataSet GetLocationForSelectedRecord(int ARID) {
             DBConnect theDB=new DBConnect();
             SqlConnection myConnection=new SqlConnection(SqlConnectString);
             SqlCommand myCommand6=new SqlCommand();
@@ -316,10 +286,6 @@ namespace CD6
             DataSet myDS=theDB.GetDataSetUsingCmdObj(myCommand6);
             return myDS;
         }
-
-
-
-
     }
 }
 

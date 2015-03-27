@@ -41,7 +41,7 @@
                     <asp:Label ID="lblTerm" text="Term:" runat="server" CssClass="label" />
                     <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged">
                         <asp:ListItem Value="1" Text="Permanent" />
-                        <asp:ListItem Value="2" Text="Non-Permanent" />
+                        <asp:ListItem Value="0" Text="Non-Permanent" />
                     </asp:DropDownList><br />
                     <div class="col-md-6">
                         <div class="row">
@@ -74,8 +74,8 @@
                                     <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_RowCommand">
                                         <Columns>
                                             <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
-                                            <asp:BoundField DataField="claID" HeaderText="Assigner" />
-                                            <asp:BoundField DataField="arID" HeaderText="Recipient" />
+                                            <asp:BoundField DataField="Name" HeaderText="Assigner" />
+                                            <asp:BoundField DataField="Recipient" HeaderText="Recipient" />
                                             <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
                                             <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
                                             <asp:BoundField DataField="Status" HeaderText="Status" />

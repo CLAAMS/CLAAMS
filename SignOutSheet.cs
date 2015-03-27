@@ -179,7 +179,7 @@ namespace CD6 {
             }
         }
 
-        public int ModifyAsset(int sosID,int assetId,string editorID){
+        public bool ModifyAsset(int sosID, int assetId, string editorID){
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand5 = new SqlCommand();
@@ -205,9 +205,9 @@ namespace CD6 {
           
             try {
                 int result = myCommand5.ExecuteNonQuery();
-                return 1;
+                return true;
             } catch (Exception ex) {
-                return -1;
+                return false;
             }
         }
 

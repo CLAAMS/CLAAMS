@@ -39,7 +39,7 @@ namespace CD6{
 
         protected void logout_Click(object sender, EventArgs e)
         {
-            Session.Clear();
+            Session.Abandon();
             Response.Redirect("login.aspx");
         }
     }
