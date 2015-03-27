@@ -55,7 +55,7 @@ namespace CD6 {
             }
 
             Session.Add("Asset", arraylistOfAssets);
-            Response.Redirect("SOS.aspx");
+            Response.Redirect("sos_create.aspx");
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e) {

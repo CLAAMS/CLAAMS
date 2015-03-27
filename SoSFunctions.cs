@@ -31,25 +31,25 @@ namespace CD6
             inputParameter.Size = 100;
             objCommand.Parameters.Add(inputParameter);
 
-            string assingmentPeriod;
-
-            if (objSoS.assingmentPeriod == 0)
-            {
-                assingmentPeriod = "";
-            }
-            else
-            {
-                assingmentPeriod = objSoS.assingmentPeriod.ToString();
-            }
-            inputParameter = new SqlParameter("@assingmentPeriod", assingmentPeriod);
+            inputParameter = new SqlParameter("@assingmentPeriod", objSoS.assingmentPeriod);
             inputParameter.Direction = ParameterDirection.Input;
-            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.SqlDbType = SqlDbType.Int;
             inputParameter.Size = 100;
             objCommand.Parameters.Add(inputParameter);
 
             inputParameter = new SqlParameter("@dateCreated", objSoS.dateCreated);
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.DateTime;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            string dateDue = objSoS.dateDue.ToString();
+            if(objSoS.dateDue.ToString() == "1/1/1900 12:00:00 AM"){
+                dateDue = "";
+            }
+            inputParameter = new SqlParameter("@dateDue", dateDue);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
             inputParameter.Size = 100;
             objCommand.Parameters.Add(inputParameter);
 

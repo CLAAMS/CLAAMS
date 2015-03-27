@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <asp:Label ID="lblAssets" Text="Assets: *" runat="server" CssClass="label" />
-                                    <asp:ListBox ID="lbAssets" CssClass="list-group" runat="server" style="width:100%;" />
+                                    <asp:ListBox ID="lbAssets" SelectionMode="Single" CssClass="list-group" runat="server" style="width:100%;" />
                                 </div>
                             </div>
                             <div class="row">

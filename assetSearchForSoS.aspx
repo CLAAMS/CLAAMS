@@ -22,7 +22,11 @@
                     <div class="row"><div class="col-md-12"><asp:TextBox ID="txtCLATag" runat="server" CssClass="form-control" /></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblSerial" Text="Serial:" runat="server" CssClass="label" /></div></div>
                     <div class="row"><div class="col-md-12"><asp:TextBox ID="txtSerial" runat="server" CssClass="form-control" /></div></div>
-                    <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click"/></div></div>
+                    <div class="button_row row">
+                        <div class="col-md-12" style="text-align:center;">
+                            <asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-default"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="row header_row" id="searchResults" runat="server" visible="true"><div class="col-md-12"><br /><h3>Search Results:</h3>
                     <asp:GridView ID="gvSearchResults" runat="server" AutoGenerateColumns="False" CssClass="table">
@@ -40,12 +44,13 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                    <div class="button_row row">
-                        <div class="col-md-1 col-md-offset-5" style="text-align:center;">
-                            <asp:Button ID="btnAddAsset" Text="Add Asset" runat="server" OnClick="btnAddAsset_Click"/>
+                    <div class="row button_row">
+                        <div class="col-md-1 col-md-offset-4" style="text-align:center;">
+                            <asp:Button ID="btnAddAsset" Text="Add Asset" runat="server" OnClick="btnAddAsset_Click" CssClass="btn btn-default" />
                         </div>
+                        <div class="col-md-1"></div>
                         <div class="col-md-1" style="text-align:center;">
-                            <asp:Button ID="btnNewSearch" Text="New Search" runat="server" OnClick="btnNewSearch_Click"/>
+                            <asp:Button ID="btnNewSearch" Text="New Search" runat="server" OnClick="btnNewSearch_Click" CssClass="btn btn-default" />
                         </div>
                     </div>
                 </div></div>
