@@ -38,7 +38,7 @@
                     <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" /><br />
                     <asp:Label ID="lblAsset" Text="Asset:" runat="server" CssClass="label" />
                     <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
-                    <asp:Label ID="lblTerm" text="Term:" runat="server" CssClass="label" />
+                    <asp:Label ID="lblTerm" text="Duration:" runat="server" CssClass="label" />
                     <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged">
                         <asp:ListItem Value="1" Text="Permanent" />
                         <asp:ListItem Value="0" Text="Non-Permanent" />
