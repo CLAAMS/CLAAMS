@@ -55,7 +55,7 @@
                                 <asp:DropDownList ID="ddlAssetTemplate" runat="server" AutoPostBack="true" CssClass="dropdown" OnSelectedIndexChanged="ddlAssetTemplate_SelectedIndexChanged"/>
                             </div>
                             <div class="col-xs-3">
-                                <a onclick="manageTemplates()">Manage Templates</a> 
+                                <asp:linkbutton runat="server" id="manage_templates" text="Manage Templates" OnClick="manage_templates_Click" />. 
                             </div>
                         </div>
                         <div style="height:34px;" runat="server" id="filler">&nbsp</div>
