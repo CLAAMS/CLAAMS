@@ -111,7 +111,7 @@
                     <div class="row header_row"><div class="col-md-12" id="trackingHeader" runat="server" visible="true"><h1>Sign Sheet Tracking</h1></div></div>
                     <div class="row header_row"><div class="col-md-12" id="searchResultsHeader" runat="server" visible="true"><h1>Sign Sheet Search Results</h1></div></div>
                     <div class="col-md-12">
-                        <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_Click"  OnRowDeleting="gvSearchResults_RowDeleting" >
+                        <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_Click" >
                             <Columns>
                                 <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
                                 <asp:BoundField DataField="claID" HeaderText="Assigner" />

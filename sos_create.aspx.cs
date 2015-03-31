@@ -118,7 +118,7 @@ namespace CD6 {
                 return_code = "failure";
             } else { 
                 arrayListOfAssets = (ArrayList)Session["Asset"];
-
+             
                 foreach(Asset asset in arrayListOfAssets){
                     if (!mySOS.ModifyAsset(sosID, asset.assetID, mySOS.editorID)) {
                         dialog_header = "ERROR";

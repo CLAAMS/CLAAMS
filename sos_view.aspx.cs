@@ -85,6 +85,7 @@ namespace CD6 {
             if (history.assingmentPeriod == 2){
                 calDue.Visible = true;
                 calDueDate.SelectedDate = history.dateDue;
+               
             }
         }
     }
