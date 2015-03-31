@@ -42,4 +42,29 @@ namespace CD6 {
 
             }
         }
+
+        protected void gvSosTracking_Click(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvSosTracking.Rows[index];
+            int sosID = (int)gvSosTracking.DataKeys[index].Value;
+
+            if (e.CommandName == "view")
+            {
+
+            }
+            else if (e.CommandName == "checkin")
+            {
+                SignOutSheet mySignoutSheet = new SignOutSheet();
+                mySignoutSheet.sosID = Convert.ToInt32(gvSosTracking.Rows[index].Cells[0].Text);
+                mySignoutSheet.dateDue= Convert.ToDateTime(gvSosTracking.Rows[index].Cells[2].Text);
+                int soonness = Convert.ToInt32(gvSosTracking.Rows[index].Cells[3].Text);
+                if (soonness < 1)
+                {
+                    mySignoutSheet.status = "Overdue";
+                }
+                else
+                    mySignoutSheet.status = "Not Overude";
+            }
+        }
     }
