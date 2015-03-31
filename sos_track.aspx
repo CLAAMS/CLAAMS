@@ -14,7 +14,7 @@
                             <h1>Sign Sheet Tracking</h1>
                         </div>
                     </div>
-                    <asp:GridView ID="gvSosTracking" AutoGenerateColumns="false" DataKeyNames="sosID" runat="server" CssClass="table" OnRowCommand="gvSosTracking_RowCommand">
+                    <asp:GridView ID="gvSosTracking" AutoGenerateColumns="false" DataKeyNames="sosID" runat="server" CssClass="table" OnRowCommand="gvSosTracking_RowCommand" >
                         <Columns>
                             <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
                             <asp:BoundField DataField="Recipient" HeaderText="Recipient" />
