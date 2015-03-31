@@ -23,7 +23,7 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-    <div class="row">
+    <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="sos_form" runat="server">

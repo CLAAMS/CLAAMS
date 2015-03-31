@@ -3,7 +3,7 @@
     <link href="css/login.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+    <div class="row main_content">
         <div class="col-md-4 col-md-offset-4">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">

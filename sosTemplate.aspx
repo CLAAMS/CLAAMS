@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+    <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <div class="row header_row"><div class="col-md-12" id="sosCopyHeader" runat="server" visible="true"><p><h1>Edit Sign Sheet</h1></p></div></div>
             <asp:Label ID="lblSOSCopy" Text="Sign Sheet Body:" runat="server" CssClass="label" />
