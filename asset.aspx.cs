@@ -39,6 +39,17 @@ namespace CD6{
                 ddlStatus.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                 ddlStatus.SelectedIndex = 0;
             }
+            if (Session["createAssetSelections"] != null)
+            {
+                Dictionary<string, object> createAssetSelections = (Dictionary<string, object>)Session["createAssetSelections"];
+                txtCLAID.Text = (string)createAssetSelections["CLATag"];
+                txtMake.Text = (string)createAssetSelections["Make"];
+                txtModel.Text = (string)createAssetSelections["Model"];
+                txtSerialLeft.Text = (string)createAssetSelections["SerialNumber"];
+                ddlStatus.SelectedValue = (string)createAssetSelections["Status"];
+                txtDescription.Text = (string)createAssetSelections["Description"];
+                txtNotes.Text = (string)createAssetSelections["Notes"];
+            }
         }
 
         private void populateTemplateDropdown() {
@@ -379,6 +390,21 @@ namespace CD6{
         protected void btnCheckIN_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void manage_templates_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> createAssetSelections = new Dictionary<string, object>();
+            createAssetSelections.Add("CLATag", txtCLAID.Text);
+            createAssetSelections.Add("Make", txtMake.Text);
+            createAssetSelections.Add("Model", txtModel.Text);
+            createAssetSelections.Add("SerialNumber", txtSerialLeft.Text);
+            createAssetSelections.Add("Status", ddlStatus.SelectedValue);
+            createAssetSelections.Add("Description", txtDescription.Text);
+            createAssetSelections.Add("Notes", txtNotes.Text);
+
+            Session["createAssetSelections"] = createAssetSelections;
+            Response.Redirect("template_asset.aspx");
         }
     }
 }      
