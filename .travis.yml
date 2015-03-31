@@ -1,2 +1,4 @@
 language: csharp
 solution: CD6.sln
+notifications:
+  slack: claams:JxSsTIdDOd6JXYsPwFqBY4ku
