@@ -18,15 +18,18 @@
                 <div class="row header_row"><div class="col-md-12" id="deptManageHeader" runat="server" visible="true"><p><h1>Add Department</h1></p></div></div>
                 <div class="row"><div class="col-md-12"><asp:Label ID="lblDeptName" Text="Department ID:" runat="server" CssClass="label" /></div></div>
                 <div class="row"><div class="col-md-12"><asp:TextBox ID="txtDeptName" runat="server" CssClass="form-control" /></div></div>
-                <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAdd" Text="Add Department" runat="server" /></div></div>
+                <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnAdd" Text="Add Department" runat="server" OnClick="btnAdd_Click" /></div></div>
                 <div class="row" id="currentDepartments" runat="server" visible="true"><div class="col-md-12"><br /><h3>Current Departments:</h3>
-                    <asp:GridView ID="gvDepartments" runat="server" AutoGenerateColumns="false" CssClass="table">
+                    <asp:GridView ID="gvDepartments" runat="server" AutoGenerateColumns="False" CssClass="table" DataKeyNames="departmentID"  OnRowCommand="gvDepartments_Click"  OnRowDeleting="gvDepartments_RowDeleting" >
                         <Columns>
-                            <asp:BoundField DataField="Department" HeaderText="ID" />
-                            <asp:ButtonField Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn-danger btn" />
+                            <asp:BoundField DataField="DepartmentId" HeaderText="ID" />
+                            <asp:BoundField DataField="Name" HeaderText="Name" />
+                            <asp:ButtonField Text="Delete" ButtonType="Button" ControlStyle-CssClass="btn-danger btn" CommandName="Delete" >
+<ControlStyle CssClass="btn-danger btn"></ControlStyle>
+                            </asp:ButtonField>
                         </Columns>
                      </asp:GridView>
-                    <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnClose" Text="Close" runat="server" OnClientClick="window.close(); return false;" /></div></div>
+                    <div class="button_row row"><div class="col-md-12" style="text-align:center;"><asp:Button ID="btnClose" Text="Close" runat="server" OnClientClick="window.close(); return false;" OnClick="btnClose_Click" /></div></div>
                 </div></div>
             </div>
         </div>
