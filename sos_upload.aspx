@@ -49,7 +49,7 @@
                                     <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="btnUpload_Click" CssClass="btn btn-file" />
                                 </div>
                             </div>
-                            <div class="row" style="text-align:center;" id="signatureFunctions">
+                            <div class="row" style="text-align:center;" id="signatureFunctions" runat="server">
                                 <div class="col-md-6">
                                     <asp:LinkButton ID="linkShowSoS" Text="Show Signature" runat="server" />
                                 </div>

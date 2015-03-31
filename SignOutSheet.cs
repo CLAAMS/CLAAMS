@@ -5,6 +5,7 @@ using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Utilities;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace CD6 {
     public class SignOutSheet {
@@ -53,6 +54,35 @@ namespace CD6 {
 
             myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
             return myDS;
+        }
+
+        public static Dictionary<string, string> getSosName(int sosID) {
+            Dictionary<string, string> myDict = new Dictionary<string, string>();
+            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            DataSet myDS = new DataSet();
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand = new SqlCommand();
+            myConnection.Open();
+
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "getNamesForSoS";
+
+            SqlParameter sosIdParam = new SqlParameter("sosID", sosID);
+            sosIdParam.Direction = ParameterDirection.Input;
+            sosIdParam.SqlDbType = SqlDbType.Int;
+            sosIdParam.Size = 50;
+
+            myCommand.Parameters.Add(sosIdParam);
+
+            myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand);
+            myDict.Add("Recipient Name", myDS.Tables[0].Rows[0][3].ToString());
+            myDict.Add("Recipient ID", myDS.Tables[0].Rows[0][2].ToString());
+            myDict.Add("Assigner Name", myDS.Tables[0].Rows[0][1].ToString());
+            myDict.Add("Assigner ID", myDS.Tables[0].Rows[0][0].ToString());
+
+            return myDict;
         }
 
         public DataSet SearchForAssets(int assetID, string assetName, string assetType, string claTag, string serial) {
