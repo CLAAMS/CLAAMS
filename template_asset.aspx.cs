@@ -9,14 +9,17 @@ using System.Data.SqlClient;
 using Utilities;
 using Tools;
 
-
-namespace CD6{
-    public partial class manageTemplates : System.Web.UI.Page{
-        protected void Page_Load(object sender, EventArgs e){
+namespace CD6
+{
+    public partial class template_asset : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
             getTemplates();
         }
 
-        protected void btnAddTemplate_Click(object sender, EventArgs e){
+        protected void btnAddTemplate_Click(object sender, EventArgs e)
+        {
             string name, make, model, description;
             int templateID = 0;
             string procedure = null;
@@ -26,14 +29,19 @@ namespace CD6{
             model = txtModel.Text;
             description = txtDescription.Text;
 
-            if (btnAddTemplate.Text == "Add Template") {
+            if (btnAddTemplate.Text == "Add Template")
+            {
                 procedure = "createTemplate";
-            } else if (btnAddTemplate.Text == "Save Template") {
+            }
+            else if (btnAddTemplate.Text == "Save Template")
+            {
                 templateID = (int)Session["assetTemplateID"];
                 procedure = "updateTemplate";
             }
 
-            if (procedure != null) {
+            if (procedure != null)
+            {
+                string submit_type;
                 DBConnect objDB = new DBConnect();
 
                 SqlCommand objCommand = new SqlCommand();
@@ -64,12 +72,31 @@ namespace CD6{
                 param_description.Size = 100;
                 objCommand.Parameters.Add(param_description);
 
-                if (procedure == "updateTemplate") {
+                submit_type = "addTemplate";
+
+                string dialog_header, dialog_body;
+                if (submit_type == "addTemplate")
+                {
+                    dialog_header = "New Added Template";
+                    dialog_body = string.Format("{0} has been created successfully", name);
+                    modal(dialog_header, dialog_body);
+                }
+
+                if (procedure == "updateTemplate")
+                {
                     SqlParameter param_templateID = new SqlParameter("@assetTemplateID", templateID);
                     param_templateID.Direction = ParameterDirection.Input;
                     param_templateID.SqlDbType = SqlDbType.Int;
                     param_templateID.Size = 100;
                     objCommand.Parameters.Add(param_templateID);
+
+                    submit_type = "editTemplate";
+                    if (submit_type == "editTemplate")
+                    {
+                        dialog_header = "Template has been updated";
+                        dialog_body = string.Format("{0} has been updated successfully", name);
+                        modal(dialog_header, dialog_body);
+                    }
                 }
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
@@ -82,7 +109,7 @@ namespace CD6{
             getTemplates();
         }
 
-        private void blankTemplateFields() {
+            private void blankTemplateFields() {
             txtTemplate.Text = "";
             txtDescription.Text = "";
             txtMake.Text = "";
@@ -99,11 +126,15 @@ namespace CD6{
             gvTemplates.DataBind();
         }
 
-        protected void gvTemplates_RowCommand(object sender, GridViewCommandEventArgs e) {
+        protected void gvTemplates_RowCommand(object sender, GridViewCommandEventArgs e) 
+        {
+            string submit_type;
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvTemplates.Rows[index];
             int assetTemplateID = Convert.ToInt32(gvTemplates.DataKeys[index].Value);
             Session["assetTemplateID"] = assetTemplateID;
+            DataSet ds = Tools.DBAccess.DBCall("select Name from Asset_Template where assetTemplateID =" + assetTemplateID);
+            string templateName = ds.Tables[0].Rows[0][0].ToString();
             if (e.CommandName == "delTemplate"){
                 DBConnect DBObj = new DBConnect();
                 SqlCommand commandObject = new SqlCommand();
@@ -115,6 +146,16 @@ namespace CD6{
                 param_assetTemplateID.SqlDbType = SqlDbType.Int;
                 param_assetTemplateID.Size = 100;
                 commandObject.Parameters.Add(param_assetTemplateID);
+
+                submit_type = "deleteTemplate";
+
+                string dialog_header, dialog_body;
+                if (submit_type == "deleteTemplate")
+                {
+                    dialog_header = "Template has been deleted";
+                    dialog_body = string.Format("{0} has been deleted successfully", templateName);
+                    modal(dialog_header, dialog_body);
+                }
 
                 DBObj.DoUpdateUsingCmdObj(commandObject);
                 DBObj.CloseConnection();
@@ -140,5 +181,17 @@ namespace CD6{
                 btnAddTemplate.Text = "Save Template";
             }
         }
-    }
-}
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("asset.aspx");
+        }
+
+        protected void modal(string title, string body)
+        {
+            this.Master.modal_header = title;
+            this.Master.modal_body = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+      }
+   }
