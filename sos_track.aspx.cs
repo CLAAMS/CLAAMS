@@ -42,6 +42,4 @@ namespace CD6 {
 
             }
         }
-
-      }
     }
