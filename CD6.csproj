@@ -95,7 +95,6 @@
     <Content Include="sos_track.aspx" />
     <Content Include="sos_upload.aspx" />
     <Content Include="sos_view.aspx" />
-    <Content Include="uploadSoS.aspx" />
     <Content Include="users.aspx" />
     <Content Include="Web.config" />
     <Content Include="assetSearchForSoS.aspx" />
@@ -208,13 +207,6 @@
     </Compile>
     <Compile Include="sos_view.aspx.designer.cs">
       <DependentUpon>sos_view.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="uploadSoS.aspx.cs">
-      <DependentUpon>uploadSoS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="uploadSoS.aspx.designer.cs">
-      <DependentUpon>uploadSoS.aspx</DependentUpon>
     </Compile>
     <Compile Include="users.aspx.cs">
       <DependentUpon>users.aspx</DependentUpon>

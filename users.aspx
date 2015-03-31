@@ -4,7 +4,6 @@
     <link href="css/secondary-nav.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <nav class="navbar navbar-default navbar-secondary" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -23,8 +22,7 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-
-    <div class="row">
+    <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <div class="row" id="UsersList" runat="server" visible="true">
                 <div class="row header_row"><div class="col-md-12" id="usersHeader" runat="server" visible="true"><p><h1>Current Users</h1></p></div></div>

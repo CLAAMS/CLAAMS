@@ -5,7 +5,7 @@
     <link href="css/secondary-nav.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+    <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="sos_form" runat="server">

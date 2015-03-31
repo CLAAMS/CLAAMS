@@ -1,6 +1,9 @@
 ﻿body {
 }
 
+.wrapper {
+}
+
 #header {
     font-family: 'BebasNeue';
     text-align: left;
@@ -35,6 +38,10 @@
     font-size:14px;
 }
 
+.main_content {
+    padding: 20px;
+}
+
 .footer {
     font-family: 'BebasNeue';
     background-color: #000000;
@@ -45,6 +52,10 @@
     background-color: #222222;
     padding-top:20px;
     padding-bottom:20px;
+}
+
+#footer_address.row {
+    margin-right: initial;
 }
 
 #footer_wrapper {

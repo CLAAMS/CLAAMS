@@ -23,7 +23,7 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-    <div class="row">
+    <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="sos_form" runat="server">
@@ -52,21 +52,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 button_row" style="text-align:left;">
+                                <div class="col-xs-6 button_row" style="text-align:left;">
                                     <asp:Button ID="btnAddAsset" Text="Add Asset" runat="server" CssClass="btn btn-default" OnClick="btnAddAsset_Click" />
                                 </div>
-                                <div class="col-md-6 button_row" style="text-align:right;">
+                                <div class="col-xs-6 button_row" style="text-align:right;">
                                     <asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" OnClick="btnRemoveAsset_Click" />
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 calendar">
+                                <div class="col-xs-6 calendar">
                                     <asp:label ID="lblIssueDate" Text="Issue Date:" runat="server" CssClass="label" />
                                     <asp:Calendar ID="calIssueDate" runat="server" />
                                 </div>
-                                <div class="col-md-6 calendar" id="calDue" runat="server" visible="false">
-                                    <asp:Label ID="lblDueDate" Text="Due Date: *" runat="server" CssClass="label" />
-                                    <asp:Calendar ID="calDueDate" runat="server" />
+                                <div class="col-xs-6 calendar" style="text-align:right" id="calDue" runat="server" visible="false">
+                                    <asp:Label ID="lblDueDate" Text="Due Date: *" runat="server" CssClass="label" /><br/>
+                                    <asp:Calendar ID="calDueDate" runat="server" style="float:right" />
                                 </div>
                             </div>
                         </div>

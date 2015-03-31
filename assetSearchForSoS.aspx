@@ -1,12 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master.Master" AutoEventWireup="true" CodeBehind="assetSearchForSoS.aspx.cs" Inherits="CD6.WebForm1" %>
 <%@ MasterType VirtualPath="~/master.Master" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/sos.css" rel="stylesheet" />
     <link href="css/secondary-nav.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+<asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="searchFields" runat="server" >
