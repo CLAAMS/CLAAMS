@@ -47,7 +47,6 @@
                         </asp:DropDownList><br />
                         <asp:Label ID="lblTerm" Text="Term: *" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged" AutoPostBack="true" AppendDataBoundItems="true">
-                            
                             <asp:ListItem Value="1" Text="Permanent" />
                             <asp:ListItem Value="2" Text="Non-Permanent" />
                         </asp:DropDownList><br />
