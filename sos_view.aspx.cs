@@ -100,22 +100,27 @@ namespace CD6 {
         }
 
         protected void btnSubmitModification_Click(object sender, EventArgs e) {
-            string submit_type;
             string editorID = (string)Session["user"];
             int sosIDDueDate = (int)Session["SOSID"];
+            string dialog_header = "", dialog_body = "";
+
            // DataSet ds = Tools.DBAccess.DBCall( "select assetTemplateID, Name from Asset_Template");
             DateTime dueDate = calDueDate.SelectedDate;
 
-            submit_type = "update";
-            sosFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate);
-            
-
-            string dialog_header, dialog_body;
-            if (submit_type == "update") {
-                dialog_header = "SoS Modified";
-                dialog_body = string.Format("{0} has been modified successfully", sosIDDueDate);
-                modal(dialog_header, dialog_body);
+            if (SoSFunctions.UpdateSosHistory(sosIDDueDate, editorID)) {
+                if(SoSFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate)){
+                    dialog_header = "SoS Modified";
+                    dialog_body = string.Format("{0} has been modified successfully", sosIDDueDate);
+                } else {
+                    //CODE TO REMOVE NEW SOSHISTORY RECORD
+                    //ERROR DIALOG
+                }
+            } else {
+                dialog_header = "Error: Modify Failed";
+                dialog_body = "Unable to modify record. Please try again.";
             }
+            
+            modal(dialog_header, dialog_body);
         }
 
         protected void modal(string title, string body) {

@@ -23,11 +23,6 @@ namespace CD6 {
             txtRecipient.Text = names["Recipient Name"];
             calIssueDate.SelectedDate = mySOS.dateCreated;
 
-            ArrayList histories = SosHistory.getHistoryForSOS(sosID);
-            foreach (SosHistory history in histories) { 
-                
-            }
-
             if (mySOS.assingmentPeriod == 0) {
                 txtTerm.Text = "Non-Permanent";
                 calDue.Visible = true;
@@ -45,6 +40,7 @@ namespace CD6 {
 
         protected void btnClose_Click(object sender, EventArgs e) {
             Session.Remove("SOSID");
+            Session.Remove("FileName");
             Response.Redirect("./sos_track.aspx");
         }
 
@@ -74,6 +70,7 @@ namespace CD6 {
                     modal("Upload Successful", "The file was uploaded successfully.");
                     signatureFunctions.Visible = true;
                     Session["FileName"] = path + filename + fileExtension;
+                    updateSoS();
                 } catch(Exception ex) {
                     modal("Upload Failed", "The was a problem uploading\nyour file, please try again.");
                 }
@@ -96,6 +93,29 @@ namespace CD6 {
 
         protected void linkShowSoS_Click(object sender, EventArgs e) {
             imageModal("Sign Sheet", "3-1-2015__3081.jpg");
+        }
+
+        protected void updateSoS() {
+            int sosID = (int)Session["SOSID"];
+            string editorID = (string)Session["user"];
+            string fileName = (string)Session["FileName"];
+
+            string dialog_header = "", dialog_body = "";
+
+            if (SoSFunctions.UpdateSosHistory(sosID, editorID)) {
+                if(SoSFunctions.UpdateSoSFileName(sosID, editorID, fileName)){
+                    dialog_header = "SoS Modified";
+                    dialog_body = string.Format("{0} has been modified successfully", sosID);
+                } else {
+                    //CODE TO REMOVE NEW SOSHISTORY RECORD
+                    //ERROR DIALOG
+                }
+            } else {
+                dialog_header = "Error: Modify Failed";
+                dialog_body = "Unable to modify record. Please try again.";
+            }
+            
+            modal(dialog_header, dialog_body);
         }
     }
 }
