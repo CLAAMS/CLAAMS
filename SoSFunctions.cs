@@ -60,6 +60,7 @@ namespace CD6
             objCommand.Parameters.Add(inputParameter);
 
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+            objDB.CloseConnection();
             return myDS;
         }
 
@@ -72,8 +73,9 @@ namespace CD6
             SqlParameter inputParameter1 = new SqlParameter("sosID", mySOS.sosID);
         }
 
-        public void UpdateSoSDueDate(int sosID, string editorID, DateTime dueDate)
-        {
+        public static bool UpdateSosHistory(int sosID, string editorID) {
+            DBConnect objDB = new DBConnect();
+
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "UpdateSOSHistory";
@@ -90,7 +92,21 @@ namespace CD6
             inputParameter.Size = 100;
             objCommand.Parameters.Add(inputParameter);
 
-            objDB.DoUpdateUsingCmdObj(objCommand);
+            try {
+                if (objDB.DoUpdateUsingCmdObj(objCommand) == -1) {
+                    objDB.CloseConnection();
+                    return false;
+                }
+                objDB.CloseConnection();
+                return true;
+            } catch {
+                objDB.CloseConnection();
+                return false;
+            }
+        }
+        
+        public static bool UpdateSoSDueDate(int sosID, string editorID, DateTime dueDate) {
+            DBConnect objDB = new DBConnect();
 
             SqlCommand objCommand1 = new SqlCommand();
             objCommand1.CommandType = CommandType.StoredProcedure;
@@ -114,8 +130,49 @@ namespace CD6
             inputParameter1.Size = 100;
             objCommand1.Parameters.Add(inputParameter1);
 
-            objDB.DoUpdateUsingCmdObj(objCommand1);
+            try {
+                objDB.DoUpdateUsingCmdObj(objCommand1);
+                objDB.CloseConnection();
+                return true;
+            } catch {
+                objDB.CloseConnection();
+                return false;
+            }
         }
 
-   }
+        public static bool UpdateSoSFileName(int sosID, string editorID, string fileName) {
+            DBConnect objDB = new DBConnect();
+
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "UpdateSosFileName";
+
+            SqlParameter inputParameter1 = new SqlParameter("@sosID", sosID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@fileName", fileName);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@editorID", editorID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            try {
+                objDB.DoUpdateUsingCmdObj(objCommand1);
+                objDB.CloseConnection();
+                return true;
+            } catch {
+                objDB.CloseConnection();
+                return false;
+            }
+        }
+    }
 }

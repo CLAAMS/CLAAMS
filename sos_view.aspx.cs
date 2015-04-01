@@ -23,21 +23,28 @@ namespace CD6 {
         protected void loadOriginal() {
             try {
                 sosID = (int)Session["SOSID"];
-               // Session.Remove("SOSID");
+                //Session.Remove("SOSID");
             } catch {
                 Response.Redirect("./sos_search.aspx");
             }
 
+            Dictionary<string, string> names = SignOutSheet.getSosName(sosID);
+
             mySOS = SignOutSheet.getSOSbyID(sosID);
-            txtRecipient.Text = mySOS.arID.ToString();
-            txtAssigner.Text = mySOS.cladID.ToString();
-            txtTerm.Text = mySOS.assingmentPeriod.ToString();
+            //txtRecipient.Text = mySOS.arID.ToString();
+            //txtAssigner.Text = mySOS.cladID.ToString();
+            txtAssigner.Text = names["Assigner Name"];
+            txtRecipient.Text = names["Recipient Name"];
             calIssueDate.SelectedDate = mySOS.dateCreated;
 
             if (mySOS.assingmentPeriod == 0)  {
                 calDue.Visible = true;
-                calDueDate.Enabled = true;
-                calDueDate.SelectedDate = mySOS.dateDue;
+                string dueDate = mySOS.dateDue.ToShortDateString();
+                DateTime DateDue = Convert.ToDateTime(dueDate);
+                calDueDate.SelectedDate = DateDue;
+                txtTerm.Text = "Non-Permanent";
+            } else {
+                txtTerm.Text = "Permanent";
             }
 
             getAssets(sosID);
@@ -45,6 +52,7 @@ namespace CD6 {
         }
 
         protected void btnClose_Click(object sender, EventArgs e) {
+            Session.Remove("SOSID");
             Response.Redirect("./sos_search.aspx");
         }
 
@@ -84,39 +92,46 @@ namespace CD6 {
             txtRecipient.Text = history.cladID.ToString();
             txtTerm.Text = history.assingmentPeriod.ToString();
             calIssueDate.SelectedDate = history.dateModified;
-            if (history.assingmentPeriod == 2){
+            if (history.assingmentPeriod == 0){
                 calDue.Visible = true;
                 calDueDate.SelectedDate = history.dateDue;
                
             }
         }
 
-        protected void btnSubmitModification_Click(object sender, EventArgs e)
-        {
-            string submit_type;
+        protected void btnSubmitModification_Click(object sender, EventArgs e) {
             string editorID = (string)Session["user"];
             int sosIDDueDate = (int)Session["SOSID"];
+            string dialog_header = "", dialog_body = "";
+
            // DataSet ds = Tools.DBAccess.DBCall( "select assetTemplateID, Name from Asset_Template");
             DateTime dueDate = calDueDate.SelectedDate;
 
-            submit_type = "update";
-            sosFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate);
-            
-
-            string dialog_header, dialog_body;
-            if (submit_type == "update")
-            {
-                dialog_header = "SoS Modified";
-                dialog_body = string.Format("{0} has been modified successfully", sosIDDueDate);
-                modal(dialog_header, dialog_body);
+            if (SoSFunctions.UpdateSosHistory(sosIDDueDate, editorID)) {
+                if(SoSFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate)){
+                    dialog_header = "SoS Modified";
+                    dialog_body = string.Format("{0} has been modified successfully", sosIDDueDate);
+                } else {
+                    //CODE TO REMOVE NEW SOSHISTORY RECORD
+                    //ERROR DIALOG
+                }
+            } else {
+                dialog_header = "Error: Modify Failed";
+                dialog_body = "Unable to modify record. Please try again.";
             }
+            
+            modal(dialog_header, dialog_body);
+            Response.Redirect("./sos_view.aspx");
         }
 
-        protected void modal(string title, string body)
-        {
+        protected void modal(string title, string body) {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+
+        protected void linkUpload_Click(object sender, EventArgs e) {
+            Response.Redirect("./sos_upload.aspx");
         }
     }
 }

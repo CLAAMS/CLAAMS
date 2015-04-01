@@ -26,15 +26,11 @@ namespace CD6{
         }
 
         public string modal_header {
-            set {
-                lblModal_header.Text = value;
-            }
+            set { lblModal_header.Text = value; }
         }
 
         public string modal_body {
-            set {
-                lblModal_body.Text = value;
-            }
+            set { lblModal_body.Text = value; }
         }
 
         protected void logout_Click(object sender, EventArgs e)
