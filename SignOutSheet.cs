@@ -38,6 +38,7 @@ namespace CD6 {
             myCommand1.CommandText = "SelectNameandARID";
 
             myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand1);
+            myDbConnect.CloseConnection();
             return myDS;
         }
 
@@ -53,6 +54,7 @@ namespace CD6 {
             myCommand2.CommandText = "SelectCLAIDandName";
 
             myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
+            myDbConnect.CloseConnection();
             return myDS;
         }
 
@@ -82,6 +84,7 @@ namespace CD6 {
             myDict.Add("Assigner Name", myDS.Tables[0].Rows[0][1].ToString());
             myDict.Add("Assigner ID", myDS.Tables[0].Rows[0][0].ToString());
 
+            myDbConnect.CloseConnection();
             return myDict;
         }
 
@@ -124,6 +127,7 @@ namespace CD6 {
             myCommand5.Parameters.Add(inputParameter5);
 
             myDs = myDb.GetDataSetUsingCmdObj(myCommand5);
+            myDb.CloseConnection();
 
             return myDs;
         }
@@ -304,6 +308,7 @@ namespace CD6 {
             mySOS.recordModified = Convert.ToDateTime(myDS.Tables[0].Rows[0][10]);
             mySOS.editorID = myDS.Tables[0].Rows[0][11].ToString();
 
+            myDbConnect.CloseConnection();
             return mySOS;
         }
 
@@ -350,6 +355,7 @@ namespace CD6 {
                 assets.Add(asset);
             }
 
+            myDbConnect.CloseConnection();
             return assets;
         }
     }

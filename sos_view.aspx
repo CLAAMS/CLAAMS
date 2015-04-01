@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-6 calendar" id="calDue" runat="server" visible="false">
                                     <asp:Label ID="lblDueDate" Text="Due Date: *" runat="server" CssClass="label" />
-                                    <asp:Calendar ID="calDueDate" runat="server" Enabled="false" />
+                                    <asp:Calendar ID="calDueDate" runat="server" Enabled="true" />
                                 </div>
                             </div>
                         </div>

@@ -121,6 +121,7 @@ namespace CD6 {
             }
             
             modal(dialog_header, dialog_body);
+            Response.Redirect("./sos_view.aspx");
         }
 
         protected void modal(string title, string body) {

@@ -60,6 +60,7 @@ namespace CD6
             objCommand.Parameters.Add(inputParameter);
 
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+            objDB.CloseConnection();
             return myDS;
         }
 
@@ -92,9 +93,14 @@ namespace CD6
             objCommand.Parameters.Add(inputParameter);
 
             try {
-                objDB.DoUpdateUsingCmdObj(objCommand);
+                if (objDB.DoUpdateUsingCmdObj(objCommand) == -1) {
+                    objDB.CloseConnection();
+                    return false;
+                }
+                objDB.CloseConnection();
                 return true;
             } catch {
+                objDB.CloseConnection();
                 return false;
             }
         }
@@ -126,8 +132,10 @@ namespace CD6
 
             try {
                 objDB.DoUpdateUsingCmdObj(objCommand1);
+                objDB.CloseConnection();
                 return true;
             } catch {
+                objDB.CloseConnection();
                 return false;
             }
         }
@@ -159,8 +167,10 @@ namespace CD6
 
             try {
                 objDB.DoUpdateUsingCmdObj(objCommand1);
+                objDB.CloseConnection();
                 return true;
             } catch {
+                objDB.CloseConnection();
                 return false;
             }
         }

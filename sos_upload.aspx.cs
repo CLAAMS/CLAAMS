@@ -69,7 +69,7 @@ namespace CD6 {
                     fuSignSheet.PostedFile.SaveAs(path + filename + fileExtension);
                     modal("Upload Successful", "The file was uploaded successfully.");
                     signatureFunctions.Visible = true;
-                    Session["FileName"] = path + filename + fileExtension;
+                    Session["FileName"] = filename + fileExtension;
                     updateSoS();
                 } catch(Exception ex) {
                     modal("Upload Failed", "The was a problem uploading\nyour file, please try again.");
@@ -92,7 +92,9 @@ namespace CD6 {
         }
 
         protected void linkShowSoS_Click(object sender, EventArgs e) {
-            imageModal("Sign Sheet", "3-1-2015__3081.jpg");
+            int sosID = (int)Session["SOSID"];
+            string fileName = SignOutSheet.getSOSbyID(sosID).imageFileName;
+            imageModal("Sign Sheet", fileName);
         }
 
         protected void updateSoS() {
