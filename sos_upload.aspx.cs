@@ -10,7 +10,6 @@ namespace CD6 {
     public partial class sos_upload : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
             int sosID = (int)Session["sosID"];
-            //int sosID = 3081;
             SignOutSheet mySOS = SignOutSheet.getSOSbyID(sosID);
             Dictionary<string, string> names = SignOutSheet.getSosName(sosID);
             ArrayList assets = SignOutSheet.getAssetsForSOS(sosID);
@@ -23,6 +22,11 @@ namespace CD6 {
             txtAssigner.Text = names["Assigner Name"];
             txtRecipient.Text = names["Recipient Name"];
             calIssueDate.SelectedDate = mySOS.dateCreated;
+
+            ArrayList histories = SosHistory.getHistoryForSOS(sosID);
+            foreach (SosHistory history in histories) { 
+                
+            }
 
             if (mySOS.assingmentPeriod == 0) {
                 txtTerm.Text = "Non-Permanent";
@@ -40,17 +44,19 @@ namespace CD6 {
         }
 
         protected void btnClose_Click(object sender, EventArgs e) {
-
+            Session.Remove("SOSID");
+            Response.Redirect("./sos_track.aspx");
         }
 
         protected void btnUpload_Click(object sender, EventArgs e) {
-            uploadFile(txtRecipient.Text, "3081", calIssueDate.SelectedDate.ToShortDateString().Replace("/","-"));
+            int sosID = (int)Session["SOSID"];
+            uploadFile(txtRecipient.Text, sosID.ToString(), calIssueDate.SelectedDate.ToShortDateString().Replace("/","-"), calDueDate.SelectedDate.ToShortDateString().Replace("/","-"), SosHistory.getLastHistoryID(sosID).ToString());
         }
 
-        protected void uploadFile(string recipientName, string sosID, string issueDate) {
+        protected void uploadFile(string recipientName, string sosID, string issueDate, string dueDate, string copy) {
             bool extensionOK = false;
             string path = Server.MapPath("~/signatures/");
-            string filename = string.Format("{0}_{1}_{2}", issueDate, recipientName, sosID);
+            string filename = string.Format("{0}_{1}_{2}_{3}_{4}", issueDate, recipientName, sosID, dueDate, copy);
             string fileExtension = "";
             if(fuSignSheet.HasFile){
                 fileExtension = System.IO.Path.GetExtension(fuSignSheet.FileName).ToLower();
@@ -67,6 +73,7 @@ namespace CD6 {
                     fuSignSheet.PostedFile.SaveAs(path + filename + fileExtension);
                     modal("Upload Successful", "The file was uploaded successfully.");
                     signatureFunctions.Visible = true;
+                    Session["FileName"] = path + filename + fileExtension;
                 } catch(Exception ex) {
                     modal("Upload Failed", "The was a problem uploading\nyour file, please try again.");
                 }
@@ -79,6 +86,16 @@ namespace CD6 {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+
+        protected void imageModal(string title, string image) {
+            lblModal_header.Text = title;
+            literalImage.Text = string.Format("<img src=\"./signatures/{0}\" />", image);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "imageModal();", true);
+        }
+
+        protected void linkShowSoS_Click(object sender, EventArgs e) {
+            imageModal("Sign Sheet", "3-1-2015__3081.jpg");
         }
     }
 }

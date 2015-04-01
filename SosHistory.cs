@@ -69,6 +69,36 @@ namespace CD6 {
             return histories;
         }
 
+        public static int getLastHistoryID(int sosID) {
+            int historyID;
+
+            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+
+            DataSet myDS = new DataSet();
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand = new SqlCommand();
+            myConnection.Open();
+
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "getLastSosHistoryIdBySos";
+
+            SqlParameter sosIDParam = new SqlParameter("@sosID", sosID);
+
+            sosIDParam.Direction = ParameterDirection.Input;
+            sosIDParam.SqlDbType = SqlDbType.Int;
+            sosIDParam.Size = 50;
+
+            myCommand.Parameters.Add(sosIDParam);
+
+            myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand);
+
+            historyID = Convert.ToInt32(myDS.Tables[0].Rows[0][0].ToString());
+
+            return historyID;
+        }
+
         public static SosHistory getHistoryByID(int sosHistoryID) {
             SosHistory history = new SosHistory();
 

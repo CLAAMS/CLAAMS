@@ -13,6 +13,24 @@ namespace CD6 {
     public partial class sos_upload {
         
         /// <summary>
+        /// lblModal_header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModal_header;
+        
+        /// <summary>
+        /// literalImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal literalImage;
+        
+        /// <summary>
         /// sos_form control.
         /// </summary>
         /// <remarks>

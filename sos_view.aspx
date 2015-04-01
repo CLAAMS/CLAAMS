@@ -41,7 +41,8 @@
                             <asp:Label ID="lblTerm" Text="Term:" runat="server" CssClass="label" />
                             <asp:TextBox ID="txtTerm" runat="server" CssClass="form-control" ReadOnly="true" />
                             <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
-                            <asp:DropDownList ID="ddlHistory" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlHistory_SelectedIndexChanged" AppendDataBoundItems="true" />
+                            <asp:DropDownList ID="ddlHistory" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlHistory_SelectedIndexChanged" AppendDataBoundItems="true" /><br />
+                            <asp:LinkButton id="linkUpload" runat="server" OnClick="linkUpload_Click" Text="Upload Sign Sheet" />
                         </div>
                         <div class="col-md-6">
                             <div class="row">

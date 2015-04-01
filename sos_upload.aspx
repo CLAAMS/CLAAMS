@@ -23,6 +23,20 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModal" aria-hidden="true">
+        <div class="modal-dialog" style="min-width:800px">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>-->
+                    <h4 class="modal-title" id="myModalLabel"><asp:Label ID="lblModal_header" runat="server" /></h4>
+                </div>
+                <div class="modal-body">
+                    <asp:Literal ID="literalImage" runat="server"/><br />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row main_content">
         <div class="col-md-8 col-md-offset-2" >
             <form role="form">
@@ -51,7 +65,7 @@
                             </div>
                             <div class="row" style="text-align:center;" id="signatureFunctions" runat="server">
                                 <div class="col-md-6">
-                                    <asp:LinkButton ID="linkShowSoS" Text="Show Signature" runat="server" />
+                                    <asp:LinkButton ID="linkShowSoS" Text="Show Signature" runat="server" OnClick="linkShowSoS_Click"/>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:LinkButton ID="linkSendSignature" Text="Email Signature" runat="server" />
