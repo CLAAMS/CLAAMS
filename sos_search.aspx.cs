@@ -20,7 +20,7 @@ namespace CD6 {
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
 
-            if (mySOS.assingmentPeriod == 0) {
+            if (mySOS.assingmentPeriod == 1) {
                 if (calDueDate.SelectedDate == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
                     mySOS.dateDue = Convert.ToDateTime("1/1/1900 12:00:00 AM");
                 } else {
@@ -70,7 +70,19 @@ namespace CD6 {
                 mySOS.sosID = Convert.ToInt32(gvSearchResults.Rows[index].Cells[0].Text);
                 Session.Add("SOSID", mySOS.sosID);
                 Session.Add("IsOnModifyPage", onModify);
+                if (mySOS.assingmentPeriod == 0)
+                {
+                    dueCal.Visible = true;
+                    calDueDate.Enabled = true;
+                }
+                else 
+                {
+                    dueCal.Visible = false;
+                    calDueDate.Enabled = false;
+                }
+                calIssueDate.Enabled = true;
                 Response.Redirect("./sos_view.aspx");
+               
             }
         }
 

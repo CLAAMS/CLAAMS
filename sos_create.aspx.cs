@@ -40,7 +40,7 @@ namespace CD6 {
                     ddlRecipient.SelectedValue = (string)createSosSelections["Recipient"];
                     ddlTerm.SelectedValue = (string)createSosSelections["Term"];
                     calIssueDate.SelectedDate = (DateTime)createSosSelections["IssueDate"];
-                    if (ddlTerm.SelectedValue == "2") {
+                    if (ddlTerm.SelectedValue == "0") {
                         calDue.Visible = true;
                         calDueDate.SelectedDate = (DateTime)createSosSelections["DueDate"];                        
                     }
@@ -73,7 +73,7 @@ namespace CD6 {
             createSosSelections.Add("Assigner", ddlAssigner.SelectedValue);
             createSosSelections.Add("Term", ddlTerm.SelectedValue);
             createSosSelections.Add("IssueDate", calIssueDate.SelectedDate);
-            if (ddlTerm.SelectedValue == "2") {
+            if (ddlTerm.SelectedValue == "0") {
                 createSosSelections.Add("DueDate", calDueDate.SelectedDate);
             }
             Session["createSosSelections"] = createSosSelections;
@@ -199,7 +199,7 @@ namespace CD6 {
         }
 
         protected void ddlTerm_SelectedIndexChanged(object sender, EventArgs e) {
-            if (int.Parse(ddlTerm.SelectedValue) == 2) {
+            if (int.Parse(ddlTerm.SelectedValue) == 0) {
                 calDue.Visible = true;
             } else {
                 calDue.Visible = false;

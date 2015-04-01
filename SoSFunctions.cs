@@ -62,6 +62,7 @@ namespace CD6
             DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
             return myDS;
         }
+
         public void DeleteSOS(SignOutSheet mySOS)
         {
             SqlCommand myCommand1 = new SqlCommand();
@@ -69,9 +70,51 @@ namespace CD6
             myCommand1.CommandText = "DeleteSOS";
 
             SqlParameter inputParameter1 = new SqlParameter("sosID", mySOS.sosID);
+        }
 
+        public void UpdateSoSDueDate(int sosID, string editorID, DateTime dueDate)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateSOSHistory";
 
+            SqlParameter inputParameter = new SqlParameter("@sosID", sosID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
 
+            inputParameter = new SqlParameter("@editorID", editorID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "UpdateModifiedSOSDate";
+
+            SqlParameter inputParameter1 = new SqlParameter("@sosID", sosID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@dueDate", dueDate);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@editorID", editorID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            objDB.DoUpdateUsingCmdObj(objCommand1);
         }
 
    }
