@@ -12,7 +12,6 @@ using Utilities;
 namespace CD6{
     public partial class users : System.Web.UI.Page{
         protected void Page_Load(object sender, EventArgs e){
-
             UsersList.Visible=true;
             usersHeader.Visible=true;
             modifyHeader.Visible=false;
@@ -118,12 +117,12 @@ namespace CD6{
             UserForm.Visible=true;
             txtCLAID.Enabled = true;
 
-            txtCLAID.Text = null;
-            txtEmail.Text = null;
-            txtFirstName.Text = null;
-            txtLastName.Text = null;
-            ddlStatus.SelectedValue = "Active";
-            txtOffice.Text = null;
+            //txtCLAID.Text = null;
+            //txtEmail.Text = null;
+            //txtFirstName.Text = null;
+            //txtLastName.Text = null;
+            //ddlStatus.SelectedValue = "Active";
+            //txtOffice.Text = null;
         }
 
         protected void btnCurrent_Click(object sender, EventArgs e){
@@ -142,76 +141,185 @@ namespace CD6{
             string status = ddlStatus.SelectedValue;
             string email = txtEmail.Text;
 
-            DBConnect DBObj = new DBConnect();
-            SqlCommand commandObject = new SqlCommand();
-            commandObject.CommandType = CommandType.StoredProcedure;
-
-            if (txtCLAID.Enabled) {
-                commandObject.CommandText = "createUser";
-            } else if (txtCLAID.Enabled == false) {
-                commandObject.CommandText = "updateUserInfo";
-            } else {
-                commandObject.CommandText = "Error";
-            }
-
-            SqlParameter param_AccessNetID = new SqlParameter("@accessNetID", accessNetId);
-            param_AccessNetID.Direction = ParameterDirection.Input;
-            param_AccessNetID.SqlDbType = SqlDbType.VarChar;
-            param_AccessNetID.Size = 100;
-            commandObject.Parameters.Add(param_AccessNetID);
-
-            SqlParameter param_firstName = new SqlParameter("@firstName", firstName);
-            param_firstName.Direction = ParameterDirection.Input;
-            param_firstName.SqlDbType = SqlDbType.VarChar;
-            param_firstName.Size = 100;
-            commandObject.Parameters.Add(param_firstName);
-
-            SqlParameter param_lastName = new SqlParameter("@lastName", lastName);
-            param_lastName.Direction = ParameterDirection.Input;
-            param_lastName.SqlDbType = SqlDbType.VarChar;
-            param_lastName.Size = 100;
-            commandObject.Parameters.Add(param_lastName);
-
-            SqlParameter param_office = new SqlParameter("@office", office);
-            param_office.Direction = ParameterDirection.Input;
-            param_office.SqlDbType = SqlDbType.VarChar;
-            param_office.Size = 100;
-            commandObject.Parameters.Add(param_office);
-
-            SqlParameter param_UserStatus = new SqlParameter("@status", status);
-            param_UserStatus.Direction = ParameterDirection.Input;
-            param_UserStatus.SqlDbType = SqlDbType.VarChar;
-            param_UserStatus.Size = 100;
-            commandObject.Parameters.Add(param_UserStatus);
-
-            SqlParameter param_email = new SqlParameter("@email", email);
-            param_email.Direction = ParameterDirection.Input;
-            param_email.SqlDbType = SqlDbType.VarChar;
-            param_email.Size = 100;
-            commandObject.Parameters.Add(param_email);
-
-            if (commandObject.CommandText != "Error"){
-                DBObj.DoUpdateUsingCmdObj(commandObject);
-                DBObj.CloseConnection();
-                if (commandObject.CommandText == "createUser") {
-                    modal("Success", "User Created");
+            if (!verifyUser(accessNetId, firstName, lastName, email)) { 
+                if(txtCLAID.Enabled){
+                    btnAdd_Click(this, e);
                 } else {
-                    modal("Success", "User Updated");
+                    UsersList.Visible = false;
+                    usersHeader.Visible = false;
+                    modifyHeader.Visible = true;
+                    createHeader.Visible = false;
+                    UserForm.Visible = true;
+
+                    txtCLAID.Enabled = false;
+                    txtCLAID.Text = accessNetId;
+                    txtEmail.Text = email;
+                    txtFirstName.Text = firstName;
+                    txtLastName.Text = lastName;
+                    txtOffice.Text = office;
+                    ddlStatus.SelectedValue = status;
+                }
+            } else {
+                if (existingUser(accessNetId)) {
+                    if(txtCLAID.Enabled){
+                    btnAdd_Click(this, e);
+                    } else {
+                        UsersList.Visible = false;
+                        usersHeader.Visible = false;
+                        modifyHeader.Visible = true;
+                        createHeader.Visible = false;
+                        UserForm.Visible = true;
+
+                        txtCLAID.Enabled = false;
+                        txtCLAID.Text = accessNetId;
+                        txtEmail.Text = email;
+                        txtFirstName.Text = firstName;
+                        txtLastName.Text = lastName;
+                        txtOffice.Text = office;
+                        ddlStatus.SelectedValue = status;
+                    }
+                    modal("Invalid Input", "User exists in the system.");
+                }else{
+                    DBConnect DBObj = new DBConnect();
+                    SqlCommand commandObject = new SqlCommand();
+                    commandObject.CommandType = CommandType.StoredProcedure;
+
+                    if (txtCLAID.Enabled) {
+                        commandObject.CommandText = "createUser";
+                    } else if (txtCLAID.Enabled == false) {
+                        commandObject.CommandText = "updateUserInfo";
+                    } else {
+                        commandObject.CommandText = "Error";
+                    }
+
+                    SqlParameter param_AccessNetID = new SqlParameter("@accessNetID", accessNetId);
+                    param_AccessNetID.Direction = ParameterDirection.Input;
+                    param_AccessNetID.SqlDbType = SqlDbType.VarChar;
+                    param_AccessNetID.Size = 100;
+                    commandObject.Parameters.Add(param_AccessNetID);
+
+                    SqlParameter param_firstName = new SqlParameter("@firstName", firstName);
+                    param_firstName.Direction = ParameterDirection.Input;
+                    param_firstName.SqlDbType = SqlDbType.VarChar;
+                    param_firstName.Size = 100;
+                    commandObject.Parameters.Add(param_firstName);
+
+                    SqlParameter param_lastName = new SqlParameter("@lastName", lastName);
+                    param_lastName.Direction = ParameterDirection.Input;
+                    param_lastName.SqlDbType = SqlDbType.VarChar;
+                    param_lastName.Size = 100;
+                    commandObject.Parameters.Add(param_lastName);
+
+                    SqlParameter param_office = new SqlParameter("@office", office);
+                    param_office.Direction = ParameterDirection.Input;
+                    param_office.SqlDbType = SqlDbType.VarChar;
+                    param_office.Size = 100;
+                    commandObject.Parameters.Add(param_office);
+
+                    SqlParameter param_UserStatus = new SqlParameter("@status", status);
+                    param_UserStatus.Direction = ParameterDirection.Input;
+                    param_UserStatus.SqlDbType = SqlDbType.VarChar;
+                    param_UserStatus.Size = 100;
+                    commandObject.Parameters.Add(param_UserStatus);
+
+                    SqlParameter param_email = new SqlParameter("@email", email);
+                    param_email.Direction = ParameterDirection.Input;
+                    param_email.SqlDbType = SqlDbType.VarChar;
+                    param_email.Size = 100;
+                    commandObject.Parameters.Add(param_email);
+
+                    if (commandObject.CommandText != "Error"){
+                        DBObj.DoUpdateUsingCmdObj(commandObject);
+                        DBObj.CloseConnection();
+                        if (commandObject.CommandText == "createUser") {
+                            modal("Success", "User Created");
+                        } else {
+                            modal("Success", "User Updated");
+                        }
+                    } else {
+                        modal("Error: Unable to perform action", string.Format("{0} \\n has failed", commandObject.CommandText));
+                    }
+
+                    Page_Load(this, e);
                 }
             }
-            else
-            {
-                modal("Error: Unable to perform action", string.Format("{0} \\n has failed", commandObject.CommandText));
-            }
-
-            Page_Load(this, e);
         }
 
-        protected void modal(string title, string body)
-        {
+        private bool verifyUser(string accessNetId, string firstName, string lastName, string email) {
+            bool output = true;
+            string errors = "";
+
+            if (accessNetId == "" || firstName == "" || lastName == "" | email == "") {
+                output = false;
+                errors += "Required Field Missing<br/>";
+            }
+            
+            try {
+                string ANID = LDAP.getDNFromLDAP(accessNetId);
+                Dictionary<string, string> userInfo = LDAP.getUserInfo(accessNetId);
+            } catch {
+                lblCLAID.Font.Bold = true;
+                output = false;
+                errors += "Invalid AccessNet ID<br/>";
+            }
+
+            Tools.InputValidation tool = new Tools.InputValidation();
+
+            if (!tool.IsValidEmail(email)) {
+                output = false;
+                errors += "Invalid Email<br/>";
+            }
+            
+            if(!output){
+                modal("Invalid Input!", errors);
+            }
+            
+            return output;
+        }
+
+        protected bool existingUser(string accessNetId) {
+            string sql = string.Format("select claID from CLA_IT_Member where claID='{0}' and UserStatus='Active'", accessNetId);
+            DataSet result = Tools.DBAccess.DBCall(sql);
+
+            if (result.Tables[0].Rows.Count == 1) {
+                return true;
+            }
+            return false;
+        }
+
+        private bool userLookup(string accessNetId) {
+            try {
+                string ANID = LDAP.getDNFromLDAP(accessNetId);
+                Dictionary<string, string> userInfo = LDAP.getUserInfo(accessNetId);
+                txtCLAID.Text = userInfo["AccessNet"];
+                txtEmail.Text = userInfo["email"];
+                txtFirstName.Text = userInfo["givenName"];
+                txtLastName.Text = userInfo["surName"];
+            } catch {
+                modal("Bad AccessNetID", "The AccessNet ID you\nhave entered is invalid");
+                return false;
+            }
+            return true;
+        }
+
+        protected void modal(string title, string body) {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+
+        protected void linkLookupUser_Click(object sender, EventArgs e){
+            userLookup(txtCLAID.Text);
+
+            if (txtCLAID.Enabled) {
+                btnAdd_Click(this, e);
+            } else {
+                UsersList.Visible = false;
+                usersHeader.Visible = false;
+                modifyHeader.Visible = true;
+                createHeader.Visible = false;
+                UserForm.Visible = true;
+            }
         }
     }
 }
