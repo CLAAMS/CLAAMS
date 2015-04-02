@@ -24,8 +24,6 @@ namespace CD6{
 
                 //try to fetch a property..if no errors raised then it works
                 strID = entry.Properties["sAMAccountName"][0].ToString();
-
-
             }catch{
             }finally{
                 entry.Close();
