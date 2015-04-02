@@ -14,7 +14,7 @@
                             <h1>Sign Sheet Tracking</h1>
                         </div>
                     </div>
-		    <asp:GridView ID="gvSosTracking" AutoGenerateColumns="false" DataKeyNames="sosID" runat="server" CssClass="table" OnRowCommand="gvSosTracking_RowCommand" >
+                    <asp:GridView ID="gvSosTracking" AutoGenerateColumns="false" DataKeyNames="sosID" runat="server" CssClass="table" OnRowCommand="gvSosTracking_RowCommand" >
                         <Columns>
                             <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
                             <asp:BoundField DataField="Recipient" HeaderText="Recipient" />
@@ -23,7 +23,6 @@
                             <asp:BoundField DataField="Email" HeaderText="Email" />
                             <asp:BoundField DataField="Phone" HeaderText="Phone" />
                             <asp:ButtonField ButtonType="Button" Text="View" CommandName="view" ControlStyle-CssClass="btn-default btn" />
-                            <asp:ButtonField ButtonType="Button" Text="Check-In" CommandName="checkIn" ControlStyle-CssClass="btn-danger btn" />
                         </Columns>
                     </asp:GridView>
                 </div>
