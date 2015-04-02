@@ -125,13 +125,9 @@
                                 <asp:BoundField DataField="Model" HeaderText="Model" />
                                 <asp:BoundField DataField="SerialNumber" HeaderText="Serial" />
                                 <asp:BoundField DataField="Status" HeaderText="Status" />
-                                <asp:ButtonField  ButtonType="Button"  Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
-                                <asp:ButtonField ButtonType="Button" Text="Archive"  CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" />
-                                <asp:TemplateField HeaderText="Check-In">
-                                    <ItemTemplate>
-                                        <asp:Button ID="btnCheckIN" runat="server" OnClick="btnCheckIN_Click" Text="CheckIn" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default" />
+                                <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="deleteRecord" ControlStyle-CssClass="btn btn-danger" />
+                                <asp:ButtonField ButtonType="Button" Text="Check In" CommandName="checkinRecord" ControlStyle-CssClass="btn btn-default" />
                             </Columns>
                         </asp:GridView>
                     </div>
