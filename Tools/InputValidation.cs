@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace Tools {
     public class InputValidation {
         bool invalid = false;
 
-        public static bool checkLetters(string input)
-        {
+        public static bool checkLetters(string input) {
             int count = Regex.Matches(input, @"[a-zA-Z\-\ ]").Count;
 
             if (input.Length != 0 && count == input.Length) {
@@ -31,7 +30,7 @@ namespace Tools {
             }
         }
 
-        public static bool checkDecimals(string input){
+        public static bool checkDecimals(string input) {
             int count = Regex.Matches(input, @"[0-9\.]").Count;
 
             if (input.Length != 0 && count == input.Length) {
@@ -41,14 +40,15 @@ namespace Tools {
             }
         }
 
-        public static bool IsValidEmail(string strIn) {
-            bool invalid = false;
+        public bool IsValidEmail(string strIn) {
+            invalid = false;
             if (String.IsNullOrEmpty(strIn))
                 return false;
 
             // Use IdnMapping class to convert Unicode domain names. 
             try {
-                strIn = Regex.Replace(strIn, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
+                strIn = Regex.Replace(strIn, @"(@)(.+)$", this.DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
             } catch (RegexMatchTimeoutException) {
                 return false;
             }
@@ -67,8 +67,7 @@ namespace Tools {
             }
         }
 
-        private static string DomainMapper(Match match) {
-            bool invalid;
+        private string DomainMapper(Match match) {
             // IdnMapping class with default property values.
             IdnMapping idn = new IdnMapping();
 

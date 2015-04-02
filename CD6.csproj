@@ -127,7 +127,6 @@
     <Compile Include="email.aspx.designer.cs">
       <DependentUpon>email.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InputValidation.cs" />
     <Compile Include="LDAP.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -278,7 +277,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44332/</IISUrl>
+          <IISUrl>http://localhost:44032/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
