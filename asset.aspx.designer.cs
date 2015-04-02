@@ -13,6 +13,42 @@ namespace CD6 {
     public partial class asset {
         
         /// <summary>
+        /// lblModal_header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModal_header;
+        
+        /// <summary>
+        /// lblModal_body control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModal_body;
+        
+        /// <summary>
+        /// btnArchiveAssetYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnArchiveAssetYes;
+        
+        /// <summary>
+        /// btnArchiveAssetNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnArchiveAssetNo;
+        
+        /// <summary>
         /// asset_form control.
         /// </summary>
         /// <remarks>
