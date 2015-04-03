@@ -137,7 +137,7 @@ namespace CD6
             return myDS;
         }
 
-        public void DeleteAsset(Asset objAsset)
+        public void DeleteAsset(Asset objAsset, string editorID)
         {
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -150,6 +150,12 @@ namespace CD6
             objCommand.Parameters.Add(inputParameter);
 
             inputParameter = new SqlParameter("@editorID", objAsset.editorID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@editorID", editorID);
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.VarChar;
             inputParameter.Size = 100;
