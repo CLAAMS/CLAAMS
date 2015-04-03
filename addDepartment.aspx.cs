@@ -20,33 +20,34 @@ namespace CD6{
         DBConnect myDbConnect = new DBConnect();
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
         protected void Page_Load(object sender, EventArgs e){
-
             myDS = returnDepartments();
             gvDepartments.DataSource = myDS;
             gvDepartments.DataBind();
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            int finalResult;
-            departmentID=Convert.ToInt32(Session["DepartmentId"]);
-            name = txtDeptName.Text;
-            recordCreated = DateTime.Now;
-            recordModified = DateTime.Now;
-            if (btnAdd.Text == "Add Department")
-            {
-                CreateDepartment(name, recordCreated, recordModified);
+        protected void btnAdd_Click(object sender, EventArgs e) {
+            if (txtDeptName.Text != "") {
+                int finalResult;
+                departmentID = Convert.ToInt32(Session["DepartmentId"]);
+                name = txtDeptName.Text;
+                recordCreated = DateTime.Now;
+                recordModified = DateTime.Now;
+                if (btnAdd.Text == "Add Department") {
+                    CreateDepartment(name, recordCreated, recordModified);
+                    Page_Load(this, e);
+                    txtDeptName.Text = "";
+                }
+                else
+                finalResult=ModifyDepartment(departmentID,name);
                 Page_Load(this, e);
+                lblError.Visible = false;
+            } else {
+                lblError.Text = "Invalid input:<br/>You must enter a department name.";
+                lblError.Visible = true;
             }
-            else
-             finalResult=ModifyDepartment(departmentID,name);
-            Page_Load(this, e);
         }
 
-        public int CreateDepartment(string pname, DateTime precordModified, DateTime pRecordCreated)
-        {
-            
-
+        public int CreateDepartment(string pname, DateTime precordModified, DateTime pRecordCreated) {
             //Sql stored procedure command for creating departments
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand1 = new SqlCommand();
@@ -55,12 +56,10 @@ namespace CD6{
             myCommand1.Connection = myConnection;
             myCommand1.CommandType = CommandType.StoredProcedure;
             myCommand1.CommandText = "AddDepartment";
-
             
             SqlParameter inputParameter2 = new SqlParameter("Name",pname);
             SqlParameter inputParameter3 = new SqlParameter("recordCreated",pRecordCreated);
             SqlParameter inputParameter4 = new SqlParameter("recordModified",precordModified);
-
             
             inputParameter2.Direction = ParameterDirection.Input;
             inputParameter2.SqlDbType = SqlDbType.VarChar;
@@ -73,7 +72,6 @@ namespace CD6{
             inputParameter4.Direction = ParameterDirection.Input;
             inputParameter4.SqlDbType = SqlDbType.DateTime;
             inputParameter4.Size = 50;
-
           
             myCommand1.Parameters.Add(inputParameter2);
             myCommand1.Parameters.Add(inputParameter3);
@@ -82,12 +80,9 @@ namespace CD6{
 
             result = myDbConnect.DoUpdateUsingCmdObj(myCommand1);
             return result;
-
         }
 
-        public int ModifyDepartment(int theDepartmentId,string theName)
-        {
-            
+        public int ModifyDepartment(int theDepartmentId,string theName) {
             SqlCommand myCommand3 = new SqlCommand();
             myCommand3.CommandType = CommandType.StoredProcedure;
             myCommand3.CommandText = "ModifyDepartment";
@@ -109,8 +104,7 @@ namespace CD6{
             return result;
         }
 
-        public DataSet returnDepartments()
-        {
+        public DataSet returnDepartments() {
             DataSet testDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
@@ -122,12 +116,9 @@ namespace CD6{
             myCommand1.CommandText = "GetDepartments";
             testDS = myDbConnect.GetDataSetUsingCmdObj(myCommand1);
             return testDS;
-
-
         }
 
-        public int DeleteDepartments(int departmentID)
-        {
+        public int DeleteDepartments(int departmentID) {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand2 = new SqlCommand();
@@ -144,17 +135,14 @@ namespace CD6{
 
             result = myDbConnect.DoUpdateUsingCmdObj(myCommand2);
             return result;
-            
         }
 
-        protected void gvDepartments_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
+        protected void gvDepartments_RowCommand(object sender, GridViewCommandEventArgs e) {
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvDepartments.Rows[index];
             int departmentID = (int)gvDepartments.DataKeys[index].Value;
 
-            if (e.CommandName == "Modify")
-            {
+            if (e.CommandName == "Modify") {
                 string sql;
                 sql = string.Format("select Name FROM Department where DepartmentId = {0};", departmentID);
                 DataSet data = Tools.DBAccess.DBCall(sql);
@@ -162,18 +150,11 @@ namespace CD6{
                 txtDeptName.Text = name;
                 btnAdd.Text = "Save Department";
                 Session.Add("DepartmentId", departmentID);
-               
             }
         }
 
-        protected void gvDepartments_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
+        protected void gvDepartments_RowDeleting(object sender, GridViewDeleteEventArgs e) { }
 
-        }
-
-        protected void btnClose_Click(object sender, EventArgs e)
-        {
-
-        }
+        protected void btnClose_Click(object sender, EventArgs e) { }
     }
 }

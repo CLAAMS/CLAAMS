@@ -45,7 +45,7 @@
                 <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Add User</h1></p></div></div>
                 <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify User</h1></p></div></div>
                 <div class="col-md-12">
-                    <asp:Label ID="lblCLAID" Text="AccessNet ID:" runat="server" CssClass="label" />
+                    <asp:Label ID="lblCLAID" Text="AccessNet ID: *" runat="server" CssClass="label" />
                     <asp:LinkButton ID="linkLookupUser" Text="Lookup AccessNet ID" OnClick="linkLookupUser_Click" runat="server" />
                     <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" Enabled="false" />
                     <asp:Label ID="lblFirstName" Text="First Name: *" runat="server" CssClass="label" />
@@ -59,7 +59,7 @@
                         <asp:ListItem Text="Active" />
                         <asp:ListItem Text="Inactive" />
                     </asp:DropDownList><br />
-                    <asp:Label ID="lblEmail" Text="Email:" runat="server" CssClass="label" />
+                    <asp:Label ID="lblEmail" Text="Email: *" runat="server" CssClass="label" />
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
                     <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click" CssClass="btn btn-default"/></div></div>
                 </div>
