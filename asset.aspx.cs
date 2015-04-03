@@ -330,7 +330,7 @@ namespace CD6{
 
         protected void btnArchiveAssetYes_Click(object sender, EventArgs e)
         {
-            objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"]);
+            objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"], (String)Session["user"]);
             string dialog_header, dialog_body;
             dialog_header = "Asset Archived";
             dialog_body = string.Format("{0} {1} has been archived successfully.", objAsset.Make, objAsset.Model);
