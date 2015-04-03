@@ -85,5 +85,31 @@ namespace Tools
             myConnection.Close();
             return myDs;
         }
+
+        public int UpdateEmailBody(string body)
+        {
+            SqlConnection myConnection = new SqlConnection(sqlConnection);
+            myConnection.Open();
+            SqlCommand myCommand2 = new SqlCommand();
+            myCommand2.Connection = myConnection;
+            myCommand2.CommandType = CommandType.StoredProcedure;
+            myCommand2.CommandText = "UpdateEmailBody";
+
+            SqlParameter myParameter2 = new SqlParameter("@emailBody",body);
+            myParameter2.Direction = ParameterDirection.Input;
+            myParameter2.SqlDbType = SqlDbType.VarChar;
+            myParameter2.Size = 1000;
+            myCommand2.Parameters.Add(myParameter2);
+
+            try
+            {
+                myCommand2.ExecuteNonQuery();
+                return 1;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
     }
 }
