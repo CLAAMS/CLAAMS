@@ -13,14 +13,14 @@ namespace CD6{
         public string emailAddress { get; set; }
         public string location { get; set; }
         public string division { get; set; }
-        public string primaryDeptAffiliation { get; set; }
-        public string secondaryDeptAffiliation { get; set; }
+        public int primaryDeptAffiliation { get; set; }
+        public int secondaryDeptAffiliation { get; set; }
         public string phoneNumber { get; set; }
         public string RecordCreated { get; set; }
         public string RecordModified { get; set; }
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
-        public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
+        public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, int pprimaryDeptAffiliation, int psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand1 = new SqlCommand();
@@ -63,10 +63,10 @@ namespace CD6{
             inputParameter7.SqlDbType = SqlDbType.VarChar;
             inputParameter7.Size = 50;
             inputParameter8.Direction = ParameterDirection.Input;
-            inputParameter8.SqlDbType = SqlDbType.VarChar;
+            inputParameter8.SqlDbType = SqlDbType.Int;
             inputParameter8.Size = 50;
             inputParameter9.Direction = ParameterDirection.Input;
-            inputParameter9.SqlDbType = SqlDbType.VarChar;
+            inputParameter9.SqlDbType = SqlDbType.Int;
             inputParameter9.Direction = ParameterDirection.Input;
             inputParameter10.Direction = ParameterDirection.Input;
             inputParameter10.SqlDbType = SqlDbType.VarChar;
@@ -99,11 +99,12 @@ namespace CD6{
             }
         }
 
-        public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, string pprimaryDeptAffiliation, string psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
+        public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, int pprimaryDeptAffiliation, int psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
             DataSet myDS = new DataSet();
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand2 = new SqlCommand();
+
             myConnection.Open();
             myCommand2.Connection = myConnection;
             myCommand2.CommandType = CommandType.StoredProcedure;
@@ -138,10 +139,10 @@ namespace CD6{
             inputParameter7.SqlDbType = SqlDbType.VarChar;
             inputParameter7.Size = 50;
             inputParameter8.Direction = ParameterDirection.Input;
-            inputParameter8.SqlDbType = SqlDbType.VarChar;
+            inputParameter8.SqlDbType = SqlDbType.Int;
             inputParameter8.Size = 50;
             inputParameter9.Direction = ParameterDirection.Input;
-            inputParameter9.SqlDbType = SqlDbType.VarChar;
+            inputParameter9.SqlDbType = SqlDbType.Int;
             inputParameter9.Size = 50;
             inputParameter10.Direction = ParameterDirection.Input;
             inputParameter10.SqlDbType = SqlDbType.VarChar;
@@ -193,7 +194,7 @@ namespace CD6{
             }
         }
 
-        public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, string pPDA, string pSDA, string pPhone, string pRecordModified) {
+        public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, int pPDA, int pSDA, string pPhone, string pRecordModified) {
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand5 = new SqlCommand();
@@ -235,10 +236,10 @@ namespace CD6{
             inputParameter7.SqlDbType = SqlDbType.VarChar;
             inputParameter7.Size = 50;
             inputParameter8.Direction = ParameterDirection.Input;
-            inputParameter8.SqlDbType = SqlDbType.VarChar;
+            inputParameter8.SqlDbType = SqlDbType.Int;
             inputParameter8.Size = 50;
             inputParameter9.Direction = ParameterDirection.Input;
-            inputParameter9.SqlDbType = SqlDbType.VarChar;
+            inputParameter9.SqlDbType = SqlDbType.Int;
             inputParameter9.Size = 50;
             inputParameter10.Direction = ParameterDirection.Input;
             inputParameter10.SqlDbType = SqlDbType.VarChar;

@@ -60,11 +60,7 @@
                                 <a onclick="addDepartment()">Add Department</a>
                             </div>
                         </div>
-                        <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;">
-                            <asp:ListItem Value="English" Text="English" />
-                            <asp:ListItem Value="Psychology" Text="Psychology" />
-                            <asp:ListItem Value="Literature" Text="Literature" />
-                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" />
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblLastName" Text="Last Name: *" runat="server" CssClass="label" />
@@ -74,14 +70,18 @@
                         <asp:Label ID="lblPhone" Text="Phone:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblSecondaryDept" Text="Secondary Department Affiliation: *" runat="server" CssClass="label" />
-                        <asp:DropDownList ID="ddlSecondaryDept" runat="server" CssClass="dropdown" style="width:100%;">
-                            <asp:ListItem Value="English" Text="English" />
-                            <asp:ListItem Value="Psychology" Text="Psychology" />
-                            <asp:ListItem Value="Literature" Text="Literature" />
-                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlSecondaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" />
                     </div>
-                    <div class="row"><div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px"/><asp:Label ID="lblARID" runat="server" Visible="False"></asp:Label></div></div>
-                    <div class="row"><div class="col-md-12 button_row" id="button_search" style="text-align:center;" runat="server" visible="true"><asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click" /></div></div>
+                    <div class="row">
+                        <div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true">
+                            <asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px"/><asp:Label ID="lblARID" runat="server" Visible="False"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 button_row" id="button_search" style="text-align:center;" runat="server" visible="true">
+                            <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click" />
+                        </div>
+                    </div>
                 </div>
                 <div class="row" id="search_results" runat="server" visible="true">
                     <div class="row header_row"><div class="col-md-12"><h1>Recipient Search Results</h1></div></div>
@@ -97,13 +97,15 @@
                                 <asp:BoundField DataField="PrimaryDeptAffiliation" HeaderText="Primary Department" />
                                 <asp:BoundField DataField="SecondaryDeptAffiliation" HeaderText="Secondary Department" />
                                 <asp:BoundField DataField="Division" HeaderText="Division" />
-                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default">
-<ControlStyle CssClass="btn btn-default"></ControlStyle>
-                                </asp:ButtonField>
+                                <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default"/>
                             </Columns>
                         </asp:GridView>
                     </div>
-                    <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnNewSearch" Text="New Search" runat="server" OnClick="btnNewSearch_Click" CssClass="btn btn-default" /></div></div>
+                    <div class="row">
+                        <div class="col-md-12 button_row" style="text-align:center;">
+                            <asp:Button ID="btnNewSearch" Text="New Search" runat="server" OnClick="btnNewSearch_Click" CssClass="btn btn-default" />
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
