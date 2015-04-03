@@ -23,21 +23,6 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-     <div class="modal fade" id="modalArchiveAsset" tabindex="-1" role="dialog" aria-labelledby="modalArchiveAsset" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="text-align:center;">
-                        <div class="modal-header">
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>-->
-                            <h4 class="modal-title" id="myModalLabel"><asp:Label ID="lblModal_header" runat="server" /></h4>
-                        </div>
-                        <div class="modal-body">
-                            <h3><asp:label id="lblModal_body" runat="server" /></h3>
-                            <asp:Button ID="btnArchiveAssetYes" Text="Yes" runat="server" CssClass="btn btn-default" OnClick="btnArchiveAssetYes_Click"/>
-                            <asp:Button ID="btnArchiveAssetNo" Text="No" runat="server" CssClass="btn btn-default" OnClick="btnArchiveAssetNo_Click"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
     <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
@@ -96,7 +81,6 @@
                     <div class="col-md-6">
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
-                            <asp:ListItem></asp:ListItem>
                             <asp:ListItem Value="Active" Text="Active" />
                             <asp:ListItem>Out of Service</asp:ListItem>
                         </asp:DropDownList><br />
@@ -110,7 +94,7 @@
                     <div class="row">
                         <div id="Div1" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true">
                             <asp:Label ID="lblInputValidation" runat="server" />
-                            <asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" Visible="false" />
+                            <asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" />
                         </div>
                     </div>
                     <div class="row">
