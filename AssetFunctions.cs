@@ -137,13 +137,25 @@ namespace CD6
             return myDS;
         }
 
-        public void DeleteAsset(Asset objAsset)
+        public void DeleteAsset(Asset objAsset, string editorID)
         {
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "UpdateAssetHistory";
 
             SqlParameter inputParameter = new SqlParameter("@assetID", objAsset.assetID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.Int;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@editorID", objAsset.editorID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@editorID", editorID);
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.VarChar;
             inputParameter.Size = 100;
@@ -156,6 +168,12 @@ namespace CD6
             objCommand1.CommandText = "DeleteAssetAndSetStatus";
 
             SqlParameter inputParameter1 = new SqlParameter("@assetID", objAsset.assetID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@editorID", objAsset.editorID);
             inputParameter1.Direction = ParameterDirection.Input;
             inputParameter1.SqlDbType = SqlDbType.VarChar;
             inputParameter1.Size = 100;

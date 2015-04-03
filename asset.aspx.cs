@@ -86,25 +86,21 @@ namespace CD6{
 
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
-
-            if (e.CommandName == "deleteRecord") {
-                string submit_type;
+            if (e.CommandName == "deleteRecord")
+            {
+                string editorID = "";
+                editorID = Session["user"].ToString();
+                objAsset.editorID = editorID;
                 int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
                 objAsset.assetID = assetID;
-                objAssetFunctions.DeleteAsset(objAsset);
-                btnSearch_Click(this, e);
-                submit_type = "archive";
-
-                string dialog_header, dialog_body;
-                if (submit_type == "archive") {
-                    objAsset.Make = gvSearchResults.Rows[index].Cells[2].Text;
-                    objAsset.Model = gvSearchResults.Rows[index].Cells[3].Text;
-                    dialog_header = "Asset Archived";
-                    dialog_body = string.Format("{0} {1} has been archived successfully and status is Out Of Service.", objAsset.Make, objAsset.Model);
-                    modal(dialog_header, dialog_body);
-                }
-
-            } else if (e.CommandName == "modifyRecord") {
+                objAsset.Make = gvSearchResults.Rows[index].Cells[2].Text;
+                objAsset.Model = gvSearchResults.Rows[index].Cells[3].Text;
+                Session["ObjAsset"] = objAsset;
+                modal1("Asset Archive", "Are you sure you want to archive this asset?");
+               // btnSearch_Click(this, e);
+            }
+            else if (e.CommandName == "modifyRecord")
+            {
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
 
@@ -255,7 +251,6 @@ namespace CD6{
         }
 
         protected void btnSubmitModifyAsset_Click(object sender, EventArgs e) {
-            string submit_type;
             string editor = Session["user"].ToString();
             btnSubmit.Visible = false;
 
@@ -272,23 +267,16 @@ namespace CD6{
 
             DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
             int sosID = 0;
-            if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) {
+            if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) 
+            {
 	            objAsset.sosID = sosID;
-	            objAssetFunctions.ModifyAsset(objAsset,editor);
-            } else {
+                modal2("Modify Asset", "Are you sure you want to modify this asset?");
+            } 
+            else
+            {
 	            objAsset.sosID = sosID;
-	            objAssetFunctions.ModifyAsset(objAsset,editor);
+                modal2("Modify Asset", "Are you sure you want to modify this asset?");
             }
-
-            submit_type = "modify";
-
-            string dialog_header, dialog_body;
-            if (submit_type == "modify") {
-                dialog_header = "Asset Modified";
-                dialog_body = string.Format("{0} {1} has been modified successfully.", objAsset.Make, objAsset.Model);
-                modal(dialog_header, dialog_body);
-            }
-            btnSearch_Click(this, e);
         }
 
         protected void ddlAssetTemplate_SelectedIndexChanged(object sender, EventArgs e) {
@@ -305,7 +293,28 @@ namespace CD6{
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
-        protected void manage_templates_Click(object sender, EventArgs e) {
+        protected void modal1(string title, string body)
+        {
+            lblModal_header.Text = title;
+            lblModal_body.Text = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "archiveAsset();", true);
+        }
+
+        protected void modal2(string title, string body)
+        {
+            lblModifyAssetModal_header.Text = title;
+            lblModifyAssetModal_body.Text = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "modifyAsset();", true);
+        }
+
+        protected void btnCheckIN_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        protected void manage_templates_Click(object sender, EventArgs e)
+        {
             Dictionary<string, object> createAssetSelections = new Dictionary<string, object>();
             createAssetSelections.Add("CLATag", txtCLAID.Text);
             createAssetSelections.Add("Make", txtMake.Text);
@@ -317,6 +326,39 @@ namespace CD6{
 
             Session["createAssetSelections"] = createAssetSelections;
             Response.Redirect("template_asset.aspx");
+        }
+
+        protected void btnArchiveAssetYes_Click(object sender, EventArgs e)
+        {
+            objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"]);
+            string dialog_header, dialog_body;
+            dialog_header = "Asset Archived";
+            dialog_body = string.Format("{0} {1} has been archived successfully.", objAsset.Make, objAsset.Model);
+            modal(dialog_header, dialog_body);
+          //  btnSearch_Click(this, e);
+        }
+
+        protected void btnArchiveAssetNo_Click(object sender, EventArgs e)
+        {
+            btnSearch_Click(this, e);
+        }
+
+        protected void btnModifyAssetModalYes_Click(object sender, EventArgs e)
+        {
+            string editor;
+            editor = (string)Session["user"];
+            objAssetFunctions.ModifyAsset(objAsset, editor);
+
+            string dialog_header, dialog_body;
+            dialog_header = "Asset Modified";
+            dialog_body = string.Format("{0} {1} has been modified successfully.", objAsset.Make, objAsset.Model);
+            modal(dialog_header, dialog_body);
+            btnSubmitModifyAsset_Click(this, e);
+        }
+
+        protected void btnModifyAssetModalNo_Click(object sender, EventArgs e)
+        {
+            btnSubmitModifyAsset_Click(this, e);
         }
     }
 }      
