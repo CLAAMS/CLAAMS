@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlClient;
+using Utilities;
 
 namespace CD6 {
     public partial class recipient : System.Web.UI.Page {
@@ -13,6 +15,8 @@ namespace CD6 {
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
+                fillDropDowns();
+
                 btnCreate_Click(this, e);
             }
         }
@@ -42,8 +46,8 @@ namespace CD6 {
                     txtLastName.Text = theAssetRecipient.lastName;
                     txtEmail.Text = theAssetRecipient.emailAddress;
                     txtDivision.Text = theAssetRecipient.division;
-                    ddlPrimaryDept.Text = theAssetRecipient.primaryDeptAffiliation;
-                    ddlSecondaryDept.Text = theAssetRecipient.secondaryDeptAffiliation;
+                    ddlPrimaryDept.SelectedValue = theAssetRecipient.primaryDeptAffiliation.ToString();
+                    ddlSecondaryDept.SelectedValue = theAssetRecipient.secondaryDeptAffiliation.ToString();
                     txtPhone.Text = theAssetRecipient.phoneNumber;
                     //text.Text = theAssetRecipient.assetRecipientId.ToString();
                     btnSubmitCreate.Visible = true;
@@ -51,12 +55,12 @@ namespace CD6 {
                 }
             }
 
-            if (ddlSecondaryDept.Items[0].Text == "English" && ddlPrimaryDept.Items[0].Text == "English") {
-                ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                ddlPrimaryDept.SelectedIndex = 0;
-                ddlSecondaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                ddlSecondaryDept.SelectedIndex = 0;
-            }
+            //if (ddlSecondaryDept.Items[0].Text == "English" && ddlPrimaryDept.Items[0].Text == "English") {
+            //    ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            //    ddlPrimaryDept.SelectedIndex = 0;
+            //    ddlSecondaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            //    ddlSecondaryDept.SelectedIndex = 0;
+            //}
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e) {
@@ -94,8 +98,19 @@ namespace CD6 {
             myAR.emailAddress = txtEmail.Text;
             myAR.location = txtLocation.Text;
             myAR.division = txtDivision.Text;
-            myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
-            myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+            
+            if(ddlPrimaryDept.SelectedValue == ""){
+                myAR.primaryDeptAffiliation = 0;
+            } else {
+                myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue.ToString());
+            }
+
+            if(ddlSecondaryDept.SelectedValue == ""){
+                myAR.secondaryDeptAffiliation = 0;
+            } else {
+                myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue.ToString());
+            }
+
             myAR.phoneNumber = txtPhone.Text;
             myAR.RecordCreated = DateTime.Now.ToString();
             myAR.RecordModified = DateTime.Now.ToString();
@@ -109,7 +124,7 @@ namespace CD6 {
 
             if (Session["AssetRecipient"] != null) {
                 theAssetRecipient.RecordModified = DateTime.Now.ToString();
-                myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordModified);
+                myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, Convert.ToInt32(ddlPrimaryDept.SelectedValue), Convert.ToInt32(ddlSecondaryDept.SelectedValue), txtPhone.Text, theAssetRecipient.RecordModified);
                 submit_type = "update";
             } else {
                 myAR.title = ddlTitle.Text;
@@ -118,8 +133,8 @@ namespace CD6 {
                 myAR.emailAddress = txtEmail.Text;
                 myAR.location = txtLocation.Text;
                 myAR.division = txtDivision.Text;
-                myAR.primaryDeptAffiliation = ddlPrimaryDept.Text;
-                myAR.secondaryDeptAffiliation = ddlSecondaryDept.Text;
+                myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
+                myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
                 myAR.phoneNumber = txtPhone.Text;
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
@@ -189,8 +204,19 @@ namespace CD6 {
                 myAR.lastName =  gvSearchResults.Rows[index].Cells[3].Text;
                 myAR.emailAddress = gvSearchResults.Rows[index].Cells[4].Text;
                 myAR.division = locationDataSet.Tables[0].Rows[0][6].ToString();
-                myAR.primaryDeptAffiliation = locationDataSet.Tables[0].Rows[0][7].ToString();
-                myAR.secondaryDeptAffiliation = locationDataSet.Tables[0].Rows[0][8].ToString();
+
+                if(locationDataSet.Tables[0].Rows[0][7] is System.DBNull){
+                    myAR.primaryDeptAffiliation = 0;
+                } else {
+                    myAR.primaryDeptAffiliation = (int)locationDataSet.Tables[0].Rows[0][7];
+                }
+
+                if(locationDataSet.Tables[0].Rows[0][8] is System.DBNull){
+                    myAR.secondaryDeptAffiliation = 0;
+                } else {
+                    myAR.secondaryDeptAffiliation = (int)locationDataSet.Tables[0].Rows[0][8];
+                }
+                
                 myAR.phoneNumber = gvSearchResults.Rows[index].Cells[5].Text;
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
@@ -205,6 +231,45 @@ namespace CD6 {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+
+        protected void fillDropDowns(){
+            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+
+            DataSet departments = new DataSet();
+            DBConnect myDbConnect = new DBConnect();
+            SqlConnection myConnection = new SqlConnection(SqlConnectString);
+            SqlCommand myCommand = new SqlCommand();
+            myConnection.Open();
+
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "GetDepartments";
+
+            departments = myDbConnect.GetDataSetUsingCmdObj(myCommand);
+            Dictionary<int, string> depts = new Dictionary<int, string>();
+
+            foreach(DataRow row in departments.Tables[0].Rows){
+                depts.Add((int)row.ItemArray[0], row.ItemArray[1].ToString());
+            }
+
+            ddlPrimaryDept.Items.Clear();
+            ddlPrimaryDept.Items.Add(new ListItem(""));
+            ddlPrimaryDept.DataValueField = "Key";
+            ddlPrimaryDept.DataTextField = "Value";
+
+            ddlSecondaryDept.Items.Clear();
+            ddlSecondaryDept.Items.Add(new ListItem(""));
+            ddlSecondaryDept.DataValueField = "Key";
+            ddlSecondaryDept.DataTextField = "Value";
+
+            ddlPrimaryDept.DataSource = depts;
+            ddlSecondaryDept.DataSource = depts;
+
+            ddlPrimaryDept.DataBind();
+            ddlSecondaryDept.DataBind();
+
+
         }
     }
 }
