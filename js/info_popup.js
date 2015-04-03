@@ -5,3 +5,11 @@
 function imageModal(input) {
     $('#imageModal').modal('show');
 }
+
+function archiveAsset(input) {
+    $('#modalArchiveAsset').modal('show');
+}
+
+
+
+
