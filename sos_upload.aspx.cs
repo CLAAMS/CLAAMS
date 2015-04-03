@@ -5,7 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
-
+using Tools;
+using System.Data;
+using Utilities;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using Microsoft.SqlServer.Server;
+using System.Net.Mail;
 namespace CD6 {
     public partial class sos_upload : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
@@ -118,6 +124,26 @@ namespace CD6 {
             }
             
             modal(dialog_header, dialog_body);
+        }
+
+        protected void linkSendSignature_Click(object sender, EventArgs e)
+        {
+            Email myEmail = new Email();
+            int sosID = (int)Session["SOSID"];
+            DataSet myDS = new DataSet();
+            DataSet myDS1=new DataSet();
+            myDS=myEmail.GetDataForEmail(sosID);
+
+            DataTable dT = new DataTable();
+            string recipient = myDS.Tables[0].Rows[0][0].ToString();
+            string emailAddress = myDS.Tables[0].Rows[0][1].ToString();
+            string attachement="C:\\Users\\tud45086\\CLAAMS\\signatures\\"+myDS.Tables[0].Rows[0][2].ToString();
+            myDS1= myEmail.GetEmailReciept();
+            string body=myDS1.Tables[0].Rows[0][0].ToString() +"\n"+ myDS1.Tables[0].Rows[0][2].ToString();
+            string subject=myDS1.Tables[0].Rows[0][1].ToString();
+            
+            myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
+            
         }
     }
 }
