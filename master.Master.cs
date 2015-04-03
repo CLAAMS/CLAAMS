@@ -13,7 +13,7 @@ namespace CD6{
             Regex regex = new Regex("login.aspx");
             Match match = regex.Match(current_page);
 
-            if (Session["user"] != "noAuth" && Session["user"] != null && Session["UserInfo"] != null) {
+            if ((string)Session["user"] != "noAuth" && Session["user"] != null && Session["UserInfo"] != null) {
                 Dictionary<string, string> userInfo = (Dictionary<string,string>)Session["UserInfo"];
                 lblLoginButton.Text = userInfo["givenName"];
             } else if (match.Success){

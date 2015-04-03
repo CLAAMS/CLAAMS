@@ -11,7 +11,6 @@ namespace Utilities{
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
-        SqlDataReader objDataReader;
         DataSet ds;
 
         public DBConnect(){
@@ -78,7 +77,7 @@ namespace Utilities{
             try{
                 return objCmd.ExecuteNonQuery();
             }
-            catch (Exception ex){
+            catch {
                 return -1;
             }
         }
@@ -93,7 +92,7 @@ namespace Utilities{
                 theCommandObject.Connection = myConnectionSql;
                 return theCommandObject.ExecuteNonQuery();
             }
-            catch (Exception ex){
+            catch {
                 return -1;
             }
         }

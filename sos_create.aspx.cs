@@ -12,7 +12,6 @@ namespace CD6 {
         SignOutSheet mySOS = new SignOutSheet();
         Asset myAsset = new Asset();
         ArrayList arrayListOfAssets = new ArrayList();
-        int assetId;
         string editor;
 
         protected void Page_Load(object sender, EventArgs e){

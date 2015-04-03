@@ -77,7 +77,7 @@ namespace CD6 {
                     signatureFunctions.Visible = true;
                     Session["FileName"] = filename + fileExtension;
                     updateSoS();
-                } catch(Exception ex) {
+                } catch {
                     modal("Upload Failed", "The was a problem uploading\nyour file, please try again.");
                 }
             } else {

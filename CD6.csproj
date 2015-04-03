@@ -119,7 +119,6 @@
     <Compile Include="Asset.cs" />
     <Compile Include="AssetFunctions.cs" />
     <Compile Include="AssetRecipient.cs" />
-    <Compile Include="DBAccess.cs" />
     <Compile Include="email.aspx.cs">
       <DependentUpon>email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -277,7 +276,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44032/</IISUrl>
+          <IISUrl>http://localhost:44932/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

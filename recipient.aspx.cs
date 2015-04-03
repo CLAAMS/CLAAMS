@@ -6,18 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
-namespace CD6
-{
-    public partial class recipient : System.Web.UI.Page
-    {
+namespace CD6 {
+    public partial class recipient : System.Web.UI.Page {
         AssetRecipient myAR = new AssetRecipient();
         AssetRecipient theAssetRecipient = new AssetRecipient();
         DataSet myDS = new DataSet();
-        int arID;
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
+
+        protected void Page_Load(object sender, EventArgs e) {
+            if (!IsPostBack) {
                 btnCreate_Click(this, e);
             }
         }
@@ -31,15 +27,14 @@ namespace CD6
             search_results.Visible = false;
             modifyHeader.Visible = false;
 
-            if (Session["AssetRecipient"] != null)
-            {
+            if (Session["AssetRecipient"] != null) {
                 bool check;
                 theAssetRecipient = (AssetRecipient)Session["AssetRecipient"];
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
                 check = (Boolean)Session["IsOnModifyPage"];
-                if (check == false)
-                {
+
+                if (check == false) {
                     bool onModifyPage = true;
                     lblARID.Text = theAssetRecipient.assetRecipientId.ToString();
                     txtLocation.Text = theAssetRecipient.location;
@@ -56,8 +51,8 @@ namespace CD6
                     Session["IsOnModifyPage"] = onModifyPage;
                 }
             }
-            if (ddlSecondaryDept.Items[0].Text == "English" && ddlPrimaryDept.Items[0].Text == "English")
-            {
+
+            if (ddlSecondaryDept.Items[0].Text == "English" && ddlPrimaryDept.Items[0].Text == "English") {
                 ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                 ddlPrimaryDept.SelectedIndex = 0;
                 ddlSecondaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
@@ -65,8 +60,7 @@ namespace CD6
             }
         }
 
-        protected void btnNewSearch_Click(object sender, EventArgs e)
-        {
+        protected void btnNewSearch_Click(object sender, EventArgs e) {
             searchHeader.Visible = true;
             button_search.Visible = true;
             createHeader.Visible = false;
@@ -86,8 +80,7 @@ namespace CD6
             txtPhone.Text = "";
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
+        protected void btnSearch_Click(object sender, EventArgs e) {
             searchHeader.Visible = false;
             button_search.Visible = false;
             createHeader.Visible = false;
@@ -112,18 +105,14 @@ namespace CD6
             gvSearchResults.DataBind();
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
+        protected void btnSubmit_Click(object sender, EventArgs e) {
             string submit_type;
 
-            if (Session["AssetRecipient"] != null)
-            {
+            if (Session["AssetRecipient"] != null) {
                 theAssetRecipient.RecordModified = DateTime.Now.ToString();
                 myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, ddlPrimaryDept.Text, ddlSecondaryDept.Text, txtPhone.Text, theAssetRecipient.RecordModified);
                 submit_type = "update";
-            }
-            else
-            {
+            } else {
                 myAR.title = ddlTitle.Text;
                 myAR.firstName = txtFirstname.Text;
                 myAR.lastName = txtLastName.Text;
@@ -140,21 +129,17 @@ namespace CD6
             }
 
             string dialog_header, dialog_body;
-            if (submit_type == "create")
-            {
+
+            if (submit_type == "create") {
                 dialog_header = "Recipient Created";
                 dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
                 modal(dialog_header, dialog_body);
-            }
-            else if (submit_type == "update")
-            {
+            } else if (submit_type == "update") {
                 dialog_header = "Recipient Updated";
                 dialog_body = string.Format("{0} {1} has been updated successfully.", txtFirstname.Text, txtLastName.Text);
                 modal(dialog_header, dialog_body);
             }
             
-
-
             ddlTitle.Text = "";
             txtFirstname.Text = "";
             txtLastName.Text = "";
@@ -169,16 +154,13 @@ namespace CD6
             btnCreate_Click(this, e);
         }
 
-        protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e)
-        {
-            string submit_type;
+        protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e) {
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
             int arID =(int) gvSearchResults.DataKeys[index].Value;
             
 
-            if (e.CommandName == "DeleteRow")
-            {
+            if (e.CommandName == "DeleteRow") {
                 //myAR.DeleteRow(arID);
                 //btnSearch_Click(this, e);
                 //submit_type = "delete"; 
@@ -192,9 +174,7 @@ namespace CD6
                 //    modal(dialog_header, dialog_body);
                 //}
               
-            }
-            else if (e.CommandName == "modifyRecord")
-            {
+            } else if (e.CommandName == "modifyRecord") {
                 bool onModify=false;
                 createHeader.Visible = false;
                 btnSubmitCreate.Visible = true;

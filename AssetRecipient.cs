@@ -94,7 +94,7 @@ namespace CD6{
             try {
                 myCommand1.ExecuteNonQuery();
                 return 1;
-            } catch (Exception ex) {
+            } catch {
                 return -1;
             }
         }
@@ -167,7 +167,7 @@ namespace CD6{
             try {
                 myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand2);
                 return myDS;
-            } catch (Exception ex) {
+            } catch {
                 return null;
             }
         }
@@ -188,7 +188,7 @@ namespace CD6{
             try {
                 myDbConnect.DoUpdateUsingCmdObj(myCommand3);
                 return 1;
-            } catch (Exception ex) {
+            } catch {
                 return -1;
             }
         }
@@ -263,7 +263,7 @@ namespace CD6{
             try {
                 result = myDbConnect.DoUpdateUsingCmdObj(myCommand5);
                 return 1;
-            } catch (Exception ex) {
+            } catch {
                 return -1;
             }
         }

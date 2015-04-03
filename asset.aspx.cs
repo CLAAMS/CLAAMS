@@ -132,7 +132,7 @@ namespace CD6{
                 
                 try {
                     int.Parse(objAsset.CLATag);
-                } catch (Exception ex) { }
+                } catch { }
                 
                 txtMake.Text = objAsset.Make;
                 txtModel.Text = objAsset.Model;

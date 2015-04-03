@@ -208,7 +208,7 @@ namespace CD6 {
             try {
                 int result = Convert.ToInt32(myCommand4.ExecuteScalar());
                 return result;
-            } catch (Exception ex) {
+            } catch {
                 return -1;
             }
         }
@@ -240,7 +240,7 @@ namespace CD6 {
             try {
                 int result = myCommand5.ExecuteNonQuery();
                 return true;
-            } catch (Exception ex) {
+            } catch {
                 return false;
             }
         }
@@ -265,7 +265,7 @@ namespace CD6 {
             try {
                 int result = myCommand6.ExecuteNonQuery();
                 return 1;
-            } catch (Exception ex) {
+            } catch {
                 return -1;
             }
         }

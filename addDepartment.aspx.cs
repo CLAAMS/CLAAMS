@@ -19,6 +19,7 @@ namespace CD6{
         DateTime recordModified;
         DBConnect myDbConnect = new DBConnect();
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+
         protected void Page_Load(object sender, EventArgs e){
             myDS = returnDepartments();
             gvDepartments.DataSource = myDS;
