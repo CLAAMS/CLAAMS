@@ -18,7 +18,7 @@ namespace CD6{
                 Session["user"] = txtUsername.Text;
                 lblError.Text = "Login Successful";
                 Session["UserInfo"] = LDAP.getUserInfo(txtUsername.Text);
-                Response.Redirect("sos_track.aspx");
+                Response.Redirect("sos_create.aspx");
             } else {
                 lblError.Text = "Invalid username or password, please try again. \n\n";
             }
