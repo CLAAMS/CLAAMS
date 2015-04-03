@@ -68,7 +68,7 @@
                                     <asp:LinkButton ID="linkShowSoS" Text="Show Signature" runat="server" OnClick="linkShowSoS_Click"/>
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:LinkButton ID="linkSendSignature" Text="Email Signature" runat="server" />
+                                    <asp:LinkButton ID="linkSendSignature" Text="Email Signature" runat="server" OnClick="linkSendSignature_Click" />
                                 </div>
                             </div>
                         </div>

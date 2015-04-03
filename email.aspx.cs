@@ -19,10 +19,6 @@ namespace CD6
             body = "testBody";
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            Tools.Email myEmail=new Tools.Email();
-            string returnEmail=myEmail.sendEmail(from, to, subject, body);          
-        }
+       
     }
 }
