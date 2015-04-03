@@ -10,7 +10,6 @@ using System.Collections;
 namespace CD6 {
     public partial class sos_view : System.Web.UI.Page {
         SignOutSheet mySOS = new SignOutSheet();
-        SoSFunctions sosFunctions = new SoSFunctions();
         int sosID;
 
         protected void Page_Load(object sender, EventArgs e) {

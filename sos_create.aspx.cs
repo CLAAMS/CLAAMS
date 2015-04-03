@@ -10,7 +10,6 @@ using System.Collections;
 namespace CD6 {
     public partial class sos_create : System.Web.UI.Page  {
         SignOutSheet mySOS = new SignOutSheet();
-        Asset myAsset = new Asset();
         ArrayList arrayListOfAssets = new ArrayList();
         string editor;
 

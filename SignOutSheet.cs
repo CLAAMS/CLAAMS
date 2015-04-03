@@ -238,7 +238,7 @@ namespace CD6 {
             myCommand5.Parameters.Add(inputParameter3);
           
             try {
-                int result = myCommand5.ExecuteNonQuery();
+                myCommand5.ExecuteNonQuery();
                 return true;
             } catch {
                 return false;
@@ -263,7 +263,7 @@ namespace CD6 {
             myCommand6.Parameters.Add(inputParameter1);
 
             try {
-                int result = myCommand6.ExecuteNonQuery();
+                myCommand6.ExecuteNonQuery();
                 return 1;
             } catch {
                 return -1;

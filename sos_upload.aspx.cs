@@ -126,15 +126,13 @@ namespace CD6 {
             modal(dialog_header, dialog_body);
         }
 
-        protected void linkSendSignature_Click(object sender, EventArgs e)
-        {
+        protected void linkSendSignature_Click(object sender, EventArgs e) {
             Email myEmail = new Email();
             int sosID = (int)Session["SOSID"];
             DataSet myDS = new DataSet();
             DataSet myDS1=new DataSet();
             myDS=myEmail.GetDataForEmail(sosID);
 
-            DataTable dT = new DataTable();
             string recipient = myDS.Tables[0].Rows[0][0].ToString();
             string emailAddress = myDS.Tables[0].Rows[0][1].ToString();
             string attachement="C:\\Users\\tud45086\\CLAAMS\\signatures\\"+myDS.Tables[0].Rows[0][2].ToString();

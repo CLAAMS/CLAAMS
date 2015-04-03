@@ -9,8 +9,6 @@ using System.Collections;
 namespace CD6 {
     public partial class sos : System.Web.UI.Page {
         SignOutSheet mySOS = new SignOutSheet();
-        DataSet ds = new DataSet();
-        Asset myAsset = new Asset();
         string editor;
         
         ArrayList arrayListOfAssets=new ArrayList();

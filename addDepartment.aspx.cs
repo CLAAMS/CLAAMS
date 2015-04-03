@@ -28,7 +28,6 @@ namespace CD6{
 
         protected void btnAdd_Click(object sender, EventArgs e) {
             if (txtDeptName.Text != "") {
-                int finalResult;
                 departmentID = Convert.ToInt32(Session["DepartmentId"]);
                 name = txtDeptName.Text;
                 recordCreated = DateTime.Now;
@@ -37,11 +36,11 @@ namespace CD6{
                     CreateDepartment(name, recordCreated, recordModified);
                     Page_Load(this, e);
                     txtDeptName.Text = "";
+                } else {
+                    ModifyDepartment(departmentID,name);
+                    Page_Load(this, e);
+                    lblError.Visible = false;
                 }
-                else
-                finalResult=ModifyDepartment(departmentID,name);
-                Page_Load(this, e);
-                lblError.Visible = false;
             } else {
                 lblError.Text = "Invalid input:<br/>You must enter a department name.";
                 lblError.Visible = true;

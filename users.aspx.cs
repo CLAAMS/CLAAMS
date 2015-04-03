@@ -255,8 +255,8 @@ namespace CD6{
             }
             
             try {
-                string ANID = LDAP.getDNFromLDAP(accessNetId);
-                Dictionary<string, string> userInfo = LDAP.getUserInfo(accessNetId);
+                LDAP.getDNFromLDAP(accessNetId);
+                LDAP.getUserInfo(accessNetId);
             } catch {
                 lblCLAID.Font.Bold = true;
                 output = false;
@@ -289,7 +289,7 @@ namespace CD6{
 
         private bool userLookup(string accessNetId) {
             try {
-                string ANID = LDAP.getDNFromLDAP(accessNetId);
+                LDAP.getDNFromLDAP(accessNetId);
                 Dictionary<string, string> userInfo = LDAP.getUserInfo(accessNetId);
                 txtCLAID.Text = userInfo["AccessNet"];
                 txtEmail.Text = userInfo["email"];

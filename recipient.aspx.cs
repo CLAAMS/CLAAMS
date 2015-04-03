@@ -10,7 +10,6 @@ namespace CD6 {
     public partial class recipient : System.Web.UI.Page {
         AssetRecipient myAR = new AssetRecipient();
         AssetRecipient theAssetRecipient = new AssetRecipient();
-        DataSet myDS = new DataSet();
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
