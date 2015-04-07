@@ -120,52 +120,66 @@ namespace CD6 {
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e) {
-            string submit_type;
-
-            if (Session["AssetRecipient"] != null) {
-                theAssetRecipient.RecordModified = DateTime.Now.ToString();
-                myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, Convert.ToInt32(ddlPrimaryDept.SelectedValue), Convert.ToInt32(ddlSecondaryDept.SelectedValue), txtPhone.Text, theAssetRecipient.RecordModified);
-                submit_type = "update";
-            } else {
-                myAR.title = ddlTitle.Text;
-                myAR.firstName = txtFirstname.Text;
-                myAR.lastName = txtLastName.Text;
-                myAR.emailAddress = txtEmail.Text;
-                myAR.location = txtLocation.Text;
-                myAR.division = txtDivision.Text;
-                myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
-                myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
-                myAR.phoneNumber = txtPhone.Text;
-                myAR.RecordCreated = DateTime.Now.ToString();
-                myAR.RecordModified = DateTime.Now.ToString();
-                myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
-                submit_type = "create";
-            }
-
-            string dialog_header, dialog_body;
-
-            if (submit_type == "create") {
-                dialog_header = "Recipient Created";
-                dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
-                modal(dialog_header, dialog_body);
-            } else if (submit_type == "update") {
-                dialog_header = "Recipient Updated";
-                dialog_body = string.Format("{0} {1} has been updated successfully.", txtFirstname.Text, txtLastName.Text);
-                modal(dialog_header, dialog_body);
-            }
+            int PrimaryDept;
             
-            ddlTitle.Text = "";
-            txtFirstname.Text = "";
-            txtLastName.Text = "";
-            txtEmail.Text = "";
-            txtLocation.Text = "";
-            txtDivision.Text = "";
-            ddlPrimaryDept.Text = "";
-            ddlSecondaryDept.Text = "";
-            txtPhone.Text = "";
+            try { 
+                PrimaryDept = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
+            } catch {
+                PrimaryDept = 0;
+            }
 
-            Session["AssetRecipient"] = null;
-            btnCreate_Click(this, e);
+            if(validateInput(txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, PrimaryDept)){
+                string submit_type;
+
+                if (Session["AssetRecipient"] != null) {
+                    theAssetRecipient.RecordModified = DateTime.Now.ToString();
+                    myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, Convert.ToInt32(ddlPrimaryDept.SelectedValue), Convert.ToInt32(ddlSecondaryDept.SelectedValue), txtPhone.Text, theAssetRecipient.RecordModified);
+                    submit_type = "update";
+                } else {
+                    myAR.title = ddlTitle.Text;
+                    myAR.firstName = txtFirstname.Text;
+                    myAR.lastName = txtLastName.Text;
+                    myAR.emailAddress = txtEmail.Text;
+                    myAR.location = txtLocation.Text;
+                    myAR.division = txtDivision.Text;
+                    myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
+                    try {
+                        myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
+                    } catch {}
+                    myAR.phoneNumber = txtPhone.Text;
+                    myAR.RecordCreated = DateTime.Now.ToString();
+                    myAR.RecordModified = DateTime.Now.ToString();
+                    myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+                    submit_type = "create";
+                }
+
+                string dialog_header, dialog_body;
+
+                if (submit_type == "create") {
+                    dialog_header = "Recipient Created";
+                    dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
+                    modal(dialog_header, dialog_body);
+                } else if (submit_type == "update") {
+                    dialog_header = "Recipient Updated";
+                    dialog_body = string.Format("{0} {1} has been updated successfully.", txtFirstname.Text, txtLastName.Text);
+                    modal(dialog_header, dialog_body);
+                }
+            
+                ddlTitle.Text = "";
+                txtFirstname.Text = "";
+                txtLastName.Text = "";
+                txtEmail.Text = "";
+                txtLocation.Text = "";
+                txtDivision.Text = "";
+                ddlPrimaryDept.Text = "";
+                ddlSecondaryDept.Text = "";
+                txtPhone.Text = "";
+
+                Session["AssetRecipient"] = null;
+                btnCreate_Click(this, e);
+            } else {
+                //BAD INPUT HANDLING
+            }
         }
 
         protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e) {
@@ -270,6 +284,38 @@ namespace CD6 {
             ddlSecondaryDept.DataBind();
 
 
+        }
+
+        protected bool validateInput(string firstName, string lastName, string email, string location, int primaryDept){
+            string output = "";
+            Tools.InputValidation InVal = new Tools.InputValidation();
+
+            if (firstName == ""){
+                output += "Invalid First Name<br/>";
+            }
+
+            if (lastName == ""){
+                output += "Invalid Last Name<br/>";
+            }
+
+            if(location == ""){
+                output += "Invalid Location<br/>";
+            }
+
+            if(!InVal.IsValidEmail(email)){
+                output += "Invalid Email Address<br/>";
+            }
+
+            if(primaryDept == 0){
+                output += "Invalid Primary Department";
+            }
+
+            if(output != ""){
+                modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 }
