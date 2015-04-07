@@ -268,7 +268,8 @@ namespace CD6{
             }
         }
 
-        public DataSet GetLocationForSelectedRecord(int ARID) {
+        public DataSet GetLocationForSelectedRecord(int ARID) 
+        {
             DBConnect theDB=new DBConnect();
             SqlConnection myConnection=new SqlConnection(SqlConnectString);
             SqlCommand myCommand6=new SqlCommand();

@@ -24,6 +24,21 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
+       <div class="modal fade" id="modifyRecipientModal" tabindex="-1" role="dialog" aria-labelledby="modifyrecipientModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="text-align:center;">
+                        <div class="modal-header">
+                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>-->
+                            <h4 class="modal-title" id="modifyRecipientModalLabel"><asp:Label ID="lblModifyRecipient_header" runat="server" /></h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3><asp:label id="lblModifyRecipient_body" runat="server" /></h3>
+                            <asp:Button ID="btnModifyRecipientModalYes" Text="Yes" runat="server" CssClass="btn btn-default" OnClick="btnModifyRecipientModalYes_Click"/>
+                            <asp:Button ID="btnModifyRecipientModalNo" Text="No" runat="server" CssClass="btn btn-default"  OnClick="btnModifyRecipientModalNo_Click"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">

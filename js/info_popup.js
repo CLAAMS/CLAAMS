@@ -14,3 +14,12 @@ function modifyAsset(input) {
     $('#modifyAssetModal').modal('show');
 }
 
+function modifySOS(input) {
+    $('#modifySOSModal').modal('show');
+}
+
+function modifyRecipient(input) {
+    $('#modifyRecipientModal').modal('show');
+}
+
+

@@ -13,6 +13,42 @@ namespace CD6 {
     public partial class sos_view {
         
         /// <summary>
+        /// lblmodifySOSLabel_header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmodifySOSLabel_header;
+        
+        /// <summary>
+        /// lblModifySOSModal_body control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModifySOSModal_body;
+        
+        /// <summary>
+        /// btnModifySOSModalYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModifySOSModalYes;
+        
+        /// <summary>
+        /// btnModifySOSModalNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModifySOSModalNo;
+        
+        /// <summary>
         /// sos_form control.
         /// </summary>
         /// <remarks>

@@ -111,6 +111,7 @@
                     <div class="col-md-6">
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
+                            <asp:ListItem></asp:ListItem>
                             <asp:ListItem Value="Active" Text="Active" />
                             <asp:ListItem>Out of Service</asp:ListItem>
                         </asp:DropDownList><br />
@@ -124,7 +125,7 @@
                     <div class="row">
                         <div id="Div1" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true">
                             <asp:Label ID="lblInputValidation" runat="server" />
-                            <asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" />
+                            <asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" Visible="false"/>
                         </div>
                     </div>
                     <div class="row">

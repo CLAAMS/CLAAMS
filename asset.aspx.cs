@@ -250,31 +250,36 @@ namespace CD6{
             txtSerialRight.Visible=false;
         }
 
-        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e) {
-            string editor = Session["user"].ToString();
+        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e) 
+        {
             btnSubmit.Visible = false;
 
             objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
             objAsset.CLATag = txtCLAID.Text;
             objAsset.Make = txtMake.Text;
+            Session["Make1"] = objAsset.Make;
             objAsset.Model = txtModel.Text;
+            Session["Model1"] = objAsset.Model;
             objAsset.SerialNumber = txtSerialLeft.Text;
             objAsset.Status = ddlStatus.SelectedValue;
             objAsset.Description = txtDescription.Text;
             objAsset.Notes = txtNotes.Text;
             objAsset.recordCreated = DateTime.Now;
             objAsset.recordModified = DateTime.Now;
+            objAsset.editorID = Session["user"].ToString(); 
 
             DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
             int sosID = 0;
             if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) 
             {
 	            objAsset.sosID = sosID;
+                Session["AssetObject"] = objAsset;
                 modal2("Modify Asset", "Are you sure you want to modify this asset?");
             } 
             else
             {
 	            objAsset.sosID = sosID;
+                Session["AssetObject"] = objAsset;
                 modal2("Modify Asset", "Are you sure you want to modify this asset?");
             }
         }
@@ -330,7 +335,7 @@ namespace CD6{
 
         protected void btnArchiveAssetYes_Click(object sender, EventArgs e)
         {
-            objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"], (String)Session["user"]);
+            objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"]);
             string dialog_header, dialog_body;
             dialog_header = "Asset Archived";
             dialog_body = string.Format("{0} {1} has been archived successfully.", objAsset.Make, objAsset.Model);
@@ -345,15 +350,14 @@ namespace CD6{
 
         protected void btnModifyAssetModalYes_Click(object sender, EventArgs e)
         {
-            string editor;
-            editor = (string)Session["user"];
-            objAssetFunctions.ModifyAsset(objAsset, editor);
+
+            objAssetFunctions.ModifyAsset((Asset)Session["AssetObject"]);
 
             string dialog_header, dialog_body;
             dialog_header = "Asset Modified";
-            dialog_body = string.Format("{0} {1} has been modified successfully.", objAsset.Make, objAsset.Model);
+            dialog_body = string.Format("{0} {1} has been modified successfully.", Session["Make1"], Session["Model1"]);
             modal(dialog_header, dialog_body);
-            btnSubmitModifyAsset_Click(this, e);
+            btnSearch_Click(this, e);
         }
 
         protected void btnModifyAssetModalNo_Click(object sender, EventArgs e)

@@ -13,6 +13,42 @@ namespace CD6 {
     public partial class recipient {
         
         /// <summary>
+        /// lblModifyRecipient_header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModifyRecipient_header;
+        
+        /// <summary>
+        /// lblModifyRecipient_body control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModifyRecipient_body;
+        
+        /// <summary>
+        /// btnModifyRecipientModalYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModifyRecipientModalYes;
+        
+        /// <summary>
+        /// btnModifyRecipientModalNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModifyRecipientModalNo;
+        
+        /// <summary>
         /// recipient_form control.
         /// </summary>
         /// <remarks>

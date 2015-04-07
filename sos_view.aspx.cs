@@ -98,39 +98,75 @@ namespace CD6 {
             }
         }
 
-        protected void btnSubmitModification_Click(object sender, EventArgs e) {
+        protected void btnSubmitModification_Click(object sender, EventArgs e) 
+        {
             string editorID = (string)Session["user"];
             int sosIDDueDate = (int)Session["SOSID"];
-            string dialog_header = "", dialog_body = "";
-
            // DataSet ds = Tools.DBAccess.DBCall( "select assetTemplateID, Name from Asset_Template");
             DateTime dueDate = calDueDate.SelectedDate;
-
-            if (SoSFunctions.UpdateSosHistory(sosIDDueDate, editorID)) {
-                if(SoSFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate)){
-                    dialog_header = "SoS Modified";
-                    dialog_body = string.Format("{0} has been modified successfully", sosIDDueDate);
-                } else {
-                    //CODE TO REMOVE NEW SOSHISTORY RECORD
-                    //ERROR DIALOG
-                }
-            } else {
-                dialog_header = "Error: Modify Failed";
-                dialog_body = "Unable to modify record. Please try again.";
-            }
-            
-            modal(dialog_header, dialog_body);
-            Response.Redirect("./sos_view.aspx");
+            string dialog_header = "" ;
+            string dialog_body = "";
+           
+                    dialog_header = "Modify SOS";
+                    dialog_body = ("Are you sure you would like to modify this Sign out Sheet?");
+             
+            modal1(dialog_header, dialog_body);
+           // Response.Redirect("./sos_view.aspx");
         }
 
-        protected void modal(string title, string body) {
+        protected void modal(string title, string body) 
+        {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
+        protected void modal1(string title, string body)
+        {
+            lblmodifySOSLabel_header.Text = title;
+            lblModifySOSModal_body.Text = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "modifySOS();", true);
+        }
+
         protected void linkUpload_Click(object sender, EventArgs e) {
             Response.Redirect("./sos_upload.aspx");
+        }
+
+        protected void btnModifySOSModalYes_Click(object sender, EventArgs e)
+        {
+            string dialog_header = "";
+            string dialog_body = "";
+            string editorID;
+            editorID = Session["User"].ToString();
+            int sosIDDueDate = (int)Session["SOSID"];
+            DateTime dueDate = calDueDate.SelectedDate;
+
+            if (SoSFunctions.UpdateSosHistory(sosIDDueDate, editorID))
+            {
+                if (SoSFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate))
+                {
+                    dialog_header = "SoS Modified";
+                    dialog_body = string.Format("SOS {0} has been modified successfully", sosIDDueDate);
+                }
+                else
+                {
+                    //CODE TO REMOVE NEW SOSHISTORY RECORD
+                    //ERROR DIALOG
+                }
+            }
+            else
+            {
+                dialog_header = "Error: Modify Failed";
+                dialog_body = "Unable to modify record. Please try again.";
+            }
+
+            modal(dialog_header, dialog_body);
+            btnSubmitModification_Click(this, e);
+        }
+
+        protected void btnModifySOSModalNo_Click(object sender, EventArgs e)
+        {
+            btnSubmitModification_Click(this, e);
         }
     }
 }

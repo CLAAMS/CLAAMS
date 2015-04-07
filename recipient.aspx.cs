@@ -119,14 +119,11 @@ namespace CD6 {
             gvSearchResults.DataBind();
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e) {
-            string submit_type;
-
-            if (Session["AssetRecipient"] != null) {
-                theAssetRecipient.RecordModified = DateTime.Now.ToString();
-                myAR.UpdateRow(Convert.ToInt32(lblARID.Text), ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, Convert.ToInt32(ddlPrimaryDept.SelectedValue), Convert.ToInt32(ddlSecondaryDept.SelectedValue), txtPhone.Text, theAssetRecipient.RecordModified);
-                submit_type = "update";
-            } else {
+        protected void btnSubmit_Click(object sender, EventArgs e) 
+        {
+            
+            if (Session["AssetRecipient"] == null) 
+            {
                 myAR.title = ddlTitle.Text;
                 myAR.firstName = txtFirstname.Text;
                 myAR.lastName = txtLastName.Text;
@@ -139,33 +136,29 @@ namespace CD6 {
                 myAR.RecordCreated = DateTime.Now.ToString();
                 myAR.RecordModified = DateTime.Now.ToString();
                 myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
-                submit_type = "create";
-            }
 
-            string dialog_header, dialog_body;
-
-            if (submit_type == "create") {
+                string dialog_header, dialog_body;
                 dialog_header = "Recipient Created";
-                dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
+                dialog_body = string.Format("{0} {1} has been created successfully.", myAR.firstName, myAR.lastName);
                 modal(dialog_header, dialog_body);
-            } else if (submit_type == "update") {
-                dialog_header = "Recipient Updated";
-                dialog_body = string.Format("{0} {1} has been updated successfully.", txtFirstname.Text, txtLastName.Text);
-                modal(dialog_header, dialog_body);
+               
             }
-            
-            ddlTitle.Text = "";
-            txtFirstname.Text = "";
-            txtLastName.Text = "";
-            txtEmail.Text = "";
-            txtLocation.Text = "";
-            txtDivision.Text = "";
-            ddlPrimaryDept.Text = "";
-            ddlSecondaryDept.Text = "";
-            txtPhone.Text = "";
+            else
+            {
+                modal1("Modify Recipient", "Are you sure you want to modify this recipient?");   
+            }        
+            //ddlTitle.Text = "";
+            //txtFirstname.Text = "";
+            //txtLastName.Text = "";
+            //txtEmail.Text = "";
+            //txtLocation.Text = "";
+            //txtDivision.Text = "";
+            //ddlPrimaryDept.Text = "";
+            //ddlSecondaryDept.Text = "";
+            //txtPhone.Text = "";
 
-            Session["AssetRecipient"] = null;
-            btnCreate_Click(this, e);
+            //Session["AssetRecipient"] = null;
+             // btnCreate_Click(this, e);
         }
 
         protected  void gvSearchResult_click(object sender, GridViewCommandEventArgs e) {
@@ -233,6 +226,13 @@ namespace CD6 {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
+        protected void modal1(string title, string body)
+        {
+            lblModifyRecipient_header.Text = title;
+            lblModifyRecipient_body.Text = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "modifyRecipient();", true);
+        }
+
         protected void fillDropDowns(){
             string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
@@ -270,6 +270,25 @@ namespace CD6 {
             ddlSecondaryDept.DataBind();
 
 
+        }
+
+        protected void btnModifyRecipientModalYes_Click(object sender, EventArgs e)
+        {
+                theAssetRecipient.RecordModified = DateTime.Now.ToString();
+                int assetrecipientID = Convert.ToInt32(lblARID.Text);
+                int pdt = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
+                int sdt = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
+                myAR.UpdateRow(assetrecipientID, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, pdt, sdt, txtPhone.Text, theAssetRecipient.RecordModified);    
+                string dialog_header, dialog_body;
+                dialog_header = "Recipient Modified";
+                dialog_body = string.Format("{0} {1} has been modified successfully.", txtFirstname.Text, txtLastName.Text);
+                modal(dialog_header, dialog_body);
+        
+        }
+
+        protected void btnModifyRecipientModalNo_Click(object sender, EventArgs e)
+        {
+            modifyHeader.Visible = true;
         }
     }
 }
