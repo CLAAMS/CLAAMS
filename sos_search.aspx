@@ -71,7 +71,7 @@
                             </div>
                             <div class="row" id="gridview">
                                 <div class="col-md-12">
-                                    <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_RowCommand">
+                                    <asp:GridView ID="gvSearchResults" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="sosID" OnRowCommand="gvSearchResults_RowCommand" >
                                         <Columns>
                                             <asp:BoundField DataField="sosID" HeaderText="SoS ID" />
                                             <asp:BoundField DataField="Name" HeaderText="Assigner" />
