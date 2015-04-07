@@ -148,11 +148,10 @@ namespace CD6 {
                     myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
 
                     string dialog_header, dialog_body;
-
                     dialog_header = "Recipient Created";
                     dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
                     modal(dialog_header, dialog_body);
-            
+
                     ddlTitle.Text = "";
                     txtFirstname.Text = "";
                     txtLastName.Text = "";

@@ -161,9 +161,9 @@ namespace CD6 {
                 dialog_header = "Error: Modify Failed";
                 dialog_body = "Unable to modify record. Please try again.";
             }
-
             modal(dialog_header, dialog_body);
-            btnSubmitModification_Click(this, e);
+            btnClose_Click(this, e);
+            //Response.Redirect("sos_search.aspx")      //NEED TO REDIRECT TO SEARCH
         }
 
         protected void btnModifySOSModalNo_Click(object sender, EventArgs e)
