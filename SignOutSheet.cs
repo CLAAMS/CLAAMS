@@ -350,7 +350,7 @@ namespace CD6 {
                 asset.recordCreated = (DateTime)row.ItemArray[8];
                 asset.recordModified = (DateTime)row.ItemArray[9];
                 asset.sosID = Convert.ToInt32(row.ItemArray[10].ToString());
-                //asset.editor = row.ItemArray[11].ToString();
+                asset.editorID = row.ItemArray[11].ToString();
                 asset.Name = row.ItemArray[12].ToString();
                 assets.Add(asset);
             }
