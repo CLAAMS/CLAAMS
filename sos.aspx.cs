@@ -322,7 +322,6 @@ namespace CD6 {
             }
         }
 
-        protected void gvSearchResults_RowDeleting(object sender, GridViewDeleteEventArgs e) { }
 
         protected void modal(string title, string body) {
             this.Master.modal_header = title;
