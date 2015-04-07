@@ -84,7 +84,7 @@
                         <asp:TextBox ID="txtDivision" runat="server" CssClass="form-control" />
                         <asp:Label ID="lblPhone" Text="Phone:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" />
-                        <asp:Label ID="lblSecondaryDept" Text="Secondary Department Affiliation: *" runat="server" CssClass="label" />
+                        <asp:Label ID="lblSecondaryDept" Text="Secondary Department Affiliation:" runat="server" CssClass="label" />
                         <asp:DropDownList ID="ddlSecondaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" />
                     </div>
                     <div class="row">

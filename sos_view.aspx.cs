@@ -11,9 +11,11 @@ namespace CD6 {
     public partial class sos_view : System.Web.UI.Page {
         SignOutSheet mySOS = new SignOutSheet();
         int sosID;
-
-        protected void Page_Load(object sender, EventArgs e) {
-            if(!IsPostBack){
+        DateTime dayCounter=DateTime.Now;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
                 sosID = -1;
                 loadOriginal();
             }

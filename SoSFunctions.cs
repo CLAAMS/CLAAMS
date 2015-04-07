@@ -6,13 +6,15 @@ using System.Data.SqlClient;
 using Utilities;
 using System.Collections;
 using System.Data;
-
+using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 namespace CD6
 {
     public class SoSFunctions
     {
         DBConnect objDB = new DBConnect();
-
+          string sqlConnection = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
         public DataSet SearchSoS(SignOutSheet objSoS)
         { 
             SqlCommand objCommand = new SqlCommand();
@@ -172,6 +174,46 @@ namespace CD6
             } catch {
                 objDB.CloseConnection();
                 return false;
+            }
+        }
+
+        public DataSet GetSOSReciept()
+        {
+            SqlConnection myConnection = new SqlConnection(sqlConnection);
+            SqlCommand myCommand5 = new SqlCommand();
+            myCommand5.Connection = myConnection;
+            myCommand5.CommandType = CommandType.StoredProcedure;
+            myCommand5.CommandText = "SelectSOSCopyData";
+
+            DataSet myDs = new DataSet();
+            myDs = objDB.GetDataSetUsingCmdObj(myCommand5);
+            objDB.CloseConnection();
+            return myDs;
+        }
+
+        public int UpdateSoSBody(string body)
+        {
+            SqlConnection myConnection = new SqlConnection(sqlConnection);
+            myConnection.Open();
+            SqlCommand myCommand2 = new SqlCommand();
+            myCommand2.Connection = myConnection;
+            myCommand2.CommandType = CommandType.StoredProcedure;
+            myCommand2.CommandText = "UpdateSOSCopyBody";
+
+            SqlParameter myParameter2 = new SqlParameter("@body", body);
+            myParameter2.Direction = ParameterDirection.Input;
+            myParameter2.SqlDbType = SqlDbType.VarChar;
+            myParameter2.Size = 1000;
+            myCommand2.Parameters.Add(myParameter2);
+
+            try
+            {
+                myCommand2.ExecuteNonQuery();
+                return 1;
+            }
+            catch
+            {
+                return -1;
             }
         }
     }
