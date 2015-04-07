@@ -87,7 +87,6 @@
     <Content Include="js\info_popup.js" />
     <Content Include="login.aspx" />
     <Content Include="recipient.aspx" />
-    <Content Include="sos.aspx" />
     <Content Include="sosTemplate.aspx" />
     <Content Include="sos_create.aspx" />
     <Content Include="sos_search.aspx" />
@@ -150,13 +149,6 @@
       <DependentUpon>recipient.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignOutSheet.cs" />
-    <Compile Include="sos.aspx.cs">
-      <DependentUpon>sos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="sos.aspx.designer.cs">
-      <DependentUpon>sos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SoSFunctions.cs" />
     <Compile Include="SosHistory.cs" />
     <Compile Include="sosTemplate.aspx.cs">
@@ -276,7 +268,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:29384/</IISUrl>
+          <IISUrl>http://localhost:29324/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
