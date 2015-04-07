@@ -45,5 +45,10 @@ namespace CD6 {
             DataSet myDS = theDB.GetDataSetUsingCmdObj(myCommand6);
             return myDS;
         }
+
+        public void archiveAndModify(Asset objAsset) {
+            AssetFunctions AF = new AssetFunctions();
+            AF.ModifyAsset(objAsset);
+        }
     }
 }

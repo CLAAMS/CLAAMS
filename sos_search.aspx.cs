@@ -54,8 +54,10 @@ namespace CD6 {
             int sosID = (int)gvSearchResults.DataKeys[index].Value;
             string submit_type;
 
-            if (e.CommandName == "Delete") {
-                mySOS.DeleteSOS(sosID, (string)Session["user"]);
+            if (e.CommandName == "archive") {
+                SoSFunctions.ArchiveSoS(sosID, (string)Session["User"]);
+
+//                mySOS.DeleteSOS(sosID, (string)Session["user"]);
                 submit_type = "archive";
 
                 string dialog_header, dialog_body;

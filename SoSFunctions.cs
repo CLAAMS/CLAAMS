@@ -75,6 +75,21 @@ namespace CD6
             //SqlParameter inputParameter1 = new SqlParameter("sosID", mySOS.sosID);
         }
 
+        public static bool ArchiveSoS(int sosID, string editorID){
+            ArrayList assets = SignOutSheet.getAssetsForSOS(sosID);
+
+            if(UpdateSosHistory(sosID, editorID)){
+                foreach (Asset asset in assets){
+                    asset.sosID = 0;
+                    asset.archiveAndModify(asset);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public static bool UpdateSosHistory(int sosID, string editorID) {
             DBConnect objDB = new DBConnect();
 

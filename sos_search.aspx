@@ -80,7 +80,7 @@
                                             <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
                                             <asp:BoundField DataField="Status" HeaderText="Status" />
                                             <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" />
-                                            <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" />
+                                            <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="archive" ControlStyle-CssClass="btn-danger btn" />
                                         </Columns>
                                     </asp:GridView>
                                 </div>
