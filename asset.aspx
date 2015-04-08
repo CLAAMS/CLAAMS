@@ -110,10 +110,9 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
-                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
-                            <asp:ListItem></asp:ListItem>
+                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" AppendDataBoundItems="true">
                             <asp:ListItem Value="Active" Text="Active" />
-                            <asp:ListItem>Out of Service</asp:ListItem>
+                            <asp:ListItem Value="Out of Service" Text="Out of Service" />
                         </asp:DropDownList><br />
                         <asp:Label ID="lblSerialRight" Text="Serial Number:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtSerialRight" runat="server" CssClass="form-control" />
