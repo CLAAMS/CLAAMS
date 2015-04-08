@@ -40,8 +40,16 @@
                     <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
                     <asp:Label ID="lblTerm" text="Duration:" runat="server" CssClass="label" />
                     <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged">
+                        <asp:ListItem Value="2" Text="" />
                         <asp:ListItem Value="1" Text="Permanent" />
                         <asp:ListItem Value="0" Text="Non-Permanent" />
+                    </asp:DropDownList><br />
+                    <asp:Label ID="lblStatus" runat="server" CssClass="label" Text="Status:" />
+                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" >
+                        <asp:ListItem Value="" Text="" />
+                        <asp:ListItem Value="Signed" Text="Closed" />
+                        <asp:ListItem Value="Unsigned" Text="Unsigned" />
+                        <asp:ListItem Value="Archived" Text="Archived" />
                     </asp:DropDownList><br />
                     <div class="col-md-6">
                         <div class="row">

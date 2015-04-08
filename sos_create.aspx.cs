@@ -84,12 +84,12 @@ namespace CD6 {
 
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
+            mySOS.status = "Unsigned";
 
             mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
             if (mySOS.assingmentPeriod == 1) {
                 mySOS.assingmentPeriod = 1;
                 mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00:00 PM");
-                mySOS.status = "Not overdue";
             } else {
                 mySOS.assingmentPeriod = 0;
                 mySOS.dateDue = calDueDate.SelectedDate;
@@ -97,12 +97,6 @@ namespace CD6 {
 
             mySOS.dateCreated = calIssueDate.SelectedDate;
             mySOS.dateModified = DateTime.Now;
-
-            if (mySOS.dateCreated > mySOS.dateDue) {
-                mySOS.status = "Overdue";
-            } else {
-                mySOS.status = "Not Overdue";
-            }
             
             mySOS.imageFileName = "TestImageFileName";
             mySOS.recordCreated = DateTime.Now;
