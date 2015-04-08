@@ -19,6 +19,7 @@ namespace CD6 {
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
+            mySOS.status = ddlStatus.SelectedValue;
 
             if (mySOS.assingmentPeriod == 1) {
                 if (calDueDate.SelectedDate == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {

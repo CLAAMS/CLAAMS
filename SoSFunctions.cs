@@ -49,6 +49,7 @@ namespace CD6
             if(objSoS.dateDue.ToString() == "1/1/1900 12:00:00 AM"){
                 dateDue = "";
             }
+
             inputParameter = new SqlParameter("@dateDue", dateDue);
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.VarChar;
@@ -56,6 +57,12 @@ namespace CD6
             objCommand.Parameters.Add(inputParameter);
 
             inputParameter = new SqlParameter("@assetDescription", objSoS.assetDescription);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@assetStatus", objSoS.status);
             inputParameter.Direction = ParameterDirection.Input;
             inputParameter.SqlDbType = SqlDbType.VarChar;
             inputParameter.Size = 100;
@@ -79,10 +86,13 @@ namespace CD6
             ArrayList assets = SignOutSheet.getAssetsForSOS(sosID);
 
             if(UpdateSosHistory(sosID, editorID)){
+
                 foreach (Asset asset in assets){
                     asset.sosID = 0;
                     asset.archiveAndModify(asset);
                 }
+
+                UpdateSosStatus(sosID, "Archived");
 
                 return true;
             }
@@ -184,6 +194,35 @@ namespace CD6
 
             try {
                 objDB.DoUpdateUsingCmdObj(objCommand1);
+                objDB.CloseConnection();
+                return true;
+            } catch {
+                objDB.CloseConnection();
+                return false;
+            }
+        }
+
+        public static bool UpdateSosStatus(int sosID, string sosStatus){
+            DBConnect objDB = new DBConnect();
+
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateSosStatus";
+
+            SqlParameter sosIdParam = new SqlParameter("@sosID", sosID);
+            sosIdParam.Direction = ParameterDirection.Input;
+            sosIdParam.SqlDbType = SqlDbType.Int;
+            sosIdParam.Size = 100;
+            objCommand.Parameters.Add(sosIdParam);
+
+            SqlParameter sosStatusParam = new SqlParameter("@sosStatus", sosStatus);
+            sosStatusParam.Direction = ParameterDirection.Input;
+            sosStatusParam.SqlDbType = SqlDbType.VarChar;
+            sosStatusParam.Size = 100;
+            objCommand.Parameters.Add(sosStatusParam);
+
+            try {
+                objDB.DoUpdateUsingCmdObj(objCommand);
                 objDB.CloseConnection();
                 return true;
             } catch {

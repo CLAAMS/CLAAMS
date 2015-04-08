@@ -119,6 +119,7 @@ namespace CD6 {
 
             if (SoSFunctions.UpdateSosHistory(sosID, editorID)) {
                 if(SoSFunctions.UpdateSoSFileName(sosID, editorID, fileName)){
+                    SoSFunctions.UpdateSosStatus(sosID, "Signed");
                     dialog_header = "SoS Modified";
                     dialog_body = string.Format("{0} has been modified successfully", sosID);
                 } else {
