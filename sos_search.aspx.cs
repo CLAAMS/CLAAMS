@@ -6,11 +6,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Collections;
-
+using Utilities;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using Microsoft.SqlServer.Server;
 namespace CD6 {
     public partial class sos_search : System.Web.UI.Page {
         SignOutSheet mySOS = new SignOutSheet();
-
+        DBConnect db = new DBConnect();
+        string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        
         protected void Page_Load(object sender, EventArgs e) {
             fillDropdowns();
         }
@@ -49,13 +54,15 @@ namespace CD6 {
         }
 
         protected void gvSearchResults_RowCommand(object sender, GridViewCommandEventArgs e) {
+            string editorId=Session["user"].ToString();
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
             int sosID = (int)gvSearchResults.DataKeys[index].Value;
             string submit_type;
 
             if (e.CommandName == "Delete") {
-                mySOS.DeleteSOS(sosID, (string)Session["user"]);
+                Archive(sosID, editorId);
+                //mySOS.DeleteSOS(sosID, (string)Session["user"]);
                 submit_type = "archive";
 
                 string dialog_header, dialog_body;
@@ -147,7 +154,48 @@ namespace CD6 {
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
+        public int Archive(int sosID, string editorID)
+        {
+           
+            editorID = (string)Session["user"];
+            string fileName = (string)Session["FileName"];
+            string dialog_header = "", dialog_body = "";
+            SoSFunctions myFunctions = new SoSFunctions();
+            bool didCreateFail;
+            AssetFunctions functions = new AssetFunctions();
+            ArrayList assets = SignOutSheet.getAssetsForSOS(sosID);
+            foreach (Asset a in assets)
+            {
+                //For each asset returned from the function, if the soshistory update returns true, update the asset history
+                if(SoSFunctions.UpdateSosHistory(sosID, editorID)){
+                    //Runs the modified asset history
+                   
+                    //Commands and parameters to update the assets sosID,editorId,etc...
+                    SqlConnection connect=new SqlConnection(SqlConnectString);
+                    SqlCommand myCommand8 = new SqlCommand();
+                    myCommand8.Connection = connect;
+                    myCommand8.CommandType = CommandType.StoredProcedure;
+                    myCommand8.CommandText = "ArchiveSoS";
 
+                    SqlParameter parameter1 = new SqlParameter("sosID", a.sosID);
+                    parameter1.Direction = ParameterDirection.Input;
+                    parameter1.SqlDbType = SqlDbType.Int;
+                    parameter1.Size = 50;
+                    myCommand8.Parameters.Add(parameter1);
+                    SqlParameter parameter2 = new SqlParameter("EditorId", editorID);
+                    parameter2.Direction = ParameterDirection.Input;
+                    parameter2.SqlDbType = SqlDbType.VarChar;
+                    parameter2.Size = 50;
+                    myCommand8.Parameters.Add(parameter2);
+                    int result = db.DoUpdateUsingCmdObj(myCommand8);
+                    return result;
+                }
+                return 0;          
+            }
+            return 0;
+
+        }
+        
    
     }
 }

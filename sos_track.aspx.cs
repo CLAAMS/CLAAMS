@@ -71,7 +71,9 @@ namespace CD6 {
             StringWriter mySW = new StringWriter(mySB);
             HtmlTextWriter myWriter = new HtmlTextWriter(mySW);
             gvSosTracking.RenderControl(myWriter);
-            return Regex.Replace(mySB.ToString(),@"(?></?\w+)(?>(?:[^>'""]+|'[^']*'|""[^""]*"")*)>",string.Empty);
+
+            //return Regex.Replace(mySB.ToString(),@"(?></?\w+)(?>(?:[^>'""]+|'[^']*'|""[^""]*"")*)>",string.Empty);
+            return mySB.ToString();
             
         }
 

@@ -26,6 +26,7 @@ namespace Tools
         {
            
             MailMessage mailMessage = new MailMessage();
+           
             MailAddress fromAddress = new MailAddress("ryanmarks62@yahoo.com");
 
             SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com",587);
@@ -37,7 +38,7 @@ namespace Tools
             mailMessage.From = fromAddress;
             mailMessage.Subject = subject;
             mailMessage.Body = body;
-            mailMessage.IsBodyHtml = false;
+            mailMessage.IsBodyHtml = true;
 
             Attachment myAttachement = new Attachment(fileName, MediaTypeNames.Image.Jpeg);
             ContentDisposition disposition = myAttachement.ContentDisposition;
@@ -67,7 +68,7 @@ namespace Tools
             mailMessage.From = fromAddress;
             mailMessage.Subject = subject;
             mailMessage.Body = body;
-            mailMessage.IsBodyHtml = false;
+            mailMessage.IsBodyHtml = true;
 
             smtpClient.Send(mailMessage);
             return "Email Sent";
@@ -133,5 +134,6 @@ namespace Tools
                 return -1;
             }
         }
+     
     }
 }

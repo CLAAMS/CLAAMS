@@ -137,8 +137,8 @@ namespace CD6 {
             string emailAddress = myDS.Tables[0].Rows[0][1].ToString();
             string attachement="C:\\Users\\tud45086\\CLAAMS\\signatures\\"+myDS.Tables[0].Rows[0][2].ToString();
             myDS1= myEmail.GetEmailReciept();
-            string body=myDS1.Tables[0].Rows[0][0].ToString() +"\n"+ myDS1.Tables[0].Rows[0][2].ToString();
-            string subject=myDS1.Tables[0].Rows[0][1].ToString();
+            string body = myDS1.Tables[0].Rows[0][0].ToString() + "\n";
+            string subject=myDS1.Tables[0].Rows[0][1].ToString()+ "TEST";
             
             myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
             
