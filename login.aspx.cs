@@ -10,16 +10,19 @@ namespace CD6{
     public partial class login : System.Web.UI.Page{
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            lblLoginInstructions.Visible = true;
+            lblLoginInstructions.Text = "Enter correct accessnetID and password to begin using the CLAAMS system";
         }
 
         protected void btnLogin_Click(object sender, EventArgs e){
             if (LDAP.AuthenticateUser(txtUsername.Text, txtPassword.Text) == txtUsername.Text && txtUsername.Text != null && txtUsername.Text != "" && ValidUser(txtUsername.Text)){
                 Session["user"] = txtUsername.Text;
+                lblLoginInstructions.Visible = false;
                 lblError.Text = "Login Successful";
                 Session["UserInfo"] = LDAP.getUserInfo(txtUsername.Text);
                 Response.Redirect("sos_create.aspx");
             } else {
+                lblLoginInstructions.Visible = false;
                 lblError.Text = "Invalid username or password, please try again. \n\n";
             }
 

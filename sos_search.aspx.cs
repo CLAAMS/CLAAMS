@@ -12,6 +12,8 @@ namespace CD6 {
         SignOutSheet mySOS = new SignOutSheet();
 
         protected void Page_Load(object sender, EventArgs e) {
+            lblSearchSOSDirections.Visible = true;
+            lblSearchSOSDirections.Text = "Enter any combination of fields to search for Sign Out Sheets. To view all Sign Out Sheets, leave all fields blank and click search button.";
             fillDropdowns();
         }
 

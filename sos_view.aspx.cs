@@ -14,6 +14,8 @@ namespace CD6 {
         DateTime dayCounter=DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblModifySOSDirections.Visible = true;
+            lblModifySOSDirections.Text = "If selected SOS to modify is Permanent, all fields all read only and can not be editted. If term is Non-Permanent, you may only edit the due date for the SOS. Use history drop-down to view all previous changes made to the particular SOS";
             if (!IsPostBack)
             {
                 sosID = -1;
@@ -161,9 +163,9 @@ namespace CD6 {
                 dialog_header = "Error: Modify Failed";
                 dialog_body = "Unable to modify record. Please try again.";
             }
-
             modal(dialog_header, dialog_body);
-            btnSubmitModification_Click(this, e);
+            btnClose_Click(this, e);
+            //Response.Redirect("sos_search.aspx")      //NEED TO REDIRECT TO SEARCH
         }
 
         protected void btnModifySOSModalNo_Click(object sender, EventArgs e)

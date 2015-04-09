@@ -10,6 +10,8 @@ using System.Collections;
 namespace CD6 {
     public partial class WebForm1 : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
+            lblSearchAssetsForSOSDirections.Visible = true;
+            lblSearchAssetsForSOSDirections.Text = "Search for assets to add to new Sign Out Sheet based on any combination of fields";
             searchResults.Visible = false;
         }
 
@@ -33,6 +35,9 @@ namespace CD6 {
             gvSearchResults.DataSource = dataset;
             gvSearchResults.DataBind();
             searchResults.Visible = true;
+            lblSearchAssetsForSOSDirections.Visible = false;
+            lblSearchAssetsForSOSSelectDirections.Visible = true;
+            lblSearchAssetsForSOSSelectDirections.Text = "Select at least one asset to add to Sign Out Sheet";
             searchFields.Visible = false;
         }
 

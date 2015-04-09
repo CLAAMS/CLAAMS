@@ -7,10 +7,12 @@ using System.Web.UI.WebControls;
 using System.Data;
 
 namespace CD6{
-    public partial class asset : System.Web.UI.Page {
+    public partial class asset : System.Web.UI.Page 
+    {
         Asset objAsset = new Asset();
         AssetFunctions objAssetFunctions = new AssetFunctions();
-        protected void Page_Load(object sender, EventArgs e) {
+        protected void Page_Load(object sender, EventArgs e) 
+        {
             btnSubmitModifyAsset.Visible = false;
            
             search_results.Visible=false;
@@ -27,6 +29,8 @@ namespace CD6{
             filler.Visible=false;
             lblSerialRight.Visible=false;
             txtSerialRight.Visible=false;
+            lblCreateAssetDirections.Visible = true;
+            lblCreateAssetDirections.Text = "To create new asset, please enter all required fields in proper format. You may use the Templates drop-down option to auto-populate fields or use the Manage Templates link to create, modify, or delete new auto-fill template designs";
 
             if(!Page.IsPostBack){
                 populateTemplateDropdown();
@@ -95,6 +99,8 @@ namespace CD6{
             } else if (e.CommandName == "modifyRecord") {
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
+                lblModifyAssetDirections.Visible = true;
+                lblModifyAssetDirections.Text = "Enter all required fields in correct format to submit modified asset successfully. Use the history dropdown to view previously modified versions of a particular asset.";
 
                 btnSubmit.Visible = false;
                 btnSubmitModifyAsset.Visible = true;
@@ -193,6 +199,8 @@ namespace CD6{
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
+            lblSearchAssetsDirections.Visible = true;
+            lblSearchAssetsDirections.Text = "Enter any combination of fields to search for specific assets or click search with all blank values to view all assets";
             btnSubmit.Visible = false;
             btnSubmitModifyAsset.Visible = false;
             search_results.Visible=false;

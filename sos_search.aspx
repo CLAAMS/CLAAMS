@@ -30,6 +30,7 @@
                     <div class="row header_row">
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Search Sign Sheets</h1>
+                            <asp:Label ID="lblSearchSOSDirections" runat="server" Visible="false"/>
                         </div>
                     </div>
                     <asp:Label ID="lblRecipient" Text="Recipient:" runat="server" CssClass="label" />

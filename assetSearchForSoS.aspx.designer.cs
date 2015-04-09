@@ -31,6 +31,15 @@ namespace CD6 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchHeader;
         
         /// <summary>
+        /// lblSearchAssetsForSOSDirections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchAssetsForSOSDirections;
+        
+        /// <summary>
         /// lblERROR control.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchResults;
+        
+        /// <summary>
+        /// lblSearchAssetsForSOSSelectDirections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchAssetsForSOSSelectDirections;
         
         /// <summary>
         /// gvSearchResults control.

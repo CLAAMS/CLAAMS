@@ -14,6 +14,8 @@ namespace CD6 {
         string editor;
 
         protected void Page_Load(object sender, EventArgs e){
+            lblCreateSOSDirections.Visible = true;
+            lblCreateSOSDirections.Text = "Enter all required fields. If Term is Non-Permanent, make sure to select both issue date and due date";
             if(!IsPostBack){
                 calIssueDate.SelectedDate = DateTime.Today;
                 fillDropdowns();

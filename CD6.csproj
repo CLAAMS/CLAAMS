@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Asset.cs" />
     <Compile Include="AssetFunctions.cs" />
+    <Compile Include="AssetHistory.cs" />
     <Compile Include="AssetRecipient.cs" />
     <Compile Include="email.aspx.cs">
       <DependentUpon>email.aspx</DependentUpon>

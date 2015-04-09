@@ -18,17 +18,22 @@ namespace CD6 {
                 fillDropDowns();
 
                 btnCreate_Click(this, e);
+
             }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e) {
+            createHeader.Visible = true;
+            modifyHeader.Visible = false;
+            lblSearchRecipientsDirections.Visible = false;
+            lblModifyRecipientsDirections.Visible = false;
+            lblCreateRecipientsDirections.Visible = true;
+            lblCreateRecipientsDirections.Text = "To create a new recipient, please enter all required fields in proper format. Use the Add Department link to create new department affiliations, if not listed in the drop down list or to modify names of existing departments";
             searchHeader.Visible = false;
             button_search.Visible = false;
-            createHeader.Visible = true;
             button_submit.Visible = true;
             recipient_form.Visible = true;
             search_results.Visible = false;
-            modifyHeader.Visible = false;
 
             if (Session["AssetRecipient"] != null) {
                 bool check;
@@ -36,6 +41,10 @@ namespace CD6 {
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
                 check = (Boolean)Session["IsOnModifyPage"];
+
+                lblCreateRecipientsDirections.Visible = false;
+                lblModifyRecipientsDirections.Visible = true;
+                lblModifyRecipientsDirections.Text = "Make sure to enter all required fields in proper format in order to successfully modify a existing recipient";
 
                 if (check == false) {
                     bool onModifyPage = true;
@@ -64,6 +73,10 @@ namespace CD6 {
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e) {
+            lblCreateRecipientsDirections.Visible = false;
+            lblModifyRecipientsDirections.Visible = false;
+            lblSearchRecipientsDirections.Visible = true;
+            lblSearchRecipientsDirections.Text = "Enter any combination of fields to seach for specific recipients or search for all recipinets by clicking search button with no fields entered";
             searchHeader.Visible = true;
             button_search.Visible = true;
             createHeader.Visible = false;
@@ -148,11 +161,10 @@ namespace CD6 {
                     myAR.CreateAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
 
                     string dialog_header, dialog_body;
-
                     dialog_header = "Recipient Created";
                     dialog_body = string.Format("{0} {1} has been created successfully.", txtFirstname.Text, txtLastName.Text);
                     modal(dialog_header, dialog_body);
-            
+
                     ddlTitle.Text = "";
                     txtFirstname.Text = "";
                     txtLastName.Text = "";
@@ -191,7 +203,9 @@ namespace CD6 {
                 //    modal(dialog_header, dialog_body);
                 //}
               
-            } else if (e.CommandName == "modifyRecord") {
+            } 
+            else if (e.CommandName == "modifyRecord") {
+
                 bool onModify=false;
                 createHeader.Visible = false;
                 btnSubmitCreate.Visible = true;
