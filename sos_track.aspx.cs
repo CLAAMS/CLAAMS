@@ -9,17 +9,11 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Utilities;
-using System.Collections;
-using System.IO;
-using System.Text;
-using Tools;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
+
 namespace CD6 {
     public partial class sos_track : System.Web.UI.Page {
-        Email myEmail = new Email();
-        
         SignOutSheet mySOS = new SignOutSheet();
+
         protected void Page_Load(object sender, EventArgs e) {
             String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
             
@@ -34,13 +28,6 @@ namespace CD6 {
 
             gvSosTracking.DataSource = myDB.GetDataSetUsingCmdObj(MyCommand);
             gvSosTracking.DataBind();
-            StringBuilder mySB = new StringBuilder();
-            StringWriter mySW = new StringWriter(mySB);
-            HtmlTextWriter myWriter = new HtmlTextWriter(mySW);
-
-            gvSosTracking.RenderControl(myWriter);
-
-            myEmail.sendEmail("ryanmarks62@yahoo.com","tud45086@temple.edu","TestRender", render(gvSosTracking));
         }
 
         protected void gvSosTracking_RowCommand(object sender, GridViewCommandEventArgs e) {
@@ -53,17 +40,6 @@ namespace CD6 {
                 Session.Add("SOSID", mySOS.sosID);
                 Response.Redirect("./sos_view.aspx");
             }
-        }
-
-        public string render(GridView theGridview) {
-            StringBuilder mySB = new StringBuilder();
-            StringWriter mySW = new StringWriter(mySB);
-            HtmlTextWriter myWriter = new HtmlTextWriter(mySW);
-            gvSosTracking.RenderControl(myWriter);
-            return Regex.Replace(mySB.ToString(),@"(?></?\w+)(?>(?:[^>'""]+|'[^']*'|""[^""]*"")*)>",string.Empty);
-        }
-
-        public override void VerifyRenderingInServerForm(Control control) {
         }
     }
 }
