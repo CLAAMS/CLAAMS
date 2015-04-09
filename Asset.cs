@@ -50,5 +50,32 @@ namespace CD6 {
             AssetFunctions AF = new AssetFunctions();
             AF.ModifyAsset(objAsset);
         }
+
+        public static ArrayList getHistoriesByID(int assetID){
+            ArrayList histories = new ArrayList();
+
+            DBConnect objDB = new DBConnect();
+
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateSosStatus";
+
+            SqlParameter assetIdParam = new SqlParameter("@sosID", assetID);
+            assetIdParam.Direction = ParameterDirection.Input;
+            assetIdParam.SqlDbType = SqlDbType.Int;
+            assetIdParam.Size = 100;
+            objCommand.Parameters.Add(assetIdParam);
+
+            try {
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                objDB.CloseConnection();
+                return true;
+            } catch {
+                objDB.CloseConnection();
+                return false;
+            }
+
+            return histories;
+        }
     }
 }
