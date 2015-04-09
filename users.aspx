@@ -4,7 +4,7 @@
     <link href="css/secondary-nav.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <nav class="navbar navbar-default navbar-secondary navbar-tertiary" role="navigation">
+    <nav class="navbar navbar-default navbar-secondary" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subnavbar" aria-expanded="false" aria-controls="subnavbar">
@@ -23,7 +23,7 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-    <nav class="navbar navbar-default navbar-secondary" role="navigation">
+    <nav class="navbar navbar-default navbar-secondary navbar-tertiary" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subnavbar" aria-expanded="false" aria-controls="subnavbar">
