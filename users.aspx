@@ -4,6 +4,25 @@
     <link href="css/secondary-nav.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <nav class="navbar navbar-default navbar-secondary navbar-tertiary" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subnavbar" aria-expanded="false" aria-controls="subnavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="Div1" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="users.aspx">User Management</a></li>
+                    <li><a href="sosTemplate.aspx">Sign Sheet Copy</a></li>
+                    <li><a href="email.aspx">Email Copy</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
     <nav class="navbar navbar-default navbar-secondary" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">

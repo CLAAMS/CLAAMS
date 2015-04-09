@@ -6,3 +6,7 @@
 .navbar-secondary .navbar-header {
     background-color: gray;
 }
+
+.navbar-tertiary {
+    background-color: yellow;
+}
