@@ -325,7 +325,8 @@ namespace CD6 {
             modifyHeader.Visible = true;
 	}
 
-        protected bool validateInput(string firstName, string lastName, string email, string location, int primaryDept){
+        protected bool validateInput(string firstName, string lastName, string email, string location, int primaryDept)
+        {
             string output = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
