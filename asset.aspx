@@ -62,7 +62,7 @@
                             <p>
                                 <h1>Search Assets</h1>
                                 <div class="instructions">
-                                    <asp:label id="lblSearchAssetsDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                    <asp:label id="lblSearchAssetsDirections" runat="server" Visible="false" CssClass="instructions"/>
                                 </div>
                             </p>
                         </div>
@@ -72,7 +72,7 @@
                             <p>
                                 <h1>Create Asset</h1>
                                 <div class="instructions">
-                                    <asp:label id="lblCreateAssetDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                    <asp:label id="lblCreateAssetDirections" runat="server" Visible="false" CssClass="instructions"/>
                                 </div>
                             </p>
                         </div>
@@ -82,7 +82,7 @@
                             <p>
                                     <h1>Modify Asset</h1>
                                 <div class="instructions">
-                                    <asp:label id="lblModifyAssetDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                    <asp:label id="lblModifyAssetDirections" runat="server" Visible="false" CssClass="instructions"/>
                                 </div>
                             </p>
                         </div>

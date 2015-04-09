@@ -10,7 +10,7 @@ namespace CD6{
     public partial class login : System.Web.UI.Page{
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblLoginInstructions.Visible = true;
+            lblLoginInstructions.Visible = false;
             lblLoginInstructions.Text = "Enter correct accessnetID and password to begin using the CLAAMS system";
         }
 
