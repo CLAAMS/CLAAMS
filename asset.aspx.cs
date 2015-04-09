@@ -7,12 +7,10 @@ using System.Web.UI.WebControls;
 using System.Data;
 
 namespace CD6{
-    public partial class asset : System.Web.UI.Page 
-    {
+    public partial class asset : System.Web.UI.Page {
         Asset objAsset = new Asset();
         AssetFunctions objAssetFunctions = new AssetFunctions();
-        protected void Page_Load(object sender, EventArgs e) 
-        {
+        protected void Page_Load(object sender, EventArgs e) {
             btnSubmitModifyAsset.Visible = false;
            
             search_results.Visible=false;
@@ -138,10 +136,8 @@ namespace CD6{
             } else if(e.CommandName == "checkinRecord") { }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text))
-            {
+        protected void btnSubmit_Click(object sender, EventArgs e) {
+            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text)) {
                 string submit_type;
                 string editor = Session["user"].ToString();
                 btnSubmit.Visible = true;
@@ -169,8 +165,7 @@ namespace CD6{
                 submit_type = "create";
 
                 string dialog_header, dialog_body;
-                if (submit_type == "create")
-                {
+                if (submit_type == "create") {
                     dialog_header = "Asset Created";
                     dialog_body = string.Format("{0} {1} has been created successfully.", objAsset.Make, objAsset.Model);
                     modal(dialog_header, dialog_body);
@@ -232,8 +227,10 @@ namespace CD6{
             txtSerialLeft.Text = "";
             txtNotes.Text = "";
 
-            ddlStatus.Items.Insert(0, new ListItem("", ""));
-            ddlStatus.SelectedValue = "";
+            if(ddlStatus.Items[0].Value != ""){
+                ddlStatus.Items.Insert(0, new ListItem("", ""));
+                ddlStatus.SelectedValue = "";
+            }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e){
@@ -266,12 +263,10 @@ namespace CD6{
             txtNotes.Text = "";
         }
 
-        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e)
-        {
+        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e) {
             btnSubmit.Visible = false;
 
-            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text))
-            {
+            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text)) {
                 objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
                 objAsset.CLATag = txtCLAID.Text;
                 objAsset.Make = txtMake.Text;
@@ -288,21 +283,16 @@ namespace CD6{
 
                 DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
                 int sosID = 0;
-                if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID))
-                {
+                if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) {
+                    objAsset.sosID = sosID;
+                    Session["AssetObject"] = objAsset;
+                    modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                } else {
                     objAsset.sosID = sosID;
                     Session["AssetObject"] = objAsset;
                     modal2("Modify Asset", "Are you sure you want to modify this asset?");
                 }
-                else
-                {
-                    objAsset.sosID = sosID;
-                    Session["AssetObject"] = objAsset;
-                    modal2("Modify Asset", "Are you sure you want to modify this asset?");
-                }
-            }
-            else
-            {
+            } else {
                 modifyHeader.Visible = true;
                 createHeader.Visible = false;
                 btnSubmitModifyAsset.Visible = true;
@@ -323,28 +313,21 @@ namespace CD6{
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
-        protected void modal1(string title, string body)
-        {
+        protected void modal1(string title, string body) {
             lblModal_header.Text = title;
             lblModal_body.Text = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "archiveAsset();", true);
         }
 
-        protected void modal2(string title, string body)
-        {
+        protected void modal2(string title, string body) {
             lblModifyAssetModal_header.Text = title;
             lblModifyAssetModal_body.Text = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "modifyAsset();", true);
         }
 
-        protected void btnCheckIN_Click(object sender, EventArgs e)
-        {
-            
+        protected void btnCheckIN_Click(object sender, EventArgs e) { }
 
-        }
-
-        protected void manage_templates_Click(object sender, EventArgs e)
-        {
+        protected void manage_templates_Click(object sender, EventArgs e) {
             Dictionary<string, object> createAssetSelections = new Dictionary<string, object>();
             createAssetSelections.Add("CLATag", txtCLAID.Text);
             createAssetSelections.Add("Make", txtMake.Text);
@@ -358,26 +341,20 @@ namespace CD6{
             Response.Redirect("template_asset.aspx");
         }
 
-        protected void btnArchiveAssetYes_Click(object sender, EventArgs e)
-        {
+        protected void btnArchiveAssetYes_Click(object sender, EventArgs e) {
                 objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"]);
                 string dialog_header, dialog_body;
                 dialog_header = "Asset Archived";
                 dialog_body = string.Format("{0} {1} has been archived successfully.", objAsset.Make, objAsset.Model);
                 modal(dialog_header, dialog_body);
-                //  btnSearch_Click(this, e);  
         }
 
-        protected void btnArchiveAssetNo_Click(object sender, EventArgs e)
-        {
+        protected void btnArchiveAssetNo_Click(object sender, EventArgs e) {
             btnSearch_Click(this, e);
         }
 
-        protected void btnModifyAssetModalYes_Click(object sender, EventArgs e)
-        {
-
+        protected void btnModifyAssetModalYes_Click(object sender, EventArgs e) {
             objAssetFunctions.ModifyAsset((Asset)Session["AssetObject"]);
-
             string dialog_header, dialog_body;
             dialog_header = "Asset Modified";
             dialog_body = string.Format("{0} {1} has been modified successfully.", Session["Make1"], Session["Model1"]);
@@ -385,38 +362,30 @@ namespace CD6{
             btnSearch_Click(this, e);
         }
 
-        protected void btnModifyAssetModalNo_Click(object sender, EventArgs e)
-        {
+        protected void btnModifyAssetModalNo_Click(object sender, EventArgs e) {
             btnSubmitModifyAsset_Click(this, e);
         }
 
-        protected bool validateInput(string CLATag, string Make, string Model)
-        {
+        protected bool validateInput(string CLATag, string Make, string Model) {
             string output = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
-            if (CLATag == "")
-            {
+            if (CLATag == "") {
                 output += "Invalid CLA Tag<br/>";
             }
 
-            if (Make == "")
-            {
+            if (Make == "") {
                 output += "Invalid Make<br/>";
             }
 
-            if (Model == "")
-            {
+            if (Model == "") {
                 output += "Invalid Model<br/>";
             }
 
-            if (output != "")
-            {
+            if (output != "") {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
                 return false;
-            }
-            else
-            {
+            } else {
                 return true;
             }
         }

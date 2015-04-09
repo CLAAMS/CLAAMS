@@ -46,7 +46,7 @@
                         <div class="col-md-12" id="header" runat="server">
                             <h1>View Sign Sheet</h1>
                             <div class="instructions">
-                                <asp:Label ID="lblModifySOSDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                <asp:Label ID="lblModifySOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
                         </div>
                     </div>

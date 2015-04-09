@@ -31,7 +31,7 @@
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Create Sign Sheet</h1>
                             <div class="instructions">
-                                <asp:Label ID="lblCreateSOSDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                <asp:Label ID="lblCreateSOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
                         </div>
                     </div>

@@ -19,7 +19,7 @@
                         <p>
                             <h1>Add Department</h1>
                             <div class="instructions">
-                                <asp:Label ID="lblAddDepartmentDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                <asp:Label ID="lblAddDepartmentDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
                         </p>
                     </div>
