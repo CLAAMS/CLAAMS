@@ -46,9 +46,7 @@
                         <li><a href="sos_create.aspx">Sign Sheets</a></li>
                         <li><a href="asset.aspx">Assets</a></li>
                         <li><a href="recipient.aspx">Recipeints</a></li>
-                        <li><a href="users.aspx">Manage Users</a></li>
-                        <li><a href="email.aspx">Manage Email Copy</a></li>
-                        <li><a href="sosTemplate.aspx">Manage Sign Sheet Copy</a></li>
+                        <li><a href="users.aspx">Admin</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--<li><a href="#">Settings</a></li>-->
