@@ -96,6 +96,8 @@ namespace CD6{
                 UsersList.Visible = false;
                 usersHeader.Visible = false;
                 modifyHeader.Visible = true;
+                lblModifyUserDirections.Visible = true;
+                lblModifyUserDirections.Text = "Enter values for any fields for which you would like to change. Accessnet ID can not be edited and is read-only. Make sure all required fields are entered in proper format";
                 createHeader.Visible = false;
                 UserForm.Visible = true;
 
@@ -110,6 +112,8 @@ namespace CD6{
         }
 
         protected void btnAdd_Click(object sender, EventArgs e){
+            lblAddUserDirections.Visible = true;
+            lblAddUserDirections.Text = "Enter the accessnet ID for the user you wish to add and click Lookup AccessNet ID to auto-populate the other fields. Enter any additional fields you may want to include, and make sure all required fields are entered.";
             UsersList.Visible=false;
             usersHeader.Visible=false;
             modifyHeader.Visible=false;

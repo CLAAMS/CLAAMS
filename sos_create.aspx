@@ -30,6 +30,7 @@
                     <div class="row header_row">
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Create Sign Sheet</h1>
+                            <asp:Label ID="lblCreateSOSDirections" runat="server" Visible="false"/>
                         </div>
                     </div>
                     <div class="row">

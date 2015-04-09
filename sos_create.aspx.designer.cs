@@ -31,6 +31,15 @@ namespace CD6 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl header;
         
         /// <summary>
+        /// lblCreateSOSDirections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCreateSOSDirections;
+        
+        /// <summary>
         /// lblRecipient control.
         /// </summary>
         /// <remarks>

@@ -14,6 +14,8 @@ namespace CD6 {
         DateTime dayCounter=DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblModifySOSDirections.Visible = true;
+            lblModifySOSDirections.Text = "If selected SOS to modify is Permanent, all fields all read only and can not be editted. If term is Non-Permanent, you may only edit the due date for the SOS. Use history drop-down to view all previous changes made to the particular SOS";
             if (!IsPostBack)
             {
                 sosID = -1;

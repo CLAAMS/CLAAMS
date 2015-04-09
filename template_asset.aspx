@@ -12,6 +12,7 @@
                     <div class="row header_row">
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Manage Templates</h1>
+                            <asp:Label ID="lblManageTemplateDirections" runat="server"  Visible="false" />
                         </div>
                     </div>
                 </div>

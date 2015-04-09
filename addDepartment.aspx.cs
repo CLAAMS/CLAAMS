@@ -21,6 +21,8 @@ namespace CD6{
         String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
         protected void Page_Load(object sender, EventArgs e){
+            lblAddDepartmentDirections.Visible = true;
+            lblAddDepartmentDirections.Text = "Enter a department name to create new department or modify existing department";
             myDS = returnDepartments();
             gvDepartments.DataSource = myDS;
             gvDepartments.DataBind();

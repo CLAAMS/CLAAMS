@@ -15,7 +15,10 @@ namespace CD6
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblManageTemplateDirections.Visible = true;
+            lblManageTemplateDirections.Text = "Enter all required fields to create a new asset template or update/delete existing templates";
             getTemplates();
+
         }
 
         protected void btnAddTemplate_Click(object sender, EventArgs e)

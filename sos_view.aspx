@@ -45,6 +45,7 @@
                     <div class="row header_row">
                         <div class="col-md-12" id="header" runat="server">
                             <h1>View Sign Sheet</h1>
+                            <asp:Label ID="lblModifySOSDirections" runat="server" Visible="false" />
                         </div>
                     </div>
                     <div class="row">

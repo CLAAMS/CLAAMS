@@ -87,6 +87,7 @@
 .label {
     color: #000000;
     font-size:14px;
+    position: relative;
 }
 
 .button_row {

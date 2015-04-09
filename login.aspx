@@ -8,6 +8,9 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <form role="form">
+                         <div class="center-block">
+                            <asp:Label ID="lblLoginInstructions" runat="server" CssClass="label" Visible ="false" />
+                             </div>
                         <div class="center-block">
                             <asp:Label ID="lblError" runat="server" CssClass="label" />
                         </div>

@@ -103,6 +103,15 @@ namespace CD6 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchHeader;
         
         /// <summary>
+        /// lblSearchAssetsDirections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchAssetsDirections;
+        
+        /// <summary>
         /// createHeader control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace CD6 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createHeader;
         
         /// <summary>
+        /// lblCreateAssetDirections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCreateAssetDirections;
+        
+        /// <summary>
         /// modifyHeader control.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,15 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl modifyHeader;
+        
+        /// <summary>
+        /// lblModifyAssetDirections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModifyAssetDirections;
         
         /// <summary>
         /// templateRow control.
