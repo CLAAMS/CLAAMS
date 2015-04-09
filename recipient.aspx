@@ -43,9 +43,9 @@
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="recipient_form" runat="server" visible="true">
-                    <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><h1>Search Recipients</h1></div></div>
-                    <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><h1>Create Recipient</h1></div></div>
-                    <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Recipient</h1></div></div>
+                    <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><h1>Search Recipients</h1></div><div class="instructions"><asp:label id="lblSearchRecipientsDirections" runat="server" Visible="false" CssClass="label instructions" /></div></div>
+                    <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><h1>Create Recipient</h1></div><div class="instructions"><asp:label id="lblCreateRecipientsDirections" runat="server" Visible="false" CssClass="label instructions" /></div></div>
+                    <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Recipient</h1></div><div class="instructions"><asp:label id="lblModifyRecipientsDirections" runat="server" Visible="false" CssClass="label instructions" /></div></div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-2">

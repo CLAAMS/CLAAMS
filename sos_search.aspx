@@ -30,6 +30,9 @@
                     <div class="row header_row">
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Search Sign Sheets</h1>
+                            <div class="instructions">
+                                <asp:Label ID="lblSearchSOSDirections" runat="server" Visible="false" CssClass="instructions label"/>
+                            </div>
                         </div>
                     </div>
                     <asp:Label ID="lblRecipient" Text="Recipient:" runat="server" CssClass="label" />
@@ -40,8 +43,16 @@
                     <asp:TextBox ID="txtSearchAsset" runat="server" CssClass="form-control" />
                     <asp:Label ID="lblTerm" text="Duration:" runat="server" CssClass="label" />
                     <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged">
+                        <asp:ListItem Value="2" Text="" />
                         <asp:ListItem Value="1" Text="Permanent" />
                         <asp:ListItem Value="0" Text="Non-Permanent" />
+                    </asp:DropDownList><br />
+                    <asp:Label ID="lblStatus" runat="server" CssClass="label" Text="Status:" />
+                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" >
+                        <asp:ListItem Value="" Text="" />
+                        <asp:ListItem Value="Signed" Text="Closed" />
+                        <asp:ListItem Value="Unsigned" Text="Unsigned" />
+                        <asp:ListItem Value="Archived" Text="Archived" />
                     </asp:DropDownList><br />
                     <div class="col-md-6">
                         <div class="row">
@@ -80,7 +91,7 @@
                                             <asp:BoundField DataField="DateDue" HeaderText="Date Due" />
                                             <asp:BoundField DataField="Status" HeaderText="Status" />
                                             <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modify" ControlStyle-CssClass="btn-default btn" />
-                                            <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="Delete" ControlStyle-CssClass="btn-danger btn" />
+                                            <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="archive" ControlStyle-CssClass="btn-danger btn" />
                                         </Columns>
                                     </asp:GridView>
                                 </div>

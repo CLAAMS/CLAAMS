@@ -17,6 +17,8 @@ namespace CD6 {
         string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
         
         protected void Page_Load(object sender, EventArgs e) {
+            lblSearchSOSDirections.Visible = true;
+            lblSearchSOSDirections.Text = "Enter any combination of fields to search for Sign Out Sheets. To view all Sign Out Sheets, leave all fields blank and click search button.";
             fillDropdowns();
         }
 
@@ -24,6 +26,7 @@ namespace CD6 {
             mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
             mySOS.cladID = ddlAssigner.SelectedValue;
             mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
+            mySOS.status = ddlStatus.SelectedValue;
 
             if (mySOS.assingmentPeriod == 1) {
                 if (calDueDate.SelectedDate == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
@@ -59,7 +62,6 @@ namespace CD6 {
             GridViewRow row = gvSearchResults.Rows[index];
             int sosID = (int)gvSearchResults.DataKeys[index].Value;
             string submit_type;
-
             if (e.CommandName == "Delete") {
                 Archive(sosID, editorId);
                 //mySOS.DeleteSOS(sosID, (string)Session["user"]);

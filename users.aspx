@@ -14,6 +14,25 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
+            <div id="Div1" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="users.aspx">User Management</a></li>
+                    <li><a href="sosTemplate.aspx">Sign Sheet Copy</a></li>
+                    <li><a href="email.aspx">Email Copy</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+    <nav class="navbar navbar-default navbar-secondary navbar-tertiary" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subnavbar" aria-expanded="false" aria-controls="subnavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
             <div id="subnavbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><asp:LinkButton ID="btnCurrent" OnClick="btnCurrent_Click" Text="Current Users" runat="server" /></li>
@@ -42,8 +61,8 @@
                 </div>
             </div>
             <div class="row" id="UserForm" runat="server" visible="true">
-                <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Add User</h1></p></div></div>
-                <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify User</h1></p></div></div>
+                <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Add User</h1><div class="instructions"><asp:Label ID="lblAddUserDirections"  runat="server" Visible="false" CssClass="instructions label"/></div></p></div></div>
+                <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify User</h1><div class="instructions"><asp:Label ID="lblModifyUserDirections" runat="server" Visible="false" CssClass="instructions label"/></div></p></div></div>
                 <div class="col-md-12">
                     <asp:Label ID="lblCLAID" Text="AccessNet ID: *" runat="server" CssClass="label" />
                     <asp:LinkButton ID="linkLookupUser" Text="Lookup AccessNet ID" OnClick="linkLookupUser_Click" runat="server" />

@@ -7,10 +7,12 @@ using System.Web.UI.WebControls;
 using System.Data;
 
 namespace CD6{
-    public partial class asset : System.Web.UI.Page {
+    public partial class asset : System.Web.UI.Page 
+    {
         Asset objAsset = new Asset();
         AssetFunctions objAssetFunctions = new AssetFunctions();
-        protected void Page_Load(object sender, EventArgs e) {
+        protected void Page_Load(object sender, EventArgs e) 
+        {
             btnSubmitModifyAsset.Visible = false;
            
             search_results.Visible=false;
@@ -27,17 +29,11 @@ namespace CD6{
             filler.Visible=false;
             lblSerialRight.Visible=false;
             txtSerialRight.Visible=false;
+            lblCreateAssetDirections.Visible = true;
+            lblCreateAssetDirections.Text = "To create new asset, please enter all required fields in proper format. You may use the Templates drop-down option to auto-populate fields or use the Manage Templates link to create, modify, or delete new auto-fill template designs";
 
             if(!Page.IsPostBack){
                 populateTemplateDropdown();
-            }
-            
-            if (ddlAssetTemplate.Items[0].Text == "Dell Laptop" && ddlStatus.Items[0].Text == "Active") {
-                ddlAssetTemplate.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                ddlAssetTemplate.SelectedIndex = 0;
-
-                ddlStatus.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-                ddlStatus.SelectedIndex = 0;
             }
 
             if (Session["createAssetSelections"] != null) {
@@ -61,6 +57,9 @@ namespace CD6{
             ddlAssetTemplate.DataTextField = dsAssets.Tables[0].Columns[1].ColumnName;
             ddlAssetTemplate.DataValueField = dsAssets.Tables[0].Columns[0].ColumnName;
             ddlAssetTemplate.DataBind();
+
+            ddlAssetTemplate.Items.Insert(0, new ListItem("", ""));
+            ddlAssetTemplate.SelectedValue = "";
         }
 
         private String[] getTemplate(int templateID) {
@@ -86,8 +85,7 @@ namespace CD6{
 
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvSearchResults.Rows[index];
-            if (e.CommandName == "deleteRecord")
-            {
+            if (e.CommandName == "deleteRecord") {
                 string editorID = "";
                 editorID = Session["user"].ToString();
                 objAsset.editorID = editorID;
@@ -98,11 +96,11 @@ namespace CD6{
                 Session["ObjAsset"] = objAsset;
                 modal1("Asset Archive", "Are you sure you want to archive this asset?");
                // btnSearch_Click(this, e);
-            }
-            else if (e.CommandName == "modifyRecord")
-            {
+            } else if (e.CommandName == "modifyRecord") {
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
+                lblModifyAssetDirections.Visible = true;
+                lblModifyAssetDirections.Text = "Enter all required fields in correct format to submit modified asset successfully. Use the history dropdown to view previously modified versions of a particular asset.";
 
                 btnSubmit.Visible = false;
                 btnSubmitModifyAsset.Visible = true;
@@ -137,43 +135,46 @@ namespace CD6{
                 txtDescription.Text = objAsset.Description;
                 txtNotes.Text = objAsset.Notes;
                 lblAssetID.Text = objAsset.assetID.ToString();
-            } else if(e.CommandName == "checkinRecord") {
-            
-            }
+            } else if(e.CommandName == "checkinRecord") { }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e) {
-            string submit_type;
-            string editor=Session["user"].ToString();
-            btnSubmit.Visible = true;
-            btnSubmitModifyAsset.Visible = false;
-            objAsset.CLATag = txtCLAID.Text;
-            objAsset.Make = txtMake.Text;
-            objAsset.Model = txtModel.Text;
-            objAsset.Description = txtDescription.Text;
-            objAsset.SerialNumber = txtSerialLeft.Text;
-            objAsset.Status = ddlStatus.SelectedValue;
-            objAsset.Notes = txtNotes.Text;
-            objAsset.recordCreated = DateTime.Now;
-            objAsset.recordModified = DateTime.Now;
-            
-            objAssetFunctions.CreateNewAsset(objAsset,editor);
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text))
+            {
+                string submit_type;
+                string editor = Session["user"].ToString();
+                btnSubmit.Visible = true;
+                btnSubmitModifyAsset.Visible = false;
+                objAsset.CLATag = txtCLAID.Text;
+                objAsset.Make = txtMake.Text;
+                objAsset.Model = txtModel.Text;
+                objAsset.Description = txtDescription.Text;
+                objAsset.SerialNumber = txtSerialLeft.Text;
+                objAsset.Status = ddlStatus.SelectedValue;
+                objAsset.Notes = txtNotes.Text;
+                objAsset.recordCreated = DateTime.Now;
+                objAsset.recordModified = DateTime.Now;
 
-            txtCLAID.Text = "";
-            txtMake.Text = "";
-            txtModel.Text = "";
-            txtDescription.Text = "";
-            txtSerialLeft.Text = "";
-            ddlStatus.Text = "";
-            txtNotes.Text = "";
+                objAssetFunctions.CreateNewAsset(objAsset, editor);
 
-            submit_type = "create";
+                txtCLAID.Text = "";
+                txtMake.Text = "";
+                txtModel.Text = "";
+                txtDescription.Text = "";
+                txtSerialLeft.Text = "";
+                ddlStatus.Text = "";
+                txtNotes.Text = "";
 
-            string dialog_header, dialog_body;
-            if (submit_type == "create") {
-                dialog_header = "Asset Created";
-                dialog_body = string.Format("{0} {1} has been created successfully.", objAsset.Make, objAsset.Model );
-                modal(dialog_header, dialog_body);
+                submit_type = "create";
+
+                string dialog_header, dialog_body;
+                if (submit_type == "create")
+                {
+                    dialog_header = "Asset Created";
+                    dialog_body = string.Format("{0} {1} has been created successfully.", objAsset.Make, objAsset.Model);
+                    modal(dialog_header, dialog_body);
+                }
             }
         }
 
@@ -203,6 +204,8 @@ namespace CD6{
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e){
+            lblSearchAssetsDirections.Visible = true;
+            lblSearchAssetsDirections.Text = "Enter any combination of fields to search for specific assets or click search with all blank values to view all assets";
             btnSubmit.Visible = false;
             btnSubmitModifyAsset.Visible = false;
             search_results.Visible=false;
@@ -227,8 +230,10 @@ namespace CD6{
             txtModel.Text = "";
             txtDescription.Text = "";
             txtSerialLeft.Text = "";
-            ddlStatus.Text = "";
             txtNotes.Text = "";
+
+            ddlStatus.Items.Insert(0, new ListItem("", ""));
+            ddlStatus.SelectedValue = "";
         }
 
         protected void btnCreate_Click(object sender, EventArgs e){
@@ -248,39 +253,59 @@ namespace CD6{
             filler.Visible=false;
             lblSerialRight.Visible=false;
             txtSerialRight.Visible=false;
+
+            if(ddlStatus.Items[0].Value == ""){
+                ddlStatus.Items.RemoveAt(0);
+            }
+
+            txtCLAID.Text = "";
+            txtMake.Text = "";
+            txtModel.Text = "";
+            txtSerialLeft.Text = "";
+            txtDescription.Text = "";
+            txtNotes.Text = "";
         }
 
-        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e) 
+        protected void btnSubmitModifyAsset_Click(object sender, EventArgs e)
         {
             btnSubmit.Visible = false;
 
-            objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
-            objAsset.CLATag = txtCLAID.Text;
-            objAsset.Make = txtMake.Text;
-            Session["Make1"] = objAsset.Make;
-            objAsset.Model = txtModel.Text;
-            Session["Model1"] = objAsset.Model;
-            objAsset.SerialNumber = txtSerialLeft.Text;
-            objAsset.Status = ddlStatus.SelectedValue;
-            objAsset.Description = txtDescription.Text;
-            objAsset.Notes = txtNotes.Text;
-            objAsset.recordCreated = DateTime.Now;
-            objAsset.recordModified = DateTime.Now;
-            objAsset.editorID = Session["user"].ToString(); 
-
-            DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
-            int sosID = 0;
-            if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) 
+            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text))
             {
-	            objAsset.sosID = sosID;
-                Session["AssetObject"] = objAsset;
-                modal2("Modify Asset", "Are you sure you want to modify this asset?");
-            } 
+                objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
+                objAsset.CLATag = txtCLAID.Text;
+                objAsset.Make = txtMake.Text;
+                Session["Make1"] = objAsset.Make;
+                objAsset.Model = txtModel.Text;
+                Session["Model1"] = objAsset.Model;
+                objAsset.SerialNumber = txtSerialLeft.Text;
+                objAsset.Status = ddlStatus.SelectedValue;
+                objAsset.Description = txtDescription.Text;
+                objAsset.Notes = txtNotes.Text;
+                objAsset.recordCreated = DateTime.Now;
+                objAsset.recordModified = DateTime.Now;
+                objAsset.editorID = Session["user"].ToString();
+
+                DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
+                int sosID = 0;
+                if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID))
+                {
+                    objAsset.sosID = sosID;
+                    Session["AssetObject"] = objAsset;
+                    modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                }
+                else
+                {
+                    objAsset.sosID = sosID;
+                    Session["AssetObject"] = objAsset;
+                    modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                }
+            }
             else
             {
-	            objAsset.sosID = sosID;
-                Session["AssetObject"] = objAsset;
-                modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                modifyHeader.Visible = true;
+                createHeader.Visible = false;
+                btnSubmitModifyAsset.Visible = true;
             }
         }
 
@@ -335,12 +360,12 @@ namespace CD6{
 
         protected void btnArchiveAssetYes_Click(object sender, EventArgs e)
         {
-            objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"]);
-            string dialog_header, dialog_body;
-            dialog_header = "Asset Archived";
-            dialog_body = string.Format("{0} {1} has been archived successfully.", objAsset.Make, objAsset.Model);
-            modal(dialog_header, dialog_body);
-          //  btnSearch_Click(this, e);
+                objAssetFunctions.DeleteAsset((Asset)Session["ObjAsset"]);
+                string dialog_header, dialog_body;
+                dialog_header = "Asset Archived";
+                dialog_body = string.Format("{0} {1} has been archived successfully.", objAsset.Make, objAsset.Model);
+                modal(dialog_header, dialog_body);
+                //  btnSearch_Click(this, e);  
         }
 
         protected void btnArchiveAssetNo_Click(object sender, EventArgs e)
@@ -363,6 +388,37 @@ namespace CD6{
         protected void btnModifyAssetModalNo_Click(object sender, EventArgs e)
         {
             btnSubmitModifyAsset_Click(this, e);
+        }
+
+        protected bool validateInput(string CLATag, string Make, string Model)
+        {
+            string output = "";
+            Tools.InputValidation InVal = new Tools.InputValidation();
+
+            if (CLATag == "")
+            {
+                output += "Invalid CLA Tag<br/>";
+            }
+
+            if (Make == "")
+            {
+                output += "Invalid Make<br/>";
+            }
+
+            if (Model == "")
+            {
+                output += "Invalid Model<br/>";
+            }
+
+            if (output != "")
+            {
+                modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }      

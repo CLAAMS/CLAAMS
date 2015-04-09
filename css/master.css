@@ -87,6 +87,7 @@
 .label {
     color: #000000;
     font-size:14px;
+    position: relative;
 }
 
 .button_row {
@@ -126,4 +127,9 @@
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.instructions {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

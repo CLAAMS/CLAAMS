@@ -14,6 +14,8 @@ namespace CD6 {
         string editor;
 
         protected void Page_Load(object sender, EventArgs e){
+            lblCreateSOSDirections.Visible = true;
+            lblCreateSOSDirections.Text = "Enter all required fields. If Term is Non-Permanent, make sure to select both issue date and due date";
             if(!IsPostBack){
                 calIssueDate.SelectedDate = DateTime.Today;
                 fillDropdowns();
@@ -78,62 +80,69 @@ namespace CD6 {
             Response.Redirect("assetSearchForSoS.aspx");
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e) {
-            string dialog_header = "", dialog_body = "";
-            string return_code = "success";
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (validateInput(ddlRecipient.SelectedValue, ddlAssigner.SelectedValue, ddlTerm.SelectedValue, lbAssets, calDueDate.SelectedDate))
+            {
+                string dialog_header = "", dialog_body = "";
+                string return_code = "success";
 
-            mySOS.cladID = ddlAssigner.SelectedValue;
-            mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
+                mySOS.cladID = ddlAssigner.SelectedValue;
+                mySOS.arID = Convert.ToInt32(ddlRecipient.SelectedValue);
+                mySOS.status = "Unsigned";
 
-            mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
-            if (mySOS.assingmentPeriod == 1) {
-                mySOS.assingmentPeriod = 1;
-                mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00:00 PM");
-                mySOS.status = "Not overdue";
-            } else {
-                mySOS.assingmentPeriod = 0;
-                mySOS.dateDue = calDueDate.SelectedDate;
-            }
-
-            mySOS.dateCreated = calIssueDate.SelectedDate;
-            mySOS.dateModified = DateTime.Now;
-
-            if (mySOS.dateCreated > mySOS.dateDue) {
-                mySOS.status = "Overdue";
-            } else {
-                mySOS.status = "Not Overdue";
-            }
-            
-            mySOS.imageFileName = "TestImageFileName";
-            mySOS.recordCreated = DateTime.Now;
-            mySOS.recordModified = DateTime.Now;
-            mySOS.editorID = (string)Session["user"];
-            int assetId = 1;
-            int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified, mySOS.editorID);
-            if (sosID == -1) {
-                dialog_header = "ERROR";
-                dialog_body = "Failed to Create Sign Sheet";
-                return_code = "failure";
-            } else { 
-                arrayListOfAssets = (ArrayList)Session["Asset"];
-             
-                foreach(Asset asset in arrayListOfAssets){
-                    if (!mySOS.ModifyAsset(sosID, asset.assetID, mySOS.editorID)) {
-                        dialog_header = "ERROR";
-                        dialog_body = "Failed to Assign Assets";
-                        return_code = "failure";
-                        break;
-                    };
+                mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
+                if (mySOS.assingmentPeriod == 1)
+                {
+                    mySOS.assingmentPeriod = 1;
+                    mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00:00 PM");
                 }
-            }
+                else
+                {
+                    mySOS.assingmentPeriod = 0;
+                    mySOS.dateDue = calDueDate.SelectedDate;
+                }
 
-            if (return_code == "success") {
-                dialog_header = "SOS created";
-                dialog_body = string.Format("SOS for Recipient {0} has been created successfully.", mySOS.arID);
-            }
-            modal(dialog_header, dialog_body);
+                mySOS.dateCreated = calIssueDate.SelectedDate;
+                mySOS.dateModified = DateTime.Now;
 
-            clearPage();
+                mySOS.imageFileName = "TestImageFileName";
+                mySOS.recordCreated = DateTime.Now;
+                mySOS.recordModified = DateTime.Now;
+                mySOS.editorID = (string)Session["user"];
+                int assetId = 1;
+                int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified, mySOS.editorID);
+                if (sosID == -1)
+                {
+                    dialog_header = "ERROR";
+                    dialog_body = "Failed to Create Sign Sheet";
+                    return_code = "failure";
+                }
+                else
+                {
+                    arrayListOfAssets = (ArrayList)Session["Asset"];
+
+                    foreach (Asset asset in arrayListOfAssets)
+                    {
+                        if (!mySOS.ModifyAsset(sosID, asset.assetID, mySOS.editorID))
+                        {
+                            dialog_header = "ERROR";
+                            dialog_body = "Failed to Assign Assets";
+                            return_code = "failure";
+                            break;
+                        };
+                    }
+                }
+
+                if (return_code == "success")
+                {
+                    dialog_header = "SOS created";
+                    dialog_body = string.Format("SOS for Recipient {0} has been created successfully.", mySOS.arID);
+                }
+                modal(dialog_header, dialog_body);
+
+                clearPage();
+            }
         }
 
         protected void clearPage() {
@@ -208,6 +217,49 @@ namespace CD6 {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+        }
+
+        protected bool validateInput(string recipient, string claMember, string term, ListBox lBox, DateTime dateDue)
+        {
+            string output = "";
+            Tools.InputValidation InVal = new Tools.InputValidation();
+
+            if (recipient == "0")
+            {
+                output += "Select recipient<br/>";
+            }
+
+            if (claMember== "")
+            {
+                output += "Select assigner<br/>";
+            }
+
+            if (lBox.Items.Count == 0)
+            {
+                output += "Select at least one asset<br/>";
+            }
+
+            if (term == "0")
+            {
+                if (dateDue == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
+                {
+                    output += "Select due date<br/>";
+                }
+            }
+            else
+            {
+                
+            }
+
+            if (output != "")
+            {
+                modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

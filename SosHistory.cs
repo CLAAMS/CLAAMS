@@ -93,8 +93,12 @@ namespace CD6 {
             myCommand.Parameters.Add(sosIDParam);
 
             myDS = myDbConnect.GetDataSetUsingCmdObj(myCommand);
-
-            historyID = Convert.ToInt32(myDS.Tables[0].Rows[0][0].ToString());
+            
+            if(myDS.Tables[0].Rows.Count == 0){
+                historyID = 0;
+            } else {
+                historyID = Convert.ToInt32(myDS.Tables[0].Rows[0][0].ToString());
+            }
 
             return historyID;
         }

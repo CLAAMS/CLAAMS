@@ -57,8 +57,15 @@ namespace CD6 {
 
         protected void uploadFile(string recipientName, string sosID, string issueDate, string dueDate, string copy) {
             bool extensionOK = false;
+            string filename = "";
+            
+            if(dueDate == "1-1-0001"){
+                filename = string.Format("{0}_{1}_{2}_{3}", issueDate, recipientName, sosID, copy);
+            } else {
+                filename = string.Format("{0}_{1}_{2}_{3}_{4}", issueDate, recipientName, sosID, dueDate, copy);
+            }
+            
             string path = Server.MapPath("~/signatures/");
-            string filename = string.Format("{0}_{1}_{2}_{3}_{4}", issueDate, recipientName, sosID, dueDate, copy);
             string fileExtension = "";
             if(fuSignSheet.HasFile){
                 fileExtension = System.IO.Path.GetExtension(fuSignSheet.FileName).ToLower();
@@ -112,6 +119,7 @@ namespace CD6 {
 
             if (SoSFunctions.UpdateSosHistory(sosID, editorID)) {
                 if(SoSFunctions.UpdateSoSFileName(sosID, editorID, fileName)){
+                    SoSFunctions.UpdateSosStatus(sosID, "Signed");
                     dialog_header = "SoS Modified";
                     dialog_body = string.Format("{0} has been modified successfully", sosID);
                 } else {
@@ -130,15 +138,15 @@ namespace CD6 {
             Email myEmail = new Email();
             int sosID = (int)Session["SOSID"];
             DataSet myDS = new DataSet();
-            DataSet myDS1=new DataSet();
+            DataSet myDS1 = new DataSet();
             myDS=myEmail.GetDataForEmail(sosID);
 
             string recipient = myDS.Tables[0].Rows[0][0].ToString();
             string emailAddress = myDS.Tables[0].Rows[0][1].ToString();
-            string attachement="C:\\Users\\tud45086\\CLAAMS\\signatures\\"+myDS.Tables[0].Rows[0][2].ToString();
-            myDS1= myEmail.GetEmailReciept();
-            string body = myDS1.Tables[0].Rows[0][0].ToString() + "\n";
-            string subject=myDS1.Tables[0].Rows[0][1].ToString()+ "TEST";
+            string attachement="~/signatures/"+myDS.Tables[0].Rows[0][2].ToString();
+            myDS1 = myEmail.GetEmailReciept();
+            string body=myDS1.Tables[0].Rows[0][0].ToString();
+            string subject=myDS1.Tables[0].Rows[0][1].ToString();
             
             myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
             

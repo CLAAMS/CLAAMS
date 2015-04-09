@@ -61,6 +61,9 @@
                         <div class="col-md-12" id="searchHeader" runat="server" visible="true">
                             <p>
                                 <h1>Search Assets</h1>
+                                <div class="instructions">
+                                    <asp:label id="lblSearchAssetsDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
                             </p>
                         </div>
                     </div>
@@ -68,13 +71,19 @@
                         <div class="col-md-12" id="createHeader" runat="server" visible="true">
                             <p>
                                 <h1>Create Asset</h1>
+                                <div class="instructions">
+                                    <asp:label id="lblCreateAssetDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
                             </p>
                         </div>
                     </div>
                     <div class="row header_row">
                         <div class="col-md-12" id="modifyHeader" runat="server" visible="true">
                             <p>
-                                <h1>Modify Asset</h1>
+                                    <h1>Modify Asset</h1>
+                                <div class="instructions">
+                                    <asp:label id="lblModifyAssetDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
                             </p>
                         </div>
                     </div>
@@ -110,10 +119,9 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
-                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown">
-                            <asp:ListItem></asp:ListItem>
+                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" AppendDataBoundItems="true">
                             <asp:ListItem Value="Active" Text="Active" />
-                            <asp:ListItem>Out of Service</asp:ListItem>
+                            <asp:ListItem Value="Out of Service" Text="Out of Service" />
                         </asp:DropDownList><br />
                         <asp:Label ID="lblSerialRight" Text="Serial Number:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtSerialRight" runat="server" CssClass="form-control" />
