@@ -61,8 +61,8 @@
                 </div>
             </div>
             <div class="row" id="UserForm" runat="server" visible="true">
-                <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Add User</h1><div class="instructions"><asp:Label ID="lblAddUserDirections"  runat="server" Visible="false" CssClass="instructions label"/></div></p></div></div>
-                <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify User</h1><div class="instructions"><asp:Label ID="lblModifyUserDirections" runat="server" Visible="false" CssClass="instructions label"/></div></p></div></div>
+                <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Add User</h1><div class="instructions"><asp:Label ID="lblAddUserDirections"  runat="server" Visible="false" CssClass="instructions"/></div></p></div></div>
+                <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify User</h1><div class="instructions"><asp:Label ID="lblModifyUserDirections" runat="server" Visible="false" CssClass="instructions"/></div></p></div></div>
                 <div class="col-md-12">
                     <asp:Label ID="lblCLAID" Text="AccessNet ID: *" runat="server" CssClass="label" />
                     <asp:LinkButton ID="linkLookupUser" Text="Lookup AccessNet ID" OnClick="linkLookupUser_Click" runat="server" />

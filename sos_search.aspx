@@ -31,7 +31,7 @@
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Search Sign Sheets</h1>
                             <div class="instructions">
-                                <asp:Label ID="lblSearchSOSDirections" runat="server" Visible="false" CssClass="instructions label"/>
+                                <asp:Label ID="lblSearchSOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
                         </div>
                     </div>

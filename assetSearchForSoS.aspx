@@ -14,7 +14,7 @@
                             <p>
                                 <h1>Search Assets</h1>
                                 <div class="instructions">
-                                    <asp:Label ID="lblSearchAssetsForSOSDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                    <asp:Label ID="lblSearchAssetsForSOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                                 </div>
                             </p>
                         </div>
@@ -41,7 +41,7 @@
                         <br />
                         <h3>Search Results:</h3>
                         <div class="instructions">
-                            <asp:Label ID="lblSearchAssetsForSOSSelectDirections" runat="server" Visible="false" CssClass="label instructions"/> 
+                            <asp:Label ID="lblSearchAssetsForSOSSelectDirections" runat="server" Visible="false" CssClass="instructions"/> 
                         </div>
                     <asp:GridView ID="gvSearchResults" runat="server" AutoGenerateColumns="False" CssClass="table">
                         <Columns>

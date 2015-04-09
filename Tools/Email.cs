@@ -13,49 +13,50 @@ using Microsoft.SqlServer.Server;
 using System.Net.Mime;
 using System.IO;
 using System.Web;
-using System.Text;
-namespace Tools
-{
-   public class Email
-    {
+
+namespace Tools {
+   public class Email {
        DataSet myDs = new DataSet();
        DBConnect myDbConnect = new DBConnect();
        string sqlConnection = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
        
-        public  String sendEmail(string from,string to, string subject,string body,string fileName)
-        {
+       public String sendEmail(string from,string to, string subject,string body,string fileName) {
            
-            MailMessage mailMessage = new MailMessage();
-            MailAddress fromAddress = new MailAddress("ryanmarks62@yahoo.com");
+           fileName = HttpContext.Current.Server.MapPath(fileName);
+           MailMessage mailMessage = new MailMessage();
+           MailAddress fromAddress = new MailAddress("ryanmarks62@yahoo.com");
 
-            SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com",587);
-            smtpClient.UseDefaultCredentials=false;
-            smtpClient.Credentials = new System.Net.NetworkCredential("ryanmarks62@yahoo.com", "Atownyea1");
-            smtpClient.EnableSsl = true;
-            
-            mailMessage.To.Add(to);
-            mailMessage.From = fromAddress;
-            mailMessage.Subject = subject;
-            mailMessage.Body = body;
-            mailMessage.IsBodyHtml = false;
+           SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com",587);
+           smtpClient.UseDefaultCredentials=false;
+           smtpClient.Credentials = new System.Net.NetworkCredential("ryanmarks62@yahoo.com", "Atownyea1");
+           smtpClient.EnableSsl = true;
+          
+           mailMessage.To.Add(to);
+           mailMessage.From = fromAddress;
+           mailMessage.Subject = subject;
+           mailMessage.Body = body;
+           mailMessage.IsBodyHtml = false;
 
-            Attachment myAttachement = new Attachment(fileName, MediaTypeNames.Image.Jpeg);
-            ContentDisposition disposition = myAttachement.ContentDisposition;
-            disposition.CreationDate = File.GetCreationTime(fileName);
-            disposition.ModificationDate = File.GetLastWriteTime(fileName);
-            disposition.ReadDate = File.GetLastAccessTime(fileName);
-            disposition.FileName = Path.GetFileName(fileName);
-            disposition.Size = new FileInfo(fileName).Length;
-            disposition.DispositionType = DispositionTypeNames.Attachment;
-            mailMessage.Attachments.Add(myAttachement);
-            
-            smtpClient.Send(mailMessage);
-            return "Email Sent";
+           try{
+               Attachment myAttachement = new Attachment(fileName, MediaTypeNames.Image.Jpeg);
+               ContentDisposition disposition = myAttachement.ContentDisposition;
+               disposition.CreationDate = File.GetCreationTime(fileName);
+               disposition.ModificationDate = File.GetLastWriteTime(fileName);
+               disposition.ReadDate = File.GetLastAccessTime(fileName);
+               disposition.FileName = Path.GetFileName(fileName);
+               disposition.Size = new FileInfo(fileName).Length;
+               disposition.DispositionType = DispositionTypeNames.Attachment;
+               mailMessage.Attachments.Add(myAttachement);
+
+               smtpClient.Send(mailMessage);
+               return "Email Sent";
+           } catch {
+               return "Email Failed";
+           }
         }
-        public String sendEmail(string from, string to, string subject, string body)
-        {
 
-            MailMessage mailMessage = new MailMessage();
+        public String sendEmail(string from, string to, string subject, string body) {
+        MailMessage mailMessage = new MailMessage();
             MailAddress fromAddress = new MailAddress("ryanmarks62@yahoo.com");
 
             SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com", 587);
@@ -73,8 +74,7 @@ namespace Tools
             return "Email Sent";
         }
 
-        public DataSet GetDataForEmail(int sosID)
-        {
+        public DataSet GetDataForEmail(int sosID) {
             SqlConnection myConnection = new SqlConnection(sqlConnection);
             myConnection.Open();
             SqlCommand myCommand1 = new SqlCommand();
@@ -91,11 +91,9 @@ namespace Tools
             myDs = myDbConnect.GetDataSetUsingCmdObj(myCommand1);
             myConnection.Close();
             return myDs;
-
         }
 
-        public DataSet GetEmailReciept()
-        {
+        public DataSet GetEmailReciept() {
             SqlConnection myConnection = new SqlConnection(sqlConnection);
             myConnection.Open();
             SqlCommand myCommand1 = new SqlCommand();
@@ -108,8 +106,7 @@ namespace Tools
             return myDs;
         }
 
-        public int UpdateEmailBody(string body)
-        {
+        public int UpdateEmailBody(string body) {
             SqlConnection myConnection = new SqlConnection(sqlConnection);
             myConnection.Open();
             SqlCommand myCommand2 = new SqlCommand();
@@ -123,13 +120,10 @@ namespace Tools
             myParameter2.Size = 1000;
             myCommand2.Parameters.Add(myParameter2);
 
-            try
-            {
+            try {
                 myCommand2.ExecuteNonQuery();
                 return 1;
-            }
-            catch
-            {
+            } catch {
                 return -1;
             }
         }
