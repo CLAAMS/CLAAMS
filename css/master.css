@@ -128,3 +128,8 @@
     cursor: inherit;
     display: block;
 }
+
+.instructions {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

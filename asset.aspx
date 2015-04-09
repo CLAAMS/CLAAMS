@@ -61,7 +61,9 @@
                         <div class="col-md-12" id="searchHeader" runat="server" visible="true">
                             <p>
                                 <h1>Search Assets</h1>
-                                <asp:label id="lblSearchAssetsDirections" runat="server" Visible="false"/>
+                                <div class="instructions">
+                                    <asp:label id="lblSearchAssetsDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
                             </p>
                         </div>
                     </div>
@@ -69,15 +71,19 @@
                         <div class="col-md-12" id="createHeader" runat="server" visible="true">
                             <p>
                                 <h1>Create Asset</h1>
-                                <asp:label id="lblCreateAssetDirections" runat="server" Visible="false"/>
+                                <div class="instructions">
+                                    <asp:label id="lblCreateAssetDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
                             </p>
                         </div>
                     </div>
                     <div class="row header_row">
                         <div class="col-md-12" id="modifyHeader" runat="server" visible="true">
                             <p>
-                                <h1>Modify Asset</h1>
-                                <asp:label id="lblModifyAssetDirections" runat="server" Visible="false"/>
+                                    <h1>Modify Asset</h1>
+                                <div class="instructions">
+                                    <asp:label id="lblModifyAssetDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
                             </p>
                         </div>
                     </div>

@@ -18,7 +18,9 @@
                     <div class="col-md-12" id="deptManageHeader" runat="server" visible="true">
                         <p>
                             <h1>Add Department</h1>
-                            <asp:Label ID="lblAddDepartmentDirections" runat="server" Visible="false"/>
+                            <div class="instructions">
+                                <asp:Label ID="lblAddDepartmentDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                            </div>
                         </p>
                     </div>
                 </div>

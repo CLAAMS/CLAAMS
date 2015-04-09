@@ -9,7 +9,16 @@
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="searchFields" runat="server" >
-                    <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><p><h1>Search Assets</h1><asp:Label ID="lblSearchAssetsForSOSDirections" runat="server" Visible="false"/></p></div></div>
+                    <div class="row header_row">
+                        <div class="col-md-12" id="searchHeader" runat="server" visible="true">
+                            <p>
+                                <h1>Search Assets</h1>
+                                <div class="instructions">
+                                    <asp:Label ID="lblSearchAssetsForSOSDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblERROR" runat="server" CssClass="label" Visible="false"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblAssetID" Text="Asset ID:" runat="server" CssClass="label" /></div></div>
                     <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetID" runat="server" CssClass="form-control" /></div></div>
@@ -27,7 +36,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row header_row" id="searchResults" runat="server" visible="true"><div class="col-md-12"><br /><h3>Search Results:</h3><asp:Label ID="lblSearchAssetsForSOSSelectDirections" runat="server" Visible="false"/> 
+                <div class="row header_row" id="searchResults" runat="server" visible="true">
+                    <div class="col-md-12">
+                        <br />
+                        <h3>Search Results:</h3>
+                        <div class="instructions">
+                            <asp:Label ID="lblSearchAssetsForSOSSelectDirections" runat="server" Visible="false" CssClass="label instructions"/> 
+                        </div>
                     <asp:GridView ID="gvSearchResults" runat="server" AutoGenerateColumns="False" CssClass="table">
                         <Columns>
                             <asp:BoundField DataField="assetID" HeaderText="ID" />
