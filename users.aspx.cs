@@ -89,6 +89,7 @@ namespace CD6{
                 DBObj.DoUpdateUsingCmdObj(commandObject);
                 DBObj.CloseConnection();
 
+                modal("Info:", "User status updated successfully.");
                 Page_Load(this, e);
             }
 
@@ -241,7 +242,7 @@ namespace CD6{
                             modal("Success", "User Updated");
                         }
                     } else {
-                        modal("Error: Unable to perform action", string.Format("{0} \\n has failed", commandObject.CommandText));
+                        modal("Error: Unable to perform action", string.Format("{0}<br/>has failed", commandObject.CommandText));
                     }
 
                     Page_Load(this, e);
