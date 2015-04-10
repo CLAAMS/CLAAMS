@@ -148,8 +148,12 @@ namespace CD6 {
             string body=myDS1.Tables[0].Rows[0][0].ToString();
             string subject=myDS1.Tables[0].Rows[0][1].ToString();
             
-            myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
-            
+            try{
+                myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
+                modal("Success", "Reciept has been sent.");
+            } catch {
+                modal("Error!", "Email Failed to send.");
+            }
         }
     }
 }
