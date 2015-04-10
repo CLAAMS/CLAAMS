@@ -57,18 +57,18 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <asp:Label ID="lblSOSUpload" Text="Upload Sign Sheet:" runat="server" CssClass="label"/>
-                                    <asp:FileUpload ID="fuSignSheet" runat="server" Width="100%" Height="30px"/>
+                                    <asp:FileUpload ID="fuSignSheet" runat="server" Width="100%" Height="30px" TabIndex="1"/>
                                 </div>
                                 <div class="col-md-2 col-md-offset-5" style="margin-top:5px;">
-                                    <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="btnUpload_Click" CssClass="btn btn-file" />
+                                    <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="btnUpload_Click" CssClass="btn btn-file" TabIndex="2"/>
                                 </div>
                             </div>
                             <div class="row" style="text-align:center;" id="signatureFunctions" runat="server">
                                 <div class="col-md-6">
-                                    <asp:LinkButton ID="linkShowSoS" Text="Show Signature" runat="server" OnClick="linkShowSoS_Click"/>
+                                    <asp:LinkButton ID="linkShowSoS" Text="Show Signature" runat="server" OnClick="linkShowSoS_Click" TabIndex="3"/>
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:LinkButton ID="linkSendSignature" Text="Email Signature" runat="server" OnClick="linkSendSignature_Click" />
+                                    <asp:LinkButton ID="linkSendSignature" Text="Email Signature" runat="server" OnClick="linkSendSignature_Click" TabIndex="4"/>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5 button_row">
-                            <asp:Button ID="btnClose" Text="Close" runat="server" OnClick="btnClose_Click" CssClass="btn btn-default" />
+                            <asp:Button ID="btnClose" Text="Close" runat="server" OnClick="btnClose_Click" CssClass="btn btn-default" TabIndex="5"/>
                         </div>
                     </div>
                 </div>

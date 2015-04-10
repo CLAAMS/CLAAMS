@@ -81,9 +81,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-5 button_row" style="text-align:center;">
+<%--                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 button_row" style="text-align:center;">
                             <asp:Button ID="btnClose" Text="Close" runat="server" CssClass="btn btn-default" OnClick="btnClose_Click"/>
+                        </div>
+                    </div>--%>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 button_row" style="text-align:center;">
                             <asp:Button ID="btnSubmit" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModification_Click"/>
                         </div>
                     </div>
