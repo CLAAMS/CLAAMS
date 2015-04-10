@@ -64,23 +64,23 @@
                 <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><p><h1>Add User</h1><div class="instructions"><asp:Label ID="lblAddUserDirections"  runat="server" Visible="false" CssClass="instructions"/></div></p></div></div>
                 <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><p><h1>Modify User</h1><div class="instructions"><asp:Label ID="lblModifyUserDirections" runat="server" Visible="false" CssClass="instructions"/></div></p></div></div>
                 <div class="col-md-12">
-                    <asp:Label ID="lblCLAID" Text="AccessNet ID: *" runat="server" CssClass="label" />
-                    <asp:LinkButton ID="linkLookupUser" Text="Lookup AccessNet ID" OnClick="linkLookupUser_Click" runat="server" />
-                    <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" Enabled="false" />
+                    <asp:Label ID="lblCLAID" Text="AccessNet ID: *" runat="server" CssClass="label"/>
+                    <asp:LinkButton ID="linkLookupUser" Text="Lookup AccessNet ID" OnClick="linkLookupUser_Click" runat="server" TabIndex="2"/>
+                    <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" Enabled="false" TabIndex="1"/>
                     <asp:Label ID="lblFirstName" Text="First Name: *" runat="server" CssClass="label" />
-                    <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" TabIndex="3"/>
                     <asp:Label ID="lblLastName" Text="Last Name: *" runat="server" CssClass="label" />
-                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" TabIndex="4"/>
                     <asp:Label ID="lblOffice" Text="Office Location:" runat="server" CssClass="label" />
-                    <asp:TextBox ID="txtOffice" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtOffice" runat="server" CssClass="form-control" TabIndex="5"/>
                     <asp:Label ID="lblUserStatus" Text="User Status: *" runat="server" CssClass="label" /><br />
-                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" style="width:100%;">
+                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" style="width:100%;" TabIndex="6">
                         <asp:ListItem Text="Active" />
                         <asp:ListItem Text="Inactive" />
                     </asp:DropDownList><br />
                     <asp:Label ID="lblEmail" Text="Email: *" runat="server" CssClass="label" />
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
-                    <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click" CssClass="btn btn-default"/></div></div>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TabIndex="7"/>
+                    <div class="row"><div class="col-md-12 button_row" style="text-align:center;"><asp:Button ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click" CssClass="btn btn-default" TabIndex="8"/></div></div>
                 </div>
             </div>
         </div>

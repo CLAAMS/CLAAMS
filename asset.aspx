@@ -99,13 +99,13 @@
                         </div>
                         <div style="height:34px;" runat="server" id="filler">&nbsp</div>
                         <asp:Label ID="lblCLAID" Text="CLA Tag:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtCLAID" runat="server" CssClass="form-control" TabIndex="1"/>
                         <asp:Label ID="lblMake" Text="Make:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtMake" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtMake" runat="server" CssClass="form-control" TabIndex="2"/>
                         <asp:Label ID="lblModel" Text="Model:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtModel" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtModel" runat="server" CssClass="form-control" TabIndex="3"/>
                         <asp:Label ID="lblSerialLeft" Text="Serial Number:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtSerialLeft" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtSerialLeft" runat="server" CssClass="form-control" TabIndex="4"/>
                         <div class="row" id="history" runat="server" visible="true">
                             <div class="col-md-12">
                                 <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
@@ -119,31 +119,31 @@
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblStatus" Text="Status:" runat="server" CssClass="label" />
-                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="dropdown" AppendDataBoundItems="true" TabIndex="5">
                             <asp:ListItem Value="Active" Text="Active" />
                             <asp:ListItem Value="Out of Service" Text="Out of Service" />
                         </asp:DropDownList><br />
                         <asp:Label ID="lblSerialRight" Text="Serial Number:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtSerialRight" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtSerialRight" runat="server" CssClass="form-control" TabIndex="4"/>
                         <asp:Label ID="lblDescription" Text="Description:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtDescription" TextMode="MultiLine" Columns="50" Rows="3" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtDescription" TextMode="MultiLine" Columns="50" Rows="3" runat="server" CssClass="form-control" TabIndex="6"/>
                         <asp:Label ID="lblNotes" Text="Notes:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtNotes" TextMode="MultiLine" Columns="50" Rows="5" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtNotes" TextMode="MultiLine" Columns="50" Rows="5" runat="server" CssClass="form-control" TabIndex="7"/>
                     </div>
                     <div class="row">
                         <div id="Div1" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true">
                             <asp:Label ID="lblInputValidation" runat="server" />
-                            <asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" Visible="false"/>
+                            <asp:Button ID="btnSubmitModifyAsset" Text="Submit Modification" runat="server" CssClass="btn btn-default" OnClick="btnSubmitModifyAsset_Click"/><asp:Label ID="lblAssetID" Text="" runat="server" CssClass="label" Visible="false" TabIndex="8"/>
                         </div>
                     </div>
                     <div class="row">
                         <div id="submit_button" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true">
-                            <asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click"/>
+                            <asp:Button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" TabIndex="9"/>
                         </div>
                     </div>
                     <div class="row">
                         <div id="search_button" class="col-md-12 button_row" style="text-align:center;" runat="server" visible="true">
-                            <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click"/>
+                            <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-default" OnClick="btnSearch_Click" TabIndex="10"/>
                         </div>
                     </div>
                 </div>

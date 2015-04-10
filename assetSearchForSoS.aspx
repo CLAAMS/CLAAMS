@@ -21,18 +21,18 @@
                     </div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblERROR" runat="server" CssClass="label" Visible="false"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblAssetID" Text="Asset ID:" runat="server" CssClass="label" /></div></div>
-                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetID" runat="server" CssClass="form-control" /></div></div>
+                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetID" runat="server" CssClass="form-control" TabIndex="1"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblAssetName" Text="Asset Name:" runat="server" CssClass="label" /></div></div>
-                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetName" runat="server" CssClass="form-control" /></div></div>
+                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetName" runat="server" CssClass="form-control" TabIndex="2"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblAssetType" Text="Asset Type:" runat="server" CssClass="label" /></div></div>
-                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetType" runat="server" CssClass="form-control" /></div></div>
+                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtAssetType" runat="server" CssClass="form-control" TabIndex="3"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblCLATag" Text="CLA Tag:" runat="server" CssClass="label" /></div></div>
-                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtCLATag" runat="server" CssClass="form-control" /></div></div>
+                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtCLATag" runat="server" CssClass="form-control" TabIndex="4"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblSerial" Text="Serial:" runat="server" CssClass="label" /></div></div>
-                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtSerial" runat="server" CssClass="form-control" /></div></div>
+                    <div class="row"><div class="col-md-12"><asp:TextBox ID="txtSerial" runat="server" CssClass="form-control" TabIndex="5"/></div></div>
                     <div class="button_row row">
                         <div class="col-md-12" style="text-align:center;">
-                            <asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-default"/>
+                            <asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-default" TabIndex="6"/>
                         </div>
                     </div>
                 </div>
