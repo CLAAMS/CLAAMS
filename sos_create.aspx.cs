@@ -37,13 +37,14 @@ namespace CD6 {
                 if (Session["createSosSelections"] != null) {
                     Dictionary<string, object> createSosSelections = (Dictionary<string, object>)Session["createSosSelections"];
                     ddlAssigner.SelectedValue = (string)createSosSelections["Assigner"];
-                    ddlRecipient.SelectedValue = (string)createSosSelections["Recipient"];
+                    ddlRecipient.SelectedValue = createSosSelections["Recipient"].ToString();
                     ddlTerm.SelectedValue = (string)createSosSelections["Term"];
                     calIssueDate.SelectedDate = (DateTime)createSosSelections["IssueDate"];
                     if (ddlTerm.SelectedValue == "0") {
                         calDue.Visible = true;
-                        calDueDate.SelectedDate = (DateTime)createSosSelections["DueDate"];                        
+                        calDueDate.SelectedDate = (DateTime)createSosSelections["DueDate"];
                     }
+                    Session.Remove("createSosSelections");
                 }
             }
         }
@@ -80,10 +81,8 @@ namespace CD6 {
             Response.Redirect("assetSearchForSoS.aspx");
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            if (validateInput(ddlRecipient.SelectedValue, ddlAssigner.SelectedValue, ddlTerm.SelectedValue, lbAssets, calDueDate.SelectedDate))
-            {
+        protected void btnSubmit_Click(object sender, EventArgs e) {
+            if (validateInput(ddlRecipient.SelectedValue, ddlAssigner.SelectedValue, ddlTerm.SelectedValue, lbAssets, calDueDate.SelectedDate)) {
                 string dialog_header = "", dialog_body = "";
                 string return_code = "success";
 
@@ -92,13 +91,10 @@ namespace CD6 {
                 mySOS.status = "Unsigned";
 
                 mySOS.assingmentPeriod = Convert.ToInt32(ddlTerm.SelectedValue);
-                if (mySOS.assingmentPeriod == 1)
-                {
+                if (mySOS.assingmentPeriod == 1) {
                     mySOS.assingmentPeriod = 1;
                     mySOS.dateDue = Convert.ToDateTime("09/24/3000, 3:00:00 PM");
-                }
-                else
-                {
+                } else {
                     mySOS.assingmentPeriod = 0;
                     mySOS.dateDue = calDueDate.SelectedDate;
                 }
@@ -112,20 +108,15 @@ namespace CD6 {
                 mySOS.editorID = (string)Session["user"];
                 int assetId = 1;
                 int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified, mySOS.editorID);
-                if (sosID == -1)
-                {
+                if (sosID == -1) {
                     dialog_header = "ERROR";
                     dialog_body = "Failed to Create Sign Sheet";
                     return_code = "failure";
-                }
-                else
-                {
+                } else {
                     arrayListOfAssets = (ArrayList)Session["Asset"];
 
-                    foreach (Asset asset in arrayListOfAssets)
-                    {
-                        if (!mySOS.ModifyAsset(sosID, asset.assetID, mySOS.editorID))
-                        {
+                    foreach (Asset asset in arrayListOfAssets) {
+                        if (!mySOS.ModifyAsset(sosID, asset.assetID, mySOS.editorID)) {
                             dialog_header = "ERROR";
                             dialog_body = "Failed to Assign Assets";
                             return_code = "failure";
@@ -134,8 +125,7 @@ namespace CD6 {
                     }
                 }
 
-                if (return_code == "success")
-                {
+                if (return_code == "success") {
                     dialog_header = "SOS created";
                     dialog_body = string.Format("SOS for Recipient {0} has been created successfully.", mySOS.arID);
                 }
@@ -156,8 +146,7 @@ namespace CD6 {
             lbAssets.Items.Clear();
         }
 
-        protected void fillDropdowns()
-        {
+        protected void fillDropdowns() {
             DataSet recipients = mySOS.returnSignSheetRecipients();
             DataSet assigners = mySOS.returnAssigner();
 
@@ -219,47 +208,47 @@ namespace CD6 {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
-        protected bool validateInput(string recipient, string claMember, string term, ListBox lBox, DateTime dateDue)
-        {
+        protected bool validateInput(string recipient, string claMember, string term, ListBox lBox, DateTime dateDue) {
             string output = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
-            if (recipient == "0")
-            {
+            if (recipient == "0") {
                 output += "Select recipient<br/>";
             }
 
-            if (claMember== "")
-            {
+            if (claMember== "") {
                 output += "Select assigner<br/>";
             }
 
-            if (lBox.Items.Count == 0)
-            {
+            if (lBox.Items.Count == 0) {
                 output += "Select at least one asset<br/>";
             }
 
-            if (term == "0")
-            {
-                if (dateDue == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
-                {
+            if (term == "0") {
+                if (dateDue == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
                     output += "Select due date<br/>";
                 }
-            }
-            else
-            {
-                
-            }
+            } else { }
 
-            if (output != "")
-            {
+            if (output != "") {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
                 return false;
-            }
-            else
-            {
+            } else {
                 return true;
             }
+        }
+
+        protected void linkRecipientSearch_Click(object sender, EventArgs e) {
+            Dictionary<string, object> createSosSelections = new Dictionary<string,object>();
+            createSosSelections.Add("Recipient", ddlRecipient.SelectedValue);
+            createSosSelections.Add("Assigner", ddlAssigner.SelectedValue);
+            createSosSelections.Add("Term", ddlTerm.SelectedValue);
+            createSosSelections.Add("IssueDate", calIssueDate.SelectedDate);
+            if (ddlTerm.SelectedValue == "0") {
+                createSosSelections.Add("DueDate", calDueDate.SelectedDate);
+            }
+            Session["createSosSelections"] = createSosSelections;
+            Response.Redirect("recipientSearchForSoS.aspx");
         }
     }
 }

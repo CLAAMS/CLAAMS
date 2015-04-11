@@ -87,6 +87,7 @@
     <Content Include="js\info_popup.js" />
     <Content Include="login.aspx" />
     <Content Include="recipient.aspx" />
+    <Content Include="recipientSearchForSos.aspx" />
     <Content Include="sosTemplate.aspx" />
     <Content Include="sos_create.aspx" />
     <Content Include="sos_search.aspx" />
@@ -148,6 +149,13 @@
     </Compile>
     <Compile Include="recipient.aspx.designer.cs">
       <DependentUpon>recipient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="recipientSearchForSos.aspx.cs">
+      <DependentUpon>recipientSearchForSos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="recipientSearchForSos.aspx.designer.cs">
+      <DependentUpon>recipientSearchForSos.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignOutSheet.cs" />
     <Compile Include="SoSFunctions.cs" />
