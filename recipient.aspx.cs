@@ -16,9 +16,7 @@ namespace CD6 {
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
                 fillDropDowns();
-
                 btnCreate_Click(this, e);
-
             }
         }
 
@@ -63,13 +61,6 @@ namespace CD6 {
                     Session["IsOnModifyPage"] = onModifyPage;
                 }
             }
-
-            //if (ddlSecondaryDept.Items[0].Text == "English" && ddlPrimaryDept.Items[0].Text == "English") {
-            //    ddlPrimaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-            //    ddlPrimaryDept.SelectedIndex = 0;
-            //    ddlSecondaryDept.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-            //    ddlSecondaryDept.SelectedIndex = 0;
-            //}
         }
 
         protected void btnNewSearch_Click(object sender, EventArgs e) {
@@ -188,7 +179,6 @@ namespace CD6 {
             GridViewRow row = gvSearchResults.Rows[index];
             int arID =(int) gvSearchResults.DataKeys[index].Value;
             
-
             if (e.CommandName == "DeleteRow") {
                 //myAR.DeleteRow(arID);
                 //btnSearch_Click(this, e);
@@ -320,13 +310,11 @@ namespace CD6 {
             modal(dialog_header, dialog_body);
         }
 
-        protected void btnModifyRecipientModalNo_Click(object sender, EventArgs e)
-        {
+        protected void btnModifyRecipientModalNo_Click(object sender, EventArgs e) {
             modifyHeader.Visible = true;
-	}
+	    }
 
-        protected bool validateInput(string firstName, string lastName, string email, string location, int primaryDept)
-        {
+        protected bool validateInput(string firstName, string lastName, string email, string location, int primaryDept) {
             string output = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 

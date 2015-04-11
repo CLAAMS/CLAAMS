@@ -31,18 +31,18 @@
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Create Sign Sheet</h1>
                             <div class="instructions">
-                                <asp:Label ID="lblCreateSOSDirections" runat="server" Visible="false" CssClass="label instructions"/>
+                                <asp:Label ID="lblCreateSOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <asp:Label ID="lblRecipient" text="Recipient: *" runat="server" CssClass="label" />
-                            <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown" /><br />
+                            <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown" TabIndex="1"/><br />
                             <asp:Label ID="lblAssigner" Text="From: *" runat="server" CssClass="label" />
-                            <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" /><br />
+                            <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" TabIndex="2"/><br />
                             <asp:Label ID="lblTerm" Text="Term: *" runat="server" CssClass="label" />
-                            <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged" AutoPostBack="true">
+                            <asp:DropDownList ID="ddlTerm" runat="server" CssClass="dropdown" OnSelectedIndexChanged="ddlTerm_SelectedIndexChanged" AutoPostBack="true" TabIndex="3">
                                 <asp:ListItem Value="1" Text="Permanent" />
                                 <asp:ListItem Value="0" Text="Non-Permanent" />
                             </asp:DropDownList><br />
@@ -56,7 +56,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 button_row" style="text-align:left;">
-                                    <asp:Button ID="btnAddAsset" Text="Add Asset" runat="server" CssClass="btn btn-default" OnClick="btnAddAsset_Click" />
+                                    <asp:Button ID="btnAddAsset" Text="Add Asset" runat="server" CssClass="btn btn-default" OnClick="btnAddAsset_Click" TabIndex="4"/>
                                 </div>
                                 <div class="col-xs-6 button_row" style="text-align:right;">
                                     <asp:Button ID="btnRemoveAsset" Text="Remove Asset" runat="server" CssClass="btn btn-default" OnClick="btnRemoveAsset_Click" />
@@ -76,7 +76,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 col-md-offset-5 button_row" style="text-align:center;">
-                            <asp:button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" />
+                            <asp:button ID="btnSubmit" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" TabIndex="5"/>
                         </div>
                     </div>
                 </div>

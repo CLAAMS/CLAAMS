@@ -13,7 +13,7 @@
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Manage Templates</h1>
                             <div class="instructions">
-                                <asp:Label ID="lblManageTemplateDirections" runat="server"  Visible="false" CssClass="instructions label"/>
+                                <asp:Label ID="lblManageTemplateDirections" runat="server"  Visible="false" CssClass="instructions"/>
                             </div>
                         </div>
                     </div>

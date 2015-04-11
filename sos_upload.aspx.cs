@@ -69,7 +69,7 @@ namespace CD6 {
             string fileExtension = "";
             if(fuSignSheet.HasFile){
                 fileExtension = System.IO.Path.GetExtension(fuSignSheet.FileName).ToLower();
-                String[] allowedExtensions = {".gif", ".png", ".jpg", ".jpeg", ".tiff"};
+                String[] allowedExtensions = {".gif", ".png", ".jpg", ".jpeg", ".tiff", ".pdf"};
                 foreach(string extension in allowedExtensions){
                     if (extension == fileExtension) {
                         extensionOK = true;
@@ -100,7 +100,13 @@ namespace CD6 {
 
         protected void imageModal(string title, string image) {
             lblModal_header.Text = title;
-            literalImage.Text = string.Format("<img src=\"./signatures/{0}\" />", image);
+            string [] splitFile = image.Split('.');
+            string extension = splitFile[splitFile.Length - 1].ToLower();
+            if (extension != "pdf"){
+                literalImage.Text = string.Format("<img src=\"./signatures/{0}\" />", image);
+            } else {
+                literalImage.Text = string.Format("<a href=\"./signatures/{0}\" target=\"blank\">{0}<a/>", image);
+            }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "imageModal();", true);
         }
 
@@ -148,8 +154,12 @@ namespace CD6 {
             string body=myDS1.Tables[0].Rows[0][0].ToString();
             string subject=myDS1.Tables[0].Rows[0][1].ToString();
             
-            myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
-            
+            try{
+                myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
+                modal("Success", "Reciept has been sent.");
+            } catch {
+                modal("Error!", "Email Failed to send.");
+            }
         }
     }
 }

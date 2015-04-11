@@ -43,14 +43,35 @@
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
                 <div class="row" id="recipient_form" runat="server" visible="true">
-                    <div class="row header_row"><div class="col-md-12" id="searchHeader" runat="server" visible="true"><h1>Search Recipients</h1></div><div class="instructions"><asp:label id="lblSearchRecipientsDirections" runat="server" Visible="false" CssClass="label instructions" /></div></div>
-                    <div class="row header_row"><div class="col-md-12" id="createHeader" runat="server" visible="true"><h1>Create Recipient</h1></div><div class="instructions"><asp:label id="lblCreateRecipientsDirections" runat="server" Visible="false" CssClass="label instructions" /></div></div>
-                    <div class="row header_row"><div class="col-md-12" id="modifyHeader" runat="server" visible="true"><h1>Modify Recipient</h1></div><div class="instructions"><asp:label id="lblModifyRecipientsDirections" runat="server" Visible="false" CssClass="label instructions" /></div></div>
+                    <div class="row header_row">
+                        <div class="col-md-12" id="searchHeader" runat="server" visible="true">
+                            <h1>Search Recipients</h1>
+                            <div class="instructions">
+                                <asp:label id="lblSearchRecipientsDirections" runat="server" Visible="false" CssClass="instructions" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row header_row">
+                        <div class="col-md-12" id="createHeader" runat="server" visible="true">
+                            <h1>Create Recipient</h1>
+                            <div class="instructions">
+                                <asp:label id="lblCreateRecipientsDirections" runat="server" Visible="false" CssClass="instructions" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row header_row">
+                        <div class="col-md-12" id="modifyHeader" runat="server" visible="true">
+                            <h1>Modify Recipient</h1>
+                            <div class="instructions">
+                                <asp:label id="lblModifyRecipientsDirections" runat="server" Visible="false" CssClass="instructions" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-2">
-                                <asp:Label ID="lblTitle" Text="Title:" runat="server" CssClass="label" />
-                                <asp:DropDownList ID="ddlTitle" runat="server" CssClass="dropdown">
+                                <asp:Label ID="lblTitle" Text="Title:" runat="server" CssClass="label"/>
+                                <asp:DropDownList ID="ddlTitle" runat="server" CssClass="dropdown" TabIndex="1" >
                                     <asp:ListItem Text="Mr." />
                                     <asp:ListItem Text="Mrs." />
                                     <asp:ListItem Text="Dr." />
@@ -59,14 +80,14 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-10">
-                        <asp:Label ID="lblFirstName" Text="First Name: *" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtFirstname" runat="server" CssClass="form-control" />
+                                <asp:Label ID="lblFirstName" Text="First Name: *" runat="server" CssClass="label" />
+                                <asp:TextBox ID="txtFirstname" runat="server" CssClass="form-control" TabIndex="2" />
                             </div>
                         </div>
                         <asp:Label ID="lblEmail" Text="Email: *" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TabIndex="4" />
                         <asp:Label ID="lblLocation" Text="Location: *" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtLocation" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtLocation" runat="server" CssClass="form-control" TabIndex="6" />
                         <div class="row">
                             <div class="col-md-6">
                                 <asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation: *" runat="server" CssClass="label" />
@@ -75,21 +96,21 @@
                                 <a onclick="addDepartment()">Add Department</a>
                             </div>
                         </div>
-                        <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" />
+                        <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" TabIndex="8" />
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblLastName" Text="Last Name: *" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" TabIndex="3" />
                         <asp:Label ID="lblDivision" Text="Division:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtDivision" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtDivision" runat="server" CssClass="form-control" TabIndex="5" />
                         <asp:Label ID="lblPhone" Text="Phone:" runat="server" CssClass="label" />
-                        <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" TabIndex="7" />
                         <asp:Label ID="lblSecondaryDept" Text="Secondary Department Affiliation:" runat="server" CssClass="label" />
-                        <asp:DropDownList ID="ddlSecondaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" />
+                        <asp:DropDownList ID="ddlSecondaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" TabIndex="9" />
                     </div>
                     <div class="row">
                         <div class="col-md-12 button_row" id="button_submit" style="text-align:center;" runat="server" visible="true">
-                            <asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px"/><asp:Label ID="lblARID" runat="server" Visible="False"/>
+                            <asp:Button ID="btnSubmitCreate" Text="Submit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Width="92px" TabIndex="10"/><asp:Label ID="lblARID" runat="server" Visible="False"/>
                         </div>
                     </div>
                     <div class="row">
