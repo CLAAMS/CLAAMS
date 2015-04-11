@@ -10,198 +10,186 @@
 namespace CD6 {
     
     
-    public partial class sos_create {
+    public partial class recipientSearchForSos {
         
         /// <summary>
-        /// sos_form control.
+        /// searchFields control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sos_form;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchFields;
         
         /// <summary>
-        /// header control.
+        /// searchHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl header;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchHeader;
         
         /// <summary>
-        /// lblCreateSOSDirections control.
+        /// lblSearchRecipientsForSOSDirections control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCreateSOSDirections;
+        protected global::System.Web.UI.WebControls.Label lblSearchRecipientsForSOSDirections;
         
         /// <summary>
-        /// lblRecipient control.
+        /// lblERROR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRecipient;
+        protected global::System.Web.UI.WebControls.Label lblERROR;
         
         /// <summary>
-        /// linkRecipientSearch control.
+        /// lblFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkRecipientSearch;
+        protected global::System.Web.UI.WebControls.Label lblFirstName;
         
         /// <summary>
-        /// ddlRecipient control.
+        /// txtFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRecipient;
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
-        /// lblAssigner control.
+        /// lblLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssigner;
+        protected global::System.Web.UI.WebControls.Label lblLastName;
         
         /// <summary>
-        /// ddlAssigner control.
+        /// txtLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAssigner;
+        protected global::System.Web.UI.WebControls.TextBox txtLastName;
         
         /// <summary>
-        /// lblTerm control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTerm;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// ddlTerm control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTerm;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// lblAssets control.
+        /// lblDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssets;
+        protected global::System.Web.UI.WebControls.Label lblDivision;
         
         /// <summary>
-        /// lbAssets control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbAssets;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
         
         /// <summary>
-        /// btnAddAsset control.
+        /// lblPrimaryDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddAsset;
+        protected global::System.Web.UI.WebControls.Label lblPrimaryDept;
         
         /// <summary>
-        /// btnRemoveAsset control.
+        /// ddlPrimaryDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveAsset;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrimaryDept;
         
         /// <summary>
-        /// lblIssueDate control.
+        /// lblSecondaryDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIssueDate;
+        protected global::System.Web.UI.WebControls.Label lblSecondaryDept;
         
         /// <summary>
-        /// calIssueDate control.
+        /// ddlSecondaryDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calIssueDate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSecondaryDept;
         
         /// <summary>
-        /// calDue control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl calDue;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// lblDueDate control.
+        /// searchResults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDueDate;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchResults;
         
         /// <summary>
-        /// calDueDate control.
+        /// lblSearchRecipientsForSOSSelectDirections control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calDueDate;
+        protected global::System.Web.UI.WebControls.Label lblSearchRecipientsForSOSSelectDirections;
         
         /// <summary>
-        /// btnSubmit control.
+        /// gvSearchResults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new CD6.master Master {
-            get {
-                return ((CD6.master)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.GridView gvSearchResults;
     }
 }
