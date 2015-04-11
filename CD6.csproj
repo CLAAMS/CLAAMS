@@ -78,6 +78,7 @@
     <Content Include="css\sos.css" />
     <Content Include="css\sticky-footer.css" />
     <Content Include="css\style.css" />
+    <Content Include="CurlPage.aspx" />
     <Content Include="email.aspx" />
     <Content Include="fonts\BebasNeue-webfont.svg" />
     <Content Include="fonts\DroidSans-webfont.svg" />
@@ -121,6 +122,13 @@
     <Compile Include="AssetFunctions.cs" />
     <Compile Include="AssetHistory.cs" />
     <Compile Include="AssetRecipient.cs" />
+    <Compile Include="CurlPage.aspx.cs">
+      <DependentUpon>CurlPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CurlPage.aspx.designer.cs">
+      <DependentUpon>CurlPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="email.aspx.cs">
       <DependentUpon>email.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

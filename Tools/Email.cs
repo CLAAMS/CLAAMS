@@ -35,7 +35,7 @@ namespace Tools {
            mailMessage.From = fromAddress;
            mailMessage.Subject = subject;
            mailMessage.Body = body;
-           mailMessage.IsBodyHtml = false;
+           mailMessage.IsBodyHtml = true;
 
            try{
                Attachment myAttachement = new Attachment(fileName, MediaTypeNames.Image.Jpeg);
@@ -68,7 +68,7 @@ namespace Tools {
             mailMessage.From = fromAddress;
             mailMessage.Subject = subject;
             mailMessage.Body = body;
-            mailMessage.IsBodyHtml = false;
+            mailMessage.IsBodyHtml = true;
 
             smtpClient.Send(mailMessage);
             return "Email Sent";
@@ -127,5 +127,6 @@ namespace Tools {
                 return -1;
             }
         }
+     
     }
 }
