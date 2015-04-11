@@ -37,7 +37,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <asp:Label ID="lblRecipient" text="Recipient: *" runat="server" CssClass="label" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:Label ID="lblRecipient" text="Recipient: *" runat="server" CssClass="label" />
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:LinkButton ID="linkRecipientSearch" runat="server" Text="Search for Recipients" OnClick="linkRecipientSearch_Click"/>
+                                </div>
+                            </div>
                             <asp:DropDownList ID="ddlRecipient" runat="server" CssClass="dropdown" TabIndex="1"/><br />
                             <asp:Label ID="lblAssigner" Text="From: *" runat="server" CssClass="label" />
                             <asp:DropDownList ID="ddlAssigner" runat="server" CssClass="dropdown" TabIndex="2"/><br />
