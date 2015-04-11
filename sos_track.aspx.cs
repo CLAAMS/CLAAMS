@@ -41,17 +41,5 @@ namespace CD6 {
                 Response.Redirect("./sos_view.aspx");
             }
         }
-
-        public string render(GridView theGridview) {
-            StringBuilder mySB = new StringBuilder();
-            StringWriter mySW = new StringWriter(mySB);
-            HtmlTextWriter myWriter = new HtmlTextWriter(mySW);
-            gvSosTracking.RenderControl(myWriter);
-            //return Regex.Replace(mySB.ToString(),@"(?></?\w+)(?>(?:[^>'""]+|'[^']*'|""[^""]*"")*)>",string.Empty);
-            return mySB.ToString();
-        }
-
-        public override void VerifyRenderingInServerForm(Control control) {
-        }
     }
 }
