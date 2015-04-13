@@ -20,7 +20,7 @@ namespace CD6{
                 lblLoginInstructions.Visible = false;
                 lblError.Text = "Login Successful";
                 Session["UserInfo"] = LDAP.getUserInfo(txtUsername.Text);
-                Response.Redirect("sos_create.aspx");
+                Response.Redirect("sos_Track.aspx");
             } else {
                 lblLoginInstructions.Visible = false;
                 lblError.Text = "Invalid username or password, please try again. \n\n";
