@@ -91,7 +91,6 @@ namespace CD6 {
                 }
                 calIssueDate.Enabled = true;
                 Response.Redirect("./sos_view.aspx");
-               
             }
         }
 
@@ -156,18 +155,16 @@ namespace CD6 {
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
-        public int Archive(int sosID, string editorID)
-        {
-           
+
+        public int Archive(int sosID, string editorID) {
             editorID = (string)Session["user"];
             string fileName = (string)Session["FileName"];
-            string dialog_header = "", dialog_body = "";
+//            string dialog_header = "", dialog_body = "";
             SoSFunctions myFunctions = new SoSFunctions();
-            bool didCreateFail;
+//            bool didCreateFail;
             AssetFunctions functions = new AssetFunctions();
             ArrayList assets = SignOutSheet.getAssetsForSOS(sosID);
-            foreach (Asset a in assets)
-            {
+            foreach (Asset a in assets) {
                 //For each asset returned from the function, if the soshistory update returns true, update the asset history
                 if(SoSFunctions.UpdateSosHistory(sosID, editorID)){
                     //Runs the modified asset history
