@@ -45,6 +45,8 @@ namespace CD6 {
                 primaryDept = 0;
             }
 
+            sql += string.Format(" and Firstname like '%{0}%' and LastName like '%{1}%' and EmailAddress like '%{2}%'", firstName, lastName, email);
+
             if (division != 0){
                 sql += string.Format(" and Division={0}", division.ToString());
             }
