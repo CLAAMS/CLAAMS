@@ -50,7 +50,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--<li><a href="#">Settings</a></li>-->
-                        <li><asp:Label ID="lblLoginButton" runat="server" Text="Login" CssClass="a"/></li>
+                        <li><span style="color:#ffffff; font-family:BebasNeue; padding:15px 15px; position:relative; display:block;"><asp:Label ID="lblLoginButton" runat="server" Text="Login" /></span></li>
                         <li><asp:linkButton ID="logout" runat="server" Text="Log Out " OnClick="logout_Click"></asp:linkButton></li>
                     </ul>
                 </div><!--/.nav-collapse -->
