@@ -57,7 +57,9 @@
                                 <asp:ButtonField ButtonType="Button" Text="Select" CommandName="selectRecipient" ControlStyle-CssClass="btn-default btn" />
                             </Columns>
                         </asp:GridView>
+
                     </div>
+
                 </div>
             </form>
         </div>

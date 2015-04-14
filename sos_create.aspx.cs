@@ -125,9 +125,11 @@ namespace CD6 {
                     }
                 }
 
+                DataSet ds = Tools.DBAccess.DBCall("SELECT FirstName + ' ' + LastName as RecipientName FROM Asset_Recipient WHERE arID = " + mySOS.arID);
+                string recipientName = ds.Tables[0].Rows[0][0].ToString();
                 if (return_code == "success") {
                     dialog_header = "SOS created";
-                    dialog_body = string.Format("SOS for Recipient {0} has been created successfully.", mySOS.arID);
+                    dialog_body = string.Format("SOS for {0} has been created successfully.", recipientName);
                 }
                 modal(dialog_header, dialog_body);
 
