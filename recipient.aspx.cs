@@ -53,11 +53,9 @@ namespace CD6 {
                     txtLastName.Text = theAssetRecipient.lastName;
                     txtEmail.Text = theAssetRecipient.emailAddress;
                     ddlDivision.SelectedValue = theAssetRecipient.division;
-                    //txtDivision.Text = theAssetRecipient.division;
                     ddlPrimaryDept.SelectedValue = theAssetRecipient.primaryDeptAffiliation.ToString();
                     ddlSecondaryDept.SelectedValue = theAssetRecipient.secondaryDeptAffiliation.ToString();
                     txtPhone.Text = theAssetRecipient.phoneNumber;
-                    //text.Text = theAssetRecipient.assetRecipientId.ToString();
                     btnSubmitCreate.Visible = true;
                     Session["IsOnModifyPage"] = onModifyPage;
                 }
@@ -82,7 +80,6 @@ namespace CD6 {
             txtLastName.Text = "";
             txtEmail.Text = "";
             txtLocation.Text = "";
-            //txtDivision.Text = "";
             ddlDivision.SelectedValue = "0";
             ddlPrimaryDept.Text = "";
             ddlSecondaryDept.Text = "";
@@ -103,7 +100,6 @@ namespace CD6 {
             myAR.lastName = txtLastName.Text;
             myAR.emailAddress = txtEmail.Text;
             myAR.location = txtLocation.Text;
-            //myAR.division = txtDivision.Text;
             myAR.division = ddlDivision.SelectedValue;
             
             if(ddlPrimaryDept.SelectedValue == ""){
@@ -144,7 +140,6 @@ namespace CD6 {
                     myAR.lastName = txtLastName.Text;
                     myAR.emailAddress = txtEmail.Text;
                     myAR.location = txtLocation.Text;
-                    //myAR.division = txtDivision.Text;
                     myAR.division = ddlDivision.SelectedValue;
                     myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
                     try {
@@ -165,7 +160,6 @@ namespace CD6 {
                     txtLastName.Text = "";
                     txtEmail.Text = "";
                     txtLocation.Text = "";
-                    //txtDivision.Text = "";
                     ddlDivision.SelectedValue = "0";
                     ddlPrimaryDept.Text = "";
                     ddlSecondaryDept.Text = "";
@@ -184,22 +178,7 @@ namespace CD6 {
             GridViewRow row = gvSearchResults.Rows[index];
             int arID =(int) gvSearchResults.DataKeys[index].Value;
             
-            if (e.CommandName == "DeleteRow") {
-                //myAR.DeleteRow(arID);
-                //btnSearch_Click(this, e);
-                //submit_type = "delete"; 
-                //string dialog_header, dialog_body;
-                //if (submit_type == "delete")
-                //{
-                      //myAR.firstName = txtFirstname.Text;
-                      //myAR.lastName = txtLastName.Text;
-                //    dialog_header = "Recipient Deleted";
-                //    dialog_body = string.Format("{0} {1} has been deleted successfully.", myAR.firstName, myAR.lastName);
-                //    modal(dialog_header, dialog_body);
-                //}
-              
-            } 
-            else if (e.CommandName == "modifyRecord") {
+            if (e.CommandName == "modifyRecord") {
 
                 bool onModify=false;
                 createHeader.Visible = false;
@@ -255,6 +234,8 @@ namespace CD6 {
             string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
 
             DataSet departments = new DataSet();
+            DataSet divisions = new DataSet();
+
             DBConnect myDbConnect = new DBConnect();
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
@@ -271,6 +252,20 @@ namespace CD6 {
                 depts.Add((int)row.ItemArray[0], row.ItemArray[1].ToString());
             }
 
+            myCommand.CommandText = "GetDivisions";
+
+            divisions = myDbConnect.GetDataSetUsingCmdObj(myCommand);
+            Dictionary<int, string> divis = new Dictionary<int, string>();
+
+            foreach(DataRow row in divisions.Tables[0].Rows){
+                divis.Add((int)row.ItemArray[0], row.ItemArray[1].ToString());
+            }
+
+            ddlDivision.Items.Clear();
+            ddlDivision.Items.Add(new ListItem("", "0"));
+            ddlDivision.DataValueField = "Key";
+            ddlDivision.DataTextField = "Value";
+
             ddlPrimaryDept.Items.Clear();
             ddlPrimaryDept.Items.Add(new ListItem(""));
             ddlPrimaryDept.DataValueField = "Key";
@@ -283,11 +278,11 @@ namespace CD6 {
 
             ddlPrimaryDept.DataSource = depts;
             ddlSecondaryDept.DataSource = depts;
+            ddlDivision.DataSource = divis;
 
             ddlPrimaryDept.DataBind();
             ddlSecondaryDept.DataBind();
-
-
+            ddlDivision.DataBind();
         }
 
         protected void btnModifyRecipientModalYes_Click(object sender, EventArgs e) {
