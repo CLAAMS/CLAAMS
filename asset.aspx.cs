@@ -300,11 +300,21 @@ namespace CD6{
         }
 
         protected void ddlAssetTemplate_SelectedIndexChanged(object sender, EventArgs e) {
-            int assetTemplateID = Convert.ToInt32(ddlAssetTemplate.SelectedValue);
-            string[] template = getTemplate(assetTemplateID);
-            txtMake.Text = template[0];
-            txtModel.Text = template[1];
-            txtDescription.Text = template[2];
+            if (ddlAssetTemplate.SelectedValue != "") {
+                int assetTemplateID = Convert.ToInt32(ddlAssetTemplate.SelectedValue);
+                string[] template = getTemplate(assetTemplateID);
+                txtMake.Text = template[0];
+                txtModel.Text = template[1];
+                txtDescription.Text = template[2];
+            } else {
+                txtMake.Text = "";
+                txtModel.Text = "";
+                txtDescription.Text = "";
+                txtNotes.Text = "";
+                txtSerialLeft.Text = "";
+                txtSerialRight.Text = "";
+                txtCLAID.Text = "";
+            }
         }
 
         protected void modal(string title, string body) {
@@ -390,6 +400,4 @@ namespace CD6{
             }
         }
     }
-}      
-
-
+}
