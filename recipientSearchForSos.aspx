@@ -25,7 +25,7 @@
                     <div class="row"><div class="col-md-12"><asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" TabIndex="2"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblEmail" Text="Email:" runat="server" CssClass="label" /></div></div>
                     <div class="row"><div class="col-md-12"><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TabIndex="3"/></div></div>
-                    <div class="row"><div class="col-md-12"><asp:Label ID="lblDivision" Text="CLA Tag:" runat="server" CssClass="label" /></div></div>
+                    <div class="row"><div class="col-md-12"><asp:Label ID="lblDivision" Text="Division:" runat="server" CssClass="label" /></div></div>
                     <div class="row"><div class="col-md-12"><asp:DropDownList ID="ddlDivision" AppendDataBoundItems="true" runat="server" CssClass="dropdown" TabIndex="4"/></div></div>
                     <div class="row"><div class="col-md-12"><asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation:" runat="server" CssClass="label" /></div></div>
                     <div class="row"><div class="col-md-12"><asp:DropDownList ID="ddlPrimaryDept" AppendDataBoundItems="true" runat="server" CssClass="dropdown" TabIndex="5"/></div></div>
