@@ -17,7 +17,6 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<-- testing --!>
 <body>
     <div class="wrapper">
         <form id="form1" runat="server">
