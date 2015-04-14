@@ -102,12 +102,7 @@
                         <asp:Label ID="lblLastName" Text="Last Name: *" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" TabIndex="3" />
                         <asp:Label ID="lblDivision" Text="Division:" runat="server" CssClass="label" /><br />
-                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" TabIndex="5">
-                            <asp:ListItem Text="" Value="0"/>
-                            <asp:ListItem Text="CLA" Value="1"/>
-                            <asp:ListItem Text="Honors" Value="2"/>
-                            <asp:ListItem Text="Writing Center" Value="3"/>
-                        </asp:DropDownList><br />
+                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" TabIndex="5" />
                         <%--<asp:TextBox ID="txtDivision" runat="server" CssClass="form-control" TabIndex="5" />--%>
                         <asp:Label ID="lblPhone" Text="Phone:" runat="server" CssClass="label" />
                         <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" TabIndex="7" />
