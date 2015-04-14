@@ -17,8 +17,8 @@
             </div>
             <div id="subnavbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><asp:LinkButton ID="LinkButton1" OnClick="btnCreate_Click" Text="Create" runat="server" /></li>
                     <li><asp:LinkButton OnClick="btnNewSearch_Click" Text="Search" runat="server" /></li>
-                    <li><asp:LinkButton OnClick="btnCreate_Click" Text="Create" runat="server" /></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

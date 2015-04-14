@@ -41,9 +41,9 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="sos_track.aspx">Dashboard</a></li>
-                        <li><a href="sos_create.aspx">Sign Sheets</a></li>
-                        <li><a href="asset.aspx">Assets</a></li>
                         <li><a href="recipient.aspx">Recipeints</a></li>
+                        <li><a href="asset.aspx">Assets</a></li>
+                        <li><a href="sos_create.aspx">Sign Sheets</a></li>
                         <li><a href="users.aspx">Admin</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
