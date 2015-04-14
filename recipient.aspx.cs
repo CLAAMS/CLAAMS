@@ -52,7 +52,8 @@ namespace CD6 {
                     txtFirstname.Text = theAssetRecipient.firstName;
                     txtLastName.Text = theAssetRecipient.lastName;
                     txtEmail.Text = theAssetRecipient.emailAddress;
-                    txtDivision.Text = theAssetRecipient.division;
+                    ddlDivision.SelectedValue = theAssetRecipient.division;
+                    //txtDivision.Text = theAssetRecipient.division;
                     ddlPrimaryDept.SelectedValue = theAssetRecipient.primaryDeptAffiliation.ToString();
                     ddlSecondaryDept.SelectedValue = theAssetRecipient.secondaryDeptAffiliation.ToString();
                     txtPhone.Text = theAssetRecipient.phoneNumber;
@@ -81,7 +82,8 @@ namespace CD6 {
             txtLastName.Text = "";
             txtEmail.Text = "";
             txtLocation.Text = "";
-            txtDivision.Text = "";
+            //txtDivision.Text = "";
+            ddlDivision.SelectedValue = "0";
             ddlPrimaryDept.Text = "";
             ddlSecondaryDept.Text = "";
             txtPhone.Text = "";
@@ -101,7 +103,8 @@ namespace CD6 {
             myAR.lastName = txtLastName.Text;
             myAR.emailAddress = txtEmail.Text;
             myAR.location = txtLocation.Text;
-            myAR.division = txtDivision.Text;
+            //myAR.division = txtDivision.Text;
+            myAR.division = ddlDivision.SelectedValue;
             
             if(ddlPrimaryDept.SelectedValue == ""){
                 myAR.primaryDeptAffiliation = 0;
@@ -141,7 +144,8 @@ namespace CD6 {
                     myAR.lastName = txtLastName.Text;
                     myAR.emailAddress = txtEmail.Text;
                     myAR.location = txtLocation.Text;
-                    myAR.division = txtDivision.Text;
+                    //myAR.division = txtDivision.Text;
+                    myAR.division = ddlDivision.SelectedValue;
                     myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
                     try {
                         myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
@@ -161,7 +165,8 @@ namespace CD6 {
                     txtLastName.Text = "";
                     txtEmail.Text = "";
                     txtLocation.Text = "";
-                    txtDivision.Text = "";
+                    //txtDivision.Text = "";
+                    ddlDivision.SelectedValue = "0";
                     ddlPrimaryDept.Text = "";
                     ddlSecondaryDept.Text = "";
                     txtPhone.Text = "";
@@ -303,7 +308,7 @@ namespace CD6 {
                 sdt = 0;
             }
 
-            myAR.UpdateRow(assetrecipientID, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, txtDivision.Text, pdt, sdt, txtPhone.Text, theAssetRecipient.RecordModified);    
+            myAR.UpdateRow(assetrecipientID, ddlTitle.Text, txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, ddlDivision.SelectedValue, pdt, sdt, txtPhone.Text, theAssetRecipient.RecordModified);    
             string dialog_header, dialog_body;
             dialog_header = "Recipient Modified";
             dialog_body = string.Format("{0} {1} has been modified successfully.", txtFirstname.Text, txtLastName.Text);
