@@ -68,6 +68,16 @@
                         </div>
                     </div>
                     <div class="row header_row">
+                        <div class="col-md-12" id="viewHeader" runat="server" visible="false">
+                            <p>
+                                <h1>View Asset</h1>
+                                <div class="instructions">
+                                    <asp:label id="lblViewAssetDirections" runat="server" Visible="false" CssClass="instructions"/>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row header_row">
                         <div class="col-md-12" id="createHeader" runat="server" visible="true">
                             <p>
                                 <h1>Create Asset</h1>
@@ -80,7 +90,7 @@
                     <div class="row header_row">
                         <div class="col-md-12" id="modifyHeader" runat="server" visible="true">
                             <p>
-                                    <h1>Modify Asset</h1>
+                                <h1>Modify Asset</h1>
                                 <div class="instructions">
                                     <asp:label id="lblModifyAssetDirections" runat="server" Visible="false" CssClass="instructions"/>
                                 </div>
@@ -108,12 +118,8 @@
                         <asp:TextBox ID="txtSerialLeft" runat="server" CssClass="form-control" TabIndex="4"/>
                         <div class="row" id="history" runat="server" visible="true">
                             <div class="col-md-12">
-                                <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
-                                <asp:DropDownList runat="server" ID="ddlAssetHistory" CssClass="dropdown">
-                                    <asp:ListItem Text="10/28/2014 09:08 AM" />
-                                    <asp:ListItem Text="10/30/2014 01:32 PM" />
-                                    <asp:ListItem Text="10/30/2014 02:12 PM" />
-                                </asp:DropDownList>
+                                <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" /><br />
+                                <asp:DropDownList runat="server" ID="ddlAssetHistory" CssClass="dropdown" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlAssetHistory_SelectedIndexChanged" AutoPostBack="true" style="width: 100%" /><br />
                             </div>
                         </div> 
                     </div>
