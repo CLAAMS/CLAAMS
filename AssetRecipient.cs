@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Utilities;
+
 namespace CD6{
     public class AssetRecipient {
         public int assetRecipientId { get; set; }
@@ -289,4 +290,3 @@ namespace CD6{
         }
     }
 }
-
