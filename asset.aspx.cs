@@ -407,13 +407,112 @@ namespace CD6{
             Dictionary<int, DateTime> histories = AssetHistory.getAssetHistories(assetID);
 
             ddlAssetHistory.Items.Clear();
-            ddlAssetHistory.Items.Add(new ListItem(""));
+            ddlAssetHistory.Items.Add(new ListItem("", assetID.ToString()));
 
             ddlAssetHistory.DataTextField = "Value";
             ddlAssetHistory.DataValueField = "Key";
 
             ddlAssetHistory.DataSource = histories;
             ddlAssetHistory.DataBind();
+        }
+
+        protected void toggleWriteable(string which) {
+            if (which == "writable") {
+                txtCLAID.Enabled = true;
+                txtMake.Enabled = true;
+                txtModel.Enabled = true;
+                txtSerialLeft.Enabled = true;
+                lblAssetID.Enabled = true;
+                txtNotes.Enabled = true;
+                ddlStatus.Enabled = true;
+                txtDescription.Enabled = true;
+            } else if (which == "nonwritable") {
+                txtCLAID.Enabled = false;
+                txtMake.Enabled = false;
+                txtModel.Enabled = false;
+                txtSerialLeft.Enabled = false;
+                lblAssetID.Enabled = false;
+                txtNotes.Enabled = false;
+                ddlStatus.Enabled = false;
+                txtDescription.Enabled = false;
+            }
+        }
+
+        protected void ddlAssetHistory_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ddlAssetHistory.SelectedIndex == 0) {
+                templateRow.Visible = true;
+                history.Visible = true;
+
+                toggleWriteable("writable");
+                int assetID = int.Parse(ddlAssetHistory.SelectedValue);
+
+                createHeader.Visible = false;
+                modifyHeader.Visible = true;
+                viewHeader.Visible = false;
+                lblModifyAssetDirections.Visible = true;
+                lblModifyAssetDirections.Text = "Enter all required fields in correct format to submit modified asset successfully. Use the history dropdown to view previously modified versions of a particular asset.";
+
+                btnSubmit.Visible = false;
+                btnSubmitModifyAsset.Visible = true;
+                
+                DataSet dsAsset = objAsset.GetAssetForSelectedRecord(assetID);
+                Asset asset = new Asset();
+
+                asset.assetID = (int)dsAsset.Tables[0].Rows[0].ItemArray[0];
+                asset.CLATag = dsAsset.Tables[0].Rows[0].ItemArray[1].ToString();
+                asset.Make = dsAsset.Tables[0].Rows[0].ItemArray[2].ToString();
+                asset.Model = dsAsset.Tables[0].Rows[0].ItemArray[3].ToString();
+                asset.Description = dsAsset.Tables[0].Rows[0].ItemArray[4].ToString();
+                asset.SerialNumber = dsAsset.Tables[0].Rows[0].ItemArray[5].ToString();
+                asset.Status = dsAsset.Tables[0].Rows[0].ItemArray[6].ToString();
+                asset.Notes = dsAsset.Tables[0].Rows[0].ItemArray[7].ToString();
+                asset.recordCreated = DateTime.Parse(dsAsset.Tables[0].Rows[0].ItemArray[8].ToString());
+                asset.recordModified = DateTime.Parse(dsAsset.Tables[0].Rows[0].ItemArray[9].ToString());
+                try {
+                    asset.sosID = (int)dsAsset.Tables[0].Rows[0].ItemArray[10];
+                } catch {}
+                asset.editorID = dsAsset.Tables[0].Rows[0].ItemArray[11].ToString();
+
+                fillHistory(assetID);
+
+                txtCLAID.Text = asset.CLATag;
+                txtMake.Text = asset.Make;
+                txtModel.Text = asset.Model;
+                txtSerialLeft.Text = asset.SerialNumber;
+                ddlStatus.Text = asset.Status;
+                txtDescription.Text = asset.Description;
+                txtNotes.Text = asset.Notes;
+                lblAssetID.Text = asset.assetID.ToString();
+            } else {
+                toggleWriteable("nonwritable");
+                int assetHistoryID = int.Parse(ddlAssetHistory.SelectedValue);
+
+                AssetHistory objAsset = AssetHistory.getAssetHistory(assetHistoryID);
+
+                int assetID = objAsset.assetID;
+
+                templateRow.Visible = false;
+
+                createHeader.Visible = false;
+                modifyHeader.Visible = false;
+                viewHeader.Visible = true;
+                lblViewAssetDirections.Visible = true;
+                lblViewAssetDirections.Text = "Enter all required fields in correct format to submit modified asset successfully. Use the history dropdown to view previously modified versions of a particular asset.";
+
+                history.Visible = true;
+
+                btnSubmit.Visible = false;
+                btnSubmitModifyAsset.Visible = false;
+
+                txtCLAID.Text = objAsset.CLATag;
+                txtMake.Text = objAsset.Make;
+                txtModel.Text = objAsset.Model;
+                txtSerialLeft.Text = objAsset.SerialNumber;
+                ddlStatus.Text = objAsset.Status;
+                txtDescription.Text = objAsset.Description;
+                txtNotes.Text = objAsset.Notes;
+                lblAssetID.Text = objAsset.assetID.ToString();
+            }
         }
     }
 }
