@@ -109,11 +109,7 @@
                         <div class="row" id="history" runat="server" visible="true">
                             <div class="col-md-12">
                                 <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
-                                <asp:DropDownList runat="server" ID="ddlAssetHistory" CssClass="dropdown">
-                                    <asp:ListItem Text="10/28/2014 09:08 AM" />
-                                    <asp:ListItem Text="10/30/2014 01:32 PM" />
-                                    <asp:ListItem Text="10/30/2014 02:12 PM" />
-                                </asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlAssetHistory" CssClass="dropdown" AppendDataBoundItems="true" />
                             </div>
                         </div> 
                     </div>

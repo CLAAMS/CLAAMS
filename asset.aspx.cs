@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Collections;
 
 namespace CD6{
     public partial class asset : System.Web.UI.Page {
@@ -107,6 +108,8 @@ namespace CD6{
                 
                 int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
                 DataSet theDataset = objAsset.GetAssetForSelectedRecord(assetID);
+
+                fillHistory(assetID);
 
                 ////Set the Object values to the gridview
                 objAsset.assetID = assetID;
@@ -398,6 +401,19 @@ namespace CD6{
             } else {
                 return true;
             }
+        }
+
+        protected void fillHistory(int assetID) {
+            Dictionary<int, DateTime> histories = AssetHistory.getAssetHistories(assetID);
+
+            ddlAssetHistory.Items.Clear();
+            ddlAssetHistory.Items.Add(new ListItem(""));
+
+            ddlAssetHistory.DataTextField = "Value";
+            ddlAssetHistory.DataValueField = "Key";
+
+            ddlAssetHistory.DataSource = histories;
+            ddlAssetHistory.DataBind();
         }
     }
 }
