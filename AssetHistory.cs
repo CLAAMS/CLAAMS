@@ -63,7 +63,7 @@ namespace CD6 {
             }
         }
 
-        public static ArrayList getAssetHistories(int assetID) {
+        public static Dictionary<int, DateTime> getAssetHistories(int assetID) {
             string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
             
             DBConnect dbConnect = new DBConnect();
@@ -85,13 +85,10 @@ namespace CD6 {
 
             try{
                 DataSet myDS = dbConnect.GetDataSetUsingCmdObj(myCommand);
-                ArrayList histories = new ArrayList();
+                Dictionary<int, DateTime> histories = new Dictionary<int, DateTime>();
 
                 foreach (DataRow row in myDS.Tables[0].Rows) {
-                    AssetHistory assetHistory = new AssetHistory();
-                    assetHistory.assetHistoryID = (int)row.ItemArray[0];
-                    assetHistory.recordCreated = (DateTime)row.ItemArray[1];
-                    histories.Add(assetHistory);
+                    histories.Add((int)row.ItemArray[0], (DateTime)row.ItemArray[1]);
                 }
 
                 return histories;
