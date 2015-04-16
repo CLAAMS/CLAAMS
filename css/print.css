@@ -1,3 +1,23 @@
 ﻿body {
-    margin: 10px;
+    margin:10px;
+}
+
+.bodyRow {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.data {
+    padding-top:10px;
+}
+#recieved {
+    border:solid;
+    page-break-before:avoid;
+}
+.contentRow {
+    border-top:solid;
+}
+table, tr, td, tbody, th {
+    border:none;
+    border-color:white;
+    border-top-color:white;
 }

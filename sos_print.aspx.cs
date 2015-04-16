@@ -12,12 +12,14 @@ using System.Data.SqlClient;
 namespace CD6 {
     public partial class sos_print : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            //int sosId = (int)Session["sosIdForPrint"];
-            int sosId = 5113;
+            int sosId = (int)Session["sosIdForPrint"];
 
             DataSet info = getInfo(sosId);
 
             DateTime dueDate = (DateTime)info.Tables[0].Rows[0].ItemArray[4];
+            if (DateTime.Equals(dueDate, DateTime.Parse("9/24/3000 3:00:00 PM"))) {
+                divDue.Visible = false;
+            }
 
             lblPrintDate.Text = DateTime.Now.ToShortDateString();
             lblRecipientName.Text = info.Tables[0].Rows[0].ItemArray[0].ToString();
