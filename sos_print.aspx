@@ -56,7 +56,7 @@
             <div class="col-xs-5 data">
                 <asp:Label ID="lblPrintDate" runat="server" />
             </div>
-            <div id="divDue">
+            <div id="divDue" runat="server">
                 <div class="col-xs-1">
                     <h4>Date Due:</h4>
                 </div>

@@ -17,6 +17,9 @@ namespace CD6 {
             DataSet info = getInfo(sosId);
 
             DateTime dueDate = (DateTime)info.Tables[0].Rows[0].ItemArray[4];
+            if (DateTime.Equals(dueDate, DateTime.Parse("9/24/3000 3:00:00 PM"))) {
+                divDue.Visible = false;
+            }
 
             lblPrintDate.Text = DateTime.Now.ToShortDateString();
             lblRecipientName.Text = info.Tables[0].Rows[0].ItemArray[0].ToString();
