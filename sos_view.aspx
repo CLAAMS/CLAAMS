@@ -23,21 +23,21 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
-     <div class="modal fade" id="modifySOSModal" tabindex="-1" role="dialog" aria-labelledby="modifySOSModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="text-align:center;">
-                        <div class="modal-header">
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>-->
-                            <h4 class="modal-title" id="modalSOSmodify"><asp:Label ID="lblmodifySOSLabel_header" runat="server" /></h4>
-                        </div>
-                        <div class="modal-body">
-                            <h3><asp:label id="lblModifySOSModal_body" runat="server" /></h3>
-                            <asp:Button ID="btnModifySOSModalYes" Text="Yes" runat="server" CssClass="btn btn-default" OnClick="btnModifySOSModalYes_Click" />
-                            <asp:Button ID="btnModifySOSModalNo" Text="No" runat="server" CssClass="btn btn-default" OnClick="btnModifySOSModalNo_Click"  />
-                        </div>
-                    </div>
+    <div class="modal fade" id="modifySOSModal" tabindex="-1" role="dialog" aria-labelledby="modifySOSModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>-->
+                    <h4 class="modal-title" id="modalSOSmodify"><asp:Label ID="lblmodifySOSLabel_header" runat="server" /></h4>
+                </div>
+                <div class="modal-body">
+                    <h3><asp:label id="lblModifySOSModal_body" runat="server" /></h3>
+                    <asp:Button ID="btnModifySOSModalYes" Text="Yes" runat="server" CssClass="btn btn-default" OnClick="btnModifySOSModalYes_Click" />
+                    <asp:Button ID="btnModifySOSModalNo" Text="No" runat="server" CssClass="btn btn-default" OnClick="btnModifySOSModalNo_Click"  />
                 </div>
             </div>
+        </div>
+    </div>
     <div class="row main_content">
         <div class="col-md-8 col-md-offset-2">
             <form role="form">
@@ -60,7 +60,14 @@
                             <asp:TextBox ID="txtTerm" runat="server" CssClass="form-control" ReadOnly="true" />
                             <asp:Label ID="lblHistory" Text="History:" runat="server" CssClass="label" />
                             <asp:DropDownList ID="ddlHistory" runat="server" CssClass="dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlHistory_SelectedIndexChanged" AppendDataBoundItems="true" /><br />
-                            <asp:LinkButton id="linkUpload" runat="server" OnClick="linkUpload_Click" Text="Upload Sign Sheet" />
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <asp:LinkButton id="linkUpload" runat="server" OnClick="linkUpload_Click" Text="Upload Sign Sheet" />
+                                </div>
+                                <div class="col-xs-6" style="text-align:right">
+                                    <asp:LinkButton id="linkPrint" runat="server" OnClick="linkPrint_Click" OnClientClick="aspnetForm.target='blank';" Text="Print Sign Sheet" />
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row">

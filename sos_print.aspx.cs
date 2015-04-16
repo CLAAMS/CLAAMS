@@ -12,8 +12,7 @@ using System.Data.SqlClient;
 namespace CD6 {
     public partial class sos_print : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            //int sosId = (int)Session["sosIdForPrint"];
-            int sosId = 5113;
+            int sosId = (int)Session["sosIdForPrint"];
 
             DataSet info = getInfo(sosId);
 
