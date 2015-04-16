@@ -136,6 +136,11 @@ namespace CD6 {
             Response.Redirect("./sos_upload.aspx");
         }
 
+        protected void linkPrint_Click(object sender, EventArgs e) {
+            Session["sosIdForPrint"] = Session["SOSID"];
+            Response.Write("<script>window.open('./sos_print.aspx','_blank');</script>");
+        }
+
         protected void btnModifySOSModalYes_Click(object sender, EventArgs e)
         {
             string dialog_header = "";
