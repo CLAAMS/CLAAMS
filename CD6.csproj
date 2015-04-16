@@ -73,6 +73,7 @@
     <Content Include="css\footer.css" />
     <Content Include="css\login.css" />
     <Content Include="css\master.css" />
+    <Content Include="css\print.css" />
     <Content Include="css\recipient.css" />
     <Content Include="css\secondary-nav.css" />
     <Content Include="css\sos.css" />
@@ -83,6 +84,7 @@
     <Content Include="fonts\BebasNeue-webfont.svg" />
     <Content Include="fonts\DroidSans-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\CLA_logo.png" />
     <Content Include="img\web_logo_tu_outlined-stacked.png" />
     <Content Include="js\add_asset_popup.js" />
     <Content Include="js\bootstrap.js" />
@@ -93,6 +95,7 @@
     <Content Include="recipientSearchForSos.aspx" />
     <Content Include="sosTemplate.aspx" />
     <Content Include="sos_create.aspx" />
+    <Content Include="sos_print.aspx" />
     <Content Include="sos_search.aspx" />
     <Content Include="sos_track.aspx" />
     <Content Include="sos_upload.aspx" />
@@ -183,6 +186,13 @@
     </Compile>
     <Compile Include="sos_create.aspx.designer.cs">
       <DependentUpon>sos_create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sos_print.aspx.cs">
+      <DependentUpon>sos_print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sos_print.aspx.designer.cs">
+      <DependentUpon>sos_print.aspx</DependentUpon>
     </Compile>
     <Compile Include="sos_search.aspx.cs">
       <DependentUpon>sos_search.aspx</DependentUpon>
@@ -287,7 +297,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63903</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:22134/</IISUrl>
+          <IISUrl>http://localhost:22164/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
