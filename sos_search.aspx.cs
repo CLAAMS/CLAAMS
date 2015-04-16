@@ -19,7 +19,9 @@ namespace CD6 {
         protected void Page_Load(object sender, EventArgs e) {
             lblSearchSOSDirections.Visible = true;
             lblSearchSOSDirections.Text = "Enter any combination of fields to search for Sign Out Sheets. To view all Sign Out Sheets, leave all fields blank and click search button.";
-            fillDropdowns();
+            if(!IsPostBack){
+                fillDropdowns();
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e) {
@@ -49,9 +51,14 @@ namespace CD6 {
             mySOS.assetDescription = txtSearchAsset.Text;
 
             SoSFunctions sosFunctions = new SoSFunctions();
-
             gvSearchResults.DataSource = sosFunctions.SearchSoS(mySOS);
             gvSearchResults.DataBind();
+
+            foreach (GridViewRow row in gvSearchResults.Rows) {
+                if (DateTime.Equals(DateTime.Parse(row.Cells[4].Text), DateTime.Parse("9/24/3000 3:00:00 PM"))) {
+                    row.Cells[4].Text = "";
+                }
+            }
 
             searchResults.Visible = true;
         }
@@ -192,9 +199,6 @@ namespace CD6 {
                 return 0;          
             }
             return 0;
-
         }
-        
-   
     }
 }
