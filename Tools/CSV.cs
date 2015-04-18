@@ -17,6 +17,34 @@ namespace Tools
 {
     public class CSV
     {
-        public string ConvertGridviewToCSV(Grid
+        public string ConvertGridviewToCSV(GridView theGridview)
+        {
+            string result=" ";
+            StreamWriter mySw = new StreamWriter("c:\\gridview.csv");
+            for (int x = 0; x < theGridview.Columns.Count; x++)
+            {
+                mySw.Write(theGridview.Columns[int].HeaderText);
+                if(x!=theGridview.Columns.Count)
+                {
+                    mySw.Write(",");
+                }
+            }
+
+            foreach(GridViewRow row in theGridview.Rows)
+            {
+                for(int y=0;y<theGridview.Columns.Count;y++)
+                {
+                mySw.Write(row.Cells[int].Text);
+                if(y !=theGridview.Columns.Count)
+                {
+                    mySw.Write(",");
+                }
+        }
+                mySw.Write(mySw.NewLine);
+    }
+            mySw.Flush();
+            mySw.Close();
+            return result;
+        }
     }
 }
