@@ -26,9 +26,9 @@ namespace Tools {
            MailMessage mailMessage = new MailMessage();
            MailAddress fromAddress = new MailAddress("claams.it@gmail.com");
 
-           SmtpClient smtpClient = new SmtpClient("smtp.temple.edu",587);
+           SmtpClient smtpClient = new SmtpClient("smtp.temple.edu",25);
            smtpClient.UseDefaultCredentials=false;
-           smtpClient.Credentials = new System.Net.NetworkCredential("claams.it@gmail.com", "TempleClaams");
+    
            smtpClient.EnableSsl = true;
           
            mailMessage.To.Add(to);
@@ -59,9 +59,9 @@ namespace Tools {
         MailMessage mailMessage = new MailMessage();
             MailAddress fromAddress = new MailAddress("claams.it@gmail.com");
 
-            SmtpClient smtpClient = new SmtpClient("smtp.temple.edu", 587);
+            SmtpClient smtpClient = new SmtpClient("smtp.temple.edu", 25);
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new System.Net.NetworkCredential("claams.it@gmail.com", "TempleClaams");
+          
             smtpClient.EnableSsl = true;
 
             mailMessage.To.Add(to);
