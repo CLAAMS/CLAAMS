@@ -48,7 +48,7 @@ namespace CD6
                MyCommand.CommandText = "sosTracking";
                gridView.DataSource = myDB.GetDataSetUsingCmdObj(MyCommand);
                gridView.DataBind();
-               myEmail.sendEmail("ryanmarks62@yahoo.com", "tud45086@temple.edu", "Weekly Dashboard of Sign out Sheets", "Hello! This is your weekly dashboard of overdue Sign Out Sheets, and ones that are close to overdue." + render(gridView) + "Thank you, and have a good day!  Regards, the CLAAMS System");
+               myEmail.sendEmail("claams.it@gmail.com", "tud45086@temple.edu", "Weekly Dashboard of Sign out Sheets", "Hello! This is your weekly dashboard of overdue Sign Out Sheets, and ones that are close to overdue." + render(gridView) + "Thank you, and have a good day!  Regards, the CLAAMS System");
             }
             else
                 lblValidation.Text = "It didn't work";
