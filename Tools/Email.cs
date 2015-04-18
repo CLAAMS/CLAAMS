@@ -24,11 +24,11 @@ namespace Tools {
            
            fileName = HttpContext.Current.Server.MapPath(fileName);
            MailMessage mailMessage = new MailMessage();
-           MailAddress fromAddress = new MailAddress("ryanmarks62@yahoo.com");
+           MailAddress fromAddress = new MailAddress("claams.it@gmail.com");
 
-           SmtpClient smtpClient = new SmtpClient("smtp.mail.yahoo.com",587);
+           SmtpClient smtpClient = new SmtpClient("smtp.gmail.com",587);
            smtpClient.UseDefaultCredentials=false;
-           smtpClient.Credentials = new System.Net.NetworkCredential("ryanmarks62@yahoo.com", "Atownyea1");
+           smtpClient.Credentials = new System.Net.NetworkCredential("claams.it@gmail.com", "TempleClaams");
            smtpClient.EnableSsl = true;
           
            mailMessage.To.Add(to);
