@@ -46,7 +46,7 @@ namespace Tools {
                     result += ";";
                 }
             }
-            result += "vbCrLf";
+            result += "\n";
 
             // Write each row
             foreach (GridViewRow row in gv.Rows) {
@@ -56,7 +56,7 @@ namespace Tools {
                         result += ";";
                     }
                 }
-                result += "vbCrLf";
+                result += "\n";
             }
             return result;
         }
