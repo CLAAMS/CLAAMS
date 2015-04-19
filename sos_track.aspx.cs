@@ -11,6 +11,7 @@ using Microsoft.SqlServer.Server;
 using Utilities;
 using System.IO;
 using System.Text;
+using System.Collections;
 
 namespace CD6 {
     public partial class sos_track : System.Web.UI.Page {
@@ -46,12 +47,14 @@ namespace CD6 {
 
         protected void linkExport_Click(object sender, EventArgs e) {
             string results = Tools.CSV.gvToCsv(gvSosTracking);
+            string[] lines = results.Split('\n');
 
             Response.Clear();
             Response.AppendHeader("content-disposition", "attachment; filename=myfile.txt");
             Response.ContentType = "text/xml";
-            UTF8Encoding encoding = new UTF8Encoding();
-            Response.Write(results);
+            foreach (string line in lines) {
+                Response.Write(line + Environment.NewLine);
+            }
             Response.Flush();
             Response.End();
         }
