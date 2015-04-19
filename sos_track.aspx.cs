@@ -17,9 +17,9 @@ namespace CD6 {
         SignOutSheet mySOS = new SignOutSheet();
 
         protected void Page_Load(object sender, EventArgs e) {
-            String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
-            
-            DBConnect myDB = new DBConnect();
+            String SqlConnectString = Global.Connection_String;
+
+            DBConnect myDB = new DBConnect(SqlConnectString);
             SqlConnection myConn = new SqlConnection(SqlConnectString);
             SqlCommand MyCommand = new SqlCommand();
             myConn.Open();

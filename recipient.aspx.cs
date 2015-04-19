@@ -231,12 +231,12 @@ namespace CD6 {
         }
 
         protected void fillDropDowns(){
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
             DataSet departments = new DataSet();
             DataSet divisions = new DataSet();
 
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();

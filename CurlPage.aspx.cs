@@ -19,9 +19,9 @@ namespace CD6
         Email myEmail = new Email();
         string key=" ";
         GridView gridView = new GridView();
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
-            
-            DBConnect myDB = new DBConnect();
+        String SqlConnectString = Global.Connection_String;
+
+        DBConnect myDB = new DBConnect(Global.Connection_String);
            
             
         protected void Page_Load(object sender, EventArgs e)

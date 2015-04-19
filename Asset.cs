@@ -25,10 +25,10 @@ namespace CD6 {
         public DateTime recordCreated { get; set; }
         public int sosID { get; set; }
         public string editorID { get; set; }
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        String SqlConnectString = Global.Connection_String;
 
         public DataSet GetAssetForSelectedRecord(int assetId) {
-            DBConnect theDB = new DBConnect();
+            DBConnect theDB = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand6 = new SqlCommand();
             myConnection.Open();

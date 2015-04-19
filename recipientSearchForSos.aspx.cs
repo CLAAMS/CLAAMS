@@ -13,7 +13,7 @@ using Utilities;
 
 namespace CD6 {
     public partial class recipientSearchForSos : System.Web.UI.Page {
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        String SqlConnectString = Global.Connection_String;
         Dictionary<string, object> createSosSelections = new Dictionary<string, object>();
 
         protected void Page_Load(object sender, EventArgs e) {
@@ -59,7 +59,7 @@ namespace CD6 {
                 sql += string.Format(" and SecondaryDeptAffiliation={0}", secondaryDept.ToString());
             }
 
-            gvSearchResults.DataSource = Tools.DBAccess.DBCall(sql);
+            gvSearchResults.DataSource = Tools.DBAccess.DBCall(sql, Global.Connection_String);
             gvSearchResults.DataBind();
             searchResults.Visible = true;
         }
@@ -117,7 +117,7 @@ namespace CD6 {
 
         protected DataSet getDepartments() {
             DataSet testDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand1 = new SqlCommand();
             myConnection.Open();
@@ -131,7 +131,7 @@ namespace CD6 {
 
         protected DataSet getDivisions() {
             DataSet testDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand1 = new SqlCommand();
             myConnection.Open();

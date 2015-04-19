@@ -13,6 +13,8 @@ namespace CD6
 {
     public partial class template_asset : System.Web.UI.Page
     {
+        string sqlConnectionString = Global.Connection_String;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lblManageTemplateDirections.Visible = true;
@@ -45,7 +47,7 @@ namespace CD6
             if (procedure != null)
             {
                 string submit_type;
-                DBConnect objDB = new DBConnect();
+                DBConnect objDB = new DBConnect(sqlConnectionString);
 
                 SqlCommand objCommand = new SqlCommand();
                 objCommand.CommandType = CommandType.StoredProcedure;
@@ -123,7 +125,7 @@ namespace CD6
             DataSet dsAssets = new DataSet();
 
             string selectTemplates = "select * from Asset_Template;";
-            dsAssets = Tools.DBAccess.DBCall(selectTemplates);
+            dsAssets = Tools.DBAccess.DBCall(selectTemplates, Global.Connection_String);
 
             gvTemplates.DataSource = dsAssets;
             gvTemplates.DataBind();
@@ -136,10 +138,10 @@ namespace CD6
             GridViewRow row = gvTemplates.Rows[index];
             int assetTemplateID = Convert.ToInt32(gvTemplates.DataKeys[index].Value);
             Session["assetTemplateID"] = assetTemplateID;
-            DataSet ds = Tools.DBAccess.DBCall("select Name from Asset_Template where assetTemplateID =" + assetTemplateID);
+            DataSet ds = Tools.DBAccess.DBCall("select Name from Asset_Template where assetTemplateID =" + assetTemplateID, Global.Connection_String);
             string templateName = ds.Tables[0].Rows[0][0].ToString();
             if (e.CommandName == "delTemplate"){
-                DBConnect DBObj = new DBConnect();
+                DBConnect DBObj = new DBConnect(sqlConnectionString);
                 SqlCommand commandObject = new SqlCommand();
                 commandObject.CommandType = CommandType.StoredProcedure;
                 commandObject.CommandText = "delAssetTemplate";
@@ -170,7 +172,7 @@ namespace CD6
                 string name, make, model, description, sql;
                 sql = string.Format("select Name, Make, Model, Description from Asset_Template where assetTemplateID = {0};", assetTemplateID);
 
-                DataSet data = Tools.DBAccess.DBCall(sql);
+                DataSet data = Tools.DBAccess.DBCall(sql, Global.Connection_String);
                 name = (string)data.Tables[0].Rows[0][0];
                 make = (string)data.Tables[0].Rows[0][1];
                 model = (string)data.Tables[0].Rows[0][2];

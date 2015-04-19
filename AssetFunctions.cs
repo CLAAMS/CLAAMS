@@ -13,8 +13,8 @@ namespace CD6
 {
     public class AssetFunctions
     {
-        DBConnect objDB = new DBConnect();
-        //String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        DBConnect objDB = new DBConnect(Global.Connection_String);
+        //String SqlConnectString = Global.Connection_String;
 
         public void CreateNewAsset(Asset objAsset,string editorID)
         {

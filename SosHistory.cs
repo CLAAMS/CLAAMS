@@ -26,10 +26,10 @@ namespace CD6 {
         public static ArrayList getHistoryForSOS(int sosID) {
             ArrayList histories = new ArrayList();
 
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();
@@ -72,10 +72,10 @@ namespace CD6 {
         public static int getLastHistoryID(int sosID) {
             int historyID;
 
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();
@@ -106,10 +106,10 @@ namespace CD6 {
         public static SosHistory getHistoryByID(int sosHistoryID) {
             SosHistory history = new SosHistory();
 
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();

@@ -17,8 +17,8 @@ namespace CD6{
         DataSet myDS = new DataSet();
         DateTime recordCreated;
         DateTime recordModified;
-        DBConnect myDbConnect = new DBConnect();
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        DBConnect myDbConnect = new DBConnect(Global.Connection_String);
+        String SqlConnectString = Global.Connection_String;
 
         protected void Page_Load(object sender, EventArgs e){
             lblAddDepartmentDirections.Visible = true;
@@ -108,7 +108,7 @@ namespace CD6{
 
         public DataSet returnDepartments() {
             DataSet testDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand1 = new SqlCommand();
             myConnection.Open();
@@ -147,7 +147,7 @@ namespace CD6{
             if (e.CommandName == "Modify") {
                 string sql;
                 sql = string.Format("select Name FROM Department where DepartmentId = {0};", departmentID);
-                DataSet data = Tools.DBAccess.DBCall(sql);
+                DataSet data = Tools.DBAccess.DBCall(sql, Global.Connection_String);
                 name = (string)data.Tables[0].Rows[0][0];
                 txtDeptName.Text = name;
                 btnAdd.Text = "Save Department";
