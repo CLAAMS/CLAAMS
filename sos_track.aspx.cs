@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Utilities;
+using System.IO;
+using System.Text;
 
 namespace CD6 {
     public partial class sos_track : System.Web.UI.Page {
@@ -40,6 +42,18 @@ namespace CD6 {
                 Session.Add("SOSID", mySOS.sosID);
                 Response.Redirect("./sos_view.aspx");
             }
+        }
+
+        protected void linkExport_Click(object sender, EventArgs e) {
+            string results = Tools.CSV.gvToCsv(gvSosTracking);
+
+            Response.Clear();
+            Response.AppendHeader("content-disposition", "attachment; filename=myfile.txt");
+            Response.ContentType = "text/xml";
+            UTF8Encoding encoding = new UTF8Encoding();
+            Response.Write(results);
+            Response.Flush();
+            Response.End();
         }
     }
 }
