@@ -345,5 +345,19 @@ namespace CD6 {
                 return true;
             }
         }
+
+        protected void linkExport_Click(object sender, EventArgs e) {
+            string results = Tools.CSV.gvToCsv(gvSearchResults);
+            string[] lines = results.Split('\n');
+
+            Response.Clear();
+            Response.AppendHeader("content-disposition", "attachment; filename=myfile.txt");
+            Response.ContentType = "text/xml";
+            foreach (string line in lines) {
+                Response.Write(line + Environment.NewLine);
+            }
+            Response.Flush();
+            Response.End();
+        }
     }
 }

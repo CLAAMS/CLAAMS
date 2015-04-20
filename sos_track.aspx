@@ -25,7 +25,7 @@
                             <asp:ButtonField ButtonType="Button" Text="View" CommandName="view" ControlStyle-CssClass="btn-default btn" />
                         </Columns>
                     </asp:GridView>
-                    <div style="text-align:center;">
+                    <div style="text-align:right;">
                         <asp:LinkButton ID="linkExport" runat="server" OnClick="linkExport_Click" Text="Export Data" OnClientClick="aspnetForm.target='blank';" />
                     </div>
                 </div>
