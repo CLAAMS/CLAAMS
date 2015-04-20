@@ -94,6 +94,9 @@
                                             <asp:ButtonField ButtonType="Button" Text="Archive" CommandName="archive" ControlStyle-CssClass="btn-danger btn" />
                                         </Columns>
                                     </asp:GridView>
+                                    <div style="text-align:right;">
+                                        <asp:LinkButton ID="linkExport" runat="server" OnClick="linkExport_Click" Text="Export Data" OnClientClick="aspnetForm.target='blank';" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

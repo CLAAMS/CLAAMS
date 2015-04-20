@@ -137,6 +137,9 @@
                                 <asp:ButtonField ButtonType="Button" Text="View/Edit" CommandName="modifyRecord" ControlStyle-CssClass="btn btn-default"/>
                             </Columns>
                         </asp:GridView>
+                        <div style="text-align:right;">
+                            <asp:LinkButton ID="linkExport" runat="server" OnClick="linkExport_Click" Text="Export Data" OnClientClick="aspnetForm.target='blank';" />
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 button_row" style="text-align:center;">

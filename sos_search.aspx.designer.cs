@@ -220,6 +220,15 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.GridView gvSearchResults;
         
         /// <summary>
+        /// linkExport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkExport;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
