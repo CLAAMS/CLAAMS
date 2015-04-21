@@ -34,6 +34,7 @@
                     <div class="button_row row">
                         <div class="col-md-12" style="text-align:center;">
                             <asp:Button ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" CssClass="btn btn-default" TabIndex="6"/>
+                            <asp:Button ID="btnClose" Text="Close" runat="server" OnClick="btnClose_Click" CssClass="btn btn-default" TabIndex="6"/>
                         </div>
                     </div>
                 </div>

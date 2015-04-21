@@ -57,6 +57,9 @@
                             <div class="instructions">
                                 <asp:label id="lblCreateRecipientsDirections" runat="server" Visible="false" CssClass="instructions" />
                             </div>
+                            <div class="instructions">
+                                <asp:label id="lblCreateError" runat="server" Visible="true" CssClass="instructions" ForeColor="Red" />
+                            </div>
                         </div>
                     </div>
                     <div class="row header_row">
@@ -64,6 +67,9 @@
                             <h1>Modify Recipient</h1>
                             <div class="instructions">
                                 <asp:label id="lblModifyRecipientsDirections" runat="server" Visible="false" CssClass="instructions" />
+                            </div>
+                             <div class="instructions">
+                                <asp:label id="lblModifyError" runat="server" Visible="true" CssClass="instructions" ForeColor="Red" />
                             </div>
                         </div>
                     </div>
