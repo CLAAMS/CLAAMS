@@ -14,6 +14,7 @@ namespace CD6 {
         public static int SMTP_Port = int.Parse(WebConfigurationManager.AppSettings.Get("SMTP_Port"));
         public static string Connection_String = WebConfigurationManager.AppSettings.Get("ConnectionString");
         public static string Email_from = WebConfigurationManager.AppSettings.Get("EMAIL_From");
+        public static string Admin_Email = WebConfigurationManager.AppSettings.Get("Admin_Email");
 
         protected void Application_Start(object sender, EventArgs e) { }
 
