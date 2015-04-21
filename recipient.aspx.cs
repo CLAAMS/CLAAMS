@@ -179,7 +179,7 @@ namespace CD6 {
                     myAR.emailAddress = txtEmail.Text;
                     myAR.location = txtLocation.Text;
                     myAR.division = ddlDivision.SelectedValue;
-                    myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue);
+                        myAR.primaryDeptAffiliation = PrimaryDept;
                     try {
                         myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
                     } catch {}
