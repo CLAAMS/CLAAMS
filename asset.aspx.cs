@@ -186,6 +186,7 @@ namespace CD6{
             history.Visible = false;
             modifyHeader.Visible = false;
             templateRow.Visible = false;
+            modifyHeader.Visible = false;
 
             objAsset.assetID = 0;
             objAsset.CLATag = txtCLAID.Text;

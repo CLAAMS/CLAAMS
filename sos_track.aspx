@@ -12,6 +12,7 @@
                     <div class="header_row">
                         <div class="col-md-12" id="header" runat="server">
                             <h1>Sign Sheet Tracking</h1>
+                            <asp:Label ID="lblTrackingDirections" runat="server"  Visible="false" CssClass="instructions" style="padding-bottom: 10px; margin-bottom: 10px; position: relative; display: block;"/>
                         </div>
                     </div>
                     <asp:GridView ID="gvSosTracking" AutoGenerateColumns="false" DataKeyNames="sosID" runat="server" CssClass="table" OnRowCommand="gvSosTracking_RowCommand" >
