@@ -21,6 +21,7 @@ namespace CD6 {
         }
 
         protected void btnCreate_Click(object sender, EventArgs e) {
+            lblCreateError.Text = "";
             createHeader.Visible = true;
             modifyHeader.Visible = false;
             lblSearchRecipientsDirections.Visible = false;
@@ -131,7 +132,8 @@ namespace CD6 {
                 PrimaryDept = 0;
             }
 
-            if(validateInput(txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, PrimaryDept)){
+            if (validateInputModify(txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, PrimaryDept))
+            {
                 if (Session["AssetRecipient"] != null) {
                     modal1("Modify Recipient", "Are you sure you want to modify this recipient?");  
                 } else {
@@ -179,7 +181,7 @@ namespace CD6 {
             int arID =(int) gvSearchResults.DataKeys[index].Value;
             
             if (e.CommandName == "modifyRecord") {
-
+                lblModifyError.Text = "";
                 bool onModify=false;
                 createHeader.Visible = false;
                 btnSubmitCreate.Visible = true;
@@ -316,36 +318,91 @@ namespace CD6 {
 
         protected bool validateInput(string firstName, string lastName, string email, string location, int primaryDept) {
             string output = "";
+            lblCreateError.Text = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
             if (firstName == ""){
                 output += "Invalid First Name<br/>";
+                lblCreateError.Text += "Enter First Name<br/>";
             }
 
             if (lastName == ""){
                 output += "Invalid Last Name<br/>";
+                lblCreateError.Text += "Enter Last Name<br/>";
             }
 
             if(location == ""){
                 output += "Invalid Location<br/>";
+                lblCreateError.Text += "Enter Location<br/>";
             }
 
             if(!InVal.IsValidEmail(email)){
                 output += "Invalid Email Address<br/>";
+                lblCreateError.Text += "Enter Email Address<br/>";
             }
 
             if(primaryDept == 0){
                 output += "Invalid Primary Department";
+                lblCreateError.Text += "Enter Primary Department Affiliation<br/>";
             }
 
-            if(output != ""){
+            if(output != "" && lblCreateError.Text != "")
+            {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                lblCreateError.Text = "The following fields contain errors and are missing information:<br/>" + lblCreateError.Text;
                 return false;
             } else {
                 return true;
             }
         }
 
+        protected bool validateInputModify(string firstName, string lastName, string email, string location, int primaryDept)
+        {
+            string output = "";
+            lblModifyError.Text = "";
+            Tools.InputValidation InVal = new Tools.InputValidation();
+
+            if (firstName == "")
+            {
+                output += "Invalid First Name<br/>";
+                lblModifyError.Text += "Enter First Name<br/>";
+            }
+
+            if (lastName == "")
+            {
+                output += "Invalid Last Name<br/>";
+                lblModifyError.Text += "Enter Last Name<br/>";
+            }
+
+            if (location == "")
+            {
+                output += "Invalid Location<br/>";
+                lblModifyError.Text += "Enter Location<br/>";
+            }
+
+            if (!InVal.IsValidEmail(email))
+            {
+                output += "Invalid Email Address<br/>";
+                lblModifyError.Text += "Enter Email Address<br/>";
+            }
+
+            if (primaryDept == 0)
+            {
+                output += "Invalid Primary Department";
+                lblModifyError.Text += "Enter Primary Department Affiliation<br/>";
+            }
+
+            if (output != "" && lblCreateError.Text != "")
+            {
+                modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                lblModifyError.Text = "The following fields contain errors and are missing information:<br/>" + lblModifyError.Text;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         protected void linkExport_Click(object sender, EventArgs e) {
             string results = Tools.CSV.gvToCsv(gvSearchResults);
             string[] lines = results.Split('\n');

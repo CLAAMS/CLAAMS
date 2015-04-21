@@ -96,6 +96,7 @@ namespace CD6{
                 modal1("Asset Archive", "Are you sure you want to archive this asset?");
                // btnSearch_Click(this, e);
             } else if (e.CommandName == "modifyRecord") {
+                lblErrorModify.Text = "";
                 createHeader.Visible = false;
                 modifyHeader.Visible = true;
                 lblModifyAssetDirections.Visible = true;
@@ -142,7 +143,7 @@ namespace CD6{
         protected void btnSubmit_Click(object sender, EventArgs e) {
             if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text)) 
             {
-                DataSet ds = Tools.DBAccess.DBCall("SELECT * FROM Asset WHERE CLATag = {0}", txtCLAID.Text);
+                DataSet ds = Tools.DBAccess.DBCall(string.Format("SELECT * FROM Asset WHERE CLATag = '{0}'", txtCLAID.Text), Global.Connection_String);
 
                 if (ds.Tables[0].Rows.Count == 0)
                 {
@@ -285,41 +286,63 @@ namespace CD6{
             txtSerialLeft.Text = "";
             txtDescription.Text = "";
             txtNotes.Text = "";
+            lblError.Text = "";
         }
 
         protected void btnSubmitModifyAsset_Click(object sender, EventArgs e) {
             btnSubmit.Visible = false;
+            createHeader.Visible = false;
+            modifyHeader.Visible = true;
+            btnSubmitModifyAsset.Visible = true;
 
-            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text)) {
-                objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
-                objAsset.CLATag = txtCLAID.Text;
-                objAsset.Make = txtMake.Text;
-                Session["Make1"] = objAsset.Make;
-                objAsset.Model = txtModel.Text;
-                Session["Model1"] = objAsset.Model;
-                objAsset.SerialNumber = txtSerialLeft.Text;
-                objAsset.Status = ddlStatus.SelectedValue;
-                objAsset.Description = txtDescription.Text;
-                objAsset.Notes = txtNotes.Text;
-                objAsset.recordCreated = DateTime.Now;
-                objAsset.recordModified = DateTime.Now;
-                objAsset.editorID = Session["user"].ToString();
+            if (validateInputModify(txtCLAID.Text, txtMake.Text, txtModel.Text))
+            {
+                DataSet ds1 = Tools.DBAccess.DBCall(string.Format("SELECT * FROM Asset WHERE CLATag = '{0}'", txtCLAID.Text), Global.Connection_String);
 
-                DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID), Global.Connection_String);
-                int sosID = 0;
-                if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) {
-                    objAsset.sosID = sosID;
-                    Session["AssetObject"] = objAsset;
-                    modal2("Modify Asset", "Are you sure you want to modify this asset?");
-                } else {
-                    objAsset.sosID = sosID;
-                    Session["AssetObject"] = objAsset;
-                    modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                if (ds1.Tables[0].Rows.Count == 0)
+                {
+                    objAsset.assetID = Convert.ToInt32(lblAssetID.Text);
+                    objAsset.CLATag = txtCLAID.Text;
+                    objAsset.Make = txtMake.Text;
+                    Session["Make1"] = objAsset.Make;
+                    objAsset.Model = txtModel.Text;
+                    Session["Model1"] = objAsset.Model;
+                    objAsset.SerialNumber = txtSerialLeft.Text;
+                    objAsset.Status = ddlStatus.SelectedValue;
+                    objAsset.Description = txtDescription.Text;
+                    objAsset.Notes = txtNotes.Text;
+                    objAsset.recordCreated = DateTime.Now;
+                    objAsset.recordModified = DateTime.Now;
+                    objAsset.editorID = Session["user"].ToString();
+
+                    DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID), Global.Connection_String);
+                    int sosID = 0;
+                    if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID))
+                    {
+                        objAsset.sosID = sosID;
+                        Session["AssetObject"] = objAsset;
+                        modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                    }
+                    else
+                    {
+                        objAsset.sosID = sosID;
+                        Session["AssetObject"] = objAsset;
+                        modal2("Modify Asset", "Are you sure you want to modify this asset?");
+                    }
                 }
-            } else {
-                modifyHeader.Visible = true;
-                createHeader.Visible = false;
-                btnSubmitModifyAsset.Visible = true;
+                else
+                {
+                    string submit_type;
+                    submit_type = "error";
+
+                    string dialog_header, dialog_body;
+                    if (submit_type == "error")
+                    {
+                        dialog_header = "Error";
+                        dialog_body = string.Format("This CLATag already exists. Please enter a different CLATag to successfully create new asset");
+                        modal(dialog_header, dialog_body);
+                    }
+                }
             }
         }
 
@@ -402,24 +425,69 @@ namespace CD6{
 
         protected bool validateInput(string CLATag, string Make, string Model) {
             string output = "";
+            lblError.Text = "";
+            lblErrorModify.Text = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
             if (CLATag == "") {
                 output += "Invalid CLA Tag<br/>";
+                lblError.Text += "Enter CLA Tag<br/>";
             }
 
             if (Make == "") {
                 output += "Invalid Make<br/>";
+                lblError.Text += "Enter Make<br/>";
             }
 
             if (Model == "") {
                 output += "Invalid Model<br/>";
+                lblError.Text += "Enter Model<br/>";
             }
 
-            if (output != "") {
+            if (output != "" && lblError.Text != "") 
+            {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                lblError.Text = "The following fields contain errors and are missing information:<br/>" + lblError.Text;
                 return false;
-            } else {
+            }
+            else 
+            {
+                return true;
+            }
+        }
+
+        protected bool validateInputModify(string CLATag, string Make, string Model)
+        {
+            string output = "";
+            lblErrorModify.Text = "";
+            Tools.InputValidation InVal = new Tools.InputValidation();
+
+            if (CLATag == "")
+            {
+                output += "Invalid CLA Tag<br/>";
+                lblErrorModify.Text += "Enter CLA Tag<br/>";
+            }
+
+            if (Make == "")
+            {
+                output += "Invalid Make<br/>";
+                lblErrorModify.Text += "Enter Make<br/>";
+            }
+
+            if (Model == "")
+            {
+                output += "Invalid Model<br/>";
+                lblErrorModify.Text += "Enter Model<br/>";
+            }
+
+            if (output != "" && lblErrorModify.Text != "")
+            {
+                modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                lblErrorModify.Text = "The following fields contain errors and are missing information:<br/>" + lblErrorModify.Text;
+                return false;
+            }
+            else
+            {
                 return true;
             }
         }

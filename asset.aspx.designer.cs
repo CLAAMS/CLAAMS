@@ -157,6 +157,15 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.Label lblCreateAssetDirections;
         
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
         /// modifyHeader control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace CD6 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblModifyAssetDirections;
+        
+        /// <summary>
+        /// lblErrorModify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorModify;
         
         /// <summary>
         /// templateRow control.

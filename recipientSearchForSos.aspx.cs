@@ -142,5 +142,10 @@ namespace CD6 {
             testDS = myDbConnect.GetDataSetUsingCmdObj(myCommand1);
             return testDS;
         }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("sos_create.aspx");
+        }
     }
 }

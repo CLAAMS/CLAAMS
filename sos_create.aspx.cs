@@ -107,6 +107,7 @@ namespace CD6 {
                 mySOS.recordModified = DateTime.Now;
                 mySOS.editorID = (string)Session["user"];
                 int assetId = 1;
+                Session["SoS"] = mySOS;
                 int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified, mySOS.editorID);
                 if (sosID == -1) {
                     dialog_header = "ERROR";
@@ -212,28 +213,34 @@ namespace CD6 {
 
         protected bool validateInput(string recipient, string claMember, string term, ListBox lBox, DateTime dateDue) {
             string output = "";
+            lblCreateError.Text = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
             if (recipient == "0") {
                 output += "Select recipient<br/>";
+                lblCreateError.Text += "Select recipient<br/>";
             }
 
             if (claMember== "") {
                 output += "Select assigner<br/>";
+                lblCreateError.Text += "Select assigner<br/>";
             }
 
             if (lBox.Items.Count == 0) {
                 output += "Select at least one asset<br/>";
+                lblCreateError.Text += "Select at least one asset<br/>";
             }
 
             if (term == "0") {
                 if (dateDue == Convert.ToDateTime("1/1/0001 12:00:00 AM")) {
                     output += "Select due date<br/>";
+                    lblCreateError.Text += "Select due date<br/>";
                 }
             } else { }
 
-            if (output != "") {
+            if (output != "" && lblCreateError.Text != "") {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
+                lblCreateError.Text = "The following fields contain errors and are missing information:<br/>" + lblCreateError.Text;
                 return false;
             } else {
                 return true;
