@@ -34,24 +34,22 @@ namespace CD6
             catch
             {
                 key = " ";
-
             }
             
-            if (key == "12345")
-            {
-                lblValidation.Text = "It worked";
-                SqlConnection myConn = new SqlConnection(SqlConnectString);
-                SqlCommand MyCommand = new SqlCommand();
-                myConn.Open();
+            if (key == "12345") {
+               lblValidation.Text = "It worked";
+               SqlConnection myConn = new SqlConnection(SqlConnectString);
+               SqlCommand MyCommand = new SqlCommand();
+               myConn.Open();
                MyCommand.Connection = myConn;
                MyCommand.CommandType = CommandType.StoredProcedure;
                MyCommand.CommandText = "sosTracking";
                gridView.DataSource = myDB.GetDataSetUsingCmdObj(MyCommand);
                gridView.DataBind();
                myEmail.sendEmail("claams.it@gmail.com", "tud45086@temple.edu", "Weekly Dashboard of Sign out Sheets", "Hello! This is your weekly dashboard of overdue Sign Out Sheets, and ones that are close to overdue." + render(gridView) + "Thank you, and have a good day!  Regards, the CLAAMS System");
-            }
-            else
+            } else {
                 lblValidation.Text = "It didn't work";
+            }
         }
 
         public  string render(GridView theGridview)

@@ -60,9 +60,9 @@ namespace CD6 {
             MailAddress fromAddress = new MailAddress(Global.Email_from);
 
             SmtpClient smtpClient = new SmtpClient(Global.SMTP_Server, Global.SMTP_Port);
-            smtpClient.UseDefaultCredentials = false;
+            //smtpClient.UseDefaultCredentials = false;
           
-            smtpClient.EnableSsl = true;
+            //smtpClient.EnableSsl = true;
 
             mailMessage.To.Add(to);
             mailMessage.From = fromAddress;
