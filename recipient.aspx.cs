@@ -179,7 +179,7 @@ namespace CD6 {
                     myAR.emailAddress = txtEmail.Text;
                     myAR.location = txtLocation.Text;
                     myAR.division = ddlDivision.SelectedValue;
-                        myAR.primaryDeptAffiliation = PrimaryDept;
+                    myAR.primaryDeptAffiliation = PrimaryDept;
                     try {
                         myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue);
                     } catch {}
@@ -428,7 +428,7 @@ namespace CD6 {
                 lblModifyError.Text += "Enter Primary Department Affiliation<br/>";
             }
 
-            if (output != "" && lblCreateError.Text != "")
+            if (output != "" && lblModifyError.Text != "")
             {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
                 lblModifyError.Text = "The following fields contain errors and are missing information:<br/>" + lblModifyError.Text;
