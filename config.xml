@@ -6,4 +6,5 @@
   <add key="SMTP_Server" value="smtp.temple.edu"/>
   <add key="SMTP_Port" value="25"/>
   <add key="EMAIL_From" value="clait@temple.edu" />
+  <add key="Admin_Email" value="tuf01657@temple.edu" />
 </appSettings>
