@@ -95,30 +95,66 @@ namespace CD6 {
             search_results.Visible = true;
             modifyHeader.Visible = false;
             
-            myAR.title = ddlTitle.Text;
-            myAR.firstName = txtFirstname.Text;
-            myAR.lastName = txtLastName.Text;
-            myAR.emailAddress = txtEmail.Text;
-            myAR.location = txtLocation.Text;
-            myAR.division = ddlDivision.SelectedValue;
+            //myAR.title = ddlTitle.Text;
+            //myAR.firstName = txtFirstname.Text;
+            //myAR.lastName = txtLastName.Text;
+            //myAR.emailAddress = txtEmail.Text;
+            //myAR.location = txtLocation.Text;
+            //myAR.division = ddlDivision.SelectedValue;
             
-            if(ddlPrimaryDept.SelectedValue == ""){
-                myAR.primaryDeptAffiliation = 0;
-            } else {
-                myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue.ToString());
+            //if(ddlPrimaryDept.SelectedValue == ""){
+            //    myAR.primaryDeptAffiliation = 0;
+            //} else {
+            //    myAR.primaryDeptAffiliation = Convert.ToInt32(ddlPrimaryDept.SelectedValue.ToString());
+            //}
+
+            //if(ddlSecondaryDept.SelectedValue == ""){
+            //    myAR.secondaryDeptAffiliation = 0;
+            //} else {
+            //    myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue.ToString());
+            //}
+
+            //myAR.phoneNumber = txtPhone.Text;
+            //myAR.RecordCreated = DateTime.Now.ToString();
+            //myAR.RecordModified = DateTime.Now.ToString();
+
+            //gvSearchResults.DataSource = myAR.SearchAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+            //gvSearchResults.DataBind();
+
+            string sql = "select arID, FirstName, LastName, EmailAddress, Location, (select Divisions.DivisionName from Divisions where DivisionID=Division) as DivisionName, (select Department.Name from Department where DepartmentId=PrimaryDeptAffiliation) as PrimaryDept, (select Department.Name from Department where DepartmentId=SecondaryDeptAffiliation) as SecondaryDept, PhoneNumber from Asset_Recipient where arID is not null";
+
+            string firstName = txtFirstname.Text;
+            string lastName = txtLastName.Text;
+            string email = txtEmail.Text;
+            int division, primaryDept, secondaryDept;
+
+            if (!Int32.TryParse(ddlDivision.SelectedValue, out division)) {
+                division = 0;
             }
 
-            if(ddlSecondaryDept.SelectedValue == ""){
-                myAR.secondaryDeptAffiliation = 0;
-            } else {
-                myAR.secondaryDeptAffiliation = Convert.ToInt32(ddlSecondaryDept.SelectedValue.ToString());
+            if (!Int32.TryParse(ddlSecondaryDept.SelectedValue, out secondaryDept)) {
+                secondaryDept = 0;
             }
 
-            myAR.phoneNumber = txtPhone.Text;
-            myAR.RecordCreated = DateTime.Now.ToString();
-            myAR.RecordModified = DateTime.Now.ToString();
+            if (!Int32.TryParse(ddlPrimaryDept.SelectedValue, out primaryDept)) {
+                primaryDept = 0;
+            }
 
-            gvSearchResults.DataSource = myAR.SearchAssetRecipient(myAR.title, myAR.firstName, myAR.lastName, myAR.emailAddress, myAR.location, myAR.division, myAR.primaryDeptAffiliation, myAR.secondaryDeptAffiliation, myAR.phoneNumber, myAR.RecordCreated, myAR.RecordModified);
+            sql += string.Format(" and Firstname like '%{0}%' and LastName like '%{1}%' and EmailAddress like '%{2}%'", firstName, lastName, email);
+
+            if (division != 0){
+                sql += string.Format(" and Division={0}", division.ToString());
+            }
+
+            if (primaryDept != 0){
+                sql += string.Format(" and PrimaryDeptAffiliation={0}", primaryDept.ToString());
+            }
+
+            if (secondaryDept != 0){
+                sql += string.Format(" and SecondaryDeptAffiliation={0}", secondaryDept.ToString());
+            }
+
+            gvSearchResults.DataSource = Tools.DBAccess.DBCall(sql, Global.Connection_String);
             gvSearchResults.DataBind();
         }
 
