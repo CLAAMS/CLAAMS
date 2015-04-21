@@ -40,6 +40,15 @@ namespace CD6 {
         protected global::System.Web.UI.WebControls.Label lblCreateSOSDirections;
         
         /// <summary>
+        /// lblCreateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCreateError;
+        
+        /// <summary>
         /// lblRecipient control.
         /// </summary>
         /// <remarks>

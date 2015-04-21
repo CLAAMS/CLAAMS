@@ -33,6 +33,9 @@
                             <div class="instructions">
                                 <asp:Label ID="lblCreateSOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
+                            <div class="instructions">
+                                <asp:Label ID="lblCreateError" runat="server" Visible="true" CssClass="instructions" ForeColor="Red"/>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

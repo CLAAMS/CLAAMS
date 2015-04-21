@@ -84,6 +84,9 @@
                                 <div class="instructions">
                                     <asp:label id="lblCreateAssetDirections" runat="server" Visible="false" CssClass="instructions"/>
                                 </div>
+                                <div class="instructions">
+                                    <asp:label id="lblError" runat="server" Visible="true" CssClass="instructions" ForeColor="Red"/>
+                                </div>
                             </p>
                         </div>
                     </div>
@@ -93,6 +96,9 @@
                                 <h1>Modify Asset</h1>
                                 <div class="instructions">
                                     <asp:label id="lblModifyAssetDirections" runat="server" Visible="false" CssClass="instructions"/>
+                                </div>
+                                <div class="instructions">
+                                     <asp:label id="lblErrorModify" runat="server" Visible="true" CssClass="instructions" ForeColor="Red"/>
                                 </div>
                             </p>
                         </div>

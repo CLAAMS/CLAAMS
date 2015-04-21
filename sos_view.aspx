@@ -48,6 +48,9 @@
                             <div class="instructions">
                                 <asp:Label ID="lblModifySOSDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
+                            <div class="instructions">
+                                <asp:Label ID="lblModifyError" runat="server" Visible="true" CssClass="instructions" ForeColor="Red"/>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
