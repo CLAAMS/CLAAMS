@@ -11,6 +11,7 @@ using Utilities;
 
 namespace CD6{
     public partial class users : System.Web.UI.Page{
+        string sqlConnectionString = Global.Connection_String;
         protected void Page_Load(object sender, EventArgs e){
             UsersList.Visible=true;
             usersHeader.Visible=true;
@@ -18,7 +19,7 @@ namespace CD6{
             createHeader.Visible=false;
             UserForm.Visible=false;
 
-            DataSet Users = Tools.DBAccess.DBCall("select claID, FirstName, LastName, OfficeLocation, UserStatus, EmailAddress from CLA_IT_Member");
+            DataSet Users = Tools.DBAccess.DBCall("select claID, FirstName, LastName, OfficeLocation, UserStatus, EmailAddress from CLA_IT_Member", Global.Connection_String);
             DataSet userList = new DataSet();
             userList.Tables.Add();
             userList.Tables[0].Columns.Add("accessNetID", typeof(string));
@@ -61,7 +62,7 @@ namespace CD6{
             string status = row.Cells[5].Text;
             
             if (e.CommandName == "switchStatus"){
-                DBConnect DBObj = new DBConnect();
+                DBConnect DBObj = new DBConnect(sqlConnectionString);
                 SqlCommand commandObject = new SqlCommand();
                 commandObject.CommandType = CommandType.StoredProcedure;
                 commandObject.CommandText = "updateUserStatus";
@@ -185,7 +186,7 @@ namespace CD6{
                     }
                     modal("Invalid Input", "User exists in the system.");
                 }else{
-                    DBConnect DBObj = new DBConnect();
+                    DBConnect DBObj = new DBConnect(Global.Connection_String);
                     SqlCommand commandObject = new SqlCommand();
                     commandObject.CommandType = CommandType.StoredProcedure;
 
@@ -284,7 +285,7 @@ namespace CD6{
 
         protected bool existingUser(string accessNetId) {
             string sql = string.Format("select claID from CLA_IT_Member where claID='{0}' and UserStatus='Active'", accessNetId);
-            DataSet result = Tools.DBAccess.DBCall(sql);
+            DataSet result = Tools.DBAccess.DBCall(sql, Global.Connection_String);
 
             if (result.Tables[0].Rows.Count == 1) {
                 return true;

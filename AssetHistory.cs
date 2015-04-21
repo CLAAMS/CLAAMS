@@ -25,9 +25,9 @@ namespace CD6 {
         public String editorID { get; set; }
 
         public static AssetHistory getAssetHistory(int assetHistoryID) {
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
-            DBConnect dbConnect = new DBConnect();
+            DBConnect dbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand = new SqlCommand();
@@ -64,9 +64,9 @@ namespace CD6 {
         }
 
         public static Dictionary<int, DateTime> getAssetHistories(int assetID) {
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
-            
-            DBConnect dbConnect = new DBConnect();
+            string SqlConnectString = Global.Connection_String;
+
+            DBConnect dbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand = new SqlCommand();

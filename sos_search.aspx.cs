@@ -13,8 +13,8 @@ using Microsoft.SqlServer.Server;
 namespace CD6 {
     public partial class sos_search : System.Web.UI.Page {
         SignOutSheet mySOS = new SignOutSheet();
-        DBConnect db = new DBConnect();
-        string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        string SqlConnectString = Global.Connection_String;
+        DBConnect db = new DBConnect(Global.Connection_String);
         
         protected void Page_Load(object sender, EventArgs e) {
             lblSearchSOSDirections.Visible = true;

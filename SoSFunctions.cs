@@ -14,8 +14,8 @@ namespace CD6
 {
     public class SoSFunctions
     {
-        DBConnect objDB = new DBConnect();
-          string sqlConnection = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        DBConnect objDB = new DBConnect(Global.Connection_String);
+        string sqlConnection = Global.Connection_String;
         public DataSet SearchSoS(SignOutSheet objSoS)
         { 
             SqlCommand objCommand = new SqlCommand();
@@ -102,7 +102,7 @@ namespace CD6
         }
 
         public static bool UpdateSosHistory(int sosID, string editorID) {
-            DBConnect objDB = new DBConnect();
+            DBConnect objDB = new DBConnect(Global.Connection_String);
 
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -134,7 +134,7 @@ namespace CD6
         }
         
         public static bool UpdateSoSDueDate(int sosID, string editorID, DateTime dueDate) {
-            DBConnect objDB = new DBConnect();
+            DBConnect objDB = new DBConnect(Global.Connection_String);
 
             SqlCommand objCommand1 = new SqlCommand();
             objCommand1.CommandType = CommandType.StoredProcedure;
@@ -169,7 +169,7 @@ namespace CD6
         }
 
         public static bool UpdateSoSFileName(int sosID, string editorID, string fileName) {
-            DBConnect objDB = new DBConnect();
+            DBConnect objDB = new DBConnect(Global.Connection_String);
 
             SqlCommand objCommand1 = new SqlCommand();
             objCommand1.CommandType = CommandType.StoredProcedure;
@@ -204,7 +204,7 @@ namespace CD6
         }
 
         public static bool UpdateSosStatus(int sosID, string sosStatus){
-            DBConnect objDB = new DBConnect();
+            DBConnect objDB = new DBConnect(Global.Connection_String);
 
             SqlCommand objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
