@@ -140,38 +140,58 @@ namespace CD6{
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e) {
-            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text)) {
-                string submit_type;
-                string editor = Session["user"].ToString();
-                btnSubmit.Visible = true;
-                btnSubmitModifyAsset.Visible = false;
-                objAsset.CLATag = txtCLAID.Text;
-                objAsset.Make = txtMake.Text;
-                objAsset.Model = txtModel.Text;
-                objAsset.Description = txtDescription.Text;
-                objAsset.SerialNumber = txtSerialLeft.Text;
-                objAsset.Status = ddlStatus.SelectedValue;
-                objAsset.Notes = txtNotes.Text;
-                objAsset.recordCreated = DateTime.Now;
-                objAsset.recordModified = DateTime.Now;
+            if (validateInput(txtCLAID.Text, txtMake.Text, txtModel.Text)) 
+            {
+                DataSet ds = Tools.DBAccess.DBCall("SELECT * FROM Asset WHERE CLATag = {0}", txtCLAID.Text);
 
-                objAssetFunctions.CreateNewAsset(objAsset, editor);
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    string submit_type;
+                    string editor = Session["user"].ToString();
+                    btnSubmit.Visible = true;
+                    btnSubmitModifyAsset.Visible = false;
+                    objAsset.CLATag = txtCLAID.Text;
+                    objAsset.Make = txtMake.Text;
+                    objAsset.Model = txtModel.Text;
+                    objAsset.Description = txtDescription.Text;
+                    objAsset.SerialNumber = txtSerialLeft.Text;
+                    objAsset.Status = ddlStatus.SelectedValue;
+                    objAsset.Notes = txtNotes.Text;
+                    objAsset.recordCreated = DateTime.Now;
+                    objAsset.recordModified = DateTime.Now;
 
-                txtCLAID.Text = "";
-                txtMake.Text = "";
-                txtModel.Text = "";
-                txtDescription.Text = "";
-                txtSerialLeft.Text = "";
-                ddlStatus.Text = "";
-                txtNotes.Text = "";
+                    objAssetFunctions.CreateNewAsset(objAsset, editor);
 
-                submit_type = "create";
+                    txtCLAID.Text = "";
+                    txtMake.Text = "";
+                    txtModel.Text = "";
+                    txtDescription.Text = "";
+                    txtSerialLeft.Text = "";
+                    ddlStatus.Text = "";
+                    txtNotes.Text = "";
 
-                string dialog_header, dialog_body;
-                if (submit_type == "create") {
-                    dialog_header = "Asset Created";
-                    dialog_body = string.Format("{0} {1} has been created successfully.", objAsset.Make, objAsset.Model);
-                    modal(dialog_header, dialog_body);
+                    submit_type = "create";
+
+                    string dialog_header, dialog_body;
+                    if (submit_type == "create")
+                    {
+                        dialog_header = "Asset Created";
+                        dialog_body = string.Format("{0} {1} has been created successfully.", objAsset.Make, objAsset.Model);
+                        modal(dialog_header, dialog_body);
+                    }
+                }
+                else
+                {
+                    string submit_type;
+                    submit_type = "error";
+
+                    string dialog_header, dialog_body;
+                    if (submit_type == "error")
+                    {
+                        dialog_header = "Error";
+                        dialog_body = string.Format("This CLATag already exists. Please enter a different CLATag to successfully create new asset");
+                        modal(dialog_header, dialog_body);
+                    }
                 }
             }
         }
