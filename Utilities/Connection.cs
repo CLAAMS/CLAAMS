@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace Utilities{
     public class DBConnect{
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
         DataSet ds;
 
-        public DBConnect(){
-            myConnectionSql = new SqlConnection(SqlConnectString);
+        public DBConnect(string ConnectionString){
+            myConnectionSql = new SqlConnection(ConnectionString);
             myConnectionSql.Open();
         }
 

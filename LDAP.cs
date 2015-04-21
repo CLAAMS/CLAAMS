@@ -17,7 +17,7 @@ namespace CD6{
                 string strDN = getDNFromLDAP(accessNetID);
 
                 //now use the found DN for the secure bind (port 636)
-                entry.Path = "LDAP://rock.temple.edu/" + strDN;
+                entry.Path = Global.LDAP_Server + strDN;
                 entry.Username = strDN;
                 entry.Password = password;
                 entry.AuthenticationType = AuthenticationTypes.SecureSocketsLayer;
@@ -34,7 +34,8 @@ namespace CD6{
         }
 
         public static string getDNFromLDAP(string strUID){
-            DirectoryEntry entry = new DirectoryEntry("LDAP://rock.temple.edu/ou=temple,dc=tu,dc=temple,dc=edu");
+            string LDAP_Path = Global.LDAP_Server + Global.LDAP_Domain;
+            DirectoryEntry entry = new DirectoryEntry(LDAP_Path);
             entry.AuthenticationType = AuthenticationTypes.None;
             DirectorySearcher mySearcher = new DirectorySearcher(entry);
             entry.Close();
@@ -48,7 +49,8 @@ namespace CD6{
         }
 
         public static Dictionary<string, string> getUserInfo(string accessNetID) {
-            DirectoryEntry entry = new DirectoryEntry("LDAP://rock.temple.edu/ou=temple,dc=tu,dc=temple,dc=edu");
+            string LDAP_Path = Global.LDAP_Server + Global.LDAP_Domain;
+            DirectoryEntry entry = new DirectoryEntry(LDAP_Path);
             entry.AuthenticationType = AuthenticationTypes.None;
             DirectorySearcher mySearcher = new DirectorySearcher(entry);
             entry.Close();

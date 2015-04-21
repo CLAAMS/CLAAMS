@@ -8,8 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace CD6{
     public partial class login : System.Web.UI.Page{
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e) {
             lblLoginInstructions.Visible = false;
             lblLoginInstructions.Text = "Enter correct accessnetID and password to begin using the CLAAMS system";
         }
@@ -25,14 +24,6 @@ namespace CD6{
                 lblLoginInstructions.Visible = false;
                 lblError.Text = "Invalid username or password, please try again. \n\n";
             }
-
-            //try{
-            //    Session["UserInfo"] = LDAP.getUserInfo(txtUsername.Text);
-            //    lblLDAPOutput.Text = DictToString((Dictionary<string, string>)Session["UserInfo"]);
-            //    Response.Redirect("sos_create.aspx");
-            //}catch{
-            //    lblLDAPOutput.Text = "Invalid AccessnetID";
-            //}
         }
 
         protected string DictToString(Dictionary<string, string> dict) {
@@ -48,7 +39,7 @@ namespace CD6{
         protected bool ValidUser(string accessNetID) {
             bool output;
             string sql = string.Format("select claID from CLA_IT_Member where claID='{0}' and UserStatus='Active'",accessNetID);
-            DataSet result = Tools.DBAccess.DBCall(sql);
+            DataSet result = Tools.DBAccess.DBCall(sql, Global.Connection_String);
             
             if (result.Tables[0].Rows.Count == 1){
                 output=true;

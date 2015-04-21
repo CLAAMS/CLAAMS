@@ -33,9 +33,9 @@ namespace CD6 {
         }
 
         protected DataSet getInfo(int sosId) {
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
-            DBConnect dbConnect = new DBConnect();
+            DBConnect dbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand = new SqlCommand();

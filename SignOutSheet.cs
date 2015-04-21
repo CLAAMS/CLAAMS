@@ -24,11 +24,11 @@ namespace CD6 {
         public DateTime recordCreated { get; set; }
         public String assetDescription { get; set; }
         public String editorID { get; set; }
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        String SqlConnectString = Global.Connection_String;
 
         public DataSet returnSignSheetRecipients() {
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand1 = new SqlCommand();
             myConnection.Open();
@@ -44,7 +44,7 @@ namespace CD6 {
 
         public DataSet returnAssigner() {
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand2 = new SqlCommand();
             myConnection.Open();
@@ -60,9 +60,9 @@ namespace CD6 {
 
         public static Dictionary<string, string> getSosName(int sosID) {
             Dictionary<string, string> myDict = new Dictionary<string, string>();
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();
@@ -89,7 +89,7 @@ namespace CD6 {
         }
 
         public DataSet SearchForAssets(int assetID, string assetName, string assetType, string claTag, string serial) {
-            DBConnect myDb=new DBConnect();
+            DBConnect myDb = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             myConnection.Open();
             SqlCommand myCommand5 = new SqlCommand();
@@ -273,10 +273,10 @@ namespace CD6 {
         public static SignOutSheet getSOSbyID(int sosID) {
             SignOutSheet mySOS = new SignOutSheet();
 
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();
@@ -315,10 +315,10 @@ namespace CD6 {
         public static ArrayList getAssetsForSOS(int sosID) {
             ArrayList assets = new ArrayList();
 
-            string SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+            string SqlConnectString = Global.Connection_String;
 
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand = new SqlCommand();
             myConnection.Open();

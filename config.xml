@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<appSettings>
+  <add key="ConnectionString" value="server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123"/>
+  <add key="LDAP_Server" value="LDAP://rock.temple.edu/"/>
+  <add key="LDAP_Domain" value="ou=temple,dc=tu,dc=temple,dc=edu"/>
+  <add key="SMTP_Server" value="smtp.temple.edu"/>
+  <add key="SMTP_Port" value="25"/>
+  <add key="EMAIL_From" value="clait@temple.edu" />
+</appSettings>

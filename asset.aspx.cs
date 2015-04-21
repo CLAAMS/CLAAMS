@@ -51,7 +51,7 @@ namespace CD6{
             DataSet dsAssets = new DataSet();
 
             string selectTemplates = "select assetTemplateID, Name from Asset_Template;";
-            dsAssets = Tools.DBAccess.DBCall(selectTemplates);
+            dsAssets = Tools.DBAccess.DBCall(selectTemplates, Global.Connection_String);
             ddlAssetTemplate.DataSource = dsAssets;
             ddlAssetTemplate.DataTextField = dsAssets.Tables[0].Columns[1].ColumnName;
             ddlAssetTemplate.DataValueField = dsAssets.Tables[0].Columns[0].ColumnName;
@@ -64,7 +64,7 @@ namespace CD6{
         private String[] getTemplate(int templateID) {
             string[] template = new string[3];
             string sql = string.Format("select Make, Model, Description from Asset_Template where assetTemplateID = {0};", templateID);
-            DataSet data = Tools.DBAccess.DBCall(sql);
+            DataSet data = Tools.DBAccess.DBCall(sql, Global.Connection_String);
             template[0] = (string)data.Tables[0].Rows[0][0].ToString();
             template[1] = (string)data.Tables[0].Rows[0][1].ToString();
             template[2] = (string)data.Tables[0].Rows[0][2].ToString();
@@ -284,7 +284,7 @@ namespace CD6{
                 objAsset.recordModified = DateTime.Now;
                 objAsset.editorID = Session["user"].ToString();
 
-                DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID));
+                DataSet ds = Tools.DBAccess.DBCall(string.Format("select sosID from Asset where assetID = {0}", objAsset.assetID), Global.Connection_String);
                 int sosID = 0;
                 if (int.TryParse(ds.Tables[0].Rows[0][0].ToString(), out sosID)) {
                     objAsset.sosID = sosID;

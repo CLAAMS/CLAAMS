@@ -19,7 +19,7 @@ namespace CD6{
         public string phoneNumber { get; set; }
         public string RecordCreated { get; set; }
         public string RecordModified { get; set; }
-        String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
+        String SqlConnectString = Global.Connection_String;
 
         public int CreateAssetRecipient(string Ptitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, int pprimaryDeptAffiliation, int psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
@@ -102,7 +102,7 @@ namespace CD6{
 
         public DataSet SearchAssetRecipient(string pTitle, string pFirstName, string pLastName, string PemailAddress, string plocation, string pdivision, int pprimaryDeptAffiliation, int psecondaryDeptAffiliation, string pphonenumber, string precordcreated, string precordmodified) {
             DataSet myDS = new DataSet();
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand2 = new SqlCommand();
 
@@ -175,7 +175,7 @@ namespace CD6{
         }
 
         public int DeleteRow(int assetRecipientId) {
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand3 = new SqlCommand();
             myConnection.Open();
@@ -196,7 +196,7 @@ namespace CD6{
         }
 
         public int UpdateRow(int assetRecipientID,string pTitle,string pFirstName,string pLastName,string pEmail, string pLocation, string pDivision, int pPDA, int pSDA, string pPhone, string pRecordModified) {
-            DBConnect myDbConnect = new DBConnect();
+            DBConnect myDbConnect = new DBConnect(SqlConnectString);
             SqlConnection myConnection = new SqlConnection(SqlConnectString);
             SqlCommand myCommand5 = new SqlCommand();
             myConnection.Open();
@@ -271,7 +271,7 @@ namespace CD6{
 
         public DataSet GetLocationForSelectedRecord(int ARID) 
         {
-            DBConnect theDB=new DBConnect();
+            DBConnect theDB = new DBConnect(SqlConnectString);
             SqlConnection myConnection=new SqlConnection(SqlConnectString);
             SqlCommand myCommand6=new SqlCommand();
             myConnection.Open();

@@ -64,6 +64,7 @@
       <BrowseToURL>~/addDepartment.aspx</BrowseToURL>
     </Content>
     <Content Include="asset.aspx" />
+    <Content Include="config.xml" />
     <Content Include="css\asset.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
@@ -84,6 +85,7 @@
     <Content Include="fonts\BebasNeue-webfont.svg" />
     <Content Include="fonts\DroidSans-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
     <Content Include="img\CLA_logo.png" />
     <Content Include="img\web_logo_tu_outlined-stacked.png" />
     <Content Include="js\add_asset_popup.js" />
@@ -139,6 +141,10 @@
     </Compile>
     <Compile Include="email.aspx.designer.cs">
       <DependentUpon>email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Email.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LDAP.cs" />
     <Compile Include="login.aspx.cs">
