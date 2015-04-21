@@ -156,7 +156,7 @@ namespace CD6 {
             
             try{
                 myEmail.sendEmail("ryanmarks62@yahoo.com", emailAddress,subject,body,attachement);
-                modal("Success", "Reciept has been sent.");
+                modal("Success", "Receipt has been sent.");
             } catch {
                 modal("Error!", "Email Failed to send.");
             }

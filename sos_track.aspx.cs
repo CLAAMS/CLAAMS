@@ -21,6 +21,9 @@ namespace CD6 {
             String SqlConnectString = Global.Connection_String;
 
             DBConnect myDB = new DBConnect(SqlConnectString);
+            lblTrackingDirections.Visible = true;
+            lblTrackingDirections.Text = "Shown below are Sign Out Sheets that are due within the next 14 days from the current date, as well as overdue Sign Out Sheets (if applicable).";
+            String SqlConnectString = "server=cla-server6.cla.temple.edu;Database=claams;User id=claams;Password=test=123";
             SqlConnection myConn = new SqlConnection(SqlConnectString);
             SqlCommand MyCommand = new SqlCommand();
             myConn.Open();
