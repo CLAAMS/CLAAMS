@@ -30,7 +30,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <asp:Label ID="lblDeptName" Text="Department ID:" runat="server" CssClass="label" />
+                        <asp:Label ID="lblDeptName" Text="Department Name:" runat="server" CssClass="label" />
                         <asp:Label ID="lblError" runat="server" CssClass="label" style="color:red" Visible="false"/>
                     </div>
                 </div>
