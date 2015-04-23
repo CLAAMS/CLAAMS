@@ -109,8 +109,8 @@
                                 <asp:Label ID="lblTemplate" Text="Template:" runat="server" CssClass="label" />
                                 <asp:DropDownList ID="ddlAssetTemplate" runat="server" AutoPostBack="true" CssClass="dropdown" OnSelectedIndexChanged="ddlAssetTemplate_SelectedIndexChanged"/>
                             </div>
-                            <div class="col-xs-3">
-                                <asp:linkbutton runat="server" id="manage_templates" text="Manage Templates" OnClick="manage_templates_Click" />. 
+                            <div class="col-xs-3" style="text-align:right;">
+                                <asp:linkbutton runat="server" id="manage_templates" text="Manage Templates" OnClick="manage_templates_Click" />
                             </div>
                         </div>
                         <div style="height:34px;" runat="server" id="filler">&nbsp</div>

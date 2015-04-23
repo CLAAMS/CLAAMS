@@ -4,6 +4,10 @@
 .wrapper {
 }
 
+
+form {
+    font-family: 'Droid Sans';
+}
 #header {
     font-family: 'BebasNeue';
     text-align: left;
@@ -30,11 +34,12 @@
 
 .navbar-default .navbar-nav>li>a{
     font-family: 'BebasNeue';
+    font-size: 16px;
     color: #ffffff;
 }
 
 #content {
-    font-family:'Open Sans Condensed';
+    /*font-family:'Open Sans Condensed';*/
     font-size:14px;
 }
 
@@ -105,6 +110,7 @@
 }
 
 .header_row {
+    font-family: 'Open Sans Condensed';
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -132,4 +138,5 @@
 .instructions {
     padding-top: 10px;
     padding-bottom: 10px;
+    font-family: 'Droid Sans';
 }
