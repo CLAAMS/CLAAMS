@@ -44,7 +44,7 @@
                                 <div class="col-md-6">
                                     <asp:Label ID="lblRecipient" text="Recipient: *" runat="server" CssClass="label" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="text-align: right;">
                                     <asp:LinkButton ID="linkRecipientSearch" runat="server" Text="Search for Recipients" OnClick="linkRecipientSearch_Click"/>
                                 </div>
                             </div>
