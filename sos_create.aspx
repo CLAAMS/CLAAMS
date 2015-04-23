@@ -24,7 +24,7 @@
         </div><!--/.container-fluid -->
     </nav>
     <div class="row main_content">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <form role="form">
                 <div class="row" id="sos_form" runat="server">
                     <div class="row header_row">

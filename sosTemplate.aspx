@@ -23,7 +23,7 @@
         </div><!--/.container-fluid -->
     </nav>
     <div class="row main_content">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="row header_row"><div class="col-md-12" id="sosCopyHeader" runat="server" visible="true"><p><h1>Edit Sign Sheet</h1></p></div></div>
             <asp:Label ID="lblSOSCopy" Text="Sign Sheet Body:" runat="server" CssClass="label" />
             <asp:TextBox ID="txtSOSCopy" runat="server" TextMode="MultiLine" Rows="20" Columns="100" CssClass="form-control" ValidateRequestMode="Disabled"/>
