@@ -12,12 +12,17 @@ namespace CD6 {
         SignOutSheet mySOS = new SignOutSheet();
         int sosID;
         DateTime dayCounter=DateTime.Now;
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e) {
             lblModifySOSDirections.Visible = true;
             lblModifySOSDirections.Text = "If selected SOS to modify is Permanent, all fields all read only and can not be editted. If term is Non-Permanent, you may only edit the due date for the SOS. Use history drop-down to view all previous changes made to the particular SOS";
-            if (!IsPostBack)
-            {
+            
+            if (Tools.DBAccess.DBCall(String.Format("select Status from SoS where sosID = {0}", (int)Session["SOSID"]), Global.Connection_String).Tables[0].Rows[0][0].ToString() == "Archived"){
+                linkPrint.Visible = false;    
+            }else{
+                linkPrint.Visible = true;
+            }
+
+            if (!IsPostBack) {
                 sosID = -1;
                 loadOriginal();
             }

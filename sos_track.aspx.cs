@@ -33,6 +33,13 @@ namespace CD6 {
 
             gvSosTracking.DataSource = myDB.GetDataSetUsingCmdObj(MyCommand);
             gvSosTracking.DataBind();
+
+            foreach (GridViewRow row in gvSosTracking.Rows) {
+                if (int.Parse(row.Cells[3].Text) < 0) {
+                    row.BackColor = System.Drawing.Color.FromName("red");
+                    row.ForeColor = System.Drawing.Color.FromName("white");
+                }
+            }
         }
 
         protected void gvSosTracking_RowCommand(object sender, GridViewCommandEventArgs e) {
