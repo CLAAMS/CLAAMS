@@ -54,7 +54,7 @@
                 </div>
             </div>
     <div class="row main_content">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <form role="form">
                 <div class="row" id="asset_form" runat="server" visible="true">
                     <div class="row header_row">

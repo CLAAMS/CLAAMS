@@ -42,7 +42,7 @@
         </div><!--/.container-fluid -->
     </nav>
     <div class="row main_content">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="row" id="UsersList" runat="server" visible="true">
                 <div class="row header_row"><div class="col-md-12" id="usersHeader" runat="server" visible="true"><p><h1>Current Users</h1></p></div></div>
                 <div class="col-md-12">

@@ -19,7 +19,7 @@
     </nav>
         <div class="row" id="content">
             </div>
-            <div class="col-md-12">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="row header_row">
                     <div class="col-md-12" id="deptManageHeader" runat="server" visible="true">
                             <h1>Add Department</h1>
