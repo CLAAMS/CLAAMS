@@ -99,10 +99,10 @@
                                 <asp:Label ID="lblPrimaryDept" Text="Primary Department Affiliation: *" runat="server" CssClass="label" />
                             </div>
                             <div class="col-md-6" style="text-align:right;">
-                                <a onclick="addDepartment()">Add Department</a>
+                                <asp:linkbutton runat="server" id="add_department" text="Add Department" OnClick="add_department_Click" />
                             </div>
                         </div>
-                        <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;" AppendDataBoundItems="true" TabIndex="8" />
+                        <asp:DropDownList ID="ddlPrimaryDept" runat="server" CssClass="dropdown" style="width:100%;"  AppendDataBoundItems="true" TabIndex="8" />
                     </div>
                     <div class="col-md-6">
                         <asp:Label ID="lblLastName" Text="Last Name: *" runat="server" CssClass="label" />
@@ -132,7 +132,7 @@
                         <asp:GridView ID="gvSearchResults" runat="server" DataKeyNames="arID" OnRowCommand="gvSearchResult_click"  AutoGenerateColumns="False" CssClass="table"   >
                             <Columns>
                                 <asp:BoundField HeaderText="Location" Visible="False" />
-                                <asp:BoundField DataField="arID" runat="server" Visible="false" />
+                                <asp:BoundField DataField="arID"  Visible="false" />
                                 <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                                 <asp:BoundField DataField="LastName" HeaderText="Last Name" />
                                 <asp:BoundField DataField="EmailAddress" HeaderText="Email" />

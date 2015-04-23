@@ -269,5 +269,79 @@ namespace CD6
             objDB.DoUpdateUsingCmdObj(objCommand1);
         }
 
+        public void UpdateAssetSOSID(Asset objAsset)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateCheckInAssetSOSID";
+
+            SqlParameter inputParameter = new SqlParameter("@editorID", objAsset.editorID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+
+            inputParameter = new SqlParameter("@assetID", objAsset.assetID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.Int;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "UpdateAssetStatus";
+
+            SqlParameter inputParameter1 = new SqlParameter("@assetID", objAsset.assetID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.Int;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            objDB.DoUpdateUsingCmdObj(objCommand1);
+
+            
+        }
+
+        public void ArchiveSOSCheckInAsset(Asset objAsset)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateSOSHistory";
+
+            SqlParameter inputParameter = new SqlParameter("@sosID", objAsset.sosID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@editorID", objAsset.editorID);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 100;
+            objCommand.Parameters.Add(inputParameter);
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+
+            SqlCommand objCommand1 = new SqlCommand();
+            objCommand1.CommandType = CommandType.StoredProcedure;
+            objCommand1.CommandText = "ArchiveSOSCheckIn";
+
+            SqlParameter inputParameter1 = new SqlParameter("@sosID", objAsset.sosID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.Int;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            inputParameter1 = new SqlParameter("@editorID", objAsset.editorID);
+            inputParameter1.Direction = ParameterDirection.Input;
+            inputParameter1.SqlDbType = SqlDbType.VarChar;
+            inputParameter1.Size = 100;
+            objCommand1.Parameters.Add(inputParameter1);
+
+            objDB.DoUpdateUsingCmdObj(objCommand1);
+        }
     }
 }
