@@ -137,7 +137,41 @@ namespace CD6{
                 txtDescription.Text = objAsset.Description;
                 txtNotes.Text = objAsset.Notes;
                 lblAssetID.Text = objAsset.assetID.ToString();
-            } else if(e.CommandName == "checkinRecord") { }
+            } 
+            else if(e.CommandName == "checkinRecord") 
+            {
+                string editorID = "";
+                editorID = Session["user"].ToString();
+                objAsset.editorID = editorID;
+                int assetID = Convert.ToInt32(gvSearchResults.DataKeys[index].Value);
+                objAsset.assetID = assetID;
+                DataSet ds1 = Tools.DBAccess.DBCall(string.Format("SELECT sosID FROM Asset WHERE assetID = {0}", assetID), Global.Connection_String); 
+                objAsset.sosID = (int)ds1.Tables[0].Rows[0][0];
+
+                int sosID = (int)ds1.Tables[0].Rows[0][0];
+
+                DataSet ds = Tools.DBAccess.DBCall(string.Format("SELECT assetID FROM Asset WHERE sosID = {0}", sosID), Global.Connection_String);
+                if (ds.Tables[0].Rows.Count > 1)
+                {
+                    objAssetFunctions.UpdateAssetSOSID(objAsset);
+                }
+                else
+                {
+                    objAssetFunctions.UpdateAssetSOSID(objAsset);
+                    objAssetFunctions.ArchiveSOSCheckInAsset(objAsset);
+                }
+
+                DataSet asset = Tools.DBAccess.DBCall(string.Format("SELECT Make + ' ' + Model as AssetName FROM Asset WHERE assetID = {0}", assetID), Global.Connection_String);
+
+                string assetName = asset.Tables[0].Rows[0][0].ToString();
+
+                string dialog_header, dialog_body;
+                dialog_header = "Asset Checked In Successfully";
+                dialog_body = string.Format("{0} has been checked in successfully.", assetName);
+                modal(dialog_header, dialog_body);
+
+                btnNewSearch_Click(this, e);
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e) {

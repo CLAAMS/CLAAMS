@@ -18,6 +18,20 @@ namespace CD6 {
                 fillDropDowns();
                 btnCreate_Click(this, e);
             }
+
+            if (Session["createRecipientSelections"] != null)
+            {
+                Dictionary<string, object> createRecipientSelections = (Dictionary<string, object>)Session["createRecipientSelections"];
+                ddlTitle.SelectedValue = (string)createRecipientSelections["Title"];
+                txtFirstname.Text = (string)createRecipientSelections["FirstName"];
+                txtLastName.Text = (string)createRecipientSelections["LastName"];
+                txtEmail.Text = (string)createRecipientSelections["Email"];
+                txtLocation.Text = (string)createRecipientSelections["Location"];
+                ddlDivision.SelectedValue = (string)createRecipientSelections["Division"];
+                ddlPrimaryDept.SelectedValue = (string)createRecipientSelections["PrimaryDeptAffiliation"];
+                ddlSecondaryDept.SelectedValue = (string)createRecipientSelections["SecondaryDeptAffiliation"];
+                txtPhone.Text = (string)createRecipientSelections["PhoneNumber"];
+            }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e) {
@@ -170,7 +184,8 @@ namespace CD6 {
 
             if (validateInputModify(txtFirstname.Text, txtLastName.Text, txtEmail.Text, txtLocation.Text, PrimaryDept))
             {
-                if (Session["AssetRecipient"] != null) {
+                if (Session["AssetRecipient"] != null)
+                {
                     modal1("Modify Recipient", "Are you sure you want to modify this recipient?");  
                 } else {
                     myAR.title = ddlTitle.Text;
@@ -396,42 +411,49 @@ namespace CD6 {
         {
             string output = "";
             lblModifyError.Text = "";
+            lblCreateError.Text = "";
             Tools.InputValidation InVal = new Tools.InputValidation();
 
             if (firstName == "")
             {
                 output += "Invalid First Name<br/>";
                 lblModifyError.Text += "Enter First Name<br/>";
+                lblCreateError.Text += "Enter First Name<br/>";
             }
 
             if (lastName == "")
             {
                 output += "Invalid Last Name<br/>";
                 lblModifyError.Text += "Enter Last Name<br/>";
+                lblCreateError.Text += "Enter Last Name<br/>";
             }
 
             if (location == "")
             {
                 output += "Invalid Location<br/>";
                 lblModifyError.Text += "Enter Location<br/>";
+                lblCreateError.Text += "Enter Location<br/>";
             }
 
             if (!InVal.IsValidEmail(email))
             {
                 output += "Invalid Email Address<br/>";
                 lblModifyError.Text += "Enter Email Address<br/>";
+                lblCreateError.Text += "Enter Email Address<br/>";
             }
 
             if (primaryDept == 0)
             {
                 output += "Invalid Primary Department";
                 lblModifyError.Text += "Enter Primary Department Affiliation<br/>";
+                lblCreateError.Text += "Enter Primary Department Affiliation<br/>";
             }
 
             if (output != "" && lblModifyError.Text != "")
             {
                 modal("Invalid Input!", "The following fields contain errors:<br/>" + output);
                 lblModifyError.Text = "The following fields contain errors and are missing information:<br/>" + lblModifyError.Text;
+                lblCreateError.Text = "The following fields contain errors and are missing information:<br/>" + lblCreateError.Text;
                 return false;
             }
             else
@@ -451,6 +473,24 @@ namespace CD6 {
             }
             Response.Flush();
             Response.End();
+        }
+
+        protected void add_department_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, object> createRecipientSelections = new Dictionary<string, object>();
+
+            createRecipientSelections.Add("Title", ddlTitle.SelectedValue);
+            createRecipientSelections.Add("FirstName", txtFirstname.Text);
+            createRecipientSelections.Add("LastName", txtLastName.Text);
+            createRecipientSelections.Add("Email", txtEmail.Text);
+            createRecipientSelections.Add("Location", txtLocation.Text);
+            createRecipientSelections.Add("Division", ddlDivision.SelectedValue);
+            createRecipientSelections.Add("PrimaryDeptAffiliation", ddlPrimaryDept.SelectedValue);
+            createRecipientSelections.Add("SecondaryDeptAffiliation", ddlSecondaryDept.SelectedValue);
+            createRecipientSelections.Add("PhoneNumber", txtPhone.Text);
+
+            Session["createRecipientSelections"] = createRecipientSelections;
+            Response.Redirect("addDepartment.aspx");
         }
     }
 }

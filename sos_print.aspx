@@ -75,10 +75,10 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <br />
-                        <asp:GridView id="gvAssets" runat="server" ShowHeader="false" GridLines="None" CssClass="table" AutoGenerateColumns="false" DataKeyNames="Asset, CLATag" >
+                        <asp:GridView id="gvAssets" runat="server" ShowHeader="False" GridLines="None" CssClass="table" AutoGenerateColumns="False" DataKeyNames="Asset,CLATag" >
                             <Columns>
-                                <asp:BoundField DataField="Asset" />
-                                <asp:BoundField DataField="CLATag" />
+                                <asp:BoundField DataField="Asset" HeaderText="Asset" />
+                                <asp:BoundField DataField="CLATag" HeaderText="CLA Tag" />
                             </Columns>
                         </asp:GridView>
                     </div>

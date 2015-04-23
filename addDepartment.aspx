@@ -1,27 +1,31 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addDepartment.aspx.cs" Inherits="CD6.addDepartment" %>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Manage Departments</title>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' />
-    <link href="css/fonts.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/master.css" rel="stylesheet" />
-</head>
-<body>
-    <form id="form1" runat="server">
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master.Master" CodeBehind="addDepartment.aspx.cs" Inherits="CD6.addDepartment" %>
+<%@ MasterType VirtualPath="~/master.Master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/recipient.css" rel="stylesheet" />
+    <link href="css/secondary-nav.css" rel="stylesheet" />
+</asp:Content>
+<asp:Content ID="content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <nav class="navbar navbar-default navbar-secondary" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subnavbar" aria-expanded="false" aria-controls="subnavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div><!--/.container-fluid -->
+    </nav>
         <div class="row" id="content">
             </div>
             <div class="col-md-12">
                 <div class="row header_row">
                     <div class="col-md-12" id="deptManageHeader" runat="server" visible="true">
-                        <p>
                             <h1>Add Department</h1>
                             <div class="instructions">
                                 <asp:Label ID="lblAddDepartmentDirections" runat="server" Visible="false" CssClass="instructions"/>
                             </div>
-                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -53,13 +57,10 @@
                          </asp:GridView>
                         <div class="button_row row">
                             <div class="col-md-12" style="text-align:center;">
-                                <asp:Button ID="btnClose" Text="Close" runat="server" OnClientClick="window.close(); return false;" OnClick="btnClose_Click" />
+                                <asp:Button ID="btnClose" Text="Close" runat="server" OnClick="btnClose_Click" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</body>
-</html>
+</asp:Content>
