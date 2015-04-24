@@ -103,12 +103,10 @@ namespace CD6 {
             if (history.assingmentPeriod == 0){
                 calDue.Visible = true;
                 calDueDate.SelectedDate = history.dateDue;
-               
             }
         }
 
-        protected void btnSubmitModification_Click(object sender, EventArgs e) 
-        {
+        protected void btnSubmitModification_Click(object sender, EventArgs e) {
             string editorID = (string)Session["user"];
             int sosIDDueDate = (int)Session["SOSID"];
            // DataSet ds = Tools.DBAccess.DBCall( "select assetTemplateID, Name from Asset_Template");
@@ -123,15 +121,13 @@ namespace CD6 {
            // Response.Redirect("./sos_view.aspx");
         }
 
-        protected void modal(string title, string body) 
-        {
+        protected void modal(string title, string body) {
             this.Master.modal_header = title;
             this.Master.modal_body = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
-        protected void modal1(string title, string body)
-        {
+        protected void modal1(string title, string body) {
             lblmodifySOSLabel_header.Text = title;
             lblModifySOSModal_body.Text = body;
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "modifySOS();", true);
@@ -146,8 +142,7 @@ namespace CD6 {
             Response.Write("<script>window.open('./sos_print.aspx','_blank');</script>");
         }
 
-        protected void btnModifySOSModalYes_Click(object sender, EventArgs e)
-        {
+        protected void btnModifySOSModalYes_Click(object sender, EventArgs e) {
             string dialog_header = "";
             string dialog_body = "";
             string editorID;
@@ -155,21 +150,15 @@ namespace CD6 {
             int sosIDDueDate = (int)Session["SOSID"];
             DateTime dueDate = calDueDate.SelectedDate;
 
-            if (SoSFunctions.UpdateSosHistory(sosIDDueDate, editorID))
-            {
-                if (SoSFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate))
-                {
+            if (SoSFunctions.UpdateSosHistory(sosIDDueDate, editorID)) {
+                if (SoSFunctions.UpdateSoSDueDate(sosIDDueDate, editorID, dueDate)) {
                     dialog_header = "SoS Modified";
                     dialog_body = string.Format("SOS {0} has been modified successfully", sosIDDueDate);
-                }
-                else
-                {
+                } else {
                     //CODE TO REMOVE NEW SOSHISTORY RECORD
                     //ERROR DIALOG
                 }
-            }
-            else
-            {
+            } else {
                 dialog_header = "Error: Modify Failed";
                 dialog_body = "Unable to modify record. Please try again.";
             }
@@ -178,8 +167,7 @@ namespace CD6 {
             //Response.Redirect("sos_search.aspx")      //NEED TO REDIRECT TO SEARCH
         }
 
-        protected void btnModifySOSModalNo_Click(object sender, EventArgs e)
-        {
+        protected void btnModifySOSModalNo_Click(object sender, EventArgs e) {
             btnSubmitModification_Click(this, e);
         }
     }
