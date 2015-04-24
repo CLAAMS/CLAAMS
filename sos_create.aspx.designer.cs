@@ -13,6 +13,33 @@ namespace CD6 {
     public partial class sos_create {
         
         /// <summary>
+        /// lblModal_header control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModal_header;
+        
+        /// <summary>
+        /// lblModal_Body control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModal_Body;
+        
+        /// <summary>
+        /// linkPrintSos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkPrintSos;
+        
+        /// <summary>
         /// sos_form control.
         /// </summary>
         /// <remarks>

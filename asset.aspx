@@ -104,13 +104,19 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="row" id="templateRow" runat="server">
-                            <div class="col-xs-9">
-                                <asp:Label ID="lblTemplate" Text="Template:" runat="server" CssClass="label" />
-                                <asp:DropDownList ID="ddlAssetTemplate" runat="server" AutoPostBack="true" CssClass="dropdown" OnSelectedIndexChanged="ddlAssetTemplate_SelectedIndexChanged"/>
+                        <div class="row" id="templateRow" runat="server" style="margin-left:0px;margin-right:0px">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <asp:Label ID="lblTemplate" Text="Template:" runat="server" CssClass="label" />
+                                </div>
+                                <div class="col-xs-6" style="text-align:right;">
+                                    <asp:linkbutton runat="server" id="manage_templates" text="Manage Templates" OnClick="manage_templates_Click" />
+                                </div>
                             </div>
-                            <div class="col-xs-3" style="text-align:right;">
-                                <asp:linkbutton runat="server" id="manage_templates" text="Manage Templates" OnClick="manage_templates_Click" />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <asp:DropDownList Width="100%" ID="ddlAssetTemplate" runat="server" AutoPostBack="true" CssClass="dropdown" OnSelectedIndexChanged="ddlAssetTemplate_SelectedIndexChanged"/>
+                                </div>
                             </div>
                         </div>
                         <div style="height:34px;" runat="server" id="filler">&nbsp</div>

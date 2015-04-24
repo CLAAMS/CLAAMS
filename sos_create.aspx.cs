@@ -109,6 +109,7 @@ namespace CD6 {
                 int assetId = 1;
                 Session["SoS"] = mySOS;
                 int sosID = mySOS.CreateSignOutSheet(assetId, mySOS.cladID, mySOS.arID, mySOS.assingmentPeriod, mySOS.dateCreated, mySOS.dateModified, mySOS.dateDue, mySOS.status, mySOS.imageFileName, mySOS.recordCreated, mySOS.recordModified, mySOS.editorID);
+                Session["sosIdForPrint"] = sosID;
                 if (sosID == -1) {
                     dialog_header = "ERROR";
                     dialog_body = "Failed to Create Sign Sheet";
@@ -130,9 +131,9 @@ namespace CD6 {
                 string recipientName = ds.Tables[0].Rows[0][0].ToString();
                 if (return_code == "success") {
                     dialog_header = "SOS created";
-                    dialog_body = string.Format("SOS for {0} has been created successfully.", recipientName);
+                    dialog_body = string.Format("SOS {0} has been created for {1}.", sosID, recipientName);
                 }
-                modal(dialog_header, dialog_body);
+                confirmationModal(dialog_header, dialog_body);
 
                 clearPage();
             }
@@ -211,6 +212,12 @@ namespace CD6 {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
         }
 
+        protected void confirmationModal(string header, string body) {
+            lblModal_header.Text = header;
+            lblModal_Body.Text = body;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "confirmationSos();", true);
+        }
+
         protected bool validateInput(string recipient, string claMember, string term, ListBox lBox, DateTime dateDue) {
             string output = "";
             lblCreateError.Text = "";
@@ -258,6 +265,10 @@ namespace CD6 {
             }
             Session["createSosSelections"] = createSosSelections;
             Response.Redirect("recipientSearchForSoS.aspx");
+        }
+
+        protected void link_ClickPrintSos(object sender, EventArgs e) {
+            Response.Write("<script>window.open('./sos_print.aspx','_blank');</script>");
         }
     }
 }

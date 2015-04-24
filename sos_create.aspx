@@ -23,6 +23,21 @@
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="text-align:center;">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"/>-->
+                    <h4 class="modal-title" id="myModalLabel"><asp:Label ID="lblModal_header" runat="server" /></h4>
+                </div>
+                <div class="modal-body">
+                    <asp:label ID="lblModal_Body" runat="server" /><br />
+                    <asp:LinkButton ID="linkPrintSos" runat="server" OnClick="link_ClickPrintSos" OnClientClick="aspnetForm.target='blank';" Text="Print Sign Sheet" /><br />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row main_content">
         <div class="col-md-10 col-md-offset-1">
             <form role="form">

@@ -22,4 +22,6 @@ function modifyRecipient(input) {
     $('#modifyRecipientModal').modal('show');
 }
 
-
+function confirmationSos(input) {
+    $('#confirmationModal').modal('show');
+}
